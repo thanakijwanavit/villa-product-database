@@ -2,11 +2,11 @@
 SHELL := /bin/bash
 SRC = $(wildcard ./*.ipynb)
 
-all: villa-inv-database docs
+all: villa-product-database docs
 
-villa-inv-database: $(SRC)
+villa-product-database: $(SRC)
 	nbdev_build_lib
-	touch villa-inv-database
+	touch villa-product-database
 
 sync:
 	nbdev_update_lib
