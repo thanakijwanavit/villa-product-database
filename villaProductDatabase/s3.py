@@ -24,25 +24,24 @@ class DatabaseS3:
   @classmethod
   def dumpToS3(cls, bucketName= INVENTORY_BUCKET_NAME, key = 'allData', **kwargs):
     ''' upload changes to s3'''
-    # get original data
-    # allData = cls.S3.load(bucket = bucketName, key = key)
     allData = cls.loadFromS3(bucketName = bucketName, key = key, **kwargs)
+    originalData = allData.copy()
+
     logging.debug(f'all data is {len(allData)}')
     changeList = list(cls.needUpdateIndex.query(cls.TRUE))
     logging.debug(f'{len(changeList)} changes to update')
+
     with cls.batch_write() as batch:
-      changes = {
-                  item.ib_prcode:(
-                    item.inventory,
-                    item.setNoUpdate(batch=batch)
-                  )[0]
-                  for item in changeList
-                }
-    logging.debug(f'change filtration has completed')
-    logging.debug(f'all data is {len(allData)}\n changes are {len(changes)}')
-    if changes:
+      for item in changeList:
+        # if product doesnt exist, create and empty dict
+        if not allData.get(item['iprcode']): allData[item['iprcode']] = {}
+        # update product
+        allData[item['iprcode']][item['cprcode']].update(item)
+        # set no change to all data after update
+        item.setNoUpdate(batch=batch)
+
+    if allData == originalData:
       logging.debug(f'updating')
-      allData.update(changes)
       logging.debug(S3.save(key = 'allData',
                   objectToSave = allData,
                   bucket = bucketName, **kwargs)

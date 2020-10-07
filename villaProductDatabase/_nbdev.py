@@ -2,8 +2,8 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"NeedUpdateIndex": "database.ipynb",
-         "Database": "database.ipynb",
+index = {"createIndex": "database.ipynb",
+         "ProductDatabase": "database.ipynb",
          "DatabaseHelper": "helper.ipynb",
          "Querier": "query.ipynb",
          "DatabaseS3": "s3.ipynb",

@@ -13,8 +13,10 @@ class DatabaseHelper:
   class Helper:
     @staticmethod
     def groupByProduct(data):
+      return [{row['iprcode']: row} for row in data]
+
       df = pd.DataFrame(data)
-      gprcode = df.groupby('ib_prcode')
+      gprcode = df.groupby('iprcode')
       # group by ib_prcode, then ib_brcode, add timestamp as well
       res = gprcode.agg(list).apply(lambda x: {
             k:v for k,v in zip(
@@ -68,7 +70,3 @@ class DatabaseHelper:
       if saveResult: saveResults['success'] += 1
       else: saveResults['failure'] += 1
     return saveResults
-
-
-
-

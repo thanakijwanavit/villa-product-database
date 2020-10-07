@@ -19,123 +19,49 @@ except Exception as e:
 # Cell
 class Updater:
   @classmethod
-  def valueUpdate(cls, input):
-    '''
-    update products in the database, first use the helper.groupbyprcode to treat the data
-    input structure is the foloowing
-    - iprcode:
-        ibrcode:
-          ib_cf_qty: Int
-          lastUpdate: Float
-          new_ib_bs_stock_cv: Int
-    '''
-    itemsUpdated = {'success':0, 'failure': 0, 'failureMessage':[]}
-
-    logging.info(f'there are {len(list(input.keys()))} products to update')
-
-    # loop through each product
-    for prcode, value in input.items():
-
-      incumbentBr = None
-      # check if product is in the database, if not, create an empty class with the product code
-      incumbentBr = next(cls.query(prcode),cls(ib_prcode = prcode, inventory = {}))
-      logging.info(f'incumbentBr is {incumbentBr}\n, prcode is {prcode}')
-
-      # drop the data with no update
-      filteredBr = {
-          brcode : v2
-          for brcode, v2 in value.items()
-          if v2['ib_cf_qty'] != incumbentBr.inventory.get(brcode ,{}).get('ib_cf_qty',None)
-      }
-      logging.info(f'filteredBr is {filteredBr}')
-
-
-      # check if there are data to update
-      if filteredBr:
-        # put the latest update into the lastupdate index
-        incumbentBr.lastUpdate = max( v.get('lastUpdate') for v in filteredBr.values() )
-        incumbentBr.inventory = (lambda d: d.update(filteredBr) or d)(incumbentBr.inventory)
-        incumbentBr.inventory['lastUpdate'] = incumbentBr.lastUpdate
-        incumbentBr.inventory['ib_prcode'] = incumbentBr.ib_prcode
-        incumbentBr.needUpdate = cls.TRUE
-
-        logging.info(f'saving result {incumbentBr}')
-        # try to save the result
-        saveResult = incumbentBr.save()
-        # saveResult = batch.save(incumbentBr)
-
-        # record the saving success
-        if saveResult.get('ConsumedCapacity'):
-          itemsUpdated['success'] += 1
-        else:
-          itemsUpdated['failure'] += 1
-          itemsUpdated['failureMessage'].append(saveResult)
-
-    return itemsUpdated
-
+  def updateWithDict(cls, originalObject, inputDict:dict ):
+    data = originalObject.data
+    data.update(inputDict)
+    return cls.fromDict(data)
   @classmethod
-  def bulkUpdate(cls,input, **kwargs):
+  def valueUpdate(cls, inputs):
     '''
-    update products in the database, first use the helper.groupbyprcode to treat the data
-    input structure is the foloowing
-    - iprcode:
-        ibrcode:
-          ib_cf_qty: Int
-          lastUpdate: Float
-          new_ib_bs_stock_cv: Int
+      check for difference and batch update the changes in product data
     '''
-    itemsUpdated = {'success':0, 'failure': 0, 'failureMessage':[]}
+    itemsUpdated = {'success':0, 'failure': 0, 'skipped': 0 ,'failureMessage':[], 'timeTaken': 0}
+    t0 = datetime.now()
 
-    logging.info(f'there are {len(list(input.keys()))} products to update')
+    logging.info(f'there are {len(inputs)} products to update')
 
-    db = cls.loadFromS3(**kwargs)
+    with cls.batch_write() as batch:
+      # loop through each product
+      for input_ in inputs:
+        iprcode = input_['iprcode']
+        cprcode = input_['cprcode']
 
-    # loop through each product
-    for prcode, value in input.items():
+        # check if product is in the database, if not, create an empty class with the product code
+        incumbentBr = next(cls.query(iprcode , cls.cprcode == input_['cprcode']),cls(iprcode = iprcode, cprcode = input_['cprcode'], data = {}))
+        # save original data to a variable
+        originalData = incumbentBr.data.copy()
+        # update data
+        updatedData = cls.updateWithDict(incumbentBr, input_)
 
-      incumbentBr = None
-      # check if product is in the database, if not, create an empty class with the product code
-#       incumbentBr = next(cls.query(prcode),cls(ib_prcode = prcode, inventory = {}))
-      # do this with s3 database instead of dynamodb to speed up
-      incumbentBr = cls(inventory = db.get(prcode) or {}, ib_prcode = prcode)
-      logging.info(f'incumbentBr is {incumbentBr}\n, prcode is {prcode}')
+        logging.info(f'incumbentBr is {incumbentBr}\n, prcode is {iprcode}')
 
-      # drop the data with no update
-      filteredBr = {
-          brcode : v2
-          for brcode, v2 in value.items()
-          if v2['ib_cf_qty'] != incumbentBr.inventory.get(brcode ,{}).get('ib_cf_qty',None)
-      }
-      logging.info(f'filteredBr is {filteredBr}')
-
-
-      # check if there are data to update
-      if filteredBr:
-        # put the latest update into the lastupdate index
-        incumbentBr.lastUpdate = max( v.get('lastUpdate') for v in filteredBr.values() )
-        incumbentBr.inventory = (lambda d: d.update(filteredBr) or d)(incumbentBr.inventory)
-        incumbentBr.inventory['lastUpdate'] = incumbentBr.lastUpdate
-        incumbentBr.inventory['ib_prcode'] = incumbentBr.ib_prcode
-        incumbentBr.needUpdate = cls.TRUE
-
-        logging.info(f'saving result {incumbentBr}')
-        # try to save the result
-        saveResult = incumbentBr.save()
-        # saveResult = batch.save(incumbentBr)
-
-        # record the saving success
-        if saveResult.get('ConsumedCapacity'):
+        # check for difference
+        if updatedData.data != originalData:
+          logging.info(f'product {iprcode} has changed from {originalData} to {updatedData}')
+          batch.save(updatedData)
           itemsUpdated['success'] += 1
         else:
-          itemsUpdated['failure'] += 1
-          itemsUpdated['failureMessage'].append(saveResult)
-
+          itemsUpdated['skipped'] += 1
+        itemsUpdated['timetaken'] = (datetime.now()- t0).seconds
     return itemsUpdated
 
 
 
   @classmethod
-  def updateLambdaInput(cls, input):
+  def updateLambdaInput(cls, inputs):
     '''
     update products in the database by first grouping the data from lambda
     input
@@ -144,8 +70,8 @@ class Updater:
       ib_cf_qty: Int
       new_ib_bs_stock: int
     '''
-    groupedInput = cls.Helper.groupByProduct(input)
-    return cls.valueUpdate(groupedInput)
+#     groupedInput = cls.Helper.groupByProduct(input)
+    return cls.valueUpdate(inputs)
 
   @classmethod
   def updateS3Input(cls, inputBucketName = INPUT_BUCKET_NAME, key = '', **kwargs):
