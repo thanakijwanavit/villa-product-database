@@ -28,19 +28,22 @@ class DatabaseS3:
     originalData = allData.copy()
 
     logging.debug(f'all data is {len(allData)}')
-    changeList = list(cls.needUpdateIndex.query(cls.TRUE))
+    changeList = list(cls.needsUpdateIndex.query(cls.TRUE))
     logging.debug(f'{len(changeList)} changes to update')
 
     with cls.batch_write() as batch:
-      for item in changeList:
-        # if product doesnt exist, create and empty dict
+      for dbObject in changeList:
+        item = dbObject.data
+        # if product doesnt exist, create an empty dict
         if not allData.get(item['iprcode']): allData[item['iprcode']] = {}
+        # if cprcode doesnt exist, create an empty dict
+        if not allData.get(item['iprcode']).get(item['cprcode']): allData[item['iprcode']][item['cprcode']] = {}
         # update product
         allData[item['iprcode']][item['cprcode']].update(item)
         # set no change to all data after update
-        item.setNoUpdate(batch=batch)
+        dbObject.setNoUpdate(batch=batch)
 
-    if allData == originalData:
+    if allData != originalData:
       logging.debug(f'updating')
       logging.debug(S3.save(key = 'allData',
                   objectToSave = allData,
@@ -49,4 +52,5 @@ class DatabaseS3:
     else:
       logging.debug('no changes to update')
 
+    logging.info(f'alldata is {next(iter(allData.items()))}')
     return f"saved {len(list(allData.keys()))} products"

@@ -28,7 +28,7 @@ class Updater:
     '''
       check for difference and batch update the changes in product data
     '''
-    itemsUpdated = {'success':0, 'failure': 0, 'skipped': 0 ,'failureMessage':[], 'timeTaken': 0}
+    itemsUpdated = {'success':0, 'failure': 0, 'skipped': 0 ,'failureMessage':[], 'timetaken': 0}
     t0 = datetime.now()
 
     logging.info(f'there are {len(inputs)} products to update')
@@ -40,22 +40,25 @@ class Updater:
         cprcode = input_['cprcode']
 
         # check if product is in the database, if not, create an empty class with the product code
-        incumbentBr = next(cls.query(iprcode , cls.cprcode == input_['cprcode']),cls(iprcode = iprcode, cprcode = input_['cprcode'], data = {}))
+        incumbentBr = next(cls.query(iprcode , cls.cprcode == cprcode), cls(iprcode = iprcode, cprcode = cprcode, data = {}))
         # save original data to a variable
         originalData = incumbentBr.data.copy()
         # update data
         updatedData = cls.updateWithDict(incumbentBr, input_)
 
-        logging.info(f'incumbentBr is {incumbentBr}\n, prcode is {iprcode}')
+        logging.info(f'incumbentBr is {incumbentBr.iprcode}\n, prcode is {iprcode}')
 
         # check for difference
         if updatedData.data != originalData:
-          logging.info(f'product {iprcode} has changed from {originalData} to {updatedData}')
+          logging.info(f'product {iprcode} has changed from \n{originalData} \n{updatedData.data}')
           batch.save(updatedData)
           itemsUpdated['success'] += 1
         else:
+          logging.info(f'no change for {iprcode}')
           itemsUpdated['skipped'] += 1
-        itemsUpdated['timetaken'] = (datetime.now()- t0).seconds
+
+        # log time taken
+        itemsUpdated['timetaken'] = (datetime.now()- t0).total_seconds()*1000
     return itemsUpdated
 
 
@@ -65,10 +68,8 @@ class Updater:
     '''
     update products in the database by first grouping the data from lambda
     input
-    - ib_prcode: String
-      ib_brcode: String
-      ib_cf_qty: Int
-      new_ib_bs_stock: int
+    - iprcode: String
+      ibrcode: String
     '''
 #     groupedInput = cls.Helper.groupByProduct(input)
     return cls.valueUpdate(inputs)

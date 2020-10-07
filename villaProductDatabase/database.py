@@ -40,16 +40,17 @@ except KeyError as e:
 
 
 # Cell
-def createIndex(name, HashKeyType = UnicodeAttribute, SortKeyType = UnicodeAttribute):
+def createIndex(name, rangeKeyName= None, HashKeyType = UnicodeAttribute, RangeKeyType = UnicodeAttribute):
   class ReturnSecondaryIndex(GlobalSecondaryIndex):
-      class Meta:
-        index_name = name
-        projection = AllProjection()
-        read_capacity_units = 1
-        write_capacity_units = 1
-      hashKey = HashKeyType(hash_key=True)
-      sortKey = SortKeyType(range_key = True)
-  return ReturnSecondaryIndex
+    class Meta:
+      index_name = name
+      projection = AllProjection()
+      read_capacity_units = 1
+      write_capacity_units = 1
+  setattr(ReturnSecondaryIndex, name, HashKeyType(hash_key = True))
+  if rangeKeyName:
+    setattr(ReturnSecondaryIndex, rangeKeyName, RangeKeyType(range_key = True))
+  return ReturnSecondaryIndex()
 
 # Cell
 # dont forget to import dependent classes from the relevant notebooks
@@ -74,18 +75,18 @@ class ProductDatabase(Model, DatabaseS3, Updater, Querier, DatabaseHelper):
   pr_sa_method = UnicodeAttribute(default= 'none')
   sellingPrice = NumberAttribute(default = 0)
   lastUpdate = NumberAttribute( default = 0)
-  needUpdate = UnicodeAttribute(default = 'none')
+  needsUpdate = UnicodeAttribute(default = 'Y')
   data = JSONAttribute()
 
   # indexes
-  needUpdateIndex = createIndex('needsUpdate')
-  cprcodeIndex = createIndex('cprcode')
-  oprcodeIndex = createIndex('oprcode')
-  pr_dpcodeIndex = createIndex('pr_dpcode')
-  pr_barcodeIndex = createIndex('pr_barcode')
-  pr_barcode2Index = createIndex('pr_barcode2')
-  pr_suref3Index = createIndex('pr_suref3')
-  pr_sa_methodIndex = createIndex('pr_sa_method')
+  needsUpdateIndex = createIndex('needsUpdate','sellingPrice')
+  cprcodeIndex = createIndex('cprcode', 'sellingPrice')
+  oprcodeIndex = createIndex('oprcode', 'sellingPrice')
+  pr_dpcodeIndex = createIndex('pr_dpcode', 'sellingPrice')
+  pr_barcodeIndex = createIndex('pr_barcode', 'sellingPrice')
+  pr_barcode2Index = createIndex('pr_barcode2', 'sellingPrice')
+  pr_suref3Index = createIndex('pr_suref3', 'sellingPrice')
+  pr_sa_methodIndex = createIndex('pr_sa_method', 'sellingPrice')
 
 
   TRUE = 'Y'
@@ -96,13 +97,13 @@ class ProductDatabase(Model, DatabaseS3, Updater, Querier, DatabaseHelper):
     return self.returnKW(self.data)
 
   def setNoUpdate(self, batch = None):
-    self.needUpdate = self.FALSE
+    self.needsUpdate = self.FALSE
     if batch:
       return batch.save(self)
     else:
       return self.save()
   def setUpdate(self):
-    self.needUpdate = self.TRUE
+    self.needsUpdate = self.TRUE
     return self.save()
 
   @staticmethod
