@@ -23,6 +23,7 @@ class Updater:
     data = originalObject.data
     data.update(inputDict)
     return cls.fromDict(data)
+
   @classmethod
   def valueUpdate(cls, inputs):
     '''
@@ -77,14 +78,15 @@ class Updater:
   @classmethod
   def updateS3Input(cls, inputBucketName = INPUT_BUCKET_NAME, key = '', **kwargs):
     s3Result = cls.loadFromS3(bucketName= inputBucketName, key = key, **kwargs)
-    transformedS3Result = [{
-        'ib_prcode': item.get('ib_prcode') or item.get('prcode'),
-        'ib_brcode': item.get('ib_brcode') or item.get('brcode'),
-        'ib_cf_qty': item.get('ib_cf_qty'),
-        'new_ib_vs_stock_cv': item.get('new_ib_vs_stock_cv')
-        } for item in s3Result]
+    updateResult = cls.valueUpdate(s3Result)
+#     transformedS3Result = [{
+#         'ib_prcode': item.get('ib_prcode') or item.get('prcode'),
+#         'ib_brcode': item.get('ib_brcode') or item.get('brcode'),
+#         'ib_cf_qty': item.get('ib_cf_qty'),
+#         'new_ib_vs_stock_cv': item.get('new_ib_vs_stock_cv')
+#         } for item in s3Result]
 
-    logging.info(f' s3 result is {transformedS3Result}')
-    groupedInput = cls.Helper.groupByProduct(transformedS3Result)
-    updateResult = cls.bulkUpdate(groupedInput, **kwargs)
+#     logging.info(f' s3 result is {transformedS3Result}')
+#     groupedInput = cls.Helper.groupByProduct(transformedS3Result)
+#     updateResult = cls.bulkUpdate(groupedInput, **kwargs)
     return updateResult

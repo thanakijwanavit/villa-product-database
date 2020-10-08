@@ -19,14 +19,9 @@ except Exception as e:
 class Querier:
   @classmethod
   def singleProductQuery(cls, input):
-    if not cls.validateInputQuery(['ib_prcode'] , input): return f"error input {input}"
-    return next(cls.query(input.get('ib_prcode')),{})
+    if not cls.validateInputQuery(['iprcode'] , input): return f"error input {input}"
+    return next(cls.query(input.get('iprcode')),{})
 
-  @classmethod
-  def branchQuery(cls, branchId:str, bucket = INVENTORY_BUCKET_NAME, **kwargs):
-    key = branchId
-    result = S3.presign(key, bucket = bucket, **kwargs)
-    return result
   @classmethod
   def allQuery(cls, key = 'allData', bucket = INVENTORY_BUCKET_NAME, **kwargs):
     result = S3.presign(key, bucket = bucket, **kwargs)

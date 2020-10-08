@@ -116,6 +116,7 @@ class ProductDatabase(Model, DatabaseS3, Updater, Querier, DatabaseHelper):
   @classmethod
   def fromDict(cls, dictInput):
     logging.debug(dictInput)
+    dictInput = cls.Helper.stripDict(dictInput)
     filteredInput = {k:v for k,v in dictInput.items() if k in dir(cls)}
     filteredInput['data'] = dictInput
     logging.debug(filteredInput)

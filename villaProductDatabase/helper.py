@@ -39,34 +39,6 @@ class DatabaseHelper:
     def iteratorToInvDict(data):
       return {item.ib_prcode:item.inventory for item in data}
 
-  @classmethod
-  def splitBranches(cls, key='allData',bucket = '', **kwargs):
-    '''
-    split database items from s3 into individual branch
-    '''
-    if not bucket:
-      logging.warning('bucket name is empty')
-      return 'empty bucket name'
-    data = S3.load(key=key , bucket = bucket, **kwargs)
-    # check if object is blank
-    logging.debug('data has loaded')
-    if not data: return 'items are empty'
-    df = pd.DataFrame(data).drop(['lastUpdate', 'ib_prcode'])
-    splitDict = df.T.fillna('').to_dict()
-    cleanedSplitDict = {brcode:
-      { k:v for k,v in inv.items()  if v}
-      for brcode, inv in splitDict.items()}
-
-
-    logging.warning(f'data are{cleanedSplitDict}')
-    saveResults = {'success':0, 'failure':0,'errorMessage':[]}
-    for k,v in cleanedSplitDict.items():
-      print(k,v)
-      saveResult = S3.save(key = k,
-                           objectToSave = v,
-                           bucket = bucket,
-                           **kwargs)
-      # print(saveResult)
-      if saveResult: saveResults['success'] += 1
-      else: saveResults['failure'] += 1
-    return saveResults
+    @staticmethod
+    def stripDict(data:dict):
+      return {k: v.strip() if type(v) == str else v for k,v in data.items()}
