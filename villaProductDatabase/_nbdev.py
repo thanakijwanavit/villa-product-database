@@ -4,15 +4,25 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"createIndex": "database.ipynb",
          "ProductDatabase": "database.ipynb",
+         "lambdaDumpToS3": "database.ipynb",
+         "lambdaUpdateProduct": "database.ipynb",
+         "lambdaUpdateS3": "database.ipynb",
+         "labmdaSingleQuery": "database.ipynb",
+         "lambdaAllQuery": "database.ipynb",
          "DatabaseHelper": "helper.ipynb",
          "Querier": "query.ipynb",
          "DatabaseS3": "s3.ipynb",
+         "Response": "schema.ipynb",
+         "Event": "schema.ipynb",
+         "Product": "schema.ipynb",
+         "Products": "schema.ipynb",
          "Updater": "update.ipynb"}
 
 modules = ["database.py",
            "helper.py",
            "query.py",
            "s3.py",
+           "schema.py",
            "update.py"]
 
 doc_url = "https://thanakijwanavit.github.io/villaProductDatabase/"

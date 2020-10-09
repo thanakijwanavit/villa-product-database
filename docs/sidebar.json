@@ -1,10 +1,11 @@
 {
-  "Notebook": {
-    "Export to modules": "/export",
-    "Convert to html": "/export2html",
-    "Show doc": "/showdoc",
-    "Test functions": "/test",
-    "Core functions": "/core",
-    "Command line functions": "/cli"
+  "villaProductDatabase": {
+    "Overview": "/",
+    "Database Class": "database.html",
+    "Helper": "helper.html",
+    "Query": "query.html",
+    "S3": "s3.html",
+    "schema": "schema.html",
+    "Update": "update.html"
   }
 }
