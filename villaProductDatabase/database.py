@@ -49,6 +49,8 @@ def createIndex(name, rangeKeyName= None, HashKeyType = UnicodeAttribute, RangeK
     class Meta:
       index_name = name
       projection = AllProjection()
+      dax_read_endpoints = [DAX_ENDPOINT] if DAX_ENDPOINT else None
+      dax_write_endpoints = [DAX_ENDPOINT] if DAX_ENDPOINT else None
       read_capacity_units = 1
       write_capacity_units = 1
   setattr(ReturnSecondaryIndex, name, HashKeyType(hash_key = True))
@@ -65,8 +67,8 @@ class ProductDatabase(Model, DatabaseS3, Updater, Querier, DatabaseHelper):
     table_name = DATABASE_TABLE_NAME
     region = REGION
     billing_mode='PAY_PER_REQUEST'
-    dax_read_endpoints = DAX_ENDPOINT
-    dax_write_endpoints = DAX_ENDPOINT
+    dax_read_endpoints = [DAX_ENDPOINT] if DAX_ENDPOINT else None
+    dax_write_endpoints = [DAX_ENDPOINT] if DAX_ENDPOINT else None
 
   iprcode = UnicodeAttribute(hash_key=True, default = '')
   cprcode = UnicodeAttribute(default = 'none', range_key = True)
