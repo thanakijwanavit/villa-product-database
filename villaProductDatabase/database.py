@@ -9,6 +9,7 @@ from .s3 import DatabaseS3
 from .query import Querier
 from .update import Updater
 from .schema import Event, Response
+from linesdk.linesdk import Line, LineLambda
 import pandas as pd
 from datetime import datetime
 from pynamodb.models import Model
@@ -18,7 +19,7 @@ from botocore.config import Config
 from s3bz.s3bz import S3
 from pprint import pprint
 
-import pickle, json, boto3, bz2, requests, validators, os, logging
+import pickle, json, boto3, bz2, requests, validators, os, logging, traceback
 
 # Cell
 try:
@@ -102,6 +103,12 @@ class ProductDatabase(Model, DatabaseS3, Updater, Querier, DatabaseHelper):
   def __repr__(self):
     return self.returnKW(self.data)
 
+  @staticmethod
+  def sendLine(message,
+               roomId = 'C9ba1d024ed36979222a2a2a8f67cfc9a' ):
+    lineLambda = LineLambda(ACCESS_KEY_ID, SECRET_ACCESS_KEY)
+    lineLambda.send(message= message, roomId = roomId )
+
   def setNoUpdate(self, batch = None):
     self.needsUpdate = self.FALSE
     if batch:
@@ -131,7 +138,13 @@ class ProductDatabase(Model, DatabaseS3, Updater, Querier, DatabaseHelper):
 
 # Cell
 def lambdaDumpToS3(event, _):
-  result = ProductDatabase.dumpToS3(user=ACCESS_KEY_ID, pw = SECRET_ACCESS_KEY)
+  try:
+    result = ProductDatabase.dumpToS3(user=ACCESS_KEY_ID, pw = SECRET_ACCESS_KEY)
+    ProductDatabase.sendLine(f'successfully executed dumpToS3 {result}')
+  except:
+    logging.exception('error dump to s3')
+    ProductDatabase.sendLine(f'error{traceback.format_exc()}')
+
   return Response.getReturn(body = {'result': result})
 
 # Cell
