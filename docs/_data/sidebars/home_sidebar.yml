@@ -13,20 +13,8 @@ entries:
       title: Database Class
       url: database.html
     - output: web,pdf
-      title: Helper
-      url: helper.html
-    - output: web,pdf
       title: Query
       url: query.html
-    - output: web,pdf
-      title: S3
-      url: s3.html
-    - output: web,pdf
-      title: schema
-      url: schema.html
-    - output: web,pdf
-      title: Update
-      url: update.html
     output: web
     title: villaProductDatabase
   output: web

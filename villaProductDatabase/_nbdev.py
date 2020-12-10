@@ -2,28 +2,36 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"createIndex": "database.ipynb",
+index = {"DATABASE_TABLE_NAME": "database.ipynb",
+         "INVENTORY_BUCKET_NAME": "database.ipynb",
+         "INPUT_BUCKET_NAME": "database.ipynb",
+         "REGION": "database.ipynb",
+         "ACCESS_KEY_ID": "database.ipynb",
+         "SECRET_ACCESS_KEY": "database.ipynb",
+         "LINEKEY": "database.ipynb",
+         "createIndex": "database.ipynb",
          "ProductDatabase": "database.ipynb",
+         "notify": "database.ipynb",
+         "keys": "database.ipynb",
+         "setNoUpdate": "database.ipynb",
+         "setUpdate": "database.ipynb",
+         "fromDict": "database.ipynb",
+         "updateWithDict": "database.ipynb",
+         "loadFromS3": "database.ipynb",
+         "dumpToS3": "database.ipynb",
          "lambdaDumpToS3": "database.ipynb",
+         "Product": "database.ipynb",
+         "ValueUpdate": "database.ipynb",
+         "valueUpdate": "database.ipynb",
          "lambdaUpdateProduct": "database.ipynb",
+         "updateS3Input": "database.ipynb",
          "lambdaUpdateS3": "database.ipynb",
          "lambdaSingleQuery": "database.ipynb",
          "lambdaAllQuery": "database.ipynb",
-         "DatabaseHelper": "helper.ipynb",
-         "Querier": "query.ipynb",
-         "DatabaseS3": "s3.ipynb",
-         "Response": "schema.ipynb",
-         "Event": "schema.ipynb",
-         "Product": "schema.ipynb",
-         "Products": "schema.ipynb",
-         "Updater": "update.ipynb"}
+         "Querier": "query.ipynb"}
 
 modules = ["database.py",
-           "helper.py",
-           "query.py",
-           "s3.py",
-           "schema.py",
-           "update.py"]
+           "query.py"]
 
 doc_url = "https://thanakijwanavit.github.io/villaProductDatabase/"
 
