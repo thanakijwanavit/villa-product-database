@@ -24,6 +24,7 @@ from dataclasses import dataclass
 from typing import List
 from .query import Querier
 from requests import post
+from linesdk.linesdk import Line
 
 import pickle, json, boto3, bz2, requests, validators, os, logging, traceback
 
@@ -119,12 +120,10 @@ class ProductDatabase(Model, Querier):
 # Cell
 @add_static_method(ProductDatabase)
 def notify(message):
-  data = {'message': message}
-  url = 'https://notify-api.line.me/api/notify'
-  headers = {'Authorization':LINEKEY}
-  result = post(url, headers=headers, data=data)
-  if not result.status_code == 200:
-    print (result.json())
+  line = Line(LINEKEY)
+  r = line.sendNotify(message)
+  if r.status_code != 200:
+    print(r.json())
     return False
   return True
 
