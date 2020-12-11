@@ -315,8 +315,11 @@ def lambdaUpdateS3(event, _):
 # Cell
 def lambdaSingleQuery(event, _):
   key, value = Event.from_dict(event).firstKey()
-  result = ProductDatabase.singleProductQuery({key:value}).data
-  return Response.getReturn(body = result)
+  try:
+    result = ProductDatabase.singleProductQuery({key:value}).data
+  except Exception as e:
+    return Response.returnError(f'{e}')
+  return Response.returnSuccess(body = result)
 
 # Cell
 def lambdaAllQuery(event, _):

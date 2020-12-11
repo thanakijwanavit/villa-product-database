@@ -20,7 +20,8 @@ class Querier:
   @classmethod
   def singleProductQuery(cls, input):
     if not cls.validateInputQuery(['iprcode'] , input): return f"error input {input}"
-    return next(cls.query(input.get('iprcode')),{})
+    if (result:=next(cls.query(input.get('iprcode')),None)): return result
+    else: raise Exception('product not found')
 
   @classmethod
   def allQuery(cls, key = 'allData', bucket = INVENTORY_BUCKET_NAME, **kwargs):

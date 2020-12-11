@@ -400,8 +400,8 @@ You can create the table by with the <code>create_table</code> method.</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Y
 N
-CPU times: user 70.7 ms, sys: 8.86 ms, total: 79.6 ms
-Wall time: 181 ms
+CPU times: user 72.5 ms, sys: 8.17 ms, total: 80.7 ms
+Wall time: 225 ms
 </pre>
 </div>
 </div>
@@ -700,8 +700,8 @@ testName
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 924 ms, sys: 44 ms, total: 968 ms
-Wall time: 1.4 s
+<pre>CPU times: user 921 ms, sys: 41.3 ms, total: 962 ms
+Wall time: 1.45 s
 </pre>
 </div>
 </div>
@@ -775,7 +775,7 @@ Wall time: 1.4 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 3 µs, sys: 0 ns, total: 3 µs
+<pre>CPU times: user 2 µs, sys: 0 ns, total: 2 µs
 Wall time: 5.96 µs
 saved 10929 products
 </pre>
@@ -1011,7 +1011,7 @@ saved 10929 products
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken&#34;:0,&#34;timetaken(ms)&#34;:5.452}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken&#34;:0,&#34;timetaken(ms)&#34;:5.8}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {}}</pre>
 </div>
@@ -1150,7 +1150,7 @@ saved 10929 products
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken&#34;:0,&#34;timetaken(ms)&#34;:4.868}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken&#34;:0,&#34;timetaken(ms)&#34;:5.5}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {}}</pre>
 </div>
@@ -1188,6 +1188,40 @@ saved 10929 products
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">singleProductQuery</span><span class="p">({</span><span class="s1">&#39;iprcode&#39;</span><span class="p">:</span><span class="s1">&#39;12345&#39;</span><span class="p">}))</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>product not found
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -1314,6 +1348,40 @@ pstype 1</pre>
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">lambdaSingleQuery</span><span class="p">(</span><span class="n">Event</span><span class="o">.</span><span class="n">getInput</span><span class="p">({</span><span class="s1">&#39;iprcode&#39;</span><span class="p">:</span><span class="s1">&#39;11234&#39;</span><span class="p">}),</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">Response</span><span class="o">.</span><span class="n">parseBody</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;error&#39;: &#39;product not found&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="AllQuery">AllQuery<a class="anchor-link" href="#AllQuery"> </a></h3>
@@ -1344,7 +1412,7 @@ pstype 1</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDVNE5QZPQ&amp;Signature=MzN8JifatBljIa6meX%2FX0ZYbAB4%3D&amp;Expires=1607651770
+<pre>https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDVNE5QZPQ&amp;Signature=uf9uKv9jDxYX%2BjK%2Bj8bb%2BeYC7NI%3D&amp;Expires=1607664458
 received 10929 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;, &#39;iprcode&#39;: &#39;0217153&#39;, &#39;oprcode&#39;: &#39;0217153&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;98&#39;, &#39;pr_code&#39;: &#39;0217153&#39;, &#39;pr_dpcode&#39;: &#39;28&#39;, &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_ggcode&#39;: &#39;003&#39;, &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;, &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_puqty&#39;: &#39;24&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;F1222&#39;, &#39;pr_suref3&#39;: &#39;S&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;}})
 </pre>
 </div>
@@ -1367,7 +1435,7 @@ received 10929 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L322" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L325" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1451,8 +1519,8 @@ received 10929 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;:
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>checking scan time
-CPU times: user 8.3 s, sys: 463 ms, total: 8.76 s
-Wall time: 14.6 s
+CPU times: user 8.18 s, sys: 493 ms, total: 8.67 s
+Wall time: 14.8 s
 </pre>
 </div>
 </div>
@@ -1517,23 +1585,6 @@ sort_weight 0</pre>
 
 </div>
 
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">LINEKEY</span><span class="p">)</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
