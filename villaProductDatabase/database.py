@@ -143,9 +143,12 @@ def setNoUpdate(self, batch = None):
     return self.save()
 
 @add_method(ProductDatabase)
-def setUpdate(self):
+def setUpdate(self, batch=None):
   self.needsUpdate = self.TRUE
-  return self.save()
+  if batch:
+    return batch.save(self)
+  else:
+    return self.save()
 
 # Cell
 # From dict function
@@ -176,15 +179,16 @@ def loadFromS3(cls, bucketName= INVENTORY_BUCKET_NAME, key = 'allData', **kwargs
 
 # Cell
 @add_class_method(ProductDatabase)
-def dumpToS3(cls, bucketName= INVENTORY_BUCKET_NAME, key = 'allData', **kwargs):
+def dumpToS3(cls, bucketName= INVENTORY_BUCKET_NAME, key = 'allData', limit=500, **kwargs):
   ''' upload changes to s3'''
+  ERRORITEMS = []
   ###### get all data
   allData = cls.loadFromS3(bucketName = bucketName, key = key, **kwargs)
   originalData = allData.copy()
   logging.debug(f'all data is {len(allData)}')
 
   ##### get change list
-  changeList = list(cls.needsUpdateIndex.query(cls.TRUE))
+  changeList = list(cls.needsUpdateIndex.query(cls.TRUE, limit=limit))
   logging.debug(f'{len(changeList)} changes to update')
 
   ##### batch write
@@ -198,7 +202,10 @@ def dumpToS3(cls, bucketName= INVENTORY_BUCKET_NAME, key = 'allData', **kwargs):
       # update product
       allData[item['iprcode']][item['cprcode']].update(item)
       # set no change to all data after update
-      dbObject.setNoUpdate(batch=batch)
+      try:
+        dbObject.setNoUpdate(batch=batch)
+      except:
+        ERRORITEMS.append(dbObject)
 
   ####### update s3
   if allData != originalData:
@@ -209,14 +216,20 @@ def dumpToS3(cls, bucketName= INVENTORY_BUCKET_NAME, key = 'allData', **kwargs):
     )
   else:
     logging.debug('no changes to update')
-
   logging.info(f'alldata is {next(iter(allData.items()))}')
+  if ERRORITEMS:
+    raise Exception(ERRORITEMS)
+
+  #### if still not completed, trigger another loop####
+  if len(changeList) == limit:
+    print(f'not finished, doing the next batch of {limit}')
+    cls.dumpToS3(limit=limit)
   return f"saved {len(list(allData.keys()))} products"
 
 # Cell
 def lambdaDumpToS3(event, _):
   try:
-    result = ProductDatabase.dumpToS3()
+    result = ProductDatabase.dumpToS3(limit=(os.environ.get('LIMIT') or 500))
     ProductDatabase.notify(f'successfully executed dumpToS3 {result}')
   except:
     logging.exception('error dump to s3')
@@ -250,34 +263,42 @@ def valueUpdate(cls, inputs):
       raise KeyError(f'input failed validation {e}')
       return
 
-    itemsUpdated = {'success':0, 'failure': 0, 'skipped': 0 ,'failureMessage':[], 'timetaken': 0}
+    itemsUpdated = {'success':0, 'failure': 0, 'skipped': 0 ,'failureMessage':[], 'timetaken(ms)': 0}
     t0 = datetime.now()
 
     logging.info(f'there are {len(validInputs)} products to update')
 
-    with cls.batch_write() as batch:
-      # loop through each product
-      for input_ in validInputs:
-        iprcode = input_['iprcode']
-        cprcode = input_['cprcode']
+    ##### dividing input into batch of 500
+    inputBatches = chunks(validInputs, 500)
 
-        # check if product is in the database, if not, create an empty class with the product code
-        incumbentBr = next(cls.query(iprcode , cls.cprcode == cprcode), cls(iprcode = iprcode, cprcode = cprcode, data = {}))
-        # save original data to a variable
-        originalData = incumbentBr.data.copy()
-        # update data
-        updatedData = cls.updateWithDict(incumbentBr, input_)
+    for inputBatch in inputBatches:
+      with cls.batch_write() as batch:
+        # loop through each product
+        for input_ in inputBatch:
+          iprcode = input_['iprcode']
+          cprcode = input_['cprcode']
 
-        logging.info(f'incumbentBr is {incumbentBr.iprcode}\n, prcode is {iprcode}')
+          # check if product is in the database, if not, create an empty class with the product code
+          incumbentBr = next(cls.query(iprcode , cls.cprcode == cprcode), cls(iprcode = iprcode, cprcode = cprcode, data = {}))
+          # save original data to a variable
+          originalData = incumbentBr.data.copy()
+          # update data
+          updatedData = cls.updateWithDict(incumbentBr, input_)
 
-        # check for difference
-        if updatedData.data != originalData:
-          logging.info(f'product {iprcode} has changed from \n{originalData} \n{updatedData.data}')
-          batch.save(updatedData)
-          itemsUpdated['success'] += 1
-        else:
-          logging.info(f'no change for {iprcode}')
-          itemsUpdated['skipped'] += 1
+          logging.info(f'incumbentBr is {incumbentBr.iprcode}\n, prcode is {iprcode}')
+
+          # check for difference
+          try:
+            if updatedData.data != originalData:
+              logging.info(f'product {iprcode} has changed from \n{originalData} \n{updatedData.data}')
+              batch.save(updatedData)
+              itemsUpdated['success'] += 1
+            else:
+              logging.info(f'no change for {iprcode}')
+              itemsUpdated['skipped'] += 1
+          except Exception as e:
+            itemsUpdated['failure'] += 1
+            itemsUpdated['failureMessage'].append(e)
 
         # log time taken
         itemsUpdated['timetaken(ms)'] = (datetime.now()- t0).total_seconds()*1000
