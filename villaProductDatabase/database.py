@@ -3,7 +3,7 @@
 __all__ = ['DATABASE_TABLE_NAME', 'INVENTORY_BUCKET_NAME', 'INPUT_BUCKET_NAME', 'REGION', 'ACCESS_KEY_ID',
            'SECRET_ACCESS_KEY', 'LINEKEY', 'createIndex', 'ProductDatabase', 'notify', 'keys', 'setNoUpdate',
            'setUpdate', 'fromDict', 'updateWithDict', 'loadFromS3', 'productsFromList', 'ProductsFromList',
-           'productsFromListLambda', 'dumpToS3', 'lambdaDumpToS3', 'Product', 'ValueUpdate', 'chunks', 'valueUpdate',
+           'lambdaProductsFromList', 'dumpToS3', 'lambdaDumpToS3', 'Product', 'ValueUpdate', 'chunks', 'valueUpdate',
            'lambdaUpdateProduct', 'updateS3Input', 'lambdaUpdateS3', 'lambdaSingleQuery', 'lambdaAllQuery']
 
 # Cell
@@ -195,7 +195,7 @@ class ProductsFromList:
 
 
 # Cell
-def productsFromListLambda(event, *args):
+def lambdaProductsFromList(event, *args):
   productFromList = Event.parseDataClass(ProductFromList,event)
   result = ProductDatabase.productsFromList(productFromList.iprcodes)
   return Response.returnSuccess(result)

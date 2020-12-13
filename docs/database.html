@@ -891,7 +891,7 @@ Wall time: 2.35 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="productsFromListLambda" class="doc_header"><code>productsFromListLambda</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L198" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>productsFromListLambda</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
+<h4 id="lambdaProductsFromList" class="doc_header"><code>lambdaProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L198" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaProductsFromList</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -920,7 +920,10 @@ Wall time: 2.35 s
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
 <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="o">.</span><span class="n">getInput</span><span class="p">({</span><span class="s1">&#39;iprcodes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0217153&#39;</span><span class="p">,</span><span class="s1">&#39;203915&#39;</span><span class="p">,</span><span class="s1">&#39;0000009&#39;</span><span class="p">]})</span>
-<span class="n">productsFromListLambda</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">lambdaProductsFromList</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Response</span><span class="o">.</span><span class="n">parseBody</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -933,8 +936,8 @@ Wall time: 2.35 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 1.83 s, sys: 55.6 ms, total: 1.89 s
-Wall time: 2.44 s
+<pre>CPU times: user 1.89 s, sys: 98 ms, total: 1.99 s
+Wall time: 2.43 s
 </pre>
 </div>
 </div>
@@ -944,11 +947,58 @@ Wall time: 2.44 s
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;[{&#34;0217153&#34;:{&#34;cprcode&#34;:&#34;0217153&#34;,&#34;iprcode&#34;:&#34;0217153&#34;,&#34;oprcode&#34;:&#34;0217153&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;COCOA LOCO MILK CHOC&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;98&#34;,&#34;pr_code&#34;:&#34;0217153&#34;,&#34;pr_dpcode&#34;:&#34;28&#34;,&#34;pr_engname&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_ggcode&#34;:&#34;003&#34;,&#34;pr_market&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL&#34;,&#34;pr_name&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_puqty&#34;:&#34;24.00&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;F1239&#34;,&#34;pr_suref3&#34;:&#34;S&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;pr_country_th&#34;:&#34;none&#34;,&#34;pr_country_en&#34;:&#34;United Kingdom&#34;,&#34;pr_keyword_th&#34;:&#34;none&#34;,&#34;pr_keyword_en&#34;:&#34;none&#34;,&#34;pr_filter_th&#34;:&#34;none&#34;,&#34;pr_filter_en&#34;:&#34;none&#34;,&#34;online_category_l1_th&#34;:&#34;none&#34;,&#34;online_category_l1_en&#34;:&#34;none&#34;,&#34;online_category_l2_th&#34;:&#34;none&#34;,&#34;online_category_l2_en&#34;:&#34;none&#34;,&#34;online_category_l3_th&#34;:&#34;none&#34;,&#34;online_category_l3_en&#34;:&#34;none&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Grocery&#34;,&#34;villa_category_l3_en&#34;:&#34;Cookies &amp; Snacks&#34;,&#34;villa_category_l4_en&#34;:&#34;Biscuits &amp; Crackers&#34;,&#34;content_en&#34;:&#34;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;content_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_brand_th&#34;:&#34;none&#34;,&#34;hema_brand_en&#34;:&#34;none&#34;,&#34;hema_sizedesc&#34;:&#34;none&#34;,&#34;pr_brand_en&#34;:&#34;none&#34;,&#34;pr_brand_th&#34;:&#34;none&#34;,&#34;pr_online_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_online_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_barcode&#34;:&#34;5060148383378&#34;,&#34;pr_barcode2&#34;:&#34;506014838337&#34;,&#34;sort_weight&#34;:&#34;0&#34;}},{&#34;203915&#34;:{&#34;cprcode&#34;:&#34;203915&#34;,&#34;iprcode&#34;:&#34;203915&#34;,&#34;oprcode&#34;:&#34;203915&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;MEIJI GUMMY CHOCO GR&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;4&#34;,&#34;pr_code&#34;:&#34;203915&#34;,&#34;pr_dpcode&#34;:&#34;2.0&#34;,&#34;pr_engname&#34;:&#34;MEIJI GUMMY CHOCO GREEN GRAPE 30G&#34;,&#34;pr_ggcode&#34;:&#34;2&#34;,&#34;pr_market&#34;:&#34;\\u0e40\\u0e21\\u0e08\\u0e34 \\u0e01\\u0e31\\u0e21\\u0e21\\u0e35\\u0e48 \\u0e0a\\u0e47\\u0e2d\\u0e01\\u0e42\\u0e01 \\u0e01\\u0e23\\u0e35\\u0e19\\u0e40\\u0e01\\u0e23\\u0e1b 30&#34;,&#34;pr_name&#34;:&#34;\\u0e40\\u0e21\\u0e08\\u0e34 \\u0e01\\u0e31\\u0e21\\u0e21\\u0e35\\u0e48 \\u0e0a\\u0e47\\u0e2d\\u0e01\\u0e42\\u0e01 \\u0e01\\u0e23\\u0e35\\u0e19\\u0e40\\u0e01\\u0e23\\u0e1b 30 \\u0e01\\u0e23\\u0e31\\u0e21&#34;,&#34;pr_puqty&#34;:&#34;20.0&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;2943&#34;,&#34;pr_suref3&#34;:&#34;C&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1.0&#34;,&#34;pstype&#34;:&#34;1.0&#34;,&#34;pr_country_th&#34;:&#34;none&#34;,&#34;pr_country_en&#34;:&#34;China&#34;,&#34;pr_keyword_th&#34;:&#34;none&#34;,&#34;pr_keyword_en&#34;:&#34;none&#34;,&#34;pr_filter_th&#34;:&#34;Grocery,Chocolate&#34;,&#34;pr_filter_en&#34;:&#34;Grocery,Chocolate&#34;,&#34;online_category_l1_th&#34;:&#34;\\u0e2a\\u0e34\\u0e19\\u0e04\\u0e49\\u0e32\\u0e1a\\u0e23\\u0e34\\u0e42\\u0e20\\u0e04&#34;,&#34;online_category_l1_en&#34;:&#34;Grocery&#34;,&#34;online_category_l2_th&#34;:&#34;\\u0e0a\\u0e47\\u0e2d\\u0e04\\u0e42\\u0e01\\u0e41\\u0e25\\u0e15&#34;,&#34;online_category_l2_en&#34;:&#34;Chocolate&#34;,&#34;online_category_l3_th&#34;:&#34;none&#34;,&#34;online_category_l3_en&#34;:&#34;none&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Grocery&#34;,&#34;villa_category_l3_en&#34;:&#34;Candies&#34;,&#34;villa_category_l4_en&#34;:&#34;Confectionery&#34;,&#34;content_en&#34;:&#34;0203915 Meiji Gummy Choco Green Grape 30g&#34;,&#34;content_th&#34;:&#34;Meiji Gummy Choco Green Grape 30g&#34;,&#34;hema_brand_th&#34;:&#34;Meiji&#34;,&#34;hema_brand_en&#34;:&#34;Meiji&#34;,&#34;hema_sizedesc&#34;:&#34;30g&#34;,&#34;pr_brand_en&#34;:&#34;MEIJI&#34;,&#34;pr_brand_th&#34;:&#34;MEIJI&#34;,&#34;pr_online_name_en&#34;:&#34;Meiji Gummy Choco Green Grape 30g&#34;,&#34;pr_online_name_th&#34;:&#34;Meiji Gummy Choco Green Grape 30g&#34;,&#34;hema_name_en&#34;:&#34;Gummy Choco Green Grape&#34;,&#34;hema_name_th&#34;:&#34;Gummy Choco Green Grape&#34;,&#34;pr_name_en&#34;:&#34;MEIJI GUMMY CHOCO GREEN GRAPE 30G&#34;,&#34;pr_name_th&#34;:&#34;\\u0e40\\u0e21\\u0e08\\u0e34 \\u0e01\\u0e31\\u0e21\\u0e21\\u0e35\\u0e48 \\u0e0a\\u0e47\\u0e2d\\u0e01\\u0e42\\u0e01 \\u0e01\\u0e23\\u0e35\\u0e19\\u0e40\\u0e01\\u0e23\\u0e1b 30 \\u0e01\\u0e23\\u0e31\\u0e21&#34;,&#34;sort_weight&#34;:&#34;0.0&#34;}},{&#34;0000009&#34;:{&#34;cprcode&#34;:&#34;0000009&#34;,&#34;iprcode&#34;:&#34;0000009&#34;,&#34;oprcode&#34;:&#34;0000009&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;J. WALKER RED 70 CL.&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;01&#34;,&#34;pr_code&#34;:&#34;0000009&#34;,&#34;pr_dpcode&#34;:&#34;01&#34;,&#34;pr_engname&#34;:&#34;JOHNNIE WALKER RED 70 CL.&#34;,&#34;pr_ggcode&#34;:&#34;001&#34;,&#34;pr_market&#34;:&#34;J. WALKER RED 70 CL&#34;,&#34;pr_name&#34;:&#34;JOHNNIE WALKER RED 70 CL&#34;,&#34;pr_puqty&#34;:&#34;12.00&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;1782&#34;,&#34;pr_suref3&#34;:&#34;A&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;pr_country_th&#34;:&#34;&#34;,&#34;pr_country_en&#34;:&#34;United Kingdom&#34;,&#34;pr_keyword_th&#34;:&#34;&#34;,&#34;pr_keyword_en&#34;:&#34;&#34;,&#34;pr_filter_th&#34;:&#34;Alcohol,Spirits  Liqueurs&#34;,&#34;pr_filter_en&#34;:&#34;Alcohol,Spirits  Liqueurs&#34;,&#34;online_category_l1_th&#34;:&#34;\\u0e40\\u0e1a\\u0e35\\u0e22\\u0e23\\u0e4c, \\u0e44\\u0e27\\u0e19\\u0e4c\\u0e41\\u0e25\\u0e30\\u0e2a\\u0e38\\u0e23\\u0e32&#34;,&#34;online_category_l1_en&#34;:&#34;Beer Wine &amp; Spirits&#34;,&#34;online_category_l2_th&#34;:&#34;\\u0e40\\u0e2b\\u0e25\\u0e49\\u0e32&#34;,&#34;online_category_l2_en&#34;:&#34;Spirits &amp; Liqueurs&#34;,&#34;online_category_l3_th&#34;:&#34;&#34;,&#34;online_category_l3_en&#34;:&#34;&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Alcohol &amp; Beverage&#34;,&#34;villa_category_l3_en&#34;:&#34;Whisky&#34;,&#34;villa_category_l4_en&#34;:&#34;Scoth Whisky&#34;,&#34;content_en&#34;:&#34;0000009 Johnnie Walker Red 700ml&#34;,&#34;content_th&#34;:&#34;JOHNNIE WALKER RED 700ml&#34;,&#34;hema_brand_th&#34;:&#34;Johnnie Walker&#34;,&#34;hema_brand_en&#34;:&#34;Johnnie Walker&#34;,&#34;hema_sizedesc&#34;:&#34;700ml&#34;,&#34;pr_brand_en&#34;:&#34;Johnnie Walker&#34;,&#34;pr_brand_th&#34;:&#34;Johnnie Walker&#34;,&#34;pr_online_name_en&#34;:&#34;Johnnie Walker Red 700ml&#34;,&#34;pr_online_name_th&#34;:&#34;JOHNNIE WALKER RED 700ml&#34;,&#34;hema_name_en&#34;:&#34;Johnnie Walker Red&#34;,&#34;hema_name_th&#34;:&#34;JOHNNIE WALKER RED&#34;,&#34;pr_name_en&#34;:&#34;JOHNNIE WALKER RED 70 CL.&#34;,&#34;pr_name_th&#34;:&#34;JOHNNIE WALKER RED 70 CL&#34;,&#34;sort_weight&#34;:0}}]&#39;,
- &#39;statusCode&#39;: 200,
- &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
-  &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
-  &#39;Access-Control-Allow-Methods&#39;: &#39;*&#39;}}</pre>
+<pre>{&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;,
+  &#39;iprcode&#39;: &#39;0217153&#39;,
+  &#39;oprcode&#39;: &#39;0217153&#39;,
+  &#39;ordertype&#39;: &#39;Y&#39;,
+  &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;,
+  &#39;pr_active&#39;: &#39;Y&#39;,
+  &#39;pr_cgcode&#39;: &#39;98&#39;,
+  &#39;pr_code&#39;: &#39;0217153&#39;,
+  &#39;pr_dpcode&#39;: &#39;28&#39;,
+  &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+  &#39;pr_ggcode&#39;: &#39;003&#39;,
+  &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;,
+  &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+  &#39;pr_puqty&#39;: &#39;24.00&#39;,
+  &#39;pr_sa_method&#39;: &#39;1&#39;,
+  &#39;pr_sucode1&#39;: &#39;F1239&#39;,
+  &#39;pr_suref3&#39;: &#39;S&#39;,
+  &#39;prtype&#39;: &#39;I&#39;,
+  &#39;psqty&#39;: &#39;1&#39;,
+  &#39;pstype&#39;: &#39;1&#39;,
+  &#39;pr_country_th&#39;: &#39;none&#39;,
+  &#39;pr_country_en&#39;: &#39;United Kingdom&#39;,
+  &#39;pr_keyword_th&#39;: &#39;none&#39;,
+  &#39;pr_keyword_en&#39;: &#39;none&#39;,
+  &#39;pr_filter_th&#39;: &#39;none&#39;,
+  &#39;pr_filter_en&#39;: &#39;none&#39;,
+  &#39;online_category_l1_th&#39;: &#39;none&#39;,
+  &#39;online_category_l1_en&#39;: &#39;none&#39;,
+  &#39;online_category_l2_th&#39;: &#39;none&#39;,
+  &#39;online_category_l2_en&#39;: &#39;none&#39;,
+  &#39;online_category_l3_th&#39;: &#39;none&#39;,
+  &#39;online_category_l3_en&#39;: &#39;none&#39;,
+  &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;,
+  &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;,
+  &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;,
+  &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;,
+  &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+  &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+  &#39;hema_brand_th&#39;: &#39;none&#39;,
+  &#39;hema_brand_en&#39;: &#39;none&#39;,
+  &#39;hema_sizedesc&#39;: &#39;none&#39;,
+  &#39;pr_brand_en&#39;: &#39;none&#39;,
+  &#39;pr_brand_th&#39;: &#39;none&#39;,
+  &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+  &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+  &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+  &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+  &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+  &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+  &#39;pr_barcode&#39;: &#39;5060148383378&#39;,
+  &#39;pr_barcode2&#39;: &#39;506014838337&#39;,
+  &#39;sort_weight&#39;: &#39;0&#39;}}</pre>
 </div>
 
 </div>
