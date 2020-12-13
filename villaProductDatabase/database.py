@@ -3,8 +3,8 @@
 __all__ = ['DATABASE_TABLE_NAME', 'INVENTORY_BUCKET_NAME', 'INPUT_BUCKET_NAME', 'REGION', 'ACCESS_KEY_ID',
            'SECRET_ACCESS_KEY', 'LINEKEY', 'createIndex', 'ProductDatabase', 'notify', 'keys', 'setNoUpdate',
            'setUpdate', 'fromDict', 'updateWithDict', 'loadFromS3', 'dumpToS3', 'lambdaDumpToS3', 'Product',
-           'ValueUpdate', 'valueUpdate', 'lambdaUpdateProduct', 'updateS3Input', 'lambdaUpdateS3', 'lambdaSingleQuery',
-           'lambdaAllQuery']
+           'ValueUpdate', 'chunks', 'valueUpdate', 'lambdaUpdateProduct', 'updateS3Input', 'lambdaUpdateS3',
+           'lambdaSingleQuery', 'lambdaAllQuery']
 
 # Cell
 import pandas as pd
@@ -249,6 +249,9 @@ class Product:
 @dataclass
 class ValueUpdate:
   items: List[Product]
+
+# Cell
+def chunks(l, n): return [l[x: x+n] for x in range(0, len(l), n)]
 
 # Cell
 @add_class_method(ProductDatabase)
