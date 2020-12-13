@@ -400,8 +400,8 @@ You can create the table by with the <code>create_table</code> method.</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Y
 N
-CPU times: user 10.9 ms, sys: 0 ns, total: 10.9 ms
-Wall time: 38 ms
+CPU times: user 74.1 ms, sys: 12.9 ms, total: 87 ms
+Wall time: 2.3 s
 </pre>
 </div>
 </div>
@@ -435,8 +435,8 @@ Wall time: 38 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 335 ms, sys: 7.66 ms, total: 343 ms
-Wall time: 939 ms
+<pre>CPU times: user 290 ms, sys: 17.2 ms, total: 308 ms
+Wall time: 1.05 s
 </pre>
 </div>
 </div>
@@ -615,6 +615,8 @@ testName
 <div class="output_markdown rendered_html output_subarea ">
 <h4 id="loadFromS3" class="doc_header"><code>loadFromS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L174" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>loadFromS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
+<p>this is not a real time function, there may be a delay of sync between
+the main dynamodb database and the cache</p>
 
 </div>
 
@@ -642,7 +644,7 @@ testName
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">loadFromS3</span><span class="p">()</span>
-<span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">(),(</span><span class="mi">2</span><span class="p">)))</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">(),(</span><span class="mi">1</span><span class="p">)))</span>
 </pre></div>
 
     </div>
@@ -671,34 +673,282 @@ testName
     &#39;pr_ggcode&#39;: &#39;003&#39;,
     &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;,
     &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;pr_puqty&#39;: &#39;24&#39;,
+    &#39;pr_puqty&#39;: &#39;24.00&#39;,
     &#39;pr_sa_method&#39;: &#39;1&#39;,
-    &#39;pr_sucode1&#39;: &#39;F1222&#39;,
+    &#39;pr_sucode1&#39;: &#39;F1239&#39;,
     &#39;pr_suref3&#39;: &#39;S&#39;,
     &#39;prtype&#39;: &#39;I&#39;,
     &#39;psqty&#39;: &#39;1&#39;,
-    &#39;pstype&#39;: &#39;1&#39;}}),
- (&#39;0235141&#39;,
-  {&#39;0235141&#39;: {&#39;cprcode&#39;: &#39;0235141&#39;,
-    &#39;iprcode&#39;: &#39;0235141&#39;,
-    &#39;oprcode&#39;: &#39;0235141&#39;,
-    &#39;ordertype&#39;: &#39;Y&#39;,
-    &#39;pr_abb&#39;: &#39;EEBOO-PZCT3-PUZZLE&#39;,
-    &#39;pr_active&#39;: &#39;Y&#39;,
-    &#39;pr_cgcode&#39;: &#39;08&#39;,
-    &#39;pr_code&#39;: &#39;0235141&#39;,
-    &#39;pr_dpcode&#39;: &#39;19&#39;,
-    &#39;pr_engname&#39;: &#39;EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3&#39;,
-    &#39;pr_ggcode&#39;: &#39;113&#39;,
-    &#39;pr_market&#39;: &#39;eeboo,PUZZLE-PZCT3&#39;,
-    &#39;pr_name&#39;: &#39;EEBOO-PZCT3-ตัวต่อนับเลข ANIMAL COUNTING_3ED&#39;,
-    &#39;pr_puqty&#39;: &#39;1&#39;,
-    &#39;pr_sa_method&#39;: &#39;1&#39;,
-    &#39;pr_sucode1&#39;: &#39;CM1979&#39;,
-    &#39;pr_suref3&#39;: &#39;A&#39;,
-    &#39;prtype&#39;: &#39;I&#39;,
-    &#39;psqty&#39;: &#39;1&#39;,
-    &#39;pstype&#39;: &#39;1&#39;}})]</pre>
+    &#39;pstype&#39;: &#39;1&#39;,
+    &#39;pr_country_th&#39;: &#39;none&#39;,
+    &#39;pr_country_en&#39;: &#39;United Kingdom&#39;,
+    &#39;pr_keyword_th&#39;: &#39;none&#39;,
+    &#39;pr_keyword_en&#39;: &#39;none&#39;,
+    &#39;pr_filter_th&#39;: &#39;none&#39;,
+    &#39;pr_filter_en&#39;: &#39;none&#39;,
+    &#39;online_category_l1_th&#39;: &#39;none&#39;,
+    &#39;online_category_l1_en&#39;: &#39;none&#39;,
+    &#39;online_category_l2_th&#39;: &#39;none&#39;,
+    &#39;online_category_l2_en&#39;: &#39;none&#39;,
+    &#39;online_category_l3_th&#39;: &#39;none&#39;,
+    &#39;online_category_l3_en&#39;: &#39;none&#39;,
+    &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;,
+    &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;,
+    &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;,
+    &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;,
+    &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;hema_brand_th&#39;: &#39;none&#39;,
+    &#39;hema_brand_en&#39;: &#39;none&#39;,
+    &#39;hema_sizedesc&#39;: &#39;none&#39;,
+    &#39;pr_brand_en&#39;: &#39;none&#39;,
+    &#39;pr_brand_th&#39;: &#39;none&#39;,
+    &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;pr_barcode&#39;: &#39;5060148383378&#39;,
+    &#39;pr_barcode2&#39;: &#39;506014838337&#39;,
+    &#39;sort_weight&#39;: &#39;0&#39;}})]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="get-details-for-a-list-of-products">get details for a list of products<a class="anchor-link" href="#get-details-for-a-list-of-products"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="productsFromList" class="doc_header"><code>productsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L185" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>productsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">productsFromList</span><span class="p">([</span><span class="s1">&#39;0217153&#39;</span><span class="p">,</span><span class="s1">&#39;203915&#39;</span><span class="p">,</span><span class="s1">&#39;0000009&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+<span class="n">printDict</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>3
+0217153
+ cprcode : 0217153
+ iprcode : 0217153
+ oprcode : 0217153
+ ordertype : Y
+ pr_abb : COCOA LOCO
+ pr_active : Y
+ pr_cgcode : 98
+ pr_code : 0217153
+ pr_dpcode : 28
+ pr_engname : COCOA LOCO
+ pr_ggcode : 003
+ pr_market : COCOA LOCO
+ pr_name : COCOA LOCO
+ pr_puqty : 24.00
+ pr_sa_method : 1
+ pr_sucode1 : F1239
+ pr_suref3 : S
+ prtype : I
+ psqty : 1
+ pstype : 1
+ pr_country_th : none
+ pr_country_en : United Kin
+ pr_keyword_th : none
+ pr_keyword_en : none
+ pr_filter_th : none
+ pr_filter_en : none
+ online_category_l1_th : none
+ online_category_l1_en : none
+ online_category_l2_th : none
+ online_category_l2_en : none
+ online_category_l3_th : none
+ online_category_l3_en : none
+ villa_category_l1_en : Dry Grocer
+ villa_category_l2_en : Grocery
+ villa_category_l3_en : Cookies &amp; 
+ villa_category_l4_en : Biscuits &amp;
+ content_en : 0217153 CO
+ content_th : COCOA LOCO
+ hema_brand_th : none
+ hema_brand_en : none
+ hema_sizedesc : none
+ pr_brand_en : none
+ pr_brand_th : none
+ pr_online_name_en : COCOA LOCO
+ pr_online_name_th : COCOA LOCO
+ hema_name_en : COCOA LOCO
+ hema_name_th : COCOA LOCO
+ pr_name_en : COCOA LOCO
+ pr_name_th : COCOA LOCO
+ pr_barcode : 5060148383
+ pr_barcode2 : 5060148383
+ sort_weight : 0
+CPU times: user 1.74 s, sys: 64.4 ms, total: 1.81 s
+Wall time: 2.35 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L191" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+</blockquote>
+<p>ProductsFromList(iprcodes: List[str])</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="productsFromListLambda" class="doc_header"><code>productsFromListLambda</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L198" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>productsFromListLambda</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="o">.</span><span class="n">getInput</span><span class="p">({</span><span class="s1">&#39;iprcodes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0217153&#39;</span><span class="p">,</span><span class="s1">&#39;203915&#39;</span><span class="p">,</span><span class="s1">&#39;0000009&#39;</span><span class="p">]})</span>
+<span class="n">productsFromListLambda</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 1.83 s, sys: 55.6 ms, total: 1.89 s
+Wall time: 2.44 s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;body&#39;: &#39;[{&#34;0217153&#34;:{&#34;cprcode&#34;:&#34;0217153&#34;,&#34;iprcode&#34;:&#34;0217153&#34;,&#34;oprcode&#34;:&#34;0217153&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;COCOA LOCO MILK CHOC&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;98&#34;,&#34;pr_code&#34;:&#34;0217153&#34;,&#34;pr_dpcode&#34;:&#34;28&#34;,&#34;pr_engname&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_ggcode&#34;:&#34;003&#34;,&#34;pr_market&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL&#34;,&#34;pr_name&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_puqty&#34;:&#34;24.00&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;F1239&#34;,&#34;pr_suref3&#34;:&#34;S&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;pr_country_th&#34;:&#34;none&#34;,&#34;pr_country_en&#34;:&#34;United Kingdom&#34;,&#34;pr_keyword_th&#34;:&#34;none&#34;,&#34;pr_keyword_en&#34;:&#34;none&#34;,&#34;pr_filter_th&#34;:&#34;none&#34;,&#34;pr_filter_en&#34;:&#34;none&#34;,&#34;online_category_l1_th&#34;:&#34;none&#34;,&#34;online_category_l1_en&#34;:&#34;none&#34;,&#34;online_category_l2_th&#34;:&#34;none&#34;,&#34;online_category_l2_en&#34;:&#34;none&#34;,&#34;online_category_l3_th&#34;:&#34;none&#34;,&#34;online_category_l3_en&#34;:&#34;none&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Grocery&#34;,&#34;villa_category_l3_en&#34;:&#34;Cookies &amp; Snacks&#34;,&#34;villa_category_l4_en&#34;:&#34;Biscuits &amp; Crackers&#34;,&#34;content_en&#34;:&#34;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;content_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_brand_th&#34;:&#34;none&#34;,&#34;hema_brand_en&#34;:&#34;none&#34;,&#34;hema_sizedesc&#34;:&#34;none&#34;,&#34;pr_brand_en&#34;:&#34;none&#34;,&#34;pr_brand_th&#34;:&#34;none&#34;,&#34;pr_online_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_online_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_barcode&#34;:&#34;5060148383378&#34;,&#34;pr_barcode2&#34;:&#34;506014838337&#34;,&#34;sort_weight&#34;:&#34;0&#34;}},{&#34;203915&#34;:{&#34;cprcode&#34;:&#34;203915&#34;,&#34;iprcode&#34;:&#34;203915&#34;,&#34;oprcode&#34;:&#34;203915&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;MEIJI GUMMY CHOCO GR&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;4&#34;,&#34;pr_code&#34;:&#34;203915&#34;,&#34;pr_dpcode&#34;:&#34;2.0&#34;,&#34;pr_engname&#34;:&#34;MEIJI GUMMY CHOCO GREEN GRAPE 30G&#34;,&#34;pr_ggcode&#34;:&#34;2&#34;,&#34;pr_market&#34;:&#34;\\u0e40\\u0e21\\u0e08\\u0e34 \\u0e01\\u0e31\\u0e21\\u0e21\\u0e35\\u0e48 \\u0e0a\\u0e47\\u0e2d\\u0e01\\u0e42\\u0e01 \\u0e01\\u0e23\\u0e35\\u0e19\\u0e40\\u0e01\\u0e23\\u0e1b 30&#34;,&#34;pr_name&#34;:&#34;\\u0e40\\u0e21\\u0e08\\u0e34 \\u0e01\\u0e31\\u0e21\\u0e21\\u0e35\\u0e48 \\u0e0a\\u0e47\\u0e2d\\u0e01\\u0e42\\u0e01 \\u0e01\\u0e23\\u0e35\\u0e19\\u0e40\\u0e01\\u0e23\\u0e1b 30 \\u0e01\\u0e23\\u0e31\\u0e21&#34;,&#34;pr_puqty&#34;:&#34;20.0&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;2943&#34;,&#34;pr_suref3&#34;:&#34;C&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1.0&#34;,&#34;pstype&#34;:&#34;1.0&#34;,&#34;pr_country_th&#34;:&#34;none&#34;,&#34;pr_country_en&#34;:&#34;China&#34;,&#34;pr_keyword_th&#34;:&#34;none&#34;,&#34;pr_keyword_en&#34;:&#34;none&#34;,&#34;pr_filter_th&#34;:&#34;Grocery,Chocolate&#34;,&#34;pr_filter_en&#34;:&#34;Grocery,Chocolate&#34;,&#34;online_category_l1_th&#34;:&#34;\\u0e2a\\u0e34\\u0e19\\u0e04\\u0e49\\u0e32\\u0e1a\\u0e23\\u0e34\\u0e42\\u0e20\\u0e04&#34;,&#34;online_category_l1_en&#34;:&#34;Grocery&#34;,&#34;online_category_l2_th&#34;:&#34;\\u0e0a\\u0e47\\u0e2d\\u0e04\\u0e42\\u0e01\\u0e41\\u0e25\\u0e15&#34;,&#34;online_category_l2_en&#34;:&#34;Chocolate&#34;,&#34;online_category_l3_th&#34;:&#34;none&#34;,&#34;online_category_l3_en&#34;:&#34;none&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Grocery&#34;,&#34;villa_category_l3_en&#34;:&#34;Candies&#34;,&#34;villa_category_l4_en&#34;:&#34;Confectionery&#34;,&#34;content_en&#34;:&#34;0203915 Meiji Gummy Choco Green Grape 30g&#34;,&#34;content_th&#34;:&#34;Meiji Gummy Choco Green Grape 30g&#34;,&#34;hema_brand_th&#34;:&#34;Meiji&#34;,&#34;hema_brand_en&#34;:&#34;Meiji&#34;,&#34;hema_sizedesc&#34;:&#34;30g&#34;,&#34;pr_brand_en&#34;:&#34;MEIJI&#34;,&#34;pr_brand_th&#34;:&#34;MEIJI&#34;,&#34;pr_online_name_en&#34;:&#34;Meiji Gummy Choco Green Grape 30g&#34;,&#34;pr_online_name_th&#34;:&#34;Meiji Gummy Choco Green Grape 30g&#34;,&#34;hema_name_en&#34;:&#34;Gummy Choco Green Grape&#34;,&#34;hema_name_th&#34;:&#34;Gummy Choco Green Grape&#34;,&#34;pr_name_en&#34;:&#34;MEIJI GUMMY CHOCO GREEN GRAPE 30G&#34;,&#34;pr_name_th&#34;:&#34;\\u0e40\\u0e21\\u0e08\\u0e34 \\u0e01\\u0e31\\u0e21\\u0e21\\u0e35\\u0e48 \\u0e0a\\u0e47\\u0e2d\\u0e01\\u0e42\\u0e01 \\u0e01\\u0e23\\u0e35\\u0e19\\u0e40\\u0e01\\u0e23\\u0e1b 30 \\u0e01\\u0e23\\u0e31\\u0e21&#34;,&#34;sort_weight&#34;:&#34;0.0&#34;}},{&#34;0000009&#34;:{&#34;cprcode&#34;:&#34;0000009&#34;,&#34;iprcode&#34;:&#34;0000009&#34;,&#34;oprcode&#34;:&#34;0000009&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;J. WALKER RED 70 CL.&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;01&#34;,&#34;pr_code&#34;:&#34;0000009&#34;,&#34;pr_dpcode&#34;:&#34;01&#34;,&#34;pr_engname&#34;:&#34;JOHNNIE WALKER RED 70 CL.&#34;,&#34;pr_ggcode&#34;:&#34;001&#34;,&#34;pr_market&#34;:&#34;J. WALKER RED 70 CL&#34;,&#34;pr_name&#34;:&#34;JOHNNIE WALKER RED 70 CL&#34;,&#34;pr_puqty&#34;:&#34;12.00&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;1782&#34;,&#34;pr_suref3&#34;:&#34;A&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;pr_country_th&#34;:&#34;&#34;,&#34;pr_country_en&#34;:&#34;United Kingdom&#34;,&#34;pr_keyword_th&#34;:&#34;&#34;,&#34;pr_keyword_en&#34;:&#34;&#34;,&#34;pr_filter_th&#34;:&#34;Alcohol,Spirits  Liqueurs&#34;,&#34;pr_filter_en&#34;:&#34;Alcohol,Spirits  Liqueurs&#34;,&#34;online_category_l1_th&#34;:&#34;\\u0e40\\u0e1a\\u0e35\\u0e22\\u0e23\\u0e4c, \\u0e44\\u0e27\\u0e19\\u0e4c\\u0e41\\u0e25\\u0e30\\u0e2a\\u0e38\\u0e23\\u0e32&#34;,&#34;online_category_l1_en&#34;:&#34;Beer Wine &amp; Spirits&#34;,&#34;online_category_l2_th&#34;:&#34;\\u0e40\\u0e2b\\u0e25\\u0e49\\u0e32&#34;,&#34;online_category_l2_en&#34;:&#34;Spirits &amp; Liqueurs&#34;,&#34;online_category_l3_th&#34;:&#34;&#34;,&#34;online_category_l3_en&#34;:&#34;&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Alcohol &amp; Beverage&#34;,&#34;villa_category_l3_en&#34;:&#34;Whisky&#34;,&#34;villa_category_l4_en&#34;:&#34;Scoth Whisky&#34;,&#34;content_en&#34;:&#34;0000009 Johnnie Walker Red 700ml&#34;,&#34;content_th&#34;:&#34;JOHNNIE WALKER RED 700ml&#34;,&#34;hema_brand_th&#34;:&#34;Johnnie Walker&#34;,&#34;hema_brand_en&#34;:&#34;Johnnie Walker&#34;,&#34;hema_sizedesc&#34;:&#34;700ml&#34;,&#34;pr_brand_en&#34;:&#34;Johnnie Walker&#34;,&#34;pr_brand_th&#34;:&#34;Johnnie Walker&#34;,&#34;pr_online_name_en&#34;:&#34;Johnnie Walker Red 700ml&#34;,&#34;pr_online_name_th&#34;:&#34;JOHNNIE WALKER RED 700ml&#34;,&#34;hema_name_en&#34;:&#34;Johnnie Walker Red&#34;,&#34;hema_name_th&#34;:&#34;JOHNNIE WALKER RED&#34;,&#34;pr_name_en&#34;:&#34;JOHNNIE WALKER RED 70 CL.&#34;,&#34;pr_name_th&#34;:&#34;JOHNNIE WALKER RED 70 CL&#34;,&#34;sort_weight&#34;:0}}]&#39;,
+ &#39;statusCode&#39;: 200,
+ &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
+  &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
+  &#39;Access-Control-Allow-Methods&#39;: &#39;*&#39;}}</pre>
 </div>
 
 </div>
@@ -726,7 +976,7 @@ testName
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="dumpToS3" class="doc_header"><code>dumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L181" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>dumpToS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>500</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="dumpToS3" class="doc_header"><code>dumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L204" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>dumpToS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>500</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>upload changes to s3</p>
 
@@ -768,8 +1018,9 @@ testName
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 1.32 s, sys: 26.6 ms, total: 1.35 s
-Wall time: 1.74 s
+<pre>not finished, doing the next batch of 500
+CPU times: user 3.74 s, sys: 215 ms, total: 3.96 s
+Wall time: 5.72 s
 </pre>
 </div>
 </div>
@@ -779,7 +1030,7 @@ Wall time: 1.74 s
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;saved 14614 products&#39;</pre>
+<pre>&#39;saved 21753 products&#39;</pre>
 </div>
 
 </div>
@@ -801,7 +1052,7 @@ Wall time: 1.74 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L230" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L253" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -843,9 +1094,9 @@ Wall time: 1.74 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>saved 14851 products
-CPU times: user 1.31 s, sys: 7.7 ms, total: 1.32 s
-Wall time: 2.1 s
+<pre>saved 21753 products
+CPU times: user 1.69 s, sys: 75.7 ms, total: 1.77 s
+Wall time: 2.61 s
 </pre>
 </div>
 </div>
@@ -873,9 +1124,9 @@ Wall time: 2.1 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L244" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
+<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L265" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
 </blockquote>
-<p>Product(iprcode: str, cprcode: str, data: Union[~CatchAllVar, NoneType])</p>
+<p>Product(iprcode: str, cprcode: str, data: Optional[~CatchAllVar])</p>
 
 </div>
 
@@ -898,7 +1149,7 @@ Wall time: 2.1 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L250" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
+<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L271" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
 </blockquote>
 <p>ValueUpdate(items: List[villaProductDatabase.database.Product])</p>
 
@@ -930,7 +1181,7 @@ Wall time: 2.1 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L254" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
+<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L277" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -946,31 +1197,6 @@ Wall time: 2.1 s
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
- [10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
- [20, 21, 22, 23, 24, 25, 26, 27, 28, 29],
- [30, 31, 32, 33, 34, 35, 36, 37, 38, 39],
- [40, 41, 42, 43, 44, 45, 46, 47, 48, 49],
- [50, 51, 52, 53, 54, 55, 56, 57, 58, 59],
- [60, 61, 62, 63, 64, 65, 66, 67, 68, 69],
- [70, 71, 72, 73, 74, 75, 76, 77, 78, 79],
- [80, 81, 82, 83, 84, 85, 86, 87, 88, 89],
- [90, 91, 92, 93, 94, 95, 96, 97, 98, 99]]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
 
 </div>
     {% endraw %}
@@ -1028,7 +1254,7 @@ Wall time: 2.1 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="valueUpdate" class="doc_header"><code>valueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L257" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate</code>(<strong><code>inputs</code></strong>)</p>
+<h4 id="valueUpdate" class="doc_header"><code>valueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L280" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate</code>(<strong><code>inputs</code></strong>)</p>
 </blockquote>
 <p>check for difference and batch update the changes in product data</p>
 
@@ -1113,7 +1339,7 @@ Wall time: 2.1 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L311" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L334" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1156,9 +1382,11 @@ Wall time: 2.1 s
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:39.056}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:6.013}&#39;,
  &#39;statusCode&#39;: 200,
- &#39;headers&#39;: {}}</pre>
+ &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
+  &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
+  &#39;Access-Control-Allow-Methods&#39;: &#39;*&#39;}}</pre>
 </div>
 
 </div>
@@ -1192,7 +1420,7 @@ Wall time: 2.1 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L317" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L340" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1248,7 +1476,7 @@ Wall time: 2.1 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L325" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L348" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1295,9 +1523,11 @@ Wall time: 2.1 s
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:6.872}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:5.073}&#39;,
  &#39;statusCode&#39;: 200,
- &#39;headers&#39;: {}}</pre>
+ &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
+  &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
+  &#39;Access-Control-Allow-Methods&#39;: &#39;*&#39;}}</pre>
 </div>
 
 </div>
@@ -1415,24 +1645,7 @@ pr_sucode1 CM845
 pr_suref3 A
 prtype I
 psqty 1
-pstype 1
-pr_country_th none
-pr_country_en none
-pr_keyword_th none
-pr_keyword_en none
-pr_filter_th none
-pr_filter_en none
-online_category_l1_th none
-online_category_l1_en none
-online_category_l2_th none
-online_category_l2_en none
-online_category_l3_th none
-online_category_l3_en none
-content_en 0171670 JIRAPAT YOUNG KALE 200 G.
-content_th JIRAPAT YOUNG KALE 200 G.
-hema_brand_th none
-hema_brand_en none
-hema_sizedesc none</pre>
+pstype 1</pre>
 </div>
 
 </div>
@@ -1454,7 +1667,7 @@ hema_sizedesc none</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L340" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L363" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1497,9 +1710,11 @@ hema_sizedesc none</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;cprcode&#34;:&#34;0171670&#34;,&#34;iprcode&#34;:&#34;0171670&#34;,&#34;oprcode&#34;:&#34;0171670&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;JIRAPAT YOUNG KALE 2&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;05&#34;,&#34;pr_code&#34;:&#34;0171670&#34;,&#34;pr_dpcode&#34;:&#34;19&#34;,&#34;pr_engname&#34;:&#34;JIRAAT YOUNG KALE 200 G.&#34;,&#34;pr_ggcode&#34;:&#34;057&#34;,&#34;pr_market&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_name&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_puqty&#34;:&#34;1&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;CM845&#34;,&#34;pr_suref3&#34;:&#34;A&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;pr_country_th&#34;:&#34;none&#34;,&#34;pr_country_en&#34;:&#34;none&#34;,&#34;pr_keyword_th&#34;:&#34;none&#34;,&#34;pr_keyword_en&#34;:&#34;none&#34;,&#34;pr_filter_th&#34;:&#34;none&#34;,&#34;pr_filter_en&#34;:&#34;none&#34;,&#34;online_category_l1_th&#34;:&#34;none&#34;,&#34;online_category_l1_en&#34;:&#34;none&#34;,&#34;online_category_l2_th&#34;:&#34;none&#34;,&#34;online_category_l2_en&#34;:&#34;none&#34;,&#34;online_category_l3_th&#34;:&#34;none&#34;,&#34;online_category_l3_en&#34;:&#34;none&#34;,&#34;content_en&#34;:&#34;0171670 JIRAPAT YOUNG KALE 200 G.&#34;,&#34;content_th&#34;:&#34;JIRAPAT YOUNG KALE 200 G.&#34;,&#34;hema_brand_th&#34;:&#34;none&#34;,&#34;hema_brand_en&#34;:&#34;none&#34;,&#34;hema_sizedesc&#34;:&#34;none&#34;}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;cprcode&#34;:&#34;0171670&#34;,&#34;iprcode&#34;:&#34;0171670&#34;,&#34;oprcode&#34;:&#34;0171670&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;JIRAPAT YOUNG KALE 2&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;05&#34;,&#34;pr_code&#34;:&#34;0171670&#34;,&#34;pr_dpcode&#34;:&#34;19&#34;,&#34;pr_engname&#34;:&#34;JIRAAT YOUNG KALE 200 G.&#34;,&#34;pr_ggcode&#34;:&#34;057&#34;,&#34;pr_market&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_name&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_puqty&#34;:&#34;1&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;CM845&#34;,&#34;pr_suref3&#34;:&#34;A&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;}&#39;,
  &#39;statusCode&#39;: 200,
- &#39;headers&#39;: {}}</pre>
+ &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
+  &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
+  &#39;Access-Control-Allow-Methods&#39;: &#39;*&#39;}}</pre>
 </div>
 
 </div>
@@ -1574,8 +1789,8 @@ hema_sizedesc none</pre>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDVNE5QZPQ&amp;Signature=qbS0g7n9EUKwKgQUyAXqekQEzEQ%3D&amp;Expires=1607671222
-received 10938 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;, &#39;iprcode&#39;: &#39;0217153&#39;, &#39;oprcode&#39;: &#39;0217153&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;98&#39;, &#39;pr_code&#39;: &#39;0217153&#39;, &#39;pr_dpcode&#39;: &#39;28&#39;, &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_ggcode&#39;: &#39;003&#39;, &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;, &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_puqty&#39;: &#39;24&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;F1222&#39;, &#39;pr_suref3&#39;: &#39;S&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;}})
+<pre>https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=ASIAVX4Z5TKDYE2NH43V&amp;Signature=vXQ9JJc92IGq0jjAwOPDCBUPnJw%3D&amp;x-amz-security-token=IQoJb3JpZ2luX2VjECgaDmFwLXNvdXRoZWFzdC0xIkYwRAIgRPXlq%2BIN0PYbNfGc2Y7hbIxltrGiRdKi2Z7zDa%2BMMBcCIEhqWhrfXsI%2BeTveLCCbtdSBFlffisVZwFckyS5qSoLgKv4CCMH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEQARoMMzk0OTIyOTI0Njc5Igw3vYJkeKpEDS%2BPzd8q0gKNCG3LA5OYwSyeRcJlWJ0TYGk0QQsIIdu3PFNZARsF3%2FVG2tGppj6%2BBuNpCtwGnnnrdtMvgMy2WyJ55fAvlpUBNR4r9A97UBbZM8QQC7na216ecvm6%2Bjsuc7vBT%2F8CpdaWK%2BoXFxmcR%2FiJRixbzyu%2BuP4ZL4JZx5gRozNloYH7C6VNtVePq5LaZ6G2djSxbwQ5x%2B1s6OvIpiA8k%2FIiyj4cIn6Rd8xo%2BXT8lRKYVCv%2BYIciqe4fP19MPrLKnF8ugkYL7dConQlTs82%2F%2Bw1MWG1Gg3m%2BP9xk72C4i1qqU1N4yJgdKT6MioDCuP47YYJ1ZCQA%2FU1F%2BhSZgU6EpGEt%2Bjg6O4zEAcoArPpnrg1s5W4abi9tvOddMwu7G%2F7UJDUCiXNtPwjg0Q46j0392hB%2FAHTlUkj6bUkMvZ5BarLJRlpP9d4EY2%2BOtmNtbQfFAHLyR4cw2TCO8Nj%2BBTrEAQQrbwbHUeZzQWcH%2FuQj1jmwrEmuIUdulyg7q%2Bc702lhlnrt0Ww3NbHyn%2FmgFgxhtB0gVgm6QsQ6fjFezmL%2FHpwX5RPt8RbYSUCw7nEGbDMdVSZTDMj8th0i6RLCR3Vb%2Fbmhz7hSSPXi2B8%2FG4GL3yA0SO0NkYF2yA5Qn4sN%2ByAfeEGeZAVR9ysk0137cQ0AXIxTSz1uJ3sO6kGAmyf0diV9907L5LDneKje1j%2BFfhr9k4P4UGS0Int935AduPj0xP3U0Yw%3D&amp;Expires=1607877173
+received 21753 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;, &#39;iprcode&#39;: &#39;0217153&#39;, &#39;oprcode&#39;: &#39;0217153&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;98&#39;, &#39;pr_code&#39;: &#39;0217153&#39;, &#39;pr_dpcode&#39;: &#39;28&#39;, &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_ggcode&#39;: &#39;003&#39;, &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;, &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_puqty&#39;: &#39;24.00&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;F1239&#39;, &#39;pr_suref3&#39;: &#39;S&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;none&#39;, &#39;pr_country_en&#39;: &#39;United Kingdom&#39;, &#39;pr_keyword_th&#39;: &#39;none&#39;, &#39;pr_keyword_en&#39;: &#39;none&#39;, &#39;pr_filter_th&#39;: &#39;none&#39;, &#39;pr_filter_en&#39;: &#39;none&#39;, &#39;online_category_l1_th&#39;: &#39;none&#39;, &#39;online_category_l1_en&#39;: &#39;none&#39;, &#39;online_category_l2_th&#39;: &#39;none&#39;, &#39;online_category_l2_en&#39;: &#39;none&#39;, &#39;online_category_l3_th&#39;: &#39;none&#39;, &#39;online_category_l3_en&#39;: &#39;none&#39;, &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;, &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;, &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;, &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;, &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_brand_th&#39;: &#39;none&#39;, &#39;hema_brand_en&#39;: &#39;none&#39;, &#39;hema_sizedesc&#39;: &#39;none&#39;, &#39;pr_brand_en&#39;: &#39;none&#39;, &#39;pr_brand_th&#39;: &#39;none&#39;, &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_barcode&#39;: &#39;5060148383378&#39;, &#39;pr_barcode2&#39;: &#39;506014838337&#39;, &#39;sort_weight&#39;: &#39;0&#39;}})
 </pre>
 </div>
 </div>
@@ -1597,7 +1812,7 @@ received 10938 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L349" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L372" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1641,7 +1856,7 @@ received 10938 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;:
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>received 10938 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;, &#39;iprcode&#39;: &#39;0217153&#39;, &#39;oprcode&#39;: &#39;0217153&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;98&#39;, &#39;pr_code&#39;: &#39;0217153&#39;, &#39;pr_dpcode&#39;: &#39;28&#39;, &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_ggcode&#39;: &#39;003&#39;, &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;, &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_puqty&#39;: &#39;24&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;F1222&#39;, &#39;pr_suref3&#39;: &#39;S&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;}})
+<pre>received 21753 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;, &#39;iprcode&#39;: &#39;0217153&#39;, &#39;oprcode&#39;: &#39;0217153&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;98&#39;, &#39;pr_code&#39;: &#39;0217153&#39;, &#39;pr_dpcode&#39;: &#39;28&#39;, &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_ggcode&#39;: &#39;003&#39;, &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;, &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_puqty&#39;: &#39;24.00&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;F1239&#39;, &#39;pr_suref3&#39;: &#39;S&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;none&#39;, &#39;pr_country_en&#39;: &#39;United Kingdom&#39;, &#39;pr_keyword_th&#39;: &#39;none&#39;, &#39;pr_keyword_en&#39;: &#39;none&#39;, &#39;pr_filter_th&#39;: &#39;none&#39;, &#39;pr_filter_en&#39;: &#39;none&#39;, &#39;online_category_l1_th&#39;: &#39;none&#39;, &#39;online_category_l1_en&#39;: &#39;none&#39;, &#39;online_category_l2_th&#39;: &#39;none&#39;, &#39;online_category_l2_en&#39;: &#39;none&#39;, &#39;online_category_l3_th&#39;: &#39;none&#39;, &#39;online_category_l3_en&#39;: &#39;none&#39;, &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;, &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;, &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;, &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;, &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_brand_th&#39;: &#39;none&#39;, &#39;hema_brand_en&#39;: &#39;none&#39;, &#39;hema_sizedesc&#39;: &#39;none&#39;, &#39;pr_brand_en&#39;: &#39;none&#39;, &#39;pr_brand_th&#39;: &#39;none&#39;, &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_barcode&#39;: &#39;5060148383378&#39;, &#39;pr_barcode2&#39;: &#39;506014838337&#39;, &#39;sort_weight&#39;: &#39;0&#39;}})
 </pre>
 </div>
 </div>
@@ -1681,8 +1896,8 @@ received 10938 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;:
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>checking scan time
-CPU times: user 8.23 s, sys: 498 ms, total: 8.73 s
-Wall time: 15.3 s
+CPU times: user 12.2 s, sys: 698 ms, total: 12.9 s
+Wall time: 24 s
 </pre>
 </div>
 </div>
@@ -1713,9 +1928,9 @@ pr_suref3 A
 prtype I
 psqty 1
 pstype 1
-pr_country_th 
-pr_country_en 
-pr_keyword_th 
+pr_country_th none
+pr_country_en none
+pr_keyword_th none
 pr_keyword_en cooking oil, oil cooking,Fragata Olive Pomace Oil, Fragata, Olive purity pomace oil, Omace oil olive pomace oil, cooking olive pomace oil, olive pomace oil cooking
 pr_filter_th Oils  Vinegar,Grocery
 pr_filter_en Oils  Vinegar,Grocery
@@ -1723,8 +1938,8 @@ online_category_l1_th สินค้าบริโภค
 online_category_l1_en Grocery
 online_category_l2_th น้ำมันและน้ำส้มสายชู
 online_category_l2_en Oils &amp; Vinegar
-online_category_l3_th 
-online_category_l3_en 
+online_category_l3_th none
+online_category_l3_en none
 villa_category_l1_en Dry Grocery
 villa_category_l2_en Grocery
 villa_category_l3_en Oil &amp; Seasoning &amp; Sauce

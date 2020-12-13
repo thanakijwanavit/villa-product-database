@@ -2,9 +2,9 @@
 
 __all__ = ['DATABASE_TABLE_NAME', 'INVENTORY_BUCKET_NAME', 'INPUT_BUCKET_NAME', 'REGION', 'ACCESS_KEY_ID',
            'SECRET_ACCESS_KEY', 'LINEKEY', 'createIndex', 'ProductDatabase', 'notify', 'keys', 'setNoUpdate',
-           'setUpdate', 'fromDict', 'updateWithDict', 'loadFromS3', 'dumpToS3', 'lambdaDumpToS3', 'Product',
-           'ValueUpdate', 'chunks', 'valueUpdate', 'lambdaUpdateProduct', 'updateS3Input', 'lambdaUpdateS3',
-           'lambdaSingleQuery', 'lambdaAllQuery']
+           'setUpdate', 'fromDict', 'updateWithDict', 'loadFromS3', 'productsFromList', 'ProductsFromList',
+           'productsFromListLambda', 'dumpToS3', 'lambdaDumpToS3', 'Product', 'ValueUpdate', 'chunks', 'valueUpdate',
+           'lambdaUpdateProduct', 'updateS3Input', 'lambdaUpdateS3', 'lambdaSingleQuery', 'lambdaAllQuery']
 
 # Cell
 import pandas as pd
@@ -173,9 +173,32 @@ def updateWithDict(cls, originalObject:ProductDatabase, inputDict:dict ):
 # Cell
 @add_class_method(ProductDatabase)
 def loadFromS3(cls, bucketName= INVENTORY_BUCKET_NAME, key = 'allData', **kwargs):
+  '''
+  this is not a real time function, there may be a delay of sync between
+  the main dynamodb database and the cache
+  '''
   logging.info(f'loading from {bucketName}')
   logging.info(f'user is {kwargs.get("user")}')
   return S3.load(key=key, bucket = bucketName,  **kwargs)
+
+# Cell
+@add_class_method(ProductDatabase)
+def productsFromList(cls,iprcodes:List[str])->dict:
+  database = cls.loadFromS3()
+  return [database[iprcode] for iprcode in iprcodes if iprcode in database.keys()]
+
+# Cell
+@dataclass_json
+@dataclass
+class ProductsFromList:
+  iprcodes: List[str]
+
+
+# Cell
+def productsFromListLambda(event, *args):
+  productFromList = Event.parseDataClass(ProductFromList,event)
+  result = ProductDatabase.productsFromList(productFromList.iprcodes)
+  return Response.returnSuccess(result)
 
 # Cell
 @add_class_method(ProductDatabase)
