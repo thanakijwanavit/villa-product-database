@@ -4,7 +4,8 @@ __all__ = ['DATABASE_TABLE_NAME', 'INVENTORY_BUCKET_NAME', 'INPUT_BUCKET_NAME', 
            'SECRET_ACCESS_KEY', 'LINEKEY', 'createIndex', 'ProductDatabase', 'notify', 'keys', 'setNoUpdate',
            'setUpdate', 'fromDict', 'updateWithDict', 'loadFromS3', 'productsFromList', 'ProductsFromList',
            'lambdaProductsFromList', 'dumpToS3', 'lambdaDumpToS3', 'Product', 'ValueUpdate', 'chunks', 'valueUpdate',
-           'lambdaUpdateProduct', 'updateS3Input', 'lambdaUpdateS3', 'lambdaSingleQuery', 'lambdaAllQuery']
+           'valueUpdate2', 'lambdaUpdateProduct', 'updateS3Input', 'lambdaUpdateS3', 'lambdaSingleQuery',
+           'lambdaAllQuery']
 
 # Cell
 import pandas as pd
@@ -196,8 +197,8 @@ class ProductsFromList:
 
 # Cell
 def lambdaProductsFromList(event, *args):
-  productFromList = Event.parseDataClass(ProductFromList,event)
-  result = ProductDatabase.productsFromList(productFromList.iprcodes)
+  productsFromList = Event.parseDataClass(ProductsFromList,event)
+  result = ProductDatabase.productsFromList(productsFromList.iprcodes)
   return Response.returnSuccess(result)
 
 # Cell
@@ -306,6 +307,66 @@ def valueUpdate(cls, inputs):
 
           # check if product is in the database, if not, create an empty class with the product code
           incumbentBr = next(cls.query(iprcode , cls.cprcode == cprcode), cls(iprcode = iprcode, cprcode = cprcode, data = {}))
+          # save original data to a variable
+          originalData = incumbentBr.data.copy()
+          # update data
+          updatedData = cls.updateWithDict(incumbentBr, input_)
+
+          logging.info(f'incumbentBr is {incumbentBr.iprcode}\n, prcode is {iprcode}')
+
+          # check for difference
+          try:
+            if updatedData.data != originalData:
+              logging.info(f'product {iprcode} has changed from \n{originalData} \n{updatedData.data}')
+              batch.save(updatedData)
+              itemsUpdated['success'] += 1
+            else:
+              logging.info(f'no change for {iprcode}')
+              itemsUpdated['skipped'] += 1
+          except Exception as e:
+            itemsUpdated['failure'] += 1
+            itemsUpdated['failureMessage'].append(e)
+
+        # log time taken
+        itemsUpdated['timetaken(ms)'] = (datetime.now()- t0).total_seconds()*1000
+    return itemsUpdated
+
+# Cell
+@add_class_method(ProductDatabase)
+def valueUpdate2(cls, inputs):
+    '''
+      check for difference and batch update the changes in product data
+    '''
+    t0 = datetime.now()
+    ### validate input
+    try:
+      validInputs = ValueUpdate.from_dict(inputs).to_dict().get('items')
+    except Exception as e:
+      raise KeyError(f'input failed validation {e}')
+      return
+
+    itemsUpdated = {'success':0, 'failure': 0, 'skipped': 0 ,'failureMessage':[], 'timetaken(ms)': 0}
+    t0 = datetime.now()
+
+    logging.info(f'there are {len(validInputs)} products to update')
+
+    print(f'input validated {(datetime.now()-t0).total_seconds()*1000} ms')
+    ##### dividing input into batch of 500
+    inputBatches = chunks(validInputs, 500)
+    print(f'divided into chunks {(datetime.now()-t0).total_seconds()*1000} ms')
+    items = cls.loadFromS3()
+    print(f'get all from s3 {(datetime.now()-t0).total_seconds()*1000} ms')
+
+    for inputBatch in inputBatches:
+      with cls.batch_write() as batch:
+        # loop through each product
+        for input_ in inputBatch:
+          iprcode = input_['iprcode']
+          cprcode = input_['cprcode']
+
+          # check if product is in the database, if not, create an empty class with the product code
+#           incumbentBr = next(cls.query(iprcode , cls.cprcode == cprcode), cls(iprcode = iprcode, cprcode = cprcode, data = {}))
+          incumbentBr = cls.fromDict(items.get(iprcode) or {'iprcode': iprcode, 'cprcode': cprcode})
           # save original data to a variable
           originalData = incumbentBr.data.copy()
           # update data
