@@ -2,10 +2,9 @@
 
 __all__ = ['DATABASE_TABLE_NAME', 'INVENTORY_BUCKET_NAME', 'INPUT_BUCKET_NAME', 'REGION', 'ACCESS_KEY_ID',
            'SECRET_ACCESS_KEY', 'LINEKEY', 'createIndex', 'ProductDatabase', 'notify', 'keys', 'setNoUpdate',
-           'setUpdate', 'fromDict', 'updateWithDict', 'loadFromS3', 'productsFromList', 'ProductsFromList',
-           'lambdaProductsFromList', 'dumpToS3', 'lambdaDumpToS3', 'Product', 'ValueUpdate', 'chunks', 'valueUpdate',
-           'valueUpdate2', 'lambdaUpdateProduct', 'updateS3Input', 'lambdaUpdateS3', 'lambdaSingleQuery',
-           'lambdaAllQuery']
+           'setUpdate', 'fromDict', 'updateWithDict', 'loadFromS3', 'ProductsFromList', 'lambdaProductsFromList',
+           'dumpToS3', 'lambdaDumpToS3', 'Product', 'ValueUpdate', 'chunks', 'valueUpdate', 'valueUpdate2',
+           'lambdaUpdateProduct', 'updateS3Input', 'lambdaUpdateS3', 'lambdaSingleQuery', 'lambdaAllQuery']
 
 # Cell
 import pandas as pd
@@ -183,17 +182,10 @@ def loadFromS3(cls, bucketName= INVENTORY_BUCKET_NAME, key = 'allData', **kwargs
   return S3.load(key=key, bucket = bucketName,  **kwargs)
 
 # Cell
-@add_class_method(ProductDatabase)
-def productsFromList(cls,iprcodes:List[str])->dict:
-  database = cls.loadFromS3()
-  return [database[iprcode] for iprcode in iprcodes if iprcode in database.keys()]
-
-# Cell
 @dataclass_json
 @dataclass
 class ProductsFromList:
   iprcodes: List[str]
-
 
 # Cell
 def lambdaProductsFromList(event, *args):

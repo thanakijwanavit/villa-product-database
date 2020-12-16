@@ -88,7 +88,7 @@ nb_path: "query.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Querier" class="doc_header"><code>class</code> <code>Querier</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L19" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Querier</code>()</p>
+<h2 id="Querier" class="doc_header"><code>class</code> <code>Querier</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L25" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Querier</code>()</p>
 </blockquote>
 
 </div>
@@ -150,7 +150,741 @@ nb_path: "query.ipynb"
     <span class="n">dax_write_endpoints</span> <span class="o">=</span> <span class="p">[</span><span class="n">DAX_ENDPOINT</span><span class="p">]</span> <span class="k">if</span> <span class="n">DAX_ENDPOINT</span> <span class="k">else</span> <span class="kc">None</span>
   <span class="k">pass</span>
   
-<span class="n">Tester</span><span class="o">.</span><span class="n">singleProductQuery</span><span class="p">({</span><span class="s1">&#39;iprcode&#39;</span><span class="p">:</span><span class="s1">&#39;1234&#39;</span><span class="p">})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>dax endpoint missing &#39;DAX_ENDPOINT&#39;
+None
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="All-product-Query-(get-signedUrl)">All product Query (get signedUrl)<a class="anchor-link" href="#All-product-Query-(get-signedUrl)"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@add_class_method</span><span class="p">(</span><span class="n">Querier</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">allQuery</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;allData&#39;</span><span class="p">,</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;INVENTORY_BUCKET_NAME&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">S3</span><span class="o">.</span><span class="n">presign</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">Tester</span><span class="o">.</span><span class="n">allQuery</span><span class="p">()</span>
+<span class="n">result</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>product-bucket-dev-manual
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=ILqpDPg4J2Vy5VxiAA%2FT3nmNliw%3D&amp;Expires=1608103361&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Load-from-s3">Load from s3<a class="anchor-link" href="#Load-from-s3"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">S3</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;allData&#39;</span><span class="p">,</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;INVENTORY_BUCKET_NAME&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 4.13 s, sys: 236 ms, total: 4.36 s
+Wall time: 4.93 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">S3</span><span class="o">.</span><span class="n">loadFile</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;allData&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;/tmp/test&#39;</span><span class="p">,</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;INVENTORY_BUCKET_NAME&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 101 ms, sys: 20.5 ms, total: 121 ms
+Wall time: 269 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="loadFromS3" class="doc_header"><code>loadFromS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L47" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>loadFromS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+</blockquote>
+<p>this is not a real time function, there may be a delay of sync between
+the main dynamodb database and the cache</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">loadFromS3</span><span class="p">()</span>
+<span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">(),(</span><span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 4.02 s, sys: 197 ms, total: 4.22 s
+Wall time: 4.76 s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[(&#39;0217153&#39;,
+  {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;,
+    &#39;iprcode&#39;: &#39;0217153&#39;,
+    &#39;oprcode&#39;: &#39;0217153&#39;,
+    &#39;ordertype&#39;: &#39;Y&#39;,
+    &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;,
+    &#39;pr_active&#39;: &#39;Y&#39;,
+    &#39;pr_cgcode&#39;: &#39;98&#39;,
+    &#39;pr_code&#39;: &#39;0217153&#39;,
+    &#39;pr_dpcode&#39;: &#39;28&#39;,
+    &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;pr_ggcode&#39;: &#39;003&#39;,
+    &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;,
+    &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;pr_puqty&#39;: &#39;24.00&#39;,
+    &#39;pr_sa_method&#39;: &#39;1&#39;,
+    &#39;pr_sucode1&#39;: &#39;F1239&#39;,
+    &#39;pr_suref3&#39;: &#39;S&#39;,
+    &#39;prtype&#39;: &#39;I&#39;,
+    &#39;psqty&#39;: &#39;1&#39;,
+    &#39;pstype&#39;: &#39;1&#39;,
+    &#39;pr_country_th&#39;: &#39;&#39;,
+    &#39;pr_country_en&#39;: &#39;United Kingdom&#39;,
+    &#39;pr_keyword_th&#39;: &#39;&#39;,
+    &#39;pr_keyword_en&#39;: &#39;&#39;,
+    &#39;pr_filter_th&#39;: &#39;&#39;,
+    &#39;pr_filter_en&#39;: &#39;&#39;,
+    &#39;online_category_l1_th&#39;: &#39;&#39;,
+    &#39;online_category_l1_en&#39;: &#39;&#39;,
+    &#39;online_category_l2_th&#39;: &#39;&#39;,
+    &#39;online_category_l2_en&#39;: &#39;&#39;,
+    &#39;online_category_l3_th&#39;: &#39;&#39;,
+    &#39;online_category_l3_en&#39;: &#39;&#39;,
+    &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;,
+    &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;,
+    &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;,
+    &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;,
+    &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;hema_brand_th&#39;: &#39;&#39;,
+    &#39;hema_brand_en&#39;: &#39;&#39;,
+    &#39;hema_sizedesc&#39;: &#39;&#39;,
+    &#39;pr_brand_en&#39;: &#39;&#39;,
+    &#39;pr_brand_th&#39;: &#39;&#39;,
+    &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
+    &#39;pr_barcode&#39;: &#39;5060148383378&#39;,
+    &#39;pr_barcode2&#39;: &#39;506014838337&#39;,
+    &#39;sort_weight&#39;: &#39;0&#39;}})]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Decompress-to-s3">Decompress to s3<a class="anchor-link" href="#Decompress-to-s3"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">zlib</span><span class="o">,</span> <span class="nn">bz2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;______ json dumping result ________&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> bytesData = json.dumps(data).encode()
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;______ json loading result ________&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> _ = json.loads(bytesData.decode())
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;object size&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">bytesData</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span><span class="s1">&#39;MB&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;----compressing zlib-json------&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> zlibData = zlib.compress(bytesData)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;size of zlib data is&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">zlibData</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span><span class="s1">&#39;MB&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--decompressing zlib-json--&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> _ = zlib.decompress(zlibData)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;------compressing bz json------&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> bzData = bz2.compress(bytesData)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;size of bz2 data is&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">bzData</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span><span class="s1">&#39;MB&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;------decompressing bz json------&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> _ = bz2.decompress(bzData)
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;______ pickle dumping result ________&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> pickleData = pickle.dumps(data)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;______ pickle loading result ________&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> _ = pickle.loads(pickleData)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;object size&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">pickleData</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span><span class="s1">&#39;MB&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-----compressing zlib pickle-----&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> zlibPickle = zlib.compress(pickleData)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;size of zlib pickle is&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">zlibPickle</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span><span class="s1">&#39;MB&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-----decompressing zlib pickle-----&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> _ = zlib.decompress(zlibPickle)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;------compressing bz pickle-------&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> bzPickle = bz2.compress(pickleData)
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;size of bz2 pickle is&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">bzPickle</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span><span class="s1">&#39;MB&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-----decompressing bz pickle-----&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> _ = bz2.decompress(bzPickle)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>______ json dumping result ________
+CPU times: user 840 ms, sys: 68.3 ms, total: 909 ms
+Wall time: 905 ms
+______ json loading result ________
+CPU times: user 1.15 s, sys: 116 ms, total: 1.27 s
+Wall time: 1.26 s
+object size
+87.005143 MB
+----compressing zlib-json------
+CPU times: user 1.85 s, sys: 8.01 ms, total: 1.86 s
+Wall time: 1.86 s
+size of zlib data is
+9.646346 MB
+--decompressing zlib-json--
+CPU times: user 262 ms, sys: 56.2 ms, total: 318 ms
+Wall time: 317 ms
+------compressing bz json------
+CPU times: user 15.3 s, sys: 10.5 ms, total: 15.3 s
+Wall time: 15.3 s
+size of bz2 data is
+6.167249 MB
+------decompressing bz json------
+CPU times: user 2.7 s, sys: 52 ms, total: 2.75 s
+Wall time: 2.75 s
+______ pickle dumping result ________
+CPU times: user 623 ms, sys: 60.1 ms, total: 683 ms
+Wall time: 681 ms
+______ pickle loading result ________
+CPU times: user 391 ms, sys: 39.7 ms, total: 431 ms
+Wall time: 429 ms
+object size
+40.872868 MB
+-----compressing zlib pickle-----
+CPU times: user 1.33 s, sys: 0 ns, total: 1.33 s
+Wall time: 1.33 s
+size of zlib pickle is
+8.304423 MB
+-----decompressing zlib pickle-----
+CPU times: user 197 ms, sys: 36 ms, total: 233 ms
+Wall time: 233 ms
+------compressing bz pickle-------
+CPU times: user 4.83 s, sys: 0 ns, total: 4.83 s
+Wall time: 4.84 s
+size of bz2 pickle is
+5.976561 MB
+-----decompressing bz pickle-----
+CPU times: user 1.56 s, sys: 11.8 ms, total: 1.57 s
+Wall time: 1.57 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./zlibPickle.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zlibPickle</span><span class="p">)</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./zlibjson.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zlibData</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">bytesData</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 1.17 s, sys: 88.4 ms, total: 1.26 s
+Wall time: 1.26 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="c1">## test gz2 compression</span>
+<span class="n">zlib</span><span class="o">.</span><span class="n">compress</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+
+<span class="ansi-red-fg">TypeError</span>: a bytes-like object is required, not &#39;dict&#39;</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">lambdaDecompressS3</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+  <span class="n">S3</span><span class="o">.</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;&lt;ipython-input-34-b7122bbe7b80&gt;&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">2</span>
+<span class="ansi-red-fg">    S3.</span>
+       ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="list-product-query">list product query<a class="anchor-link" href="#list-product-query"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L60" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+</blockquote>
+<p>ProductsFromList(iprcodes: List[str])</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="productsFromList" class="doc_header"><code>productsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L65" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>productsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Tester</span><span class="o">.</span><span class="n">productsFromList</span><span class="p">([</span><span class="s1">&#39;0217153&#39;</span><span class="p">,</span><span class="s1">&#39;203915&#39;</span><span class="p">,</span><span class="s1">&#39;0000009&#39;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+<span class="n">printDict</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>3
+0217153
+ cprcode : 0217153
+ iprcode : 0217153
+ oprcode : 0217153
+ ordertype : Y
+ pr_abb : COCOA LOCO
+ pr_active : Y
+ pr_cgcode : 98
+ pr_code : 0217153
+ pr_dpcode : 28
+ pr_engname : COCOA LOCO
+ pr_ggcode : 003
+ pr_market : COCOA LOCO
+ pr_name : COCOA LOCO
+ pr_puqty : 24.00
+ pr_sa_method : 1
+ pr_sucode1 : F1239
+ pr_suref3 : S
+ prtype : I
+ psqty : 1
+ pstype : 1
+ pr_country_th : 
+ pr_country_en : United Kin
+ pr_keyword_th : 
+ pr_keyword_en : 
+ pr_filter_th : 
+ pr_filter_en : 
+ online_category_l1_th : 
+ online_category_l1_en : 
+ online_category_l2_th : 
+ online_category_l2_en : 
+ online_category_l3_th : 
+ online_category_l3_en : 
+ villa_category_l1_en : Dry Grocer
+ villa_category_l2_en : Grocery
+ villa_category_l3_en : Cookies &amp; 
+ villa_category_l4_en : Biscuits &amp;
+ content_en : 0217153 CO
+ content_th : COCOA LOCO
+ hema_brand_th : 
+ hema_brand_en : 
+ hema_sizedesc : 
+ pr_brand_en : 
+ pr_brand_th : 
+ pr_online_name_en : COCOA LOCO
+ pr_online_name_th : COCOA LOCO
+ hema_name_en : COCOA LOCO
+ hema_name_th : COCOA LOCO
+ pr_name_en : COCOA LOCO
+ pr_name_th : COCOA LOCO
+ pr_barcode : 5060148383
+ pr_barcode2 : 5060148383
+ sort_weight : 0
+CPU times: user 3.86 s, sys: 269 ms, total: 4.13 s
+Wall time: 4.88 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SingleProductQuery">SingleProductQuery<a class="anchor-link" href="#SingleProductQuery"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@add_class_method</span><span class="p">(</span><span class="n">Querier</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">singleProductQuery</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">validateInputQuery</span><span class="p">([</span><span class="s1">&#39;iprcode&#39;</span><span class="p">]</span> <span class="p">,</span> <span class="nb">input</span><span class="p">):</span> <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;error input </span><span class="si">{</span><span class="nb">input</span><span class="si">}</span><span class="s2">&quot;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="o">:=</span><span class="nb">next</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;iprcode&#39;</span><span class="p">)),</span><span class="kc">None</span><span class="p">)):</span> <span class="k">return</span> <span class="n">result</span>
+  <span class="k">else</span><span class="p">:</span> <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;product not found&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Tester</span><span class="o">.</span><span class="n">singleProductQuery</span><span class="p">({</span><span class="s1">&#39;iprcode&#39;</span><span class="p">:</span><span class="s1">&#39;1234&#39;</span><span class="p">})</span>
 </pre></div>
 
     </div>
@@ -166,17 +900,20 @@ nb_path: "query.ipynb"
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">Exception</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-17-721a471e2f91&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      9</span>   <span class="ansi-green-fg">pass</span>
-<span class="ansi-green-intense-fg ansi-bold">     10</span> 
-<span class="ansi-green-fg">---&gt; 11</span><span class="ansi-red-fg"> </span>Tester<span class="ansi-blue-fg">.</span>singleProductQuery<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">:</span><span class="ansi-blue-fg">&#39;1234&#39;</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">&lt;ipython-input-18-dc891eb79c19&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>Tester<span class="ansi-blue-fg">.</span>singleProductQuery<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">:</span><span class="ansi-blue-fg">&#39;1234&#39;</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-12-970c88c94230&gt;</span> in <span class="ansi-cyan-fg">singleProductQuery</span><span class="ansi-blue-fg">(cls, input)</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span>     <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> cls<span class="ansi-blue-fg">.</span>validateInputQuery<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">,</span> input<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">f&#34;error input {input}&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span>     <span class="ansi-green-fg">if</span> <span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">:=</span>next<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">.</span>query<span class="ansi-blue-fg">(</span>input<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">return</span> result
-<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">raise</span> Exception<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;product not found&#39;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      8</span> 
-<span class="ansi-green-intense-fg ansi-bold">      9</span>   <span class="ansi-blue-fg">@</span>classmethod
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     35</span>         <span class="ansi-blue-fg">@</span>classmethod
+<span class="ansi-green-intense-fg ansi-bold">     36</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 37</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span> cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     38</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     39</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-17-6b6de491805e&gt;</span> in <span class="ansi-cyan-fg">singleProductQuery</span><span class="ansi-blue-fg">(cls, input)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>   <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> cls<span class="ansi-blue-fg">.</span>validateInputQuery<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">,</span> input<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">f&#34;error input {input}&#34;</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>   <span class="ansi-green-fg">if</span> <span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">:=</span>next<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">.</span>query<span class="ansi-blue-fg">(</span>input<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">return</span> result
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">   </span><span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">raise</span> Exception<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;product not found&#39;</span><span class="ansi-blue-fg">)</span>
 
 <span class="ansi-red-fg">Exception</span>: product not found</pre>
 </div>
@@ -195,76 +932,11 @@ nb_path: "query.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Tester</span><span class="o">.</span><span class="n">singleProductQuery</span><span class="p">({</span><span class="s1">&#39;iprcode&#39;</span><span class="p">:</span><span class="s1">&#39;0000009&#39;</span><span class="p">})</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">Tester</span><span class="o">.</span><span class="n">singleProductQuery</span><span class="p">({</span><span class="s1">&#39;iprcode&#39;</span><span class="p">:</span><span class="s1">&#39;0000009&#39;</span><span class="p">})</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>ProductDatabase Object
-cprcode 0000009
-iprcode 0000009
-oprcode 0000009
-ordertype Y
-pr_abb J. WALKER RED 70 CL.
-pr_active Y
-pr_cgcode 01
-pr_code 0000009
-pr_dpcode 01
-pr_engname JOHNNIE WALKER RED 70 CL.
-pr_ggcode 001
-pr_market J. WALKER RED 70 CL
-pr_name JOHNNIE WALKER RED 70 CL
-pr_puqty 12.00
-pr_sa_method 1
-pr_sucode1 1782
-pr_suref3 A
-prtype I
-psqty 1
-pstype 1
-pr_country_th 
-pr_country_en United Kingdom
-pr_keyword_th 
-pr_keyword_en 
-pr_filter_th Alcohol,Spirits  Liqueurs
-pr_filter_en Alcohol,Spirits  Liqueurs
-online_category_l1_th เบียร์, ไวน์และสุรา
-online_category_l1_en Beer Wine &amp; Spirits
-online_category_l2_th เหล้า
-online_category_l2_en Spirits &amp; Liqueurs
-online_category_l3_th 
-online_category_l3_en 
-villa_category_l1_en Dry Grocery
-villa_category_l2_en Alcohol &amp; Beverage
-villa_category_l3_en Whisky
-villa_category_l4_en Scoth Whisky
-content_en 0000009 Johnnie Walker Red 700ml
-content_th JOHNNIE WALKER RED 700ml
-hema_brand_th Johnnie Walker
-hema_brand_en Johnnie Walker
-hema_sizedesc 700ml
-pr_brand_en Johnnie Walker
-pr_brand_th Johnnie Walker
-pr_online_name_en Johnnie Walker Red 700ml
-pr_online_name_th JOHNNIE WALKER RED 700ml
-hema_name_en Johnnie Walker Red
-hema_name_th JOHNNIE WALKER RED
-pr_name_en JOHNNIE WALKER RED 70 CL.
-pr_name_th JOHNNIE WALKER RED 70 CL
-sort_weight 0</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 

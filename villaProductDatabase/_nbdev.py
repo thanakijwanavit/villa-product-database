@@ -17,9 +17,8 @@ index = {"DATABASE_TABLE_NAME": "database.ipynb",
          "setUpdate": "database.ipynb",
          "fromDict": "database.ipynb",
          "updateWithDict": "database.ipynb",
-         "loadFromS3": "database.ipynb",
-         "productsFromList": "database.ipynb",
-         "ProductsFromList": "database.ipynb",
+         "loadFromS3": "query.ipynb",
+         "ProductsFromList": "query.ipynb",
          "lambdaProductsFromList": "database.ipynb",
          "dumpToS3": "database.ipynb",
          "lambdaDumpToS3": "database.ipynb",
@@ -33,7 +32,8 @@ index = {"DATABASE_TABLE_NAME": "database.ipynb",
          "lambdaUpdateS3": "database.ipynb",
          "lambdaSingleQuery": "database.ipynb",
          "lambdaAllQuery": "database.ipynb",
-         "Querier": "query.ipynb"}
+         "Querier": "query.ipynb",
+         "productsFromList": "query.ipynb"}
 
 modules = ["database.py",
            "query.py"]
