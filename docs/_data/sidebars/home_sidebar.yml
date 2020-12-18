@@ -10,6 +10,15 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
+      title: Helpers
+      url: Helpers.html
+    - output: web,pdf
+      title: Schema module
+      url: KeySchema.html
+    - output: web,pdf
+      title: S3Cache
+      url: S3.html
+    - output: web,pdf
       title: Database Class
       url: database.html
     - output: web,pdf

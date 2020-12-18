@@ -163,6 +163,9 @@ nb_path: "query.ipynb"
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>dax endpoint missing &#39;DAX_ENDPOINT&#39;
+dax endpoint missing &#39;DAX_ENDPOINT&#39;
+None
+dax endpoint missing &#39;DAX_ENDPOINT&#39;
 None
 </pre>
 </div>
@@ -183,20 +186,30 @@ None
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@add_class_method</span><span class="p">(</span><span class="n">Querier</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">allQuery</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;allData&#39;</span><span class="p">,</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;INVENTORY_BUCKET_NAME&#39;</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="n">bucket</span><span class="p">)</span>
-  <span class="n">result</span> <span class="o">=</span> <span class="n">S3</span><span class="o">.</span><span class="n">presign</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">result</span>
-</pre></div>
+<div class="output_wrapper">
+<div class="output">
 
-    </div>
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="allQuery" class="doc_header"><code>allQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L47" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>allQuery</code>(<strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>bucket</code></strong>=<em><code>None</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -232,7 +245,7 @@ None
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=ILqpDPg4J2Vy5VxiAA%2FT3nmNliw%3D&amp;Expires=1608103361&#39;</pre>
+<pre>&#39;https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=Dk8kroQxc3UxvLetVkeAcFEXMNs%3D&amp;Expires=1608256929&#39;</pre>
 </div>
 
 </div>
@@ -256,94 +269,19 @@ None
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">S3</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;allData&#39;</span><span class="p">,</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;INVENTORY_BUCKET_NAME&#39;</span><span class="p">])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># def loadFromS3(cls, bucketName= os.environ.get(&#39;INVENTORY_BUCKET_NAME&#39;), key = &#39;allData&#39;, **kwargs):</span>
+<span class="c1">#   &#39;&#39;&#39;</span>
+<span class="c1">#   this is not a real time function, there may be a delay of sync between</span>
+<span class="c1">#   the main dynamodb database and the cache</span>
+<span class="c1">#   &#39;&#39;&#39;</span>
+<span class="c1">#   logging.info(f&#39;loading from {bucketName}&#39;)</span>
+<span class="c1">#   logging.info(f&#39;user is {kwargs.get(&quot;user&quot;)}&#39;)</span>
+<span class="c1">#   return S3.load(key=key, bucket = bucketName,  **kwargs)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 4.13 s, sys: 236 ms, total: 4.36 s
-Wall time: 4.93 s
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">S3</span><span class="o">.</span><span class="n">loadFile</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;allData&#39;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s1">&#39;/tmp/test&#39;</span><span class="p">,</span> <span class="n">bucket</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;INVENTORY_BUCKET_NAME&#39;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 101 ms, sys: 20.5 ms, total: 121 ms
-Wall time: 269 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="loadFromS3" class="doc_header"><code>loadFromS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L47" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>loadFromS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
-</blockquote>
-<p>this is not a real time function, there may be a delay of sync between
-the main dynamodb database and the cache</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -371,8 +309,8 @@ the main dynamodb database and the cache</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 4.02 s, sys: 197 ms, total: 4.22 s
-Wall time: 4.76 s
+<pre>CPU times: user 598 ms, sys: 183 ms, total: 781 ms
+Wall time: 1.39 s
 </pre>
 </div>
 </div>
@@ -458,121 +396,6 @@ Wall time: 4.76 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">zlib</span><span class="o">,</span> <span class="nn">bz2</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;______ json dumping result ________&#39;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> bytesData = json.dumps(data).encode()
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;______ json loading result ________&#39;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> _ = json.loads(bytesData.decode())
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;object size&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">bytesData</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span><span class="s1">&#39;MB&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;----compressing zlib-json------&#39;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> zlibData = zlib.compress(bytesData)
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;size of zlib data is&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">zlibData</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span><span class="s1">&#39;MB&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--decompressing zlib-json--&#39;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> _ = zlib.decompress(zlibData)
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;------compressing bz json------&#39;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> bzData = bz2.compress(bytesData)
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;size of bz2 data is&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">bzData</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span><span class="s1">&#39;MB&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;------decompressing bz json------&#39;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> _ = bz2.decompress(bzData)
-
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;______ pickle dumping result ________&#39;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> pickleData = pickle.dumps(data)
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;______ pickle loading result ________&#39;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> _ = pickle.loads(pickleData)
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;object size&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">pickleData</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span><span class="s1">&#39;MB&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-----compressing zlib pickle-----&#39;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> zlibPickle = zlib.compress(pickleData)
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;size of zlib pickle is&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">zlibPickle</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span><span class="s1">&#39;MB&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-----decompressing zlib pickle-----&#39;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> _ = zlib.decompress(zlibPickle)
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;------compressing bz pickle-------&#39;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> bzPickle = bz2.compress(pickleData)
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;size of bz2 pickle is&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">bzPickle</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span><span class="s1">&#39;MB&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-----decompressing bz pickle-----&#39;</span><span class="p">)</span>
-<span class="o">%</span><span class="k">time</span> _ = bz2.decompress(bzPickle)
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>______ json dumping result ________
-CPU times: user 840 ms, sys: 68.3 ms, total: 909 ms
-Wall time: 905 ms
-______ json loading result ________
-CPU times: user 1.15 s, sys: 116 ms, total: 1.27 s
-Wall time: 1.26 s
-object size
-87.005143 MB
-----compressing zlib-json------
-CPU times: user 1.85 s, sys: 8.01 ms, total: 1.86 s
-Wall time: 1.86 s
-size of zlib data is
-9.646346 MB
---decompressing zlib-json--
-CPU times: user 262 ms, sys: 56.2 ms, total: 318 ms
-Wall time: 317 ms
-------compressing bz json------
-CPU times: user 15.3 s, sys: 10.5 ms, total: 15.3 s
-Wall time: 15.3 s
-size of bz2 data is
-6.167249 MB
-------decompressing bz json------
-CPU times: user 2.7 s, sys: 52 ms, total: 2.75 s
-Wall time: 2.75 s
-______ pickle dumping result ________
-CPU times: user 623 ms, sys: 60.1 ms, total: 683 ms
-Wall time: 681 ms
-______ pickle loading result ________
-CPU times: user 391 ms, sys: 39.7 ms, total: 431 ms
-Wall time: 429 ms
-object size
-40.872868 MB
------compressing zlib pickle-----
-CPU times: user 1.33 s, sys: 0 ns, total: 1.33 s
-Wall time: 1.33 s
-size of zlib pickle is
-8.304423 MB
------decompressing zlib pickle-----
-CPU times: user 197 ms, sys: 36 ms, total: 233 ms
-Wall time: 233 ms
-------compressing bz pickle-------
-CPU times: user 4.83 s, sys: 0 ns, total: 4.83 s
-Wall time: 4.84 s
-size of bz2 pickle is
-5.976561 MB
------decompressing bz pickle-----
-CPU times: user 1.56 s, sys: 11.8 ms, total: 1.57 s
-Wall time: 1.57 s
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./zlibPickle.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
   <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zlibPickle</span><span class="p">)</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./zlibjson.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -607,81 +430,8 @@ Wall time: 1.57 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 1.17 s, sys: 88.4 ms, total: 1.26 s
-Wall time: 1.26 s
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="c1">## test gz2 compression</span>
-<span class="n">zlib</span><span class="o">.</span><span class="n">compress</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-
-<span class="ansi-red-fg">TypeError</span>: a bytes-like object is required, not &#39;dict&#39;</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">lambdaDecompressS3</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
-  <span class="n">S3</span><span class="o">.</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;&lt;ipython-input-34-b7122bbe7b80&gt;&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">2</span>
-<span class="ansi-red-fg">    S3.</span>
-       ^
-<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> invalid syntax
+<pre>CPU times: user 1.1 s, sys: 136 ms, total: 1.23 s
+Wall time: 1.25 s
 </pre>
 </div>
 </div>
@@ -709,7 +459,7 @@ Wall time: 1.26 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L60" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L56" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
 <p>ProductsFromList(iprcodes: List[str])</p>
 
@@ -741,7 +491,7 @@ Wall time: 1.26 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="productsFromList" class="doc_header"><code>productsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L65" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>productsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h4 id="productsFromList" class="doc_header"><code>productsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L61" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>productsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
 
 </div>
@@ -838,8 +588,8 @@ Wall time: 1.26 s
  pr_barcode : 5060148383
  pr_barcode2 : 5060148383
  sort_weight : 0
-CPU times: user 3.86 s, sys: 269 ms, total: 4.13 s
-Wall time: 4.88 s
+CPU times: user 704 ms, sys: 245 ms, total: 949 ms
+Wall time: 1.53 s
 </pre>
 </div>
 </div>
@@ -859,20 +609,30 @@ Wall time: 4.88 s
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@add_class_method</span><span class="p">(</span><span class="n">Querier</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">singleProductQuery</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="nb">input</span><span class="p">):</span>
-  <span class="k">if</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">validateInputQuery</span><span class="p">([</span><span class="s1">&#39;iprcode&#39;</span><span class="p">]</span> <span class="p">,</span> <span class="nb">input</span><span class="p">):</span> <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;error input </span><span class="si">{</span><span class="nb">input</span><span class="si">}</span><span class="s2">&quot;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">result</span><span class="o">:=</span><span class="nb">next</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;iprcode&#39;</span><span class="p">)),</span><span class="kc">None</span><span class="p">)):</span> <span class="k">return</span> <span class="n">result</span>
-  <span class="k">else</span><span class="p">:</span> <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;product not found&#39;</span><span class="p">)</span>
-</pre></div>
+<div class="output_wrapper">
+<div class="output">
 
-    </div>
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="singleProductQuery" class="doc_header"><code>singleProductQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L67" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>singleProductQuery</code>(<strong><code>input</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -884,7 +644,10 @@ Wall time: 4.88 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Tester</span><span class="o">.</span><span class="n">singleProductQuery</span><span class="p">({</span><span class="s1">&#39;iprcode&#39;</span><span class="p">:</span><span class="s1">&#39;1234&#39;</span><span class="p">})</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">try</span><span class="p">:</span>
+  <span class="n">Tester</span><span class="o">.</span><span class="n">singleProductQuery</span><span class="p">({</span><span class="s1">&#39;iprcode&#39;</span><span class="p">:</span><span class="s1">&#39;1234&#39;</span><span class="p">})</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -896,26 +659,9 @@ Wall time: 4.88 s
 
 <div class="output_area">
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">Exception</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-18-dc891eb79c19&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>Tester<span class="ansi-blue-fg">.</span>singleProductQuery<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">:</span><span class="ansi-blue-fg">&#39;1234&#39;</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     35</span>         <span class="ansi-blue-fg">@</span>classmethod
-<span class="ansi-green-intense-fg ansi-bold">     36</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 37</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span> cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     38</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     39</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
-
-<span class="ansi-green-fg">&lt;ipython-input-17-6b6de491805e&gt;</span> in <span class="ansi-cyan-fg">singleProductQuery</span><span class="ansi-blue-fg">(cls, input)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span>   <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> cls<span class="ansi-blue-fg">.</span>validateInputQuery<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">,</span> input<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">f&#34;error input {input}&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span>   <span class="ansi-green-fg">if</span> <span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">:=</span>next<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">.</span>query<span class="ansi-blue-fg">(</span>input<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">return</span> result
-<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">   </span><span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">raise</span> Exception<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;product not found&#39;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">Exception</span>: product not found</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>product not found
+</pre>
 </div>
 </div>
 
@@ -937,6 +683,83 @@ Wall time: 4.88 s
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 3.5 ms, sys: 0 ns, total: 3.5 ms
+Wall time: 7.13 ms
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>ProductDatabase Object
+cprcode 0000009
+iprcode 0000009
+oprcode 0000009
+ordertype Y
+pr_abb J. WALKER RED 70 CL.
+pr_active Y
+pr_cgcode 01
+pr_code 0000009
+pr_dpcode 01
+pr_engname JOHNNIE WALKER RED 70 CL.
+pr_ggcode 001
+pr_market J. WALKER RED 70 CL
+pr_name JOHNNIE WALKER RED 70 CL
+pr_puqty 12.00
+pr_sa_method 1
+pr_sucode1 1782
+pr_suref3 A
+prtype I
+psqty 1
+pstype 1
+pr_country_th 
+pr_country_en United Kingdom
+pr_keyword_th 
+pr_keyword_en 
+pr_filter_th Alcohol,Spirits  Liqueurs
+pr_filter_en Alcohol,Spirits  Liqueurs
+online_category_l1_th เบียร์, ไวน์และสุรา
+online_category_l1_en Beer Wine &amp; Spirits
+online_category_l2_th เหล้า
+online_category_l2_en Spirits &amp; Liqueurs
+online_category_l3_th 
+online_category_l3_en 
+villa_category_l1_en Dry Grocery
+villa_category_l2_en Alcohol &amp; Beverage
+villa_category_l3_en Whisky
+villa_category_l4_en Scoth Whisky
+content_en 0000009 Johnnie Walker Red 700ml
+content_th JOHNNIE WALKER RED 700ml
+hema_brand_th Johnnie Walker
+hema_brand_en Johnnie Walker
+hema_sizedesc 700ml
+pr_brand_en Johnnie Walker
+pr_brand_th Johnnie Walker
+pr_online_name_en Johnnie Walker Red 700ml
+pr_online_name_th JOHNNIE WALKER RED 700ml
+hema_name_en Johnnie Walker Red
+hema_name_th JOHNNIE WALKER RED
+pr_name_en JOHNNIE WALKER RED 70 CL.
+pr_name_th JOHNNIE WALKER RED 70 CL
+sort_weight 0
+pr_barcode 5000267014203
+pr_barcode2 500026701420</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
