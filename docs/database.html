@@ -214,8 +214,8 @@ You can create the table by with the <code>create_table</code> method.</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Y
 N
-CPU times: user 75.7 ms, sys: 8.62 ms, total: 84.3 ms
-Wall time: 187 ms
+CPU times: user 84 ms, sys: 24.4 ms, total: 108 ms
+Wall time: 452 ms
 </pre>
 </div>
 </div>
@@ -249,8 +249,8 @@ Wall time: 187 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 190 ms, sys: 8.07 ms, total: 198 ms
-Wall time: 632 ms
+<pre>CPU times: user 177 ms, sys: 23.4 ms, total: 200 ms
+Wall time: 616 ms
 </pre>
 </div>
 </div>
@@ -549,6 +549,21 @@ testName
 
 <div class="output_area">
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>cache exist
+hashKey is allData-hash
+cache has different hash than s3
+cache doesnt exist
+hashKey is allData-hash
+saving cache file
+saving hash file
+saving hash to s3
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -703,8 +718,11 @@ testName
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 3.94 s, sys: 215 ms, total: 4.15 s
-Wall time: 4.66 s
+<pre>cache exist
+hashKey is allData-hash
+found a valid cache, using cache
+CPU times: user 597 ms, sys: 108 ms, total: 704 ms
+Wall time: 1.16 s
 </pre>
 </div>
 </div>
@@ -785,6 +803,71 @@ Wall time: 4.66 s
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">resetS3Cache</span><span class="p">(</span> <span class="n">bucketName</span><span class="o">=</span> <span class="n">INVENTORY_BUCKET_NAME</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;allData&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+  <span class="sd">&#39;&#39;&#39; upload changes to s3&#39;&#39;&#39;</span>
+  <span class="c1">###### get all data</span>
+<span class="c1">#   allData = cls.loadFromS3(bucketName = bucketName, key = key, **kwargs)</span>
+<span class="c1">#   originalData = allData.copy()</span>
+<span class="c1">#   logging.debug(f&#39;all data is {len(allData)}&#39;)</span>
+
+  <span class="n">allData</span> <span class="o">=</span> <span class="p">{}</span>
+  <span class="c1">##### get change list</span>
+  <span class="n">changeList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">scan</span><span class="p">())</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changeList</span><span class="p">)</span><span class="si">}</span><span class="s1"> changes to update&#39;</span><span class="p">)</span>
+
+  <span class="c1">##### batch write</span>
+  <span class="k">with</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">batch_write</span><span class="p">()</span> <span class="k">as</span> <span class="n">batch</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">dbObject</span> <span class="ow">in</span> <span class="n">changeList</span><span class="p">:</span>
+      <span class="n">item</span> <span class="o">=</span> <span class="n">dbObject</span><span class="o">.</span><span class="n">data</span>
+      <span class="c1"># if product doesnt exist, create an empty dict</span>
+      <span class="k">if</span> <span class="ow">not</span> <span class="n">allData</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;iprcode&#39;</span><span class="p">]):</span> <span class="n">allData</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;iprcode&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+      <span class="c1"># if cprcode doesnt exist, create an empty dict</span>
+      <span class="k">if</span> <span class="ow">not</span> <span class="n">allData</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;iprcode&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;cprcode&#39;</span><span class="p">]):</span> <span class="n">allData</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;iprcode&#39;</span><span class="p">]][</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;cprcode&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+      <span class="c1"># update product</span>
+      <span class="n">allData</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;iprcode&#39;</span><span class="p">]][</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;cprcode&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+      <span class="c1"># set no change to all data after update</span>
+
+  <span class="c1">####### update s3</span>
+  <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">saveAllS3</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;allData&#39;</span><span class="p">,</span> 
+                <span class="n">objectToSave</span> <span class="o">=</span> <span class="n">allData</span><span class="p">,</span> 
+                <span class="n">bucket</span> <span class="o">=</span> <span class="n">bucketName</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;alldata is </span><span class="si">{</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">allData</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">allData</span>
+    
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># database = resetS3Cache()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
 <div class="output">
@@ -835,9 +918,15 @@ Wall time: 4.66 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>not finished, doing the next batch of 500
-CPU times: user 8.18 s, sys: 433 ms, total: 8.61 s
-Wall time: 10 s
+<pre>cache exist
+hashKey is allData-hash
+found a valid cache, using cache
+not finished, doing the next batch of 500
+cache exist
+hashKey is allData-hash
+found a valid cache, using cache
+CPU times: user 1.26 s, sys: 286 ms, total: 1.55 s
+Wall time: 2.84 s
 </pre>
 </div>
 </div>
@@ -911,9 +1000,12 @@ Wall time: 10 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>saved 45149 products
-CPU times: user 4.01 s, sys: 156 ms, total: 4.16 s
-Wall time: 5.02 s
+<pre>cache exist
+hashKey is allData-hash
+found a valid cache, using cache
+saved 45149 products
+CPU times: user 609 ms, sys: 81.3 ms, total: 690 ms
+Wall time: 1.42 s
 </pre>
 </div>
 </div>
@@ -1216,9 +1308,12 @@ Wall time: 5.02 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.013 ms
-divided into chunks 0.319 ms
-get all from s3 4514.914 ms
+<pre>input validated 0.012 ms
+divided into chunks 0.746 ms
+cache exist
+hashKey is allData-hash
+found a valid cache, using cache
+get all from s3 992.1990000000001 ms
 </pre>
 </div>
 </div>
@@ -1232,7 +1327,7 @@ get all from s3 4514.914 ms
  &#39;failure&#39;: 0,
  &#39;skipped&#39;: 0,
  &#39;failureMessage&#39;: [],
- &#39;timetaken(ms)&#39;: 4515.314}</pre>
+ &#39;timetaken(ms)&#39;: 992.544}</pre>
 </div>
 
 </div>
@@ -1297,7 +1392,7 @@ get all from s3 4514.914 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:4.428999999999999}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:6.381}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -1438,7 +1533,7 @@ get all from s3 4514.914 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:4.286}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:5.157}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -1689,8 +1784,9 @@ pstype 1</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">s3bz.s3bz</span> <span class="kn">import</span> <span class="n">Requests</span>
-<span class="n">url</span> <span class="o">=</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">allQuery</span><span class="p">(</span><span class="n">bucket</span> <span class="o">=</span> <span class="n">INVENTORY_BUCKET_NAME</span><span class="p">)</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">allQuery</span><span class="p">(</span><span class="n">bucket</span> <span class="o">=</span> <span class="n">INVENTORY_BUCKET_NAME</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;allData&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="c1"># response = requests.get(url)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">Requests</span><span class="o">.</span><span class="n">getContentFromUrl</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;received </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span><span class="si">}</span><span class="s1"> results, the first one is </span><span class="si">{</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
@@ -1706,8 +1802,8 @@ pstype 1</pre>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
-https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=m6nHuRih%2Fkhxtc%2B8amxYvZwAEkU%3D&amp;Expires=1608256680
-received 45149 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;, &#39;iprcode&#39;: &#39;0217153&#39;, &#39;oprcode&#39;: &#39;0217153&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;98&#39;, &#39;pr_code&#39;: &#39;0217153&#39;, &#39;pr_dpcode&#39;: &#39;28&#39;, &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_ggcode&#39;: &#39;003&#39;, &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;, &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_puqty&#39;: &#39;24.00&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;F1239&#39;, &#39;pr_suref3&#39;: &#39;S&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;&#39;, &#39;pr_country_en&#39;: &#39;United Kingdom&#39;, &#39;pr_keyword_th&#39;: &#39;&#39;, &#39;pr_keyword_en&#39;: &#39;&#39;, &#39;pr_filter_th&#39;: &#39;&#39;, &#39;pr_filter_en&#39;: &#39;&#39;, &#39;online_category_l1_th&#39;: &#39;&#39;, &#39;online_category_l1_en&#39;: &#39;&#39;, &#39;online_category_l2_th&#39;: &#39;&#39;, &#39;online_category_l2_en&#39;: &#39;&#39;, &#39;online_category_l3_th&#39;: &#39;&#39;, &#39;online_category_l3_en&#39;: &#39;&#39;, &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;, &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;, &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;, &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;, &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_brand_th&#39;: &#39;&#39;, &#39;hema_brand_en&#39;: &#39;&#39;, &#39;hema_sizedesc&#39;: &#39;&#39;, &#39;pr_brand_en&#39;: &#39;&#39;, &#39;pr_brand_th&#39;: &#39;&#39;, &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_barcode&#39;: &#39;5060148383378&#39;, &#39;pr_barcode2&#39;: &#39;506014838337&#39;, &#39;sort_weight&#39;: &#39;0&#39;}})
+https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=hkzafyMPnLRzAV9FoLw8sNn5jks%3D&amp;Expires=1608384445
+received 73095 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;, &#39;iprcode&#39;: &#39;0217153&#39;, &#39;oprcode&#39;: &#39;0217153&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;98&#39;, &#39;pr_code&#39;: &#39;0217153&#39;, &#39;pr_dpcode&#39;: &#39;28&#39;, &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_ggcode&#39;: &#39;003&#39;, &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;, &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_puqty&#39;: &#39;24&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;F1222&#39;, &#39;pr_suref3&#39;: &#39;S&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;&#39;, &#39;pr_country_en&#39;: &#39;United Kingdom&#39;, &#39;pr_keyword_th&#39;: &#39;&#39;, &#39;pr_keyword_en&#39;: &#39;&#39;, &#39;pr_filter_th&#39;: &#39;&#39;, &#39;pr_filter_en&#39;: &#39;&#39;, &#39;online_category_l1_th&#39;: &#39;&#39;, &#39;online_category_l1_en&#39;: &#39;&#39;, &#39;online_category_l2_th&#39;: &#39;&#39;, &#39;online_category_l2_en&#39;: &#39;&#39;, &#39;online_category_l3_th&#39;: &#39;&#39;, &#39;online_category_l3_en&#39;: &#39;&#39;, &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;, &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;, &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;, &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;, &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_brand_th&#39;: &#39;&#39;, &#39;hema_brand_en&#39;: &#39;&#39;, &#39;hema_sizedesc&#39;: &#39;&#39;, &#39;pr_brand_en&#39;: &#39;&#39;, &#39;pr_brand_th&#39;: &#39;&#39;, &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_barcode&#39;: &#39;5060148383378&#39;, &#39;pr_barcode2&#39;: &#39;506014838337&#39;, &#39;sort_weight&#39;: &#39;0&#39;}})
 </pre>
 </div>
 </div>
@@ -1774,9 +1870,9 @@ received 45149 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;:
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
-received 45149 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;, &#39;iprcode&#39;: &#39;0217153&#39;, &#39;oprcode&#39;: &#39;0217153&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;98&#39;, &#39;pr_code&#39;: &#39;0217153&#39;, &#39;pr_dpcode&#39;: &#39;28&#39;, &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_ggcode&#39;: &#39;003&#39;, &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;, &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_puqty&#39;: &#39;24.00&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;F1239&#39;, &#39;pr_suref3&#39;: &#39;S&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;&#39;, &#39;pr_country_en&#39;: &#39;United Kingdom&#39;, &#39;pr_keyword_th&#39;: &#39;&#39;, &#39;pr_keyword_en&#39;: &#39;&#39;, &#39;pr_filter_th&#39;: &#39;&#39;, &#39;pr_filter_en&#39;: &#39;&#39;, &#39;online_category_l1_th&#39;: &#39;&#39;, &#39;online_category_l1_en&#39;: &#39;&#39;, &#39;online_category_l2_th&#39;: &#39;&#39;, &#39;online_category_l2_en&#39;: &#39;&#39;, &#39;online_category_l3_th&#39;: &#39;&#39;, &#39;online_category_l3_en&#39;: &#39;&#39;, &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;, &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;, &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;, &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;, &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_brand_th&#39;: &#39;&#39;, &#39;hema_brand_en&#39;: &#39;&#39;, &#39;hema_sizedesc&#39;: &#39;&#39;, &#39;pr_brand_en&#39;: &#39;&#39;, &#39;pr_brand_th&#39;: &#39;&#39;, &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_barcode&#39;: &#39;5060148383378&#39;, &#39;pr_barcode2&#39;: &#39;506014838337&#39;, &#39;sort_weight&#39;: &#39;0&#39;}})
-CPU times: user 3.97 s, sys: 208 ms, total: 4.18 s
-Wall time: 4.55 s
+received 73095 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;, &#39;iprcode&#39;: &#39;0217153&#39;, &#39;oprcode&#39;: &#39;0217153&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;98&#39;, &#39;pr_code&#39;: &#39;0217153&#39;, &#39;pr_dpcode&#39;: &#39;28&#39;, &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_ggcode&#39;: &#39;003&#39;, &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;, &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_puqty&#39;: &#39;24&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;F1222&#39;, &#39;pr_suref3&#39;: &#39;S&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;&#39;, &#39;pr_country_en&#39;: &#39;United Kingdom&#39;, &#39;pr_keyword_th&#39;: &#39;&#39;, &#39;pr_keyword_en&#39;: &#39;&#39;, &#39;pr_filter_th&#39;: &#39;&#39;, &#39;pr_filter_en&#39;: &#39;&#39;, &#39;online_category_l1_th&#39;: &#39;&#39;, &#39;online_category_l1_en&#39;: &#39;&#39;, &#39;online_category_l2_th&#39;: &#39;&#39;, &#39;online_category_l2_en&#39;: &#39;&#39;, &#39;online_category_l3_th&#39;: &#39;&#39;, &#39;online_category_l3_en&#39;: &#39;&#39;, &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;, &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;, &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;, &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;, &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_brand_th&#39;: &#39;&#39;, &#39;hema_brand_en&#39;: &#39;&#39;, &#39;hema_sizedesc&#39;: &#39;&#39;, &#39;pr_brand_en&#39;: &#39;&#39;, &#39;pr_brand_th&#39;: &#39;&#39;, &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_barcode&#39;: &#39;5060148383378&#39;, &#39;pr_barcode2&#39;: &#39;506014838337&#39;, &#39;sort_weight&#39;: &#39;0&#39;}})
+CPU times: user 5.9 s, sys: 306 ms, total: 6.21 s
+Wall time: 6.71 s
 </pre>
 </div>
 </div>
@@ -1816,7 +1912,7 @@ Wall time: 4.55 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>checking scan time
-CPU times: user 15.9 s, sys: 845 ms, total: 16.8 s
+CPU times: user 15.9 s, sys: 755 ms, total: 16.7 s
 Wall time: 28.9 s
 </pre>
 </div>

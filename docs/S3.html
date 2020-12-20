@@ -72,22 +72,6 @@ nb_path: "S3.ipynb"
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
-longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
-longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -209,7 +193,7 @@ longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="loadHash" class="doc_header"><code>loadHash</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L53" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>loadHash</code>(<strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>bucket</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="loadHash" class="doc_header"><code>loadHash</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L54" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>loadHash</code>(<strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>bucket</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 
 </div>
@@ -236,8 +220,9 @@ longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">S3Cache</span><span class="o">.</span><span class="n">saveHash</span><span class="p">({</span><span class="s1">&#39;test&#39;</span><span class="p">:</span><span class="s1">&#39;test&#39;</span><span class="p">},</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;testhash&#39;</span><span class="p">)</span>
-<span class="n">S3Cache</span><span class="o">.</span><span class="n">loadHash</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;testhash&#39;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">testKey</span> <span class="o">=</span> <span class="s1">&#39;testHash&#39;</span>
+<span class="n">S3Cache</span><span class="o">.</span><span class="n">saveHash</span><span class="p">({</span><span class="s1">&#39;test&#39;</span><span class="p">:</span><span class="s1">&#39;test&#39;</span><span class="p">},</span> <span class="n">key</span><span class="o">=</span><span class="n">testKey</span><span class="p">)</span>
+<span class="n">S3Cache</span><span class="o">.</span><span class="n">loadHash</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">testKey</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -260,11 +245,12 @@ INFO:root:using accelerate endpoint
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>hashKey is testhash-hash
+<pre>hashKey is testHash-hash
 saving cache file
 saving hash file
 saving hash to s3
-hashKey is testhash-hash
+saved hash 9Sx/tDiQ9yHHG6sI8HBk1huYVbk=
+loading hashkey testHash-hash
 </pre>
 </div>
 </div>
@@ -280,10 +266,18 @@ INFO:root:using accelerate endpoint
 
 <div class="output_area">
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>loaded hash is9Sx/tDiQ9yHHG6sI8HBk1huYVbk=
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;h3aBJSFv1xUq9jXtp3bYCXksQYA=&#39;</pre>
+<pre>&#39;9Sx/tDiQ9yHHG6sI8HBk1huYVbk=&#39;</pre>
 </div>
 
 </div>
@@ -305,7 +299,7 @@ INFO:root:using accelerate endpoint
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="loadFromS3" class="doc_header"><code>loadFromS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L61" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>loadFromS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>hashPath</code></strong>=<em><code>'/tmp/database.hash'</code></em>, <strong><code>cachePath</code></strong>=<em><code>'/tmp/database.cache'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="loadFromS3" class="doc_header"><code>loadFromS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L63" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>loadFromS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>hashPath</code></strong>=<em><code>'/tmp/database.hash'</code></em>, <strong><code>cachePath</code></strong>=<em><code>'/tmp/database.cache'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>this is not a real time function, there may be a delay of sync between
 the main dynamodb database and the cache</p>
@@ -334,8 +328,8 @@ the main dynamodb database and the cache</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="nb">list</span><span class="p">(</span><span class="n">Tester</span><span class="o">.</span><span class="n">loadFromS3</span><span class="p">()</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> Tester.loadHash(key=&#39;allData&#39;)
+<span class="o">%</span><span class="k">time</span> db = loadDictFromFile(DBCACHELOCATION)
 </pre></div>
 
     </div>
@@ -349,10 +343,6 @@ the main dynamodb database and the cache</p>
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>INFO:root:using accelerate endpoint
-INFO:root:object doesnt exist
-INFO:root:loading from product-bucket-dev-manual
-INFO:root:user is None
-INFO:root:using accelerate endpoint
 </pre>
 </div>
 </div>
@@ -360,10 +350,7 @@ INFO:root:using accelerate endpoint
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>cache exist
-hashKey is allData-hash
-cache has different hash than s3
-cache doesnt exist
+<pre>loading hashkey allData-hash
 </pre>
 </div>
 </div>
@@ -380,18 +367,212 @@ INFO:root:using accelerate endpoint
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 678 ms, sys: 137 ms, total: 815 ms
-Wall time: 1.48 s
+<pre>loaded hash isVwSSjMiQzlnwM4SuIQumrYVPJTk=
+CPU times: user 51.4 ms, sys: 0 ns, total: 51.4 ms
+Wall time: 489 ms
+CPU times: user 306 µs, sys: 0 ns, total: 306 µs
+Wall time: 234 µs
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;allData&#39;</span>
+<span class="n">tempPath</span> <span class="o">=</span> <span class="s1">&#39;/tmp/test.csv&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;load from s3&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> database =  S3.loadPklZl(key=f&#39;{key}-pklzl&#39;, bucket=INVENTORY_BUCKET_NAME)
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">database</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;filter db for pandas&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> filteredDb = [list(item.values())[0] for item in database.values()]
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;gen pandas df&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> df = pd.DataFrame(filteredDb).astype(str)
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;csv&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> df.to_csv(tempPath)
+<span class="o">%</span><span class="k">time</span> pd.read_csv(tempPath, dtype=str)
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">tempPath</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;parquet&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> df.to_parquet(tempPath)
+<span class="o">%</span><span class="k">time</span> pd.read_parquet(tempPath)
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">tempPath</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;pickle&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> df.to_pickle(tempPath)
+<span class="o">%</span><span class="k">time</span> pd.read_pickle(tempPath)
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">tempPath</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;feather&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> df.to_feather(tempPath)
+<span class="o">%</span><span class="k">time</span> pd.read_feather(tempPath)
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">tempPath</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hdf&#39;</span><span class="p">)</span>
+<span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">tempPath</span><span class="p">)</span>
+<span class="o">%</span><span class="k">time</span> df.to_hdf(tempPath,key=&#39;df&#39;)
+<span class="o">%</span><span class="k">time</span> pd.read_hdf(tempPath, key=&#39;df&#39;)
+<span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">tempPath</span><span class="p">)</span><span class="o">/</span><span class="mf">1e6</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:root:using accelerate endpoint
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>load from s3
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:root:object exists, loading
+INFO:root:using accelerate endpoint
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 632 ms, sys: 33.8 ms, total: 666 ms
+Wall time: 1.16 s
+45149
+filter db for pandas
+CPU times: user 65.9 ms, sys: 0 ns, total: 65.9 ms
+Wall time: 65.6 ms
+gen pandas df
+CPU times: user 1.36 s, sys: 0 ns, total: 1.36 s
+Wall time: 1.36 s
+csv
+CPU times: user 947 ms, sys: 2.53 ms, total: 950 ms
+Wall time: 962 ms
+CPU times: user 747 ms, sys: 30.6 ms, total: 778 ms
+Wall time: 777 ms
+31.603618
+parquet
+CPU times: user 637 ms, sys: 27.9 ms, total: 664 ms
+Wall time: 663 ms
+CPU times: user 341 ms, sys: 92.4 ms, total: 433 ms
+Wall time: 349 ms
+17.107349
+pickle
+CPU times: user 663 ms, sys: 87.9 ms, total: 751 ms
+Wall time: 762 ms
+CPU times: user 227 ms, sys: 103 ms, total: 330 ms
+Wall time: 328 ms
+37.249584
+feather
+CPU times: user 397 ms, sys: 55.2 ms, total: 452 ms
+Wall time: 405 ms
+CPU times: user 200 ms, sys: 67.1 ms, total: 267 ms
+Wall time: 254 ms
+23.96149
+hdf
+CPU times: user 727 ms, sys: 136 ms, total: 864 ms
+Wall time: 880 ms
+CPU times: user 615 ms, sys: 219 ms, total: 834 ms
+Wall time: 1.23 s
+36.20258
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;hello&#39;</span><span class="p">:[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">],</span> <span class="s1">&#39;world&#39;</span><span class="p">:[</span><span class="s1">&#39;1&#39;</span><span class="p">,</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;3&#39;</span><span class="p">]})</span>
+<span class="n">df</span>
+<span class="c1"># tableDict = df.to_dict(orient=&#39;list&#39;)</span>
+<span class="c1"># json.dumps(tableDict)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
 
 
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;0217153&#39;</pre>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>hello</th>
+      <th>world</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 
 </div>
@@ -419,7 +600,7 @@ Wall time: 1.48 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="saveAllS3" class="doc_header"><code>saveAllS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L83" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>saveAllS3</code>(<strong><code>objectToSave</code></strong>:<code>dict</code>, <strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>hashPath</code></strong>=<em><code>'/tmp/database.hash'</code></em>, <strong><code>cachePath</code></strong>=<em><code>'/tmp/database.cache'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="saveAllS3" class="doc_header"><code>saveAllS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L89" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>saveAllS3</code>(<strong><code>objectToSave</code></strong>:<code>dict</code>, <strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>hashPath</code></strong>=<em><code>'/tmp/database.hash'</code></em>, <strong><code>cachePath</code></strong>=<em><code>'/tmp/database.cache'</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -446,7 +627,8 @@ Wall time: 1.48 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;testKey&#39;</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;testKey&#39;</span>
 <span class="n">Tester</span><span class="o">.</span><span class="n">saveAllS3</span><span class="p">(</span><span class="n">objectToSave</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;test&#39;</span><span class="p">:</span><span class="s1">&#39;test&#39;</span><span class="p">},</span> <span class="n">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">)</span>
 <span class="n">Tester</span><span class="o">.</span><span class="n">loadFromS3</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">)</span>
 </pre></div>
@@ -462,10 +644,6 @@ Wall time: 1.48 s
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>INFO:root:using accelerate endpoint
-INFO:root:object doesnt exist
-INFO:root:using accelerate endpoint
-INFO:root:data was saved to s3
-INFO:root:using accelerate endpoint
 </pre>
 </div>
 </div>
@@ -473,33 +651,7 @@ INFO:root:using accelerate endpoint
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>hashKey is allData-hash
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>INFO:root:data was saved to s3
-INFO:root:using accelerate endpoint
-INFO:root:data was saved to s3
-INFO:root:using accelerate endpoint
-INFO:root:data was saved to s3
-INFO:root:using accelerate endpoint
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>hashKey is testKey-hash
-saving cache file
-saving hash file
-saving hash to s3
-cache exist
-hashKey is testKey-hash
+<pre>loading hashkey testKey-hash
 </pre>
 </div>
 </div>
@@ -509,6 +661,38 @@ hashKey is testKey-hash
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>INFO:root:object exists, loading
 INFO:root:using accelerate endpoint
+INFO:root:using accelerate endpoint
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>loaded hash isx8KAJ3w/W83jHPrsnTFSxm3egUc=
+the object did not change, skip saving
+cache exist
+loading hashkey testKey-hash
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:root:object exists, loading
+INFO:root:using accelerate endpoint
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>loaded hash isx8KAJ3w/W83jHPrsnTFSxm3egUc=
+found a valid cache, using cache
+CPU times: user 97.1 ms, sys: 1.5 ms, total: 98.6 ms
+Wall time: 854 ms
 </pre>
 </div>
 </div>
@@ -537,7 +721,9 @@ INFO:root:using accelerate endpoint
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">database</span> <span class="o">=</span> <span class="n">Tester</span><span class="o">.</span><span class="n">loadFromS3</span><span class="p">()</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -550,9 +736,7 @@ INFO:root:using accelerate endpoint
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>INFO:root:loading from product-bucket-dev-manual
-INFO:root:user is None
-INFO:root:using accelerate endpoint
+<pre>INFO:root:using accelerate endpoint
 </pre>
 </div>
 </div>
@@ -560,7 +744,8 @@ INFO:root:using accelerate endpoint
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>cache doesnt exist
+<pre>cache exist
+hashKey is allData-hash
 </pre>
 </div>
 </div>
@@ -577,12 +762,232 @@ INFO:root:using accelerate endpoint
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 620 ms, sys: 140 ms, total: 761 ms
-Wall time: 1.23 s
+<pre>found a valid cache, using cache
+CPU times: user 59.3 ms, sys: 3.86 ms, total: 63.2 ms
+Wall time: 488 ms
 </pre>
 </div>
 </div>
 
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>232</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="kn">import</span> <span class="nn">msgpack</span>
+<span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="s1">&#39;/tmp/testfile.test&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="n">msgpack</span><span class="o">.</span><span class="n">packb</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
+  <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 2.5 ms, sys: 0 ns, total: 2.5 ms
+Wall time: 2.79 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="s1">&#39;/tmp/testfile.test&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+  <span class="n">msgpack</span><span class="o">.</span><span class="n">unpackb</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 823 µs, sys: 0 ns, total: 823 µs
+Wall time: 498 µs
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="s1">&#39;/tmp/testfilep.test&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">database</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+  
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 875 µs, sys: 161 µs, total: 1.04 ms
+Wall time: 701 µs
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="k">with</span> <span class="nb">open</span> <span class="p">(</span><span class="s1">&#39;/tmp/testfilep.test&#39;</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+  <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 754 µs, sys: 0 ns, total: 754 µs
+Wall time: 548 µs
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">filteredDb</span> <span class="o">=</span> <span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">database</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+<span class="n">df</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">filteredDb</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+<span class="c1"># %time df.set_index(&#39;iprcode&#39;)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-21-96fa5e73cad9&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>filteredDb <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>list<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">.</span>values<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">for</span> item <span class="ansi-green-fg">in</span> database<span class="ansi-blue-fg">.</span>values<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> df<span class="ansi-blue-fg">:</span>pd<span class="ansi-blue-fg">.</span>DataFrame <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>DataFrame<span class="ansi-blue-fg">(</span>filteredDb<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> df<span class="ansi-blue-fg">.</span>head<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-red-fg"># %time df.set_index(&#39;iprcode&#39;)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-21-96fa5e73cad9&gt;</span> in <span class="ansi-cyan-fg">&lt;listcomp&gt;</span><span class="ansi-blue-fg">(.0)</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>filteredDb <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>list<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">.</span>values<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">for</span> item <span class="ansi-green-fg">in</span> database<span class="ansi-blue-fg">.</span>values<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> df<span class="ansi-blue-fg">:</span>pd<span class="ansi-blue-fg">.</span>DataFrame <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>DataFrame<span class="ansi-blue-fg">(</span>filteredDb<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> df<span class="ansi-blue-fg">.</span>head<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-red-fg"># %time df.set_index(&#39;iprcode&#39;)</span>
+
+<span class="ansi-red-fg">AttributeError</span>: &#39;str&#39; object has no attribute &#39;values&#39;</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> res = df.to_json()
+<span class="o">%</span><span class="k">time</span> res = df.to_csv(&#39;/tmp/test.csv&#39;)
+<span class="o">%</span><span class="k">time</span> df.
+</pre></div>
+
+    </div>
 </div>
 </div>
 
@@ -604,22 +1009,6 @@ Wall time: 1.23 s
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>2621536</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -638,31 +1027,6 @@ Wall time: 1.23 s
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 660 ms, sys: 113 ms, total: 773 ms
-Wall time: 768 ms
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;4dwjGB4O6LKgC8b5VZIWQi1hElU=&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -677,31 +1041,6 @@ Wall time: 768 ms
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>INFO:root:using accelerate endpoint
-INFO:root:data was saved to s3
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 

@@ -58,9 +58,11 @@ class ProductsFromList:
 
 
 # Cell
+import sys
 @add_class_method(Querier)
 def productsFromList(cls,iprcodes:List[str])->dict:
   database = cls.loadFromS3()
+  print(sys.getsizeof(database))
   return [database[iprcode] for iprcode in iprcodes if iprcode in database.keys()]
 
 # Cell

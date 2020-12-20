@@ -5,6 +5,8 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 index = {"Helpers": "Helpers.ipynb",
          "notify": "Helpers.ipynb",
          "keys": "Helpers.ipynb",
+         "toSeries": "Helpers.ipynb",
+         "toDf": "Helpers.ipynb",
          "DATABASE_TABLE_NAME": "database.ipynb",
          "INVENTORY_BUCKET_NAME": "database.ipynb",
          "INPUT_BUCKET_NAME": "database.ipynb",

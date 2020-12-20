@@ -30,10 +30,10 @@ from pynamodb.models import Model
 from pprint import pformat
 
 # Cell
-def createIndex(name, rangeKeyName= None, HashKeyType = UnicodeAttribute, RangeKeyType = UnicodeAttribute):
+def createIndex(name, rangeKeyName= None, indexName = None, HashKeyType = UnicodeAttribute, RangeKeyType = UnicodeAttribute):
   class ReturnSecondaryIndex(GlobalSecondaryIndex):
     class Meta:
-      index_name = name
+      index_name = indexName or name
       projection = AllProjection()
       dax_read_endpoints = [DAX_ENDPOINT] if DAX_ENDPOINT else None
       dax_write_endpoints = [DAX_ENDPOINT] if DAX_ENDPOINT else None
@@ -69,6 +69,7 @@ class KeySchema(Model):
   pr_barcode2Index = createIndex('pr_barcode2', 'sellingPrice')
   pr_suref3Index = createIndex('pr_suref3', 'sellingPrice')
   pr_sa_methodIndex = createIndex('pr_sa_method', 'sellingPrice')
+  cprcodeOnlyIndex = createIndex('cprcode', indexName='cprcodeOnly')
 
   def __repr__(self):
     return pformat(vars(self)["attribute_values"])

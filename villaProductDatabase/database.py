@@ -369,5 +369,5 @@ def lambdaSingleQuery(event, _):
 
 # Cell
 def lambdaAllQuery(event, _):
-  url = ProductDatabase.allQuery(bucket = INVENTORY_BUCKET_NAME)
+  url = ProductDatabase.allQuery(bucket = INVENTORY_BUCKET_NAME, key='allData')
   return Response.getReturn(body = {'url': url})

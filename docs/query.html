@@ -60,20 +60,6 @@ nb_path: "query.ipynb"
     
 <div class="cell border-box-sizing code_cell rendered">
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>missing environment variable &#39;INVENTORY_BUCKET_NAME&#39; in query NB
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -104,31 +90,6 @@ nb_path: "query.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pickle</span><span class="o">,</span> <span class="nn">os</span>
-
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;DATABASE_TABLE_NAME&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;product-table-dev-manual&#39;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;REGION&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;ap-southeast-1&#39;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;INVENTORY_BUCKET_NAME&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;product-bucket-dev-manual&#39;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;INPUT_BUCKET_NAME&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;input-product-bucket-dev-manual&#39;</span>
-<span class="n">DAX_ENDPOINT</span> <span class="o">=</span> <span class="s1">&#39;longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111&#39;</span>
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;LINEKEY&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;2uAfV4AoYglUGmKTAk2xNOm0aV2Ufgh1BQPvQl9vJd4&#39;</span>
-<span class="n">REGION</span> <span class="o">=</span> <span class="s1">&#39;ap-southeast-1&#39;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
 
 </div>
     {% endraw %}
@@ -245,7 +206,7 @@ None
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=Dk8kroQxc3UxvLetVkeAcFEXMNs%3D&amp;Expires=1608256929&#39;</pre>
+<pre>&#39;https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=WO6giX5p2EedRsZtq2IskUQrXL0%3D&amp;Expires=1608389603&#39;</pre>
 </div>
 
 </div>
@@ -309,8 +270,12 @@ None
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 598 ms, sys: 183 ms, total: 781 ms
-Wall time: 1.39 s
+<pre>cache exist
+loading hashkey allData-hash
+loaded hash isPzfrumW4Vib/5yh3/4UtOHZI88U=
+found a valid cache, using cache
+CPU times: user 423 ms, sys: 168 ms, total: 590 ms
+Wall time: 1 s
 </pre>
 </div>
 </div>
@@ -396,10 +361,9 @@ Wall time: 1.39 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./zlibPickle.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-  <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zlibPickle</span><span class="p">)</span>
-<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;./zlibjson.gz&#39;</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-  <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zlibData</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#   f.write(zlibPickle)</span>
+<span class="c1"># with open(&#39;./zlibjson.gz&#39;, &#39;wb&#39;) as f:</span>
+<span class="c1">#   f.write(zlibData)</span>
 </pre></div>
 
     </div>
@@ -416,26 +380,10 @@ Wall time: 1.39 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">bytesData</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># _ = json.loads(bytesData.decode())</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 1.1 s, sys: 136 ms, total: 1.23 s
-Wall time: 1.25 s
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -491,7 +439,7 @@ Wall time: 1.25 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="productsFromList" class="doc_header"><code>productsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L61" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>productsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h4 id="productsFromList" class="doc_header"><code>productsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L62" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>productsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
 
 </div>
@@ -534,7 +482,12 @@ Wall time: 1.25 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>3
+<pre>cache exist
+loading hashkey allData-hash
+loaded hash isPzfrumW4Vib/5yh3/4UtOHZI88U=
+found a valid cache, using cache
+2621536
+3
 0217153
  cprcode : 0217153
  iprcode : 0217153
@@ -588,8 +541,8 @@ Wall time: 1.25 s
  pr_barcode : 5060148383
  pr_barcode2 : 5060148383
  sort_weight : 0
-CPU times: user 704 ms, sys: 245 ms, total: 949 ms
-Wall time: 1.53 s
+CPU times: user 578 ms, sys: 97.6 ms, total: 676 ms
+Wall time: 1.07 s
 </pre>
 </div>
 </div>
@@ -617,7 +570,7 @@ Wall time: 1.53 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="singleProductQuery" class="doc_header"><code>singleProductQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L67" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>singleProductQuery</code>(<strong><code>input</code></strong>)</p>
+<h4 id="singleProductQuery" class="doc_header"><code>singleProductQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L69" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>singleProductQuery</code>(<strong><code>input</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -692,11 +645,276 @@ Wall time: 1.53 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 3.5 ms, sys: 0 ns, total: 3.5 ms
-Wall time: 7.13 ms
+<pre>CPU times: user 2.92 ms, sys: 654 µs, total: 3.57 ms
+Wall time: 5.75 ms
 </pre>
 </div>
 </div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>ProductDatabase Object
+cprcode 0000009
+iprcode 0000009
+oprcode 0000009
+ordertype Y
+pr_abb J. WALKER RED 70 CL.
+pr_active Y
+pr_cgcode 01
+pr_code 0000009
+pr_dpcode 01
+pr_engname JOHNNIE WALKER RED 70 CL.
+pr_ggcode 001
+pr_market J. WALKER RED 70 CL
+pr_name JOHNNIE WALKER RED 70 CL
+pr_puqty 12.00
+pr_sa_method 1
+pr_sucode1 1782
+pr_suref3 A
+prtype I
+psqty 1
+pstype 1
+pr_country_th 
+pr_country_en United Kingdom
+pr_keyword_th 
+pr_keyword_en 
+pr_filter_th Alcohol,Spirits  Liqueurs
+pr_filter_en Alcohol,Spirits  Liqueurs
+online_category_l1_th เบียร์, ไวน์และสุรา
+online_category_l1_en Beer Wine &amp; Spirits
+online_category_l2_th เหล้า
+online_category_l2_en Spirits &amp; Liqueurs
+online_category_l3_th 
+online_category_l3_en 
+villa_category_l1_en Dry Grocery
+villa_category_l2_en Alcohol &amp; Beverage
+villa_category_l3_en Whisky
+villa_category_l4_en Scoth Whisky
+content_en 0000009 Johnnie Walker Red 700ml
+content_th JOHNNIE WALKER RED 700ml
+hema_brand_th Johnnie Walker
+hema_brand_en Johnnie Walker
+hema_sizedesc 700ml
+pr_brand_en Johnnie Walker
+pr_brand_th Johnnie Walker
+pr_online_name_en Johnnie Walker Red 700ml
+pr_online_name_th JOHNNIE WALKER RED 700ml
+hema_name_en Johnnie Walker Red
+hema_name_th JOHNNIE WALKER RED
+pr_name_en JOHNNIE WALKER RED 70 CL.
+pr_name_th JOHNNIE WALKER RED 70 CL
+sort_weight 0
+pr_barcode 5000267014203
+pr_barcode2 500026701420</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="get-a-few-data-in-a-list">get a few data in a list<a class="anchor-link" href="#get-a-few-data-in-a-list"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">listOfPrcode</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0217153&#39;</span><span class="p">,</span><span class="s1">&#39;203915&#39;</span><span class="p">,</span><span class="s1">&#39;0000009&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">Tester</span><span class="o">.</span><span class="n">batch_get</span><span class="p">(</span><span class="n">listOfPrcode</span><span class="p">):</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 2.1 ms, sys: 0 ns, total: 2.1 ms
+Wall time: 2.46 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="k">for</span> <span class="n">prcode</span> <span class="ow">in</span> <span class="n">listOfPrcode</span><span class="p">:</span>
+  <span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Tester</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">prcode</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 5.97 ms, sys: 436 µs, total: 6.4 ms
+Wall time: 14.4 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+Signature:
+Tester.batch_get(
+    items: Iterable[Union[Any, Iterable[Any]]],
+    consistent_read: Union[bool, NoneType] = None,
+    attributes_to_get: Union[Sequence[str], NoneType] = None,
+) -> Iterator[~_T]
+Docstring:
+BatchGetItem for this model
+
+:param items: Should be a list of hash keys to retrieve, or a list of
+    tuples if range keys are used.
+File:      ~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/models.py
+Type:      method
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">Tester</span><span class="o">.</span><span class="n">cprcodeOnlyIndex</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">listOfPrcode</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-32-647998a01848&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>list<span class="ansi-blue-fg">(</span>Tester<span class="ansi-blue-fg">.</span>cprcodeOnlyIndex<span class="ansi-blue-fg">.</span>query<span class="ansi-blue-fg">(</span>listOfPrcode<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/indexes.py</span> in <span class="ansi-cyan-fg">query</span><span class="ansi-blue-fg">(cls, hash_key, range_key_condition, filter_condition, consistent_read, scan_index_forward, limit, last_evaluated_key, attributes_to_get, page_size, rate_limit)</span>
+<span class="ansi-green-intense-fg ansi-bold">     96</span>         Queries an index
+<span class="ansi-green-intense-fg ansi-bold">     97</span>         &#34;&#34;&#34;
+<span class="ansi-green-fg">---&gt; 98</span><span class="ansi-red-fg">         return cls.Meta.model.query(
+</span><span class="ansi-green-intense-fg ansi-bold">     99</span>             hash_key<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    100</span>             range_key_condition<span class="ansi-blue-fg">=</span>range_key_condition<span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/models.py</span> in <span class="ansi-cyan-fg">query</span><span class="ansi-blue-fg">(cls, hash_key, range_key_condition, filter_condition, consistent_read, index_name, scan_index_forward, limit, last_evaluated_key, attributes_to_get, page_size, rate_limit)</span>
+<span class="ansi-green-intense-fg ansi-bold">    669</span> 
+<span class="ansi-green-intense-fg ansi-bold">    670</span>         return ResultIterator(
+<span class="ansi-green-fg">--&gt; 671</span><span class="ansi-red-fg">             </span>cls<span class="ansi-blue-fg">.</span>_get_connection<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>query<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    672</span>             query_args<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    673</span>             query_kwargs<span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/models.py</span> in <span class="ansi-cyan-fg">_get_connection</span><span class="ansi-blue-fg">(cls)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1096</span>             )
+<span class="ansi-green-intense-fg ansi-bold">   1097</span>         <span class="ansi-green-fg">elif</span> <span class="ansi-green-fg">not</span> hasattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">.</span>Meta<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;table_name&#34;</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">or</span> cls<span class="ansi-blue-fg">.</span>Meta<span class="ansi-blue-fg">.</span>table_name <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 1098</span><span class="ansi-red-fg">             raise AttributeError(
+</span><span class="ansi-green-intense-fg ansi-bold">   1099</span>                 <span class="ansi-blue-fg">&#39;As of v1.0 PyanmoDB Models must have a table_name\n&#39;</span>
+<span class="ansi-green-intense-fg ansi-bold">   1100</span>                 <span class="ansi-blue-fg">&#39;Model: {}.{}\n&#39;</span>
+
+<span class="ansi-red-fg">AttributeError</span>: As of v1.0 PyanmoDB Models must have a table_name
+Model: villaProductDatabase.schema.KeySchema
+See https://pynamodb.readthedocs.io/en/latest/release_notes.html</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Tester</span><span class="o">.</span><span class="n">cprcodeIndex</span><span class="o">.</span><span class="n">Meta</span><span class="o">.</span><span class="n">index_name</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;cprcode&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">Tester</span><span class="o">.</span><span class="n">cprcodeIndex</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;0000009&#39;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 

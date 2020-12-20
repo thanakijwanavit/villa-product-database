@@ -50,11 +50,13 @@ def saveHash(cls , data:dict, key='allData', bucket=INVENTORY_BUCKET_NAME,
   saveStringToFile(hashString, path=hashPath)
   print('saving hash to s3')
   S3.save(key=hashKey,objectToSave=dictToSave, bucket=bucket)
+  print(f'saved hash {hashString}')
 @add_class_method(S3Cache)
 def loadHash(cls,key='allData', bucket=INVENTORY_BUCKET_NAME):
   hashKey = f'{key}-hash'
-  print(f'hashKey is {hashKey}')
+  print(f'loading hashkey {hashKey}')
   loadedHash= S3.load(hashKey,bucket=bucket).get('hash')
+  print(f'loaded hash is{loadedHash}')
   return loadedHash
 
 # Cell
@@ -70,24 +72,29 @@ def loadFromS3(cls, bucketName= INVENTORY_BUCKET_NAME, key = 'allData',
     print('cache exist')
     if cls.loadHash(key=key) == loadStringFromFile(hashPath):
       db = loadDictFromFile(cachePath)
+      print('found a valid cache, using cache')
       return db
     else:
       print('cache has different hash than s3')
   print('cache doesnt exist')
   logging.info(f'loading from {bucketName}')
   logging.info(f'user is {kwargs.get("user")}')
-
-  return S3.loadPklZl(key=f'{key}-pklzl', bucket = bucketName,  **kwargs)
+  database =  S3.loadPklZl(key=f'{key}-pklzl', bucket = bucketName,  **kwargs)
+#   database =  S3.load(key=f'{key}', bucket = bucketName,  **kwargs)
+  print(database)
+  cls.saveHash(database)
+  return database
 
 # Cell
 @add_class_method(S3Cache)
 def saveAllS3(cls, objectToSave:dict, bucketName= INVENTORY_BUCKET_NAME, key = 'allData',
               hashPath = DBHASHLOCATION, cachePath = DBCACHELOCATION, **kwargs):
   if os.path.exists(cachePath) and os.path.exists(hashPath):
-    if loadStringFromFile(hashPath) == cls.loadHash():
+    if loadStringFromFile(hashPath) == cls.loadHash(key=key, bucket=bucketName):
       print('the object did not change, skip saving')
       return
   S3.save(key=key, bucket=bucketName, objectToSave=objectToSave)
   S3.savePklZl(key=f'{key}-pklzl',bucket=bucketName, objectToSave=objectToSave)
   S3.saveZl(key=f'{key}-zl',bucket=bucketName, objectToSave=objectToSave)
+  print(f'saving hash with key {key}')
   cls.saveHash(objectToSave, key=key)
