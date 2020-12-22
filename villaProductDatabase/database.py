@@ -26,6 +26,7 @@ from .query import Querier
 from .helpers import Helpers
 from .s3 import S3Cache
 from .schema import KeySchema, createIndex
+from .update import Updater
 from requests import post
 
 import pickle, json, boto3, bz2, requests, validators, os, logging, traceback
@@ -51,7 +52,7 @@ print(DAX_ENDPOINT)
 
 # Cell
 # dont forget to import dependent classes from the relevant notebooks
-class ProductDatabase( Querier, Helpers, KeySchema, S3Cache):
+class ProductDatabase( Querier, Helpers, KeySchema, S3Cache, Updater):
   class Meta:
     aws_access_key_id = ACCESS_KEY_ID
     aws_secret_access_key = SECRET_ACCESS_KEY
@@ -116,7 +117,8 @@ class ProductsFromList:
 # Cell
 def lambdaProductsFromList(event, *args):
   productsFromList = Event.parseDataClass(ProductsFromList,event)
-  result = ProductDatabase.productsFromList(productsFromList.iprcodes)
+  result:pd.DataFrame = ProductDatabase.productsFromList(productsFromList.iprcodes)
+  resultDict = ProductDatabase.fromDf(result)
   return Response.returnSuccess(result)
 
 # Cell

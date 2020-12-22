@@ -37,6 +37,7 @@ dax endpoint missing &#39;DAX_ENDPOINT&#39;
 dax endpoint missing &#39;DAX_ENDPOINT&#39;
 None
 dax endpoint missing &#39;DAX_ENDPOINT&#39;
+dax endpoint missing &#39;DAX_ENDPOINT&#39;
 None
 </pre>
 </div>
@@ -94,7 +95,7 @@ None
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProductDatabase" class="doc_header"><code>class</code> <code>ProductDatabase</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L54" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductDatabase</code>(<strong><code>hash_key</code></strong>:<code>Optional</code>[<code>Any</code>]=<em><code>None</code></em>, <strong><code>range_key</code></strong>:<code>Optional</code>[<code>Any</code>]=<em><code>None</code></em>, <strong><code>_user_instantiated</code></strong>:<code>bool</code>=<em><code>True</code></em>, <strong>**<code>attributes</code></strong>:<code>Any</code>) :: <a href="/villaProductDatabase/query.html#Querier"><code>Querier</code></a></p>
+<h2 id="ProductDatabase" class="doc_header"><code>class</code> <code>ProductDatabase</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L55" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductDatabase</code>(<strong><code>hash_key</code></strong>:<code>Optional</code>[<code>Any</code>]=<em><code>None</code></em>, <strong><code>range_key</code></strong>:<code>Optional</code>[<code>Any</code>]=<em><code>None</code></em>, <strong><code>_user_instantiated</code></strong>:<code>bool</code>=<em><code>True</code></em>, <strong>**<code>attributes</code></strong>:<code>Any</code>) :: <a href="/villaProductDatabase/query.html#Querier"><code>Querier</code></a></p>
 </blockquote>
 <p>Defines a <code>PynamoDB</code> Model</p>
 <p>This model is backed by a table in DynamoDB.
@@ -134,7 +135,7 @@ You can create the table by with the <code>create_table</code> method.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="setNoUpdate" class="doc_header"><code>setNoUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L94" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setNoUpdate</code>(<strong><code>batch</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="setNoUpdate" class="doc_header"><code>setNoUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L95" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setNoUpdate</code>(<strong><code>batch</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 
 </div>
@@ -158,7 +159,7 @@ You can create the table by with the <code>create_table</code> method.</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="setUpdate" class="doc_header"><code>setUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L102" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setUpdate</code>(<strong><code>batch</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="setUpdate" class="doc_header"><code>setUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L103" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setUpdate</code>(<strong><code>batch</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 
 </div>
@@ -208,8 +209,8 @@ You can create the table by with the <code>create_table</code> method.</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Y
 N
-CPU times: user 61 ms, sys: 24.2 ms, total: 85.2 ms
-Wall time: 180 ms
+CPU times: user 61.4 ms, sys: 19.7 ms, total: 81.1 ms
+Wall time: 195 ms
 </pre>
 </div>
 </div>
@@ -243,8 +244,8 @@ Wall time: 180 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 202 ms, sys: 624 µs, total: 202 ms
-Wall time: 668 ms
+<pre>CPU times: user 186 ms, sys: 3.85 ms, total: 190 ms
+Wall time: 511 ms
 </pre>
 </div>
 </div>
@@ -268,13 +269,15 @@ Wall time: 668 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">item</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;0000009&#39;</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="c1">## get original item</span>
+<span class="n">item</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;0000009&#39;</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;engname is </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pr_engname&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 
 <span class="c1">### update item</span>
 <span class="n">updatedItem</span> <span class="o">=</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">updateWithDict</span><span class="p">(</span><span class="n">item</span><span class="p">,{</span><span class="s1">&#39;pr_engname&#39;</span><span class="p">:</span><span class="s1">&#39;testName&#39;</span><span class="p">})</span>
 <span class="k">assert</span> <span class="n">updatedItem</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pr_engname&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;testName&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">updatedItem</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pr_engname&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; name is changed to  </span><span class="si">{</span><span class="n">updatedItem</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pr_engname&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -288,24 +291,10 @@ Wall time: 668 ms
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>engname is JOHNNIE WALKER RED 70 CL.
+ name is changed to  testName
+CPU times: user 3.78 ms, sys: 249 µs, total: 4.03 ms
+Wall time: 5.74 ms
 </pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-16-c2a6bb676fa9&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span> 
-<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-red-fg">### update item</span>
-<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg"> </span>updatedItem <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>updateWithDict<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">&#39;pr_engname&#39;</span><span class="ansi-blue-fg">:</span><span class="ansi-blue-fg">&#39;testName&#39;</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      7</span> <span class="ansi-green-fg">assert</span> updatedItem<span class="ansi-blue-fg">.</span>data<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;pr_engname&#39;</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">&#39;testName&#39;</span>
-<span class="ansi-green-intense-fg ansi-bold">      8</span> print<span class="ansi-blue-fg">(</span>updatedItem<span class="ansi-blue-fg">.</span>data<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;pr_engname&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">AttributeError</span>: type object &#39;ProductDatabase&#39; has no attribute &#39;updateWithDict&#39;</pre>
 </div>
 </div>
 
@@ -346,8 +335,8 @@ Wall time: 668 ms
 <pre>loading hashkey allData-hash
 loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
-CPU times: user 284 ms, sys: 72.7 ms, total: 357 ms
-Wall time: 750 ms
+CPU times: user 328 ms, sys: 52.8 ms, total: 380 ms
+Wall time: 786 ms
 </pre>
 </div>
 </div>
@@ -369,7 +358,7 @@ Wall time: 750 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L113" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L114" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
 <p>ProductsFromList(iprcodes: List[str])</p>
 
@@ -401,7 +390,7 @@ Wall time: 750 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaProductsFromList" class="doc_header"><code>lambdaProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L117" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaProductsFromList</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
+<h4 id="lambdaProductsFromList" class="doc_header"><code>lambdaProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L118" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaProductsFromList</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -446,7 +435,10 @@ Wall time: 750 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>cache exist
+<pre>loading hashkey allData-hash
+loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+data is still in sync, using local cache
+db shape is (45149, 52)
 </pre>
 </div>
 </div>
@@ -456,44 +448,74 @@ Wall time: 750 ms
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
 <span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-26-c36516859f89&gt;</span> in <span class="ansi-cyan-fg">lambdaProductsFromList</span><span class="ansi-blue-fg">(event, *args)</span>
-<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">def</span> lambdaProductsFromList<span class="ansi-blue-fg">(</span>event<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">&lt;ipython-input-25-c36516859f89&gt;</span> in <span class="ansi-cyan-fg">lambdaProductsFromList</span><span class="ansi-blue-fg">(event, *args)</span>
 <span class="ansi-green-intense-fg ansi-bold">      3</span>   productsFromList <span class="ansi-blue-fg">=</span> Event<span class="ansi-blue-fg">.</span>parseDataClass<span class="ansi-blue-fg">(</span>ProductsFromList<span class="ansi-blue-fg">,</span>event<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg">   </span>result <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>productsFromList<span class="ansi-blue-fg">(</span>productsFromList<span class="ansi-blue-fg">.</span>iprcodes<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span>   <span class="ansi-green-fg">return</span> Response<span class="ansi-blue-fg">.</span>returnSuccess<span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>   result <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>productsFromList<span class="ansi-blue-fg">(</span>productsFromList<span class="ansi-blue-fg">.</span>iprcodes<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">   </span><span class="ansi-green-fg">return</span> Response<span class="ansi-blue-fg">.</span>returnSuccess<span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">)</span>
 
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     35</span>         <span class="ansi-blue-fg">@</span>classmethod
-<span class="ansi-green-intense-fg ansi-bold">     36</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 37</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span> cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     38</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     39</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/awsSchema/apigateway.py</span> in <span class="ansi-cyan-fg">returnSuccess</span><span class="ansi-blue-fg">(cls, body, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     57</span>   <span class="ansi-blue-fg">@</span>classmethod
+<span class="ansi-green-intense-fg ansi-bold">     58</span>   <span class="ansi-green-fg">def</span> returnSuccess<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> body<span class="ansi-blue-fg">:</span>dict <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">-&gt;</span>dict<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 59</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> cls<span class="ansi-blue-fg">.</span>getReturn<span class="ansi-blue-fg">(</span>statusCode <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">200</span><span class="ansi-blue-fg">,</span> body <span class="ansi-blue-fg">=</span> body<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     60</span> 
+<span class="ansi-green-intense-fg ansi-bold">     61</span> <span class="ansi-blue-fg">@</span>dataclass_json<span class="ansi-blue-fg">(</span>undefined<span class="ansi-blue-fg">=</span>Undefined<span class="ansi-blue-fg">.</span>EXCLUDE<span class="ansi-blue-fg">)</span>
 
-<span class="ansi-green-fg">~/SageMaker/stacks/villaMaster/villa-master-dev/product/database2/villaProductDatabase/query.py</span> in <span class="ansi-cyan-fg">productsFromList</span><span class="ansi-blue-fg">(cls, iprcodes)</span>
-<span class="ansi-green-intense-fg ansi-bold">     62</span> <span class="ansi-blue-fg">@</span>add_class_method<span class="ansi-blue-fg">(</span>Querier<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     63</span> <span class="ansi-green-fg">def</span> productsFromList<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span>iprcodes<span class="ansi-blue-fg">:</span>List<span class="ansi-blue-fg">[</span>str<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">-&gt;</span>dict<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 64</span><span class="ansi-red-fg">   </span>database <span class="ansi-blue-fg">=</span> cls<span class="ansi-blue-fg">.</span>loadFromS3<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     65</span>   print<span class="ansi-blue-fg">(</span>sys<span class="ansi-blue-fg">.</span>getsizeof<span class="ansi-blue-fg">(</span>database<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     66</span>   <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>database<span class="ansi-blue-fg">[</span>iprcode<span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">for</span> iprcode <span class="ansi-green-fg">in</span> iprcodes <span class="ansi-green-fg">if</span> iprcode <span class="ansi-green-fg">in</span> database<span class="ansi-blue-fg">.</span>keys<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/awsSchema/apigateway.py</span> in <span class="ansi-cyan-fg">getReturn</span><span class="ansi-blue-fg">(cls, body, headers, statusCode)</span>
+<span class="ansi-green-intense-fg ansi-bold">     47</span>     &#39;&#39;&#39;
+<span class="ansi-green-intense-fg ansi-bold">     48</span>     returnObj = cls(
+<span class="ansi-green-fg">---&gt; 49</span><span class="ansi-red-fg">       </span>body <span class="ansi-blue-fg">=</span> json<span class="ansi-blue-fg">.</span>dumps<span class="ansi-blue-fg">(</span>body<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">     50</span>       headers <span class="ansi-blue-fg">=</span> headers<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">     51</span>       statusCode <span class="ansi-blue-fg">=</span> statusCode
 
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     35</span>         <span class="ansi-blue-fg">@</span>classmethod
-<span class="ansi-green-intense-fg ansi-bold">     36</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 37</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span> cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     38</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     39</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
+<span class="ansi-red-fg">TypeError</span>:        cprcode  iprcode  oprcode ordertype                pr_abb pr_active  \
+0      0217153  0217153  0217153         Y  COCOA LOCO MILK CHOC         Y   
+3352   0000009  0000009  0000009         Y  J. WALKER RED 70 CL.         Y   
+14209   203915   203915   203915         Y  MEIJI GUMMY CHOCO GR         Y   
 
-<span class="ansi-green-fg">~/SageMaker/stacks/villaMaster/villa-master-dev/product/database2/villaProductDatabase/s3.py</span> in <span class="ansi-cyan-fg">loadFromS3</span><span class="ansi-blue-fg">(cls, bucketName, key, hashPath, cachePath, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     85</span>   <span class="ansi-green-fg">if</span> os<span class="ansi-blue-fg">.</span>path<span class="ansi-blue-fg">.</span>exists<span class="ansi-blue-fg">(</span>hashPath<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">and</span> os<span class="ansi-blue-fg">.</span>path<span class="ansi-blue-fg">.</span>exists<span class="ansi-blue-fg">(</span>cachePath<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     86</span>     print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;cache exist&#39;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">---&gt; 87</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">if</span> cls<span class="ansi-blue-fg">.</span>loadHash<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">=</span>key<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">==</span> loadStringFromFile<span class="ansi-blue-fg">(</span>hashPath<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     88</span>       db <span class="ansi-blue-fg">=</span> loadDictFromFile<span class="ansi-blue-fg">(</span>cachePath<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     89</span>       print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;found a valid cache, using cache&#39;</span><span class="ansi-blue-fg">)</span>
+      pr_cgcode  pr_code pr_dpcode                                pr_engname  \
+0            98  0217153        28  COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.   
+3352         01  0000009        01                 JOHNNIE WALKER RED 70 CL.   
+14209         4   203915       2.0         MEIJI GUMMY CHOCO GREEN GRAPE 30G   
 
-<span class="ansi-red-fg">AttributeError</span>: type object &#39;ProductDatabase&#39; has no attribute &#39;loadHash&#39;</pre>
+       ...     pr_brand_th                         pr_online_name_en  \
+0      ...                  COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.   
+3352   ...  Johnnie Walker                  Johnnie Walker Red 700ml   
+14209  ...           MEIJI         Meiji Gummy Choco Green Grape 30g   
+
+                              pr_online_name_th  \
+0      COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.   
+3352                   JOHNNIE WALKER RED 700ml   
+14209         Meiji Gummy Choco Green Grape 30g   
+
+                                   hema_name_en  \
+0      COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.   
+3352                         Johnnie Walker Red   
+14209                   Gummy Choco Green Grape   
+
+                                   hema_name_th  \
+0      COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.   
+3352                         JOHNNIE WALKER RED   
+14209                   Gummy Choco Green Grape   
+
+                                     pr_name_en  \
+0      COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.   
+3352                  JOHNNIE WALKER RED 70 CL.   
+14209         MEIJI GUMMY CHOCO GREEN GRAPE 30G   
+
+                                     pr_name_th     pr_barcode   pr_barcode2  \
+0      COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.  5060148383378  506014838337   
+3352                   JOHNNIE WALKER RED 70 CL           None          None   
+14209       เมจิ กัมมี่ ช็อกโก กรีนเกรป 30 กรัม           None          None   
+
+      sort_weight  
+0               0  
+3352            0  
+14209         0.0  
+
+[3 rows x 52 columns] is not JSON serializable</pre>
 </div>
 </div>
 
@@ -585,7 +607,7 @@ Wall time: 750 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="dumpToS3" class="doc_header"><code>dumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L123" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>dumpToS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>500</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="dumpToS3" class="doc_header"><code>dumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L125" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>dumpToS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>500</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>upload changes to s3</p>
 
@@ -669,7 +691,7 @@ Wall time: 2.74 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L172" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L174" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -745,7 +767,7 @@ Wall time: 1.47 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L186" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
+<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L188" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
 </blockquote>
 <p>Product(iprcode: str, cprcode: str, data: Union[~CatchAllVar, NoneType])</p>
 
@@ -770,7 +792,7 @@ Wall time: 1.47 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L192" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
+<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L194" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
 </blockquote>
 <p>ValueUpdate(items: List[villaProductDatabase.database.Product])</p>
 
@@ -802,7 +824,7 @@ Wall time: 1.47 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L196" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
+<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L198" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -875,7 +897,7 @@ Wall time: 1.47 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="valueUpdate" class="doc_header"><code>valueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L199" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate</code>(<strong><code>inputs</code></strong>)</p>
+<h4 id="valueUpdate" class="doc_header"><code>valueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L201" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate</code>(<strong><code>inputs</code></strong>)</p>
 </blockquote>
 <p>check for difference and batch update the changes in product data</p>
 
@@ -960,7 +982,7 @@ Wall time: 1.47 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="valueUpdate2" class="doc_header"><code>valueUpdate2</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L253" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate2</code>(<strong><code>inputs</code></strong>)</p>
+<h4 id="valueUpdate2" class="doc_header"><code>valueUpdate2</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L255" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate2</code>(<strong><code>inputs</code></strong>)</p>
 </blockquote>
 <p>check for difference and batch update the changes in product data</p>
 
@@ -1062,7 +1084,7 @@ get all from s3 982.624 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L313" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L315" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1143,7 +1165,7 @@ get all from s3 982.624 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L319" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L321" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1199,7 +1221,7 @@ get all from s3 982.624 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L327" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L329" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1391,7 +1413,7 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L342" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L344" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1538,7 +1560,7 @@ received 73095 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L351" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L353" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
