@@ -448,74 +448,31 @@ db shape is (45149, 52)
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
 <span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-25-c36516859f89&gt;</span> in <span class="ansi-cyan-fg">lambdaProductsFromList</span><span class="ansi-blue-fg">(event, *args)</span>
+<span class="ansi-green-fg">&lt;ipython-input-27-6b5e02c86d2b&gt;</span> in <span class="ansi-cyan-fg">lambdaProductsFromList</span><span class="ansi-blue-fg">(event, *args)</span>
 <span class="ansi-green-intense-fg ansi-bold">      3</span>   productsFromList <span class="ansi-blue-fg">=</span> Event<span class="ansi-blue-fg">.</span>parseDataClass<span class="ansi-blue-fg">(</span>ProductsFromList<span class="ansi-blue-fg">,</span>event<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span>   result <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>productsFromList<span class="ansi-blue-fg">(</span>productsFromList<span class="ansi-blue-fg">.</span>iprcodes<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">   </span><span class="ansi-green-fg">return</span> Response<span class="ansi-blue-fg">.</span>returnSuccess<span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>   result<span class="ansi-blue-fg">:</span>pd<span class="ansi-blue-fg">.</span>DataFrame <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>productsFromList<span class="ansi-blue-fg">(</span>productsFromList<span class="ansi-blue-fg">.</span>iprcodes<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">   </span>results<span class="ansi-blue-fg">:</span>List<span class="ansi-blue-fg">[</span>ProductDatabase<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>fromDf<span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span>   resultDict<span class="ansi-blue-fg">:</span>List<span class="ansi-blue-fg">[</span>dict<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>toListDict<span class="ansi-blue-fg">(</span>results<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span>   <span class="ansi-green-fg">return</span> Response<span class="ansi-blue-fg">.</span>returnSuccess<span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">)</span>
 
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/awsSchema/apigateway.py</span> in <span class="ansi-cyan-fg">returnSuccess</span><span class="ansi-blue-fg">(cls, body, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     57</span>   <span class="ansi-blue-fg">@</span>classmethod
-<span class="ansi-green-intense-fg ansi-bold">     58</span>   <span class="ansi-green-fg">def</span> returnSuccess<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> body<span class="ansi-blue-fg">:</span>dict <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">-&gt;</span>dict<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 59</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">return</span> cls<span class="ansi-blue-fg">.</span>getReturn<span class="ansi-blue-fg">(</span>statusCode <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">200</span><span class="ansi-blue-fg">,</span> body <span class="ansi-blue-fg">=</span> body<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     35</span>         <span class="ansi-blue-fg">@</span>classmethod
+<span class="ansi-green-intense-fg ansi-bold">     36</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 37</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span> cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     38</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     39</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
+
+<span class="ansi-green-fg">~/SageMaker/stacks/villaMaster/villa-master-dev/product/database2/villaProductDatabase/helpers.py</span> in <span class="ansi-cyan-fg">fromDf</span><span class="ansi-blue-fg">(cls, data)</span>
+<span class="ansi-green-intense-fg ansi-bold">     57</span> <span class="ansi-blue-fg">@</span>add_class_method<span class="ansi-blue-fg">(</span>Helpers<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     58</span> <span class="ansi-green-fg">def</span> fromDf<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> data<span class="ansi-blue-fg">:</span>pd<span class="ansi-blue-fg">.</span>DataFrame<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">-&gt;</span>List<span class="ansi-blue-fg">[</span>Helpers<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 59</span><span class="ansi-red-fg">   </span><span class="ansi-green-fg">return</span> df<span class="ansi-blue-fg">.</span>apply<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> x<span class="ansi-blue-fg">:</span> cls<span class="ansi-blue-fg">.</span>fromSeries<span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> axis<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>to_list<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">     60</span> 
-<span class="ansi-green-intense-fg ansi-bold">     61</span> <span class="ansi-blue-fg">@</span>dataclass_json<span class="ansi-blue-fg">(</span>undefined<span class="ansi-blue-fg">=</span>Undefined<span class="ansi-blue-fg">.</span>EXCLUDE<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     61</span> 
 
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/awsSchema/apigateway.py</span> in <span class="ansi-cyan-fg">getReturn</span><span class="ansi-blue-fg">(cls, body, headers, statusCode)</span>
-<span class="ansi-green-intense-fg ansi-bold">     47</span>     &#39;&#39;&#39;
-<span class="ansi-green-intense-fg ansi-bold">     48</span>     returnObj = cls(
-<span class="ansi-green-fg">---&gt; 49</span><span class="ansi-red-fg">       </span>body <span class="ansi-blue-fg">=</span> json<span class="ansi-blue-fg">.</span>dumps<span class="ansi-blue-fg">(</span>body<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">     50</span>       headers <span class="ansi-blue-fg">=</span> headers<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">     51</span>       statusCode <span class="ansi-blue-fg">=</span> statusCode
-
-<span class="ansi-red-fg">TypeError</span>:        cprcode  iprcode  oprcode ordertype                pr_abb pr_active  \
-0      0217153  0217153  0217153         Y  COCOA LOCO MILK CHOC         Y   
-3352   0000009  0000009  0000009         Y  J. WALKER RED 70 CL.         Y   
-14209   203915   203915   203915         Y  MEIJI GUMMY CHOCO GR         Y   
-
-      pr_cgcode  pr_code pr_dpcode                                pr_engname  \
-0            98  0217153        28  COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.   
-3352         01  0000009        01                 JOHNNIE WALKER RED 70 CL.   
-14209         4   203915       2.0         MEIJI GUMMY CHOCO GREEN GRAPE 30G   
-
-       ...     pr_brand_th                         pr_online_name_en  \
-0      ...                  COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.   
-3352   ...  Johnnie Walker                  Johnnie Walker Red 700ml   
-14209  ...           MEIJI         Meiji Gummy Choco Green Grape 30g   
-
-                              pr_online_name_th  \
-0      COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.   
-3352                   JOHNNIE WALKER RED 700ml   
-14209         Meiji Gummy Choco Green Grape 30g   
-
-                                   hema_name_en  \
-0      COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.   
-3352                         Johnnie Walker Red   
-14209                   Gummy Choco Green Grape   
-
-                                   hema_name_th  \
-0      COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.   
-3352                         JOHNNIE WALKER RED   
-14209                   Gummy Choco Green Grape   
-
-                                     pr_name_en  \
-0      COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.   
-3352                  JOHNNIE WALKER RED 70 CL.   
-14209         MEIJI GUMMY CHOCO GREEN GRAPE 30G   
-
-                                     pr_name_th     pr_barcode   pr_barcode2  \
-0      COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.  5060148383378  506014838337   
-3352                   JOHNNIE WALKER RED 70 CL           None          None   
-14209       เมจิ กัมมี่ ช็อกโก กรีนเกรป 30 กรัม           None          None   
-
-      sort_weight  
-0               0  
-3352            0  
-14209         0.0  
-
-[3 rows x 52 columns] is not JSON serializable</pre>
+<span class="ansi-red-fg">NameError</span>: name &#39;df&#39; is not defined</pre>
 </div>
 </div>
 
@@ -607,7 +564,7 @@ db shape is (45149, 52)
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="dumpToS3" class="doc_header"><code>dumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L125" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>dumpToS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>500</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="dumpToS3" class="doc_header"><code>dumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L126" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>dumpToS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>500</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>upload changes to s3</p>
 
@@ -691,7 +648,7 @@ Wall time: 2.74 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L174" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L175" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -767,7 +724,7 @@ Wall time: 1.47 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L188" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
+<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L189" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
 </blockquote>
 <p>Product(iprcode: str, cprcode: str, data: Union[~CatchAllVar, NoneType])</p>
 
@@ -792,7 +749,7 @@ Wall time: 1.47 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L194" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
+<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L195" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
 </blockquote>
 <p>ValueUpdate(items: List[villaProductDatabase.database.Product])</p>
 
@@ -824,7 +781,7 @@ Wall time: 1.47 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L198" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
+<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L199" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -897,7 +854,7 @@ Wall time: 1.47 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="valueUpdate" class="doc_header"><code>valueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L201" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate</code>(<strong><code>inputs</code></strong>)</p>
+<h4 id="valueUpdate" class="doc_header"><code>valueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L202" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate</code>(<strong><code>inputs</code></strong>)</p>
 </blockquote>
 <p>check for difference and batch update the changes in product data</p>
 
@@ -982,7 +939,7 @@ Wall time: 1.47 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="valueUpdate2" class="doc_header"><code>valueUpdate2</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L255" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate2</code>(<strong><code>inputs</code></strong>)</p>
+<h4 id="valueUpdate2" class="doc_header"><code>valueUpdate2</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L256" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate2</code>(<strong><code>inputs</code></strong>)</p>
 </blockquote>
 <p>check for difference and batch update the changes in product data</p>
 
@@ -1084,7 +1041,7 @@ get all from s3 982.624 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L315" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L316" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1165,7 +1122,7 @@ get all from s3 982.624 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L321" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L322" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1221,7 +1178,7 @@ get all from s3 982.624 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L329" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L330" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1413,7 +1370,7 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L344" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L345" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1560,7 +1517,7 @@ received 73095 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L353" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L354" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>

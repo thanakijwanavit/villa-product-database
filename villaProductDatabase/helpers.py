@@ -56,7 +56,7 @@ def fromSeries(cls, data:pd.Series)->Helpers:
 # Cell
 @add_class_method(Helpers)
 def fromDf(cls, data:pd.DataFrame)->List[Helpers]:
-  return df.apply(lambda x: cls.fromSeries(x), axis=1).to_list()
+  return data.apply(lambda x: cls.fromSeries(x), axis=1).to_list()
 
 
 # Cell

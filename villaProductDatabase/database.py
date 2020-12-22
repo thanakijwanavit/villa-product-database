@@ -118,7 +118,8 @@ class ProductsFromList:
 def lambdaProductsFromList(event, *args):
   productsFromList = Event.parseDataClass(ProductsFromList,event)
   result:pd.DataFrame = ProductDatabase.productsFromList(productsFromList.iprcodes)
-  resultDict = ProductDatabase.fromDf(result)
+  results:List[ProductDatabase] = ProductDatabase.fromDf(result)
+  resultDict:List[dict] = ProductDatabase.toListDict(results)
   return Response.returnSuccess(result)
 
 # Cell
