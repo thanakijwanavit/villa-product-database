@@ -4,6 +4,7 @@
     "Helpers": "Helpers.html",
     "Schema module": "KeySchema.html",
     "S3Cache": "S3.html",
+    "Update": "Update.html",
     "Database Class": "database.html",
     "Query": "query.html"
   }

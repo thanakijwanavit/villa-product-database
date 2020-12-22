@@ -206,184 +206,11 @@ None
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=WO6giX5p2EedRsZtq2IskUQrXL0%3D&amp;Expires=1608389603&#39;</pre>
+<pre>&#39;https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=b%2B0IK6kArHviaMF3onQxl6swn54%3D&amp;Expires=1608648674&#39;</pre>
 </div>
 
 </div>
 
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Load-from-s3">Load from s3<a class="anchor-link" href="#Load-from-s3"> </a></h3>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># def loadFromS3(cls, bucketName= os.environ.get(&#39;INVENTORY_BUCKET_NAME&#39;), key = &#39;allData&#39;, **kwargs):</span>
-<span class="c1">#   &#39;&#39;&#39;</span>
-<span class="c1">#   this is not a real time function, there may be a delay of sync between</span>
-<span class="c1">#   the main dynamodb database and the cache</span>
-<span class="c1">#   &#39;&#39;&#39;</span>
-<span class="c1">#   logging.info(f&#39;loading from {bucketName}&#39;)</span>
-<span class="c1">#   logging.info(f&#39;user is {kwargs.get(&quot;user&quot;)}&#39;)</span>
-<span class="c1">#   return S3.load(key=key, bucket = bucketName,  **kwargs)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">loadFromS3</span><span class="p">()</span>
-<span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">(),(</span><span class="mi">1</span><span class="p">)))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>cache exist
-loading hashkey allData-hash
-loaded hash isPzfrumW4Vib/5yh3/4UtOHZI88U=
-found a valid cache, using cache
-CPU times: user 423 ms, sys: 168 ms, total: 590 ms
-Wall time: 1 s
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[(&#39;0217153&#39;,
-  {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;,
-    &#39;iprcode&#39;: &#39;0217153&#39;,
-    &#39;oprcode&#39;: &#39;0217153&#39;,
-    &#39;ordertype&#39;: &#39;Y&#39;,
-    &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;,
-    &#39;pr_active&#39;: &#39;Y&#39;,
-    &#39;pr_cgcode&#39;: &#39;98&#39;,
-    &#39;pr_code&#39;: &#39;0217153&#39;,
-    &#39;pr_dpcode&#39;: &#39;28&#39;,
-    &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;pr_ggcode&#39;: &#39;003&#39;,
-    &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;,
-    &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;pr_puqty&#39;: &#39;24.00&#39;,
-    &#39;pr_sa_method&#39;: &#39;1&#39;,
-    &#39;pr_sucode1&#39;: &#39;F1239&#39;,
-    &#39;pr_suref3&#39;: &#39;S&#39;,
-    &#39;prtype&#39;: &#39;I&#39;,
-    &#39;psqty&#39;: &#39;1&#39;,
-    &#39;pstype&#39;: &#39;1&#39;,
-    &#39;pr_country_th&#39;: &#39;&#39;,
-    &#39;pr_country_en&#39;: &#39;United Kingdom&#39;,
-    &#39;pr_keyword_th&#39;: &#39;&#39;,
-    &#39;pr_keyword_en&#39;: &#39;&#39;,
-    &#39;pr_filter_th&#39;: &#39;&#39;,
-    &#39;pr_filter_en&#39;: &#39;&#39;,
-    &#39;online_category_l1_th&#39;: &#39;&#39;,
-    &#39;online_category_l1_en&#39;: &#39;&#39;,
-    &#39;online_category_l2_th&#39;: &#39;&#39;,
-    &#39;online_category_l2_en&#39;: &#39;&#39;,
-    &#39;online_category_l3_th&#39;: &#39;&#39;,
-    &#39;online_category_l3_en&#39;: &#39;&#39;,
-    &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;,
-    &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;,
-    &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;,
-    &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;,
-    &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;hema_brand_th&#39;: &#39;&#39;,
-    &#39;hema_brand_en&#39;: &#39;&#39;,
-    &#39;hema_sizedesc&#39;: &#39;&#39;,
-    &#39;pr_brand_en&#39;: &#39;&#39;,
-    &#39;pr_brand_th&#39;: &#39;&#39;,
-    &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;pr_barcode&#39;: &#39;5060148383378&#39;,
-    &#39;pr_barcode2&#39;: &#39;506014838337&#39;,
-    &#39;sort_weight&#39;: &#39;0&#39;}})]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Decompress-to-s3">Decompress to s3<a class="anchor-link" href="#Decompress-to-s3"> </a></h2>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#   f.write(zlibPickle)</span>
-<span class="c1"># with open(&#39;./zlibjson.gz&#39;, &#39;wb&#39;) as f:</span>
-<span class="c1">#   f.write(zlibData)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># _ = json.loads(bytesData.decode())</span>
-</pre></div>
-
-    </div>
 </div>
 </div>
 
@@ -407,9 +234,9 @@ Wall time: 1 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L56" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L56" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>cprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
-<p>ProductsFromList(iprcodes: List[str])</p>
+<p>ProductsFromList(cprcodes: List[str])</p>
 
 </div>
 
@@ -439,7 +266,7 @@ Wall time: 1 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="productsFromList" class="doc_header"><code>productsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L62" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>productsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h4 id="productsFromList" class="doc_header"><code>productsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L62" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>productsFromList</code>(<strong><code>cprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
 
 </div>
@@ -468,8 +295,7 @@ Wall time: 1 s
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">Tester</span><span class="o">.</span><span class="n">productsFromList</span><span class="p">([</span><span class="s1">&#39;0217153&#39;</span><span class="p">,</span><span class="s1">&#39;203915&#39;</span><span class="p">,</span><span class="s1">&#39;0000009&#39;</span><span class="p">])</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
-<span class="n">printDict</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">assert</span> <span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;shape is not as intended </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s1">&#39;</span>
 </pre></div>
 
     </div>
@@ -482,67 +308,12 @@ Wall time: 1 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>cache exist
-loading hashkey allData-hash
-loaded hash isPzfrumW4Vib/5yh3/4UtOHZI88U=
-found a valid cache, using cache
-2621536
-3
-0217153
- cprcode : 0217153
- iprcode : 0217153
- oprcode : 0217153
- ordertype : Y
- pr_abb : COCOA LOCO
- pr_active : Y
- pr_cgcode : 98
- pr_code : 0217153
- pr_dpcode : 28
- pr_engname : COCOA LOCO
- pr_ggcode : 003
- pr_market : COCOA LOCO
- pr_name : COCOA LOCO
- pr_puqty : 24.00
- pr_sa_method : 1
- pr_sucode1 : F1239
- pr_suref3 : S
- prtype : I
- psqty : 1
- pstype : 1
- pr_country_th : 
- pr_country_en : United Kin
- pr_keyword_th : 
- pr_keyword_en : 
- pr_filter_th : 
- pr_filter_en : 
- online_category_l1_th : 
- online_category_l1_en : 
- online_category_l2_th : 
- online_category_l2_en : 
- online_category_l3_th : 
- online_category_l3_en : 
- villa_category_l1_en : Dry Grocer
- villa_category_l2_en : Grocery
- villa_category_l3_en : Cookies &amp; 
- villa_category_l4_en : Biscuits &amp;
- content_en : 0217153 CO
- content_th : COCOA LOCO
- hema_brand_th : 
- hema_brand_en : 
- hema_sizedesc : 
- pr_brand_en : 
- pr_brand_th : 
- pr_online_name_en : COCOA LOCO
- pr_online_name_th : COCOA LOCO
- hema_name_en : COCOA LOCO
- hema_name_th : COCOA LOCO
- pr_name_en : COCOA LOCO
- pr_name_th : COCOA LOCO
- pr_barcode : 5060148383
- pr_barcode2 : 5060148383
- sort_weight : 0
-CPU times: user 578 ms, sys: 97.6 ms, total: 676 ms
-Wall time: 1.07 s
+<pre>loading hashkey allData-hash
+loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+data is still in sync, using local cache
+db shape is (45149, 52)
+CPU times: user 306 ms, sys: 42.4 ms, total: 348 ms
+Wall time: 801 ms
 </pre>
 </div>
 </div>
@@ -570,7 +341,7 @@ Wall time: 1.07 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="singleProductQuery" class="doc_header"><code>singleProductQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L69" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>singleProductQuery</code>(<strong><code>input</code></strong>)</p>
+<h4 id="singleProductQuery" class="doc_header"><code>singleProductQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/query.py#L70" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>singleProductQuery</code>(<strong><code>input</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -632,7 +403,9 @@ Wall time: 1.07 s
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">Tester</span><span class="o">.</span><span class="n">singleProductQuery</span><span class="p">({</span><span class="s1">&#39;iprcode&#39;</span><span class="p">:</span><span class="s1">&#39;0000009&#39;</span><span class="p">})</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Tester</span><span class="o">.</span><span class="n">singleProductQuery</span><span class="p">({</span><span class="s1">&#39;iprcode&#39;</span><span class="p">:</span><span class="s1">&#39;0000009&#39;</span><span class="p">})</span>
+<span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">,</span> <span class="s1">&#39;return type is not series&#39;</span>
+<span class="k">assert</span> <span class="n">result</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">,</span> <span class="s1">&#39;result is not the correct shape&#39;</span>
 </pre></div>
 
     </div>
@@ -645,337 +418,10 @@ Wall time: 1.07 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 2.92 ms, sys: 654 µs, total: 3.57 ms
-Wall time: 5.75 ms
+<pre>CPU times: user 3.84 ms, sys: 0 ns, total: 3.84 ms
+Wall time: 6.07 ms
 </pre>
 </div>
-</div>
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>ProductDatabase Object
-cprcode 0000009
-iprcode 0000009
-oprcode 0000009
-ordertype Y
-pr_abb J. WALKER RED 70 CL.
-pr_active Y
-pr_cgcode 01
-pr_code 0000009
-pr_dpcode 01
-pr_engname JOHNNIE WALKER RED 70 CL.
-pr_ggcode 001
-pr_market J. WALKER RED 70 CL
-pr_name JOHNNIE WALKER RED 70 CL
-pr_puqty 12.00
-pr_sa_method 1
-pr_sucode1 1782
-pr_suref3 A
-prtype I
-psqty 1
-pstype 1
-pr_country_th 
-pr_country_en United Kingdom
-pr_keyword_th 
-pr_keyword_en 
-pr_filter_th Alcohol,Spirits  Liqueurs
-pr_filter_en Alcohol,Spirits  Liqueurs
-online_category_l1_th เบียร์, ไวน์และสุรา
-online_category_l1_en Beer Wine &amp; Spirits
-online_category_l2_th เหล้า
-online_category_l2_en Spirits &amp; Liqueurs
-online_category_l3_th 
-online_category_l3_en 
-villa_category_l1_en Dry Grocery
-villa_category_l2_en Alcohol &amp; Beverage
-villa_category_l3_en Whisky
-villa_category_l4_en Scoth Whisky
-content_en 0000009 Johnnie Walker Red 700ml
-content_th JOHNNIE WALKER RED 700ml
-hema_brand_th Johnnie Walker
-hema_brand_en Johnnie Walker
-hema_sizedesc 700ml
-pr_brand_en Johnnie Walker
-pr_brand_th Johnnie Walker
-pr_online_name_en Johnnie Walker Red 700ml
-pr_online_name_th JOHNNIE WALKER RED 700ml
-hema_name_en Johnnie Walker Red
-hema_name_th JOHNNIE WALKER RED
-pr_name_en JOHNNIE WALKER RED 70 CL.
-pr_name_th JOHNNIE WALKER RED 70 CL
-sort_weight 0
-pr_barcode 5000267014203
-pr_barcode2 500026701420</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="get-a-few-data-in-a-list">get a few data in a list<a class="anchor-link" href="#get-a-few-data-in-a-list"> </a></h2>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">listOfPrcode</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0217153&#39;</span><span class="p">,</span><span class="s1">&#39;203915&#39;</span><span class="p">,</span><span class="s1">&#39;0000009&#39;</span><span class="p">]</span>
-<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">Tester</span><span class="o">.</span><span class="n">batch_get</span><span class="p">(</span><span class="n">listOfPrcode</span><span class="p">):</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f&#39;</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">item</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 2.1 ms, sys: 0 ns, total: 2.1 ms
-Wall time: 2.46 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="k">for</span> <span class="n">prcode</span> <span class="ow">in</span> <span class="n">listOfPrcode</span><span class="p">:</span>
-  <span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Tester</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">prcode</span><span class="p">)))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 5.97 ms, sys: 436 µs, total: 6.4 ms
-Wall time: 14.4 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-Signature:
-Tester.batch_get(
-    items: Iterable[Union[Any, Iterable[Any]]],
-    consistent_read: Union[bool, NoneType] = None,
-    attributes_to_get: Union[Sequence[str], NoneType] = None,
-) -> Iterator[~_T]
-Docstring:
-BatchGetItem for this model
-
-:param items: Should be a list of hash keys to retrieve, or a list of
-    tuples if range keys are used.
-File:      ~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/models.py
-Type:      method
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">Tester</span><span class="o">.</span><span class="n">cprcodeOnlyIndex</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">listOfPrcode</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-32-647998a01848&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>list<span class="ansi-blue-fg">(</span>Tester<span class="ansi-blue-fg">.</span>cprcodeOnlyIndex<span class="ansi-blue-fg">.</span>query<span class="ansi-blue-fg">(</span>listOfPrcode<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/indexes.py</span> in <span class="ansi-cyan-fg">query</span><span class="ansi-blue-fg">(cls, hash_key, range_key_condition, filter_condition, consistent_read, scan_index_forward, limit, last_evaluated_key, attributes_to_get, page_size, rate_limit)</span>
-<span class="ansi-green-intense-fg ansi-bold">     96</span>         Queries an index
-<span class="ansi-green-intense-fg ansi-bold">     97</span>         &#34;&#34;&#34;
-<span class="ansi-green-fg">---&gt; 98</span><span class="ansi-red-fg">         return cls.Meta.model.query(
-</span><span class="ansi-green-intense-fg ansi-bold">     99</span>             hash_key<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    100</span>             range_key_condition<span class="ansi-blue-fg">=</span>range_key_condition<span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/models.py</span> in <span class="ansi-cyan-fg">query</span><span class="ansi-blue-fg">(cls, hash_key, range_key_condition, filter_condition, consistent_read, index_name, scan_index_forward, limit, last_evaluated_key, attributes_to_get, page_size, rate_limit)</span>
-<span class="ansi-green-intense-fg ansi-bold">    669</span> 
-<span class="ansi-green-intense-fg ansi-bold">    670</span>         return ResultIterator(
-<span class="ansi-green-fg">--&gt; 671</span><span class="ansi-red-fg">             </span>cls<span class="ansi-blue-fg">.</span>_get_connection<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>query<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    672</span>             query_args<span class="ansi-blue-fg">,</span>
-<span class="ansi-green-intense-fg ansi-bold">    673</span>             query_kwargs<span class="ansi-blue-fg">,</span>
-
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/models.py</span> in <span class="ansi-cyan-fg">_get_connection</span><span class="ansi-blue-fg">(cls)</span>
-<span class="ansi-green-intense-fg ansi-bold">   1096</span>             )
-<span class="ansi-green-intense-fg ansi-bold">   1097</span>         <span class="ansi-green-fg">elif</span> <span class="ansi-green-fg">not</span> hasattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">.</span>Meta<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#34;table_name&#34;</span><span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">or</span> cls<span class="ansi-blue-fg">.</span>Meta<span class="ansi-blue-fg">.</span>table_name <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 1098</span><span class="ansi-red-fg">             raise AttributeError(
-</span><span class="ansi-green-intense-fg ansi-bold">   1099</span>                 <span class="ansi-blue-fg">&#39;As of v1.0 PyanmoDB Models must have a table_name\n&#39;</span>
-<span class="ansi-green-intense-fg ansi-bold">   1100</span>                 <span class="ansi-blue-fg">&#39;Model: {}.{}\n&#39;</span>
-
-<span class="ansi-red-fg">AttributeError</span>: As of v1.0 PyanmoDB Models must have a table_name
-Model: villaProductDatabase.schema.KeySchema
-See https://pynamodb.readthedocs.io/en/latest/release_notes.html</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Tester</span><span class="o">.</span><span class="n">cprcodeIndex</span><span class="o">.</span><span class="n">Meta</span><span class="o">.</span><span class="n">index_name</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;cprcode&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">next</span><span class="p">(</span><span class="n">Tester</span><span class="o">.</span><span class="n">cprcodeIndex</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;0000009&#39;</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>ProductDatabase Object
-cprcode 0000009
-iprcode 0000009
-oprcode 0000009
-ordertype Y
-pr_abb J. WALKER RED 70 CL.
-pr_active Y
-pr_cgcode 01
-pr_code 0000009
-pr_dpcode 01
-pr_engname JOHNNIE WALKER RED 70 CL.
-pr_ggcode 001
-pr_market J. WALKER RED 70 CL
-pr_name JOHNNIE WALKER RED 70 CL
-pr_puqty 12.00
-pr_sa_method 1
-pr_sucode1 1782
-pr_suref3 A
-prtype I
-psqty 1
-pstype 1
-pr_country_th 
-pr_country_en United Kingdom
-pr_keyword_th 
-pr_keyword_en 
-pr_filter_th Alcohol,Spirits  Liqueurs
-pr_filter_en Alcohol,Spirits  Liqueurs
-online_category_l1_th เบียร์, ไวน์และสุรา
-online_category_l1_en Beer Wine &amp; Spirits
-online_category_l2_th เหล้า
-online_category_l2_en Spirits &amp; Liqueurs
-online_category_l3_th 
-online_category_l3_en 
-villa_category_l1_en Dry Grocery
-villa_category_l2_en Alcohol &amp; Beverage
-villa_category_l3_en Whisky
-villa_category_l4_en Scoth Whisky
-content_en 0000009 Johnnie Walker Red 700ml
-content_th JOHNNIE WALKER RED 700ml
-hema_brand_th Johnnie Walker
-hema_brand_en Johnnie Walker
-hema_sizedesc 700ml
-pr_brand_en Johnnie Walker
-pr_brand_th Johnnie Walker
-pr_online_name_en Johnnie Walker Red 700ml
-pr_online_name_th JOHNNIE WALKER RED 700ml
-hema_name_en Johnnie Walker Red
-hema_name_th JOHNNIE WALKER RED
-pr_name_en JOHNNIE WALKER RED 70 CL.
-pr_name_th JOHNNIE WALKER RED 70 CL
-sort_weight 0
-pr_barcode 5000267014203
-pr_barcode2 500026701420</pre>
-</div>
-
 </div>
 
 </div>

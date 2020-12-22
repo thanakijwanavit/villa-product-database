@@ -54,20 +54,21 @@ def allQuery(cls, key = 'allData', bucket = os.environ.get('INVENTORY_BUCKET_NAM
 @dataclass_json
 @dataclass
 class ProductsFromList:
-  iprcodes: List[str]
+  cprcodes: List[str]
 
 
 # Cell
 import sys
 @add_class_method(Querier)
-def productsFromList(cls,iprcodes:List[str])->dict:
-  database = cls.loadFromS3()
-  print(sys.getsizeof(database))
-  return [database[iprcode] for iprcode in iprcodes if iprcode in database.keys()]
+def productsFromList(cls,cprcodes:List[str])->pd.DataFrame:
+  db = cls.loadFromCache()
+  print(f'db shape is {db.shape}')
+  products = db[db['cprcode'].isin(cprcodes)]
+  return products
 
 # Cell
 @add_class_method(Querier)
-def singleProductQuery(cls, input):
+def singleProductQuery(cls, input)->pd.Series:
   if not cls.validateInputQuery(['iprcode'] , input): return f"error input {input}"
-  if (result:=next(cls.query(input.get('iprcode')),None)): return result
+  if (result:=next(cls.query(input.get('iprcode')),None)): return result.toSeries()
   else: raise Exception('product not found')

@@ -119,12 +119,6 @@ You can create the table by with the <code>create_table</code> method.</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="helperFunctions">helperFunctions<a class="anchor-link" href="#helperFunctions"> </a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="set-update-status">set update status<a class="anchor-link" href="#set-update-status"> </a></h3>
 </div>
 </div>
@@ -214,8 +208,8 @@ You can create the table by with the <code>create_table</code> method.</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Y
 N
-CPU times: user 84 ms, sys: 24.4 ms, total: 108 ms
-Wall time: 452 ms
+CPU times: user 61 ms, sys: 24.2 ms, total: 85.2 ms
+Wall time: 180 ms
 </pre>
 </div>
 </div>
@@ -249,202 +243,14 @@ Wall time: 452 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 177 ms, sys: 23.4 ms, total: 200 ms
-Wall time: 616 ms
+<pre>CPU times: user 202 ms, sys: 624 µs, total: 202 ms
+Wall time: 668 ms
 </pre>
 </div>
 </div>
 
 </div>
 </div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">Meta</span><span class="o">.</span><span class="n">table_name</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;product-table-dev-manual&#39;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[ProductDatabase Object
- cprcode 0140942
- iprcode 0140942
- oprcode 0140942
- ordertype Y
- pr_abb FRAGATA OLIVE POMACE
- pr_active Y
- pr_cgcode 01
- pr_code 0140942
- pr_dpcode 08
- pr_engname FRAGATA OLIVE POMACE OIL 2 LITE
- pr_ggcode 008
- pr_market FRAGATA น้ำมันมะกอกธรรมชาติผสม
- pr_name FRAGATA น้ำมันมะกอกธรรมชาติ-กรรมวิธี 2 ลิตร
- pr_puqty 8.00
- pr_sa_method 1
- pr_sucode1 1036
- pr_suref3 A
- prtype I
- psqty 1
- pstype 1
- pr_country_th 
- pr_country_en 
- pr_keyword_th 
- pr_keyword_en cooking oil, oil cooking,Fragata Olive Pomace Oil, Fragata, Olive purity pomace oil, Omace oil olive pomace oil, cooking olive pomace oil, olive pomace oil cooking
- pr_filter_th Oils  Vinegar,Grocery
- pr_filter_en Oils  Vinegar,Grocery
- online_category_l1_th สินค้าบริโภค
- online_category_l1_en Grocery
- online_category_l2_th น้ำมันและน้ำส้มสายชู
- online_category_l2_en Oils &amp; Vinegar
- online_category_l3_th 
- online_category_l3_en 
- villa_category_l1_en Dry Grocery
- villa_category_l2_en Grocery
- villa_category_l3_en Oil &amp; Seasoning &amp; Sauce
- villa_category_l4_en Cooking Oil
- content_en 0140942 Fragata Olive Pomace Oil 2L cooking oil, oil cooking,Fragata Olive Pomace Oil, Fragata, Olive purity pomace oil, Omace oil olive pomace oil, cooking olive pomace oil, olive pomace oil cooking
- content_th Fragata Olive Pomace Oil 2L
- hema_brand_th Fragata
- hema_brand_en Fragata
- hema_sizedesc 2L
- pr_brand_en Fragata
- pr_brand_th Fragata
- pr_online_name_en Fragata Olive Pomace Oil 2L
- pr_online_name_th Fragata Olive Pomace Oil 2L
- hema_name_en Olive Pomace Oil
- hema_name_th Olive Pomace Oil
- pr_name_en FRAGATA OLIVE POMACE OIL 2 LITE
- pr_name_th FRAGATA น้ำมันมะกอกธรรมชาติ-กรรมวิธี 2 ลิตร
- sort_weight 0
- pr_barcode 8410134118601
- pr_barcode2 841013411860]</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">needsUpdateIndex</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">TRUE</span><span class="p">)))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>500</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Create-object-from-dict">Create object from dict<a class="anchor-link" href="#Create-object-from-dict"> </a></h3>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="fromDict" class="doc_header"><code>fromDict</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L112" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fromDict</code>(<strong><code>dictInput</code></strong>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
@@ -458,46 +264,17 @@ Wall time: 616 ms
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="updateWithDict" class="doc_header"><code>updateWithDict</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L124" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateWithDict</code>(<strong><code>originalObject</code></strong>:<a href="/villaProductDatabase/database.html#ProductDatabase"><code>ProductDatabase</code></a>, <strong><code>inputDict</code></strong>:<code>dict</code>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">item</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;0000009&#39;</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pr_engname&#39;</span><span class="p">))</span>
-<span class="n">newItem</span> <span class="o">=</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">updateWithDict</span><span class="p">(</span><span class="n">item</span><span class="p">,{</span><span class="s1">&#39;pr_engname&#39;</span><span class="p">:</span><span class="s1">&#39;testName&#39;</span><span class="p">})</span>
-<span class="k">assert</span> <span class="n">newItem</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pr_engname&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;testName&#39;</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">newItem</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pr_engname&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;engname is </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;pr_engname&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1">### update item</span>
+<span class="n">updatedItem</span> <span class="o">=</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">updateWithDict</span><span class="p">(</span><span class="n">item</span><span class="p">,{</span><span class="s1">&#39;pr_engname&#39;</span><span class="p">:</span><span class="s1">&#39;testName&#39;</span><span class="p">})</span>
+<span class="k">assert</span> <span class="n">updatedItem</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pr_engname&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;testName&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">updatedItem</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;pr_engname&#39;</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -510,9 +287,25 @@ Wall time: 616 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>JOHNNIE WALKER RED 70 CL.
-testName
+<pre>engname is JOHNNIE WALKER RED 70 CL.
 </pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-16-c2a6bb676fa9&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> 
+<span class="ansi-green-intense-fg ansi-bold">      5</span> <span class="ansi-red-fg">### update item</span>
+<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg"> </span>updatedItem <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>updateWithDict<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">&#39;pr_engname&#39;</span><span class="ansi-blue-fg">:</span><span class="ansi-blue-fg">&#39;testName&#39;</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      7</span> <span class="ansi-green-fg">assert</span> updatedItem<span class="ansi-blue-fg">.</span>data<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;pr_engname&#39;</span><span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">==</span> <span class="ansi-blue-fg">&#39;testName&#39;</span>
+<span class="ansi-green-intense-fg ansi-bold">      8</span> print<span class="ansi-blue-fg">(</span>updatedItem<span class="ansi-blue-fg">.</span>data<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;pr_engname&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">AttributeError</span>: type object &#39;ProductDatabase&#39; has no attribute &#39;updateWithDict&#39;</pre>
 </div>
 </div>
 
@@ -535,9 +328,9 @@ testName
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">islice</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">loadFromS3</span><span class="p">()</span>
-<span class="nb">list</span><span class="p">(</span><span class="n">islice</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">(),(</span><span class="mi">1</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">loadFromCache</span><span class="p">()</span>
+<span class="k">assert</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">10000</span><span class="p">,</span> <span class="s1">&#39;loadFrom cache not working&#39;</span>
 </pre></div>
 
     </div>
@@ -550,78 +343,13 @@ testName
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>cache exist
-hashKey is allData-hash
-cache has different hash than s3
-cache doesnt exist
-hashKey is allData-hash
-saving cache file
-saving hash file
-saving hash to s3
+<pre>loading hashkey allData-hash
+loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+data is still in sync, using local cache
+CPU times: user 284 ms, sys: 72.7 ms, total: 357 ms
+Wall time: 750 ms
 </pre>
 </div>
-</div>
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>[(&#39;0217153&#39;,
-  {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;,
-    &#39;iprcode&#39;: &#39;0217153&#39;,
-    &#39;oprcode&#39;: &#39;0217153&#39;,
-    &#39;ordertype&#39;: &#39;Y&#39;,
-    &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;,
-    &#39;pr_active&#39;: &#39;Y&#39;,
-    &#39;pr_cgcode&#39;: &#39;98&#39;,
-    &#39;pr_code&#39;: &#39;0217153&#39;,
-    &#39;pr_dpcode&#39;: &#39;28&#39;,
-    &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;pr_ggcode&#39;: &#39;003&#39;,
-    &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;,
-    &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;pr_puqty&#39;: &#39;24.00&#39;,
-    &#39;pr_sa_method&#39;: &#39;1&#39;,
-    &#39;pr_sucode1&#39;: &#39;F1239&#39;,
-    &#39;pr_suref3&#39;: &#39;S&#39;,
-    &#39;prtype&#39;: &#39;I&#39;,
-    &#39;psqty&#39;: &#39;1&#39;,
-    &#39;pstype&#39;: &#39;1&#39;,
-    &#39;pr_country_th&#39;: &#39;&#39;,
-    &#39;pr_country_en&#39;: &#39;United Kingdom&#39;,
-    &#39;pr_keyword_th&#39;: &#39;&#39;,
-    &#39;pr_keyword_en&#39;: &#39;&#39;,
-    &#39;pr_filter_th&#39;: &#39;&#39;,
-    &#39;pr_filter_en&#39;: &#39;&#39;,
-    &#39;online_category_l1_th&#39;: &#39;&#39;,
-    &#39;online_category_l1_en&#39;: &#39;&#39;,
-    &#39;online_category_l2_th&#39;: &#39;&#39;,
-    &#39;online_category_l2_en&#39;: &#39;&#39;,
-    &#39;online_category_l3_th&#39;: &#39;&#39;,
-    &#39;online_category_l3_en&#39;: &#39;&#39;,
-    &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;,
-    &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;,
-    &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;,
-    &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;,
-    &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;hema_brand_th&#39;: &#39;&#39;,
-    &#39;hema_brand_en&#39;: &#39;&#39;,
-    &#39;hema_sizedesc&#39;: &#39;&#39;,
-    &#39;pr_brand_en&#39;: &#39;&#39;,
-    &#39;pr_brand_th&#39;: &#39;&#39;,
-    &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-    &#39;pr_barcode&#39;: &#39;5060148383378&#39;,
-    &#39;pr_barcode2&#39;: &#39;506014838337&#39;,
-    &#39;sort_weight&#39;: &#39;0&#39;}})]</pre>
-</div>
-
 </div>
 
 </div>
@@ -641,7 +369,7 @@ saving hash to s3
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L133" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L113" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
 <p>ProductsFromList(iprcodes: List[str])</p>
 
@@ -673,7 +401,7 @@ saving hash to s3
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaProductsFromList" class="doc_header"><code>lambdaProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L137" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaProductsFromList</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
+<h4 id="lambdaProductsFromList" class="doc_header"><code>lambdaProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L117" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaProductsFromList</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -704,8 +432,8 @@ saving hash to s3
 <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="o">.</span><span class="n">getInput</span><span class="p">({</span><span class="s1">&#39;iprcodes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0217153&#39;</span><span class="p">,</span><span class="s1">&#39;203915&#39;</span><span class="p">,</span><span class="s1">&#39;0000009&#39;</span><span class="p">]})</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">lambdaProductsFromList</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">Response</span><span class="o">.</span><span class="n">parseBody</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-<span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-<span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">assert</span> <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="o">==</span> <span class="mi">3</span>
+<span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">==</span><span class="nb">dict</span>
 </pre></div>
 
     </div>
@@ -719,73 +447,54 @@ saving hash to s3
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>cache exist
-hashKey is allData-hash
-found a valid cache, using cache
-CPU times: user 597 ms, sys: 108 ms, total: 704 ms
-Wall time: 1.16 s
 </pre>
 </div>
 </div>
 
 <div class="output_area">
 
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 
+<span class="ansi-green-fg">&lt;ipython-input-26-c36516859f89&gt;</span> in <span class="ansi-cyan-fg">lambdaProductsFromList</span><span class="ansi-blue-fg">(event, *args)</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">def</span> lambdaProductsFromList<span class="ansi-blue-fg">(</span>event<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>   productsFromList <span class="ansi-blue-fg">=</span> Event<span class="ansi-blue-fg">.</span>parseDataClass<span class="ansi-blue-fg">(</span>ProductsFromList<span class="ansi-blue-fg">,</span>event<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg">   </span>result <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>productsFromList<span class="ansi-blue-fg">(</span>productsFromList<span class="ansi-blue-fg">.</span>iprcodes<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>   <span class="ansi-green-fg">return</span> Response<span class="ansi-blue-fg">.</span>returnSuccess<span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">)</span>
 
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;,
-  &#39;iprcode&#39;: &#39;0217153&#39;,
-  &#39;oprcode&#39;: &#39;0217153&#39;,
-  &#39;ordertype&#39;: &#39;Y&#39;,
-  &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;,
-  &#39;pr_active&#39;: &#39;Y&#39;,
-  &#39;pr_cgcode&#39;: &#39;98&#39;,
-  &#39;pr_code&#39;: &#39;0217153&#39;,
-  &#39;pr_dpcode&#39;: &#39;28&#39;,
-  &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-  &#39;pr_ggcode&#39;: &#39;003&#39;,
-  &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;,
-  &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-  &#39;pr_puqty&#39;: &#39;24.00&#39;,
-  &#39;pr_sa_method&#39;: &#39;1&#39;,
-  &#39;pr_sucode1&#39;: &#39;F1239&#39;,
-  &#39;pr_suref3&#39;: &#39;S&#39;,
-  &#39;prtype&#39;: &#39;I&#39;,
-  &#39;psqty&#39;: &#39;1&#39;,
-  &#39;pstype&#39;: &#39;1&#39;,
-  &#39;pr_country_th&#39;: &#39;&#39;,
-  &#39;pr_country_en&#39;: &#39;United Kingdom&#39;,
-  &#39;pr_keyword_th&#39;: &#39;&#39;,
-  &#39;pr_keyword_en&#39;: &#39;&#39;,
-  &#39;pr_filter_th&#39;: &#39;&#39;,
-  &#39;pr_filter_en&#39;: &#39;&#39;,
-  &#39;online_category_l1_th&#39;: &#39;&#39;,
-  &#39;online_category_l1_en&#39;: &#39;&#39;,
-  &#39;online_category_l2_th&#39;: &#39;&#39;,
-  &#39;online_category_l2_en&#39;: &#39;&#39;,
-  &#39;online_category_l3_th&#39;: &#39;&#39;,
-  &#39;online_category_l3_en&#39;: &#39;&#39;,
-  &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;,
-  &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;,
-  &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;,
-  &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;,
-  &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-  &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-  &#39;hema_brand_th&#39;: &#39;&#39;,
-  &#39;hema_brand_en&#39;: &#39;&#39;,
-  &#39;hema_sizedesc&#39;: &#39;&#39;,
-  &#39;pr_brand_en&#39;: &#39;&#39;,
-  &#39;pr_brand_th&#39;: &#39;&#39;,
-  &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-  &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-  &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-  &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-  &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-  &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;,
-  &#39;pr_barcode&#39;: &#39;5060148383378&#39;,
-  &#39;pr_barcode2&#39;: &#39;506014838337&#39;,
-  &#39;sort_weight&#39;: &#39;0&#39;}}</pre>
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     35</span>         <span class="ansi-blue-fg">@</span>classmethod
+<span class="ansi-green-intense-fg ansi-bold">     36</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 37</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span> cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     38</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     39</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
+
+<span class="ansi-green-fg">~/SageMaker/stacks/villaMaster/villa-master-dev/product/database2/villaProductDatabase/query.py</span> in <span class="ansi-cyan-fg">productsFromList</span><span class="ansi-blue-fg">(cls, iprcodes)</span>
+<span class="ansi-green-intense-fg ansi-bold">     62</span> <span class="ansi-blue-fg">@</span>add_class_method<span class="ansi-blue-fg">(</span>Querier<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     63</span> <span class="ansi-green-fg">def</span> productsFromList<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span>iprcodes<span class="ansi-blue-fg">:</span>List<span class="ansi-blue-fg">[</span>str<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">-&gt;</span>dict<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 64</span><span class="ansi-red-fg">   </span>database <span class="ansi-blue-fg">=</span> cls<span class="ansi-blue-fg">.</span>loadFromS3<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     65</span>   print<span class="ansi-blue-fg">(</span>sys<span class="ansi-blue-fg">.</span>getsizeof<span class="ansi-blue-fg">(</span>database<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     66</span>   <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">[</span>database<span class="ansi-blue-fg">[</span>iprcode<span class="ansi-blue-fg">]</span> <span class="ansi-green-fg">for</span> iprcode <span class="ansi-green-fg">in</span> iprcodes <span class="ansi-green-fg">if</span> iprcode <span class="ansi-green-fg">in</span> database<span class="ansi-blue-fg">.</span>keys<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     35</span>         <span class="ansi-blue-fg">@</span>classmethod
+<span class="ansi-green-intense-fg ansi-bold">     36</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 37</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span> cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     38</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     39</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
+
+<span class="ansi-green-fg">~/SageMaker/stacks/villaMaster/villa-master-dev/product/database2/villaProductDatabase/s3.py</span> in <span class="ansi-cyan-fg">loadFromS3</span><span class="ansi-blue-fg">(cls, bucketName, key, hashPath, cachePath, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     85</span>   <span class="ansi-green-fg">if</span> os<span class="ansi-blue-fg">.</span>path<span class="ansi-blue-fg">.</span>exists<span class="ansi-blue-fg">(</span>hashPath<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">and</span> os<span class="ansi-blue-fg">.</span>path<span class="ansi-blue-fg">.</span>exists<span class="ansi-blue-fg">(</span>cachePath<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     86</span>     print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;cache exist&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">---&gt; 87</span><span class="ansi-red-fg">     </span><span class="ansi-green-fg">if</span> cls<span class="ansi-blue-fg">.</span>loadHash<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">=</span>key<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">==</span> loadStringFromFile<span class="ansi-blue-fg">(</span>hashPath<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     88</span>       db <span class="ansi-blue-fg">=</span> loadDictFromFile<span class="ansi-blue-fg">(</span>cachePath<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     89</span>       print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;found a valid cache, using cache&#39;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">AttributeError</span>: type object &#39;ProductDatabase&#39; has no attribute &#39;loadHash&#39;</pre>
 </div>
-
 </div>
 
 </div>
@@ -876,7 +585,7 @@ Wall time: 1.16 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="dumpToS3" class="doc_header"><code>dumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L143" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>dumpToS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>500</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="dumpToS3" class="doc_header"><code>dumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L123" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>dumpToS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>500</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>upload changes to s3</p>
 
@@ -919,14 +628,16 @@ Wall time: 1.16 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>cache exist
-hashKey is allData-hash
+loading hashkey allData-hash
+loaded hash isPzfrumW4Vib/5yh3/4UtOHZI88U=
 found a valid cache, using cache
 not finished, doing the next batch of 500
 cache exist
-hashKey is allData-hash
+loading hashkey allData-hash
+loaded hash isPzfrumW4Vib/5yh3/4UtOHZI88U=
 found a valid cache, using cache
-CPU times: user 1.26 s, sys: 286 ms, total: 1.55 s
-Wall time: 2.84 s
+CPU times: user 1.31 s, sys: 255 ms, total: 1.57 s
+Wall time: 2.74 s
 </pre>
 </div>
 </div>
@@ -958,7 +669,7 @@ Wall time: 2.84 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L192" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L172" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1001,11 +712,12 @@ Wall time: 2.84 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>cache exist
-hashKey is allData-hash
+loading hashkey allData-hash
+loaded hash isPzfrumW4Vib/5yh3/4UtOHZI88U=
 found a valid cache, using cache
 saved 45149 products
-CPU times: user 609 ms, sys: 81.3 ms, total: 690 ms
-Wall time: 1.42 s
+CPU times: user 625 ms, sys: 77.1 ms, total: 702 ms
+Wall time: 1.47 s
 </pre>
 </div>
 </div>
@@ -1033,7 +745,7 @@ Wall time: 1.42 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L206" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
+<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L186" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
 </blockquote>
 <p>Product(iprcode: str, cprcode: str, data: Union[~CatchAllVar, NoneType])</p>
 
@@ -1058,7 +770,7 @@ Wall time: 1.42 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L212" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
+<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L192" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
 </blockquote>
 <p>ValueUpdate(items: List[villaProductDatabase.database.Product])</p>
 
@@ -1090,7 +802,7 @@ Wall time: 1.42 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L216" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
+<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L196" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1163,7 +875,7 @@ Wall time: 1.42 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="valueUpdate" class="doc_header"><code>valueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L219" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate</code>(<strong><code>inputs</code></strong>)</p>
+<h4 id="valueUpdate" class="doc_header"><code>valueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L199" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate</code>(<strong><code>inputs</code></strong>)</p>
 </blockquote>
 <p>check for difference and batch update the changes in product data</p>
 
@@ -1248,7 +960,7 @@ Wall time: 1.42 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="valueUpdate2" class="doc_header"><code>valueUpdate2</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L273" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate2</code>(<strong><code>inputs</code></strong>)</p>
+<h4 id="valueUpdate2" class="doc_header"><code>valueUpdate2</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L253" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate2</code>(<strong><code>inputs</code></strong>)</p>
 </blockquote>
 <p>check for difference and batch update the changes in product data</p>
 
@@ -1309,11 +1021,12 @@ Wall time: 1.42 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>input validated 0.012 ms
-divided into chunks 0.746 ms
+divided into chunks 0.5640000000000001 ms
 cache exist
-hashKey is allData-hash
+loading hashkey allData-hash
+loaded hash isPzfrumW4Vib/5yh3/4UtOHZI88U=
 found a valid cache, using cache
-get all from s3 992.1990000000001 ms
+get all from s3 982.624 ms
 </pre>
 </div>
 </div>
@@ -1327,7 +1040,7 @@ get all from s3 992.1990000000001 ms
  &#39;failure&#39;: 0,
  &#39;skipped&#39;: 0,
  &#39;failureMessage&#39;: [],
- &#39;timetaken(ms)&#39;: 992.544}</pre>
+ &#39;timetaken(ms)&#39;: 982.977}</pre>
 </div>
 
 </div>
@@ -1349,7 +1062,7 @@ get all from s3 992.1990000000001 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L333" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L313" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1392,7 +1105,7 @@ get all from s3 992.1990000000001 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:6.381}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:6.074999999999999}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -1430,7 +1143,7 @@ get all from s3 992.1990000000001 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L339" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L319" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1486,7 +1199,7 @@ get all from s3 992.1990000000001 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L347" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L327" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1533,7 +1246,7 @@ get all from s3 992.1990000000001 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:5.157}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:5.6129999999999995}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -1620,7 +1333,7 @@ get all from s3 992.1990000000001 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">singleProductQuery</span><span class="p">(</span><span class="n">sampleQueryInput</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">singleProductQuery</span><span class="p">(</span><span class="n">sampleQueryInput</span><span class="p">)</span><span class="o">.</span><span class="n">toSeries</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -1635,28 +1348,28 @@ get all from s3 992.1990000000001 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>ProductDatabase Object
-0171670 {&#39;cprcode&#39;: &#39;0171670&#39;, &#39;iprcode&#39;: &#39;0171670&#39;, &#39;oprcode&#39;: &#39;0171670&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;JIRAPAT YOUNG KALE 2&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;05&#39;, &#39;pr_code&#39;: &#39;0171670&#39;, &#39;pr_dpcode&#39;: &#39;19&#39;, &#39;pr_engname&#39;: &#39;JIRAPAT YOUNG KALE 200 G.&#39;, &#39;pr_ggcode&#39;: &#39;057&#39;, &#39;pr_market&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_name&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_puqty&#39;: &#39;1.00&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;CM845&#39;, &#39;pr_suref3&#39;: &#39;A&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;none&#39;, &#39;pr_country_en&#39;: &#39;none&#39;, &#39;pr_keyword_th&#39;: &#39;none&#39;, &#39;pr_keyword_en&#39;: &#39;none&#39;, &#39;pr_filter_th&#39;: &#39;none&#39;, &#39;pr_filter_en&#39;: &#39;none&#39;, &#39;online_category_l1_th&#39;: &#39;none&#39;, &#39;online_category_l1_en&#39;: &#39;none&#39;, &#39;online_category_l2_th&#39;: &#39;none&#39;, &#39;online_category_l2_en&#39;: &#39;none&#39;, &#39;online_category_l3_th&#39;: &#39;none&#39;, &#39;online_category_l3_en&#39;: &#39;none&#39;, &#39;content_en&#39;: &#39;0171670 JIRAPAT YOUNG KALE 200 G.&#39;, &#39;content_th&#39;: &#39;JIRAPAT YOUNG KALE 200 G.&#39;, &#39;hema_brand_th&#39;: &#39;none&#39;, &#39;hema_brand_en&#39;: &#39;none&#39;, &#39;hema_sizedesc&#39;: &#39;none&#39;}
-iprcode 0171670
-cprcode 0171670
-oprcode 0171670
-ordertype Y
-pr_abb JIRAPAT YOUNG KALE 2
-pr_active Y
-pr_cgcode 05
-pr_code 0171670
-pr_dpcode 19
-pr_engname JIRAAT YOUNG KALE 200 G.
-pr_ggcode 057
-pr_market JIRAPAT ยอดคะน้า 200 G.
-pr_name JIRAPAT ยอดคะน้า 200 G.
-pr_puqty 1
-pr_sa_method 1
-pr_sucode1 CM845
-pr_suref3 A
-prtype I
-psqty 1
-pstype 1</pre>
+<pre>0171670         {&#39;cprcode&#39;: &#39;0171670&#39;, &#39;iprcode&#39;: &#39;0171670&#39;, &#39;...
+iprcode                                                   0171670
+cprcode                                                   0171670
+oprcode                                                   0171670
+ordertype                                                       Y
+pr_abb                                       JIRAPAT YOUNG KALE 2
+pr_active                                                       Y
+pr_cgcode                                                      05
+pr_code                                                   0171670
+pr_dpcode                                                      19
+pr_engname                               JIRAAT YOUNG KALE 200 G.
+pr_ggcode                                                     057
+pr_market                                 JIRAPAT ยอดคะน้า 200 G.
+pr_name                                   JIRAPAT ยอดคะน้า 200 G.
+pr_puqty                                                        1
+pr_sa_method                                                    1
+pr_sucode1                                                  CM845
+pr_suref3                                                       A
+prtype                                                          I
+psqty                                                           1
+pstype                                                          1
+dtype: object</pre>
 </div>
 
 </div>
@@ -1678,7 +1391,7 @@ pstype 1</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L362" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L342" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1802,7 +1515,7 @@ pstype 1</pre>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
-https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=hkzafyMPnLRzAV9FoLw8sNn5jks%3D&amp;Expires=1608384445
+https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=JlQUPmevbHN%2BWsh0kHmq16MbDV8%3D&amp;Expires=1608532515
 received 73095 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;, &#39;iprcode&#39;: &#39;0217153&#39;, &#39;oprcode&#39;: &#39;0217153&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;98&#39;, &#39;pr_code&#39;: &#39;0217153&#39;, &#39;pr_dpcode&#39;: &#39;28&#39;, &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_ggcode&#39;: &#39;003&#39;, &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;, &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_puqty&#39;: &#39;24&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;F1222&#39;, &#39;pr_suref3&#39;: &#39;S&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;&#39;, &#39;pr_country_en&#39;: &#39;United Kingdom&#39;, &#39;pr_keyword_th&#39;: &#39;&#39;, &#39;pr_keyword_en&#39;: &#39;&#39;, &#39;pr_filter_th&#39;: &#39;&#39;, &#39;pr_filter_en&#39;: &#39;&#39;, &#39;online_category_l1_th&#39;: &#39;&#39;, &#39;online_category_l1_en&#39;: &#39;&#39;, &#39;online_category_l2_th&#39;: &#39;&#39;, &#39;online_category_l2_en&#39;: &#39;&#39;, &#39;online_category_l3_th&#39;: &#39;&#39;, &#39;online_category_l3_en&#39;: &#39;&#39;, &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;, &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;, &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;, &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;, &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_brand_th&#39;: &#39;&#39;, &#39;hema_brand_en&#39;: &#39;&#39;, &#39;hema_sizedesc&#39;: &#39;&#39;, &#39;pr_brand_en&#39;: &#39;&#39;, &#39;pr_brand_th&#39;: &#39;&#39;, &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_barcode&#39;: &#39;5060148383378&#39;, &#39;pr_barcode2&#39;: &#39;506014838337&#39;, &#39;sort_weight&#39;: &#39;0&#39;}})
 </pre>
 </div>
@@ -1825,7 +1538,7 @@ received 73095 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L371" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L351" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1871,8 +1584,8 @@ received 73095 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;:
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
 received 73095 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;, &#39;iprcode&#39;: &#39;0217153&#39;, &#39;oprcode&#39;: &#39;0217153&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;98&#39;, &#39;pr_code&#39;: &#39;0217153&#39;, &#39;pr_dpcode&#39;: &#39;28&#39;, &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_ggcode&#39;: &#39;003&#39;, &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;, &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_puqty&#39;: &#39;24&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;F1222&#39;, &#39;pr_suref3&#39;: &#39;S&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;&#39;, &#39;pr_country_en&#39;: &#39;United Kingdom&#39;, &#39;pr_keyword_th&#39;: &#39;&#39;, &#39;pr_keyword_en&#39;: &#39;&#39;, &#39;pr_filter_th&#39;: &#39;&#39;, &#39;pr_filter_en&#39;: &#39;&#39;, &#39;online_category_l1_th&#39;: &#39;&#39;, &#39;online_category_l1_en&#39;: &#39;&#39;, &#39;online_category_l2_th&#39;: &#39;&#39;, &#39;online_category_l2_en&#39;: &#39;&#39;, &#39;online_category_l3_th&#39;: &#39;&#39;, &#39;online_category_l3_en&#39;: &#39;&#39;, &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;, &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;, &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;, &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;, &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_brand_th&#39;: &#39;&#39;, &#39;hema_brand_en&#39;: &#39;&#39;, &#39;hema_sizedesc&#39;: &#39;&#39;, &#39;pr_brand_en&#39;: &#39;&#39;, &#39;pr_brand_th&#39;: &#39;&#39;, &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_barcode&#39;: &#39;5060148383378&#39;, &#39;pr_barcode2&#39;: &#39;506014838337&#39;, &#39;sort_weight&#39;: &#39;0&#39;}})
-CPU times: user 5.9 s, sys: 306 ms, total: 6.21 s
-Wall time: 6.71 s
+CPU times: user 6.72 s, sys: 339 ms, total: 7.06 s
+Wall time: 7.59 s
 </pre>
 </div>
 </div>
@@ -1898,7 +1611,7 @@ Wall time: 6.71 s
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;checking scan time&#39;</span><span class="p">)</span>
-<span class="nb">list</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">scan</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">scan</span><span class="p">()))</span>
 </pre></div>
 
     </div>
@@ -1912,8 +1625,8 @@ Wall time: 6.71 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>checking scan time
-CPU times: user 15.9 s, sys: 755 ms, total: 16.7 s
-Wall time: 28.9 s
+CPU times: user 16.2 s, sys: 915 ms, total: 17.2 s
+Wall time: 29.3 s
 </pre>
 </div>
 </div>
@@ -1923,59 +1636,7 @@ Wall time: 28.9 s
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>ProductDatabase Object
-cprcode 0140942
-iprcode 0140942
-oprcode 0140942
-ordertype Y
-pr_abb FRAGATA OLIVE POMACE
-pr_active Y
-pr_cgcode 01
-pr_code 0140942
-pr_dpcode 08
-pr_engname FRAGATA OLIVE POMACE OIL 2 LITE
-pr_ggcode 008
-pr_market FRAGATA น้ำมันมะกอกธรรมชาติผสม
-pr_name FRAGATA น้ำมันมะกอกธรรมชาติ-กรรมวิธี 2 ลิตร
-pr_puqty 8.00
-pr_sa_method 1
-pr_sucode1 1036
-pr_suref3 A
-prtype I
-psqty 1
-pstype 1
-pr_country_th 
-pr_country_en 
-pr_keyword_th 
-pr_keyword_en cooking oil, oil cooking,Fragata Olive Pomace Oil, Fragata, Olive purity pomace oil, Omace oil olive pomace oil, cooking olive pomace oil, olive pomace oil cooking
-pr_filter_th Oils  Vinegar,Grocery
-pr_filter_en Oils  Vinegar,Grocery
-online_category_l1_th สินค้าบริโภค
-online_category_l1_en Grocery
-online_category_l2_th น้ำมันและน้ำส้มสายชู
-online_category_l2_en Oils &amp; Vinegar
-online_category_l3_th 
-online_category_l3_en 
-villa_category_l1_en Dry Grocery
-villa_category_l2_en Grocery
-villa_category_l3_en Oil &amp; Seasoning &amp; Sauce
-villa_category_l4_en Cooking Oil
-content_en 0140942 Fragata Olive Pomace Oil 2L cooking oil, oil cooking,Fragata Olive Pomace Oil, Fragata, Olive purity pomace oil, Omace oil olive pomace oil, cooking olive pomace oil, olive pomace oil cooking
-content_th Fragata Olive Pomace Oil 2L
-hema_brand_th Fragata
-hema_brand_en Fragata
-hema_sizedesc 2L
-pr_brand_en Fragata
-pr_brand_th Fragata
-pr_online_name_en Fragata Olive Pomace Oil 2L
-pr_online_name_th Fragata Olive Pomace Oil 2L
-hema_name_en Olive Pomace Oil
-hema_name_th Olive Pomace Oil
-pr_name_en FRAGATA OLIVE POMACE OIL 2 LITE
-pr_name_th FRAGATA น้ำมันมะกอกธรรมชาติ-กรรมวิธี 2 ลิตร
-sort_weight 0
-pr_barcode 8410134118601
-pr_barcode2 841013411860</pre>
+<pre>106219</pre>
 </div>
 
 </div>

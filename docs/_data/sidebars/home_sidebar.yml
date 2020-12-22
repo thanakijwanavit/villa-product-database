@@ -19,6 +19,9 @@ entries:
       title: S3Cache
       url: S3.html
     - output: web,pdf
+      title: Update
+      url: Update.html
+    - output: web,pdf
       title: Database Class
       url: database.html
     - output: web,pdf
