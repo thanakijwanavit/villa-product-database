@@ -95,7 +95,7 @@ None
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProductDatabase" class="doc_header"><code>class</code> <code>ProductDatabase</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L55" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductDatabase</code>(<strong><code>hash_key</code></strong>:<code>Optional</code>[<code>Any</code>]=<em><code>None</code></em>, <strong><code>range_key</code></strong>:<code>Optional</code>[<code>Any</code>]=<em><code>None</code></em>, <strong><code>_user_instantiated</code></strong>:<code>bool</code>=<em><code>True</code></em>, <strong>**<code>attributes</code></strong>:<code>Any</code>) :: <a href="/villaProductDatabase/query.html#Querier"><code>Querier</code></a></p>
+<h2 id="ProductDatabase" class="doc_header"><code>class</code> <code>ProductDatabase</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L56" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductDatabase</code>(<strong><code>hash_key</code></strong>:<code>Optional</code>[<code>Any</code>]=<em><code>None</code></em>, <strong><code>range_key</code></strong>:<code>Optional</code>[<code>Any</code>]=<em><code>None</code></em>, <strong><code>_user_instantiated</code></strong>:<code>bool</code>=<em><code>True</code></em>, <strong>**<code>attributes</code></strong>:<code>Any</code>) :: <a href="/villaProductDatabase/query.html#Querier"><code>Querier</code></a></p>
 </blockquote>
 <p>Defines a <code>PynamoDB</code> Model</p>
 <p>This model is backed by a table in DynamoDB.
@@ -114,144 +114,6 @@ You can create the table by with the <code>create_table</code> method.</p>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="set-update-status">set update status<a class="anchor-link" href="#set-update-status"> </a></h3>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="setNoUpdate" class="doc_header"><code>setNoUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L95" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setNoUpdate</code>(<strong><code>batch</code></strong>=<em><code>None</code></em>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="setUpdate" class="doc_header"><code>setUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L103" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setUpdate</code>(<strong><code>batch</code></strong>=<em><code>None</code></em>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">sku</span> <span class="o">=</span> <span class="s1">&#39;0000009&#39;</span>
-<span class="n">item</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">sku</span><span class="p">))</span>
-<span class="n">item</span><span class="o">.</span><span class="n">setUpdate</span><span class="p">()</span>
-<span class="n">item</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">sku</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">needsUpdate</span><span class="p">)</span>
-<span class="n">item</span><span class="o">.</span><span class="n">setNoUpdate</span><span class="p">()</span>
-<span class="n">item</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">sku</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">needsUpdate</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Y
-N
-CPU times: user 61.4 ms, sys: 19.7 ms, total: 81.1 ms
-Wall time: 195 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="k">with</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">batch_write</span><span class="p">()</span> <span class="k">as</span> <span class="n">batch</span><span class="p">:</span>
-  <span class="k">for</span> <span class="n">product</span> <span class="ow">in</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
-    <span class="n">product</span><span class="o">.</span><span class="n">setUpdate</span><span class="p">(</span><span class="n">batch</span><span class="o">=</span><span class="n">batch</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 186 ms, sys: 3.85 ms, total: 190 ms
-Wall time: 511 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
 
 </div>
     {% endraw %}
@@ -292,7 +154,7 @@ Wall time: 511 ms
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>engname is JOHNNIE WALKER RED 70 CL.
  name is changed to  testName
-CPU times: user 3.78 ms, sys: 249 µs, total: 4.03 ms
+CPU times: user 3.02 ms, sys: 0 ns, total: 3.02 ms
 Wall time: 5.74 ms
 </pre>
 </div>
@@ -335,8 +197,8 @@ Wall time: 5.74 ms
 <pre>loading hashkey allData-hash
 loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
-CPU times: user 328 ms, sys: 52.8 ms, total: 380 ms
-Wall time: 786 ms
+CPU times: user 383 ms, sys: 48.9 ms, total: 432 ms
+Wall time: 850 ms
 </pre>
 </div>
 </div>
@@ -358,7 +220,7 @@ Wall time: 786 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L114" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L98" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
 <p>ProductsFromList(iprcodes: List[str])</p>
 
@@ -390,7 +252,7 @@ Wall time: 786 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaProductsFromList" class="doc_header"><code>lambdaProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L118" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaProductsFromList</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
+<h4 id="lambdaProductsFromList" class="doc_header"><code>lambdaProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L102" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaProductsFromList</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -421,8 +283,8 @@ Wall time: 786 ms
 <span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="o">.</span><span class="n">getInput</span><span class="p">({</span><span class="s1">&#39;iprcodes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0217153&#39;</span><span class="p">,</span><span class="s1">&#39;203915&#39;</span><span class="p">,</span><span class="s1">&#39;0000009&#39;</span><span class="p">]})</span>
 <span class="n">response</span> <span class="o">=</span> <span class="n">lambdaProductsFromList</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">Response</span><span class="o">.</span><span class="n">parseBody</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-<span class="k">assert</span> <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="o">==</span> <span class="mi">3</span>
-<span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">==</span><span class="nb">dict</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;result length is not 3 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">,</span> <span class="s1">&#39;result type is not dict&#39;</span>
 </pre></div>
 
     </div>
@@ -439,40 +301,9 @@ Wall time: 786 ms
 loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
 db shape is (45149, 52)
+CPU times: user 269 ms, sys: 54 ms, total: 323 ms
+Wall time: 743 ms
 </pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-
-<span class="ansi-green-fg">&lt;ipython-input-27-6b5e02c86d2b&gt;</span> in <span class="ansi-cyan-fg">lambdaProductsFromList</span><span class="ansi-blue-fg">(event, *args)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span>   productsFromList <span class="ansi-blue-fg">=</span> Event<span class="ansi-blue-fg">.</span>parseDataClass<span class="ansi-blue-fg">(</span>ProductsFromList<span class="ansi-blue-fg">,</span>event<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span>   result<span class="ansi-blue-fg">:</span>pd<span class="ansi-blue-fg">.</span>DataFrame <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>productsFromList<span class="ansi-blue-fg">(</span>productsFromList<span class="ansi-blue-fg">.</span>iprcodes<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">   </span>results<span class="ansi-blue-fg">:</span>List<span class="ansi-blue-fg">[</span>ProductDatabase<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>fromDf<span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span>   resultDict<span class="ansi-blue-fg">:</span>List<span class="ansi-blue-fg">[</span>dict<span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>toListDict<span class="ansi-blue-fg">(</span>results<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      7</span>   <span class="ansi-green-fg">return</span> Response<span class="ansi-blue-fg">.</span>returnSuccess<span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     35</span>         <span class="ansi-blue-fg">@</span>classmethod
-<span class="ansi-green-intense-fg ansi-bold">     36</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 37</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span> cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     38</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     39</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
-
-<span class="ansi-green-fg">~/SageMaker/stacks/villaMaster/villa-master-dev/product/database2/villaProductDatabase/helpers.py</span> in <span class="ansi-cyan-fg">fromDf</span><span class="ansi-blue-fg">(cls, data)</span>
-<span class="ansi-green-intense-fg ansi-bold">     57</span> <span class="ansi-blue-fg">@</span>add_class_method<span class="ansi-blue-fg">(</span>Helpers<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     58</span> <span class="ansi-green-fg">def</span> fromDf<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> data<span class="ansi-blue-fg">:</span>pd<span class="ansi-blue-fg">.</span>DataFrame<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">-&gt;</span>List<span class="ansi-blue-fg">[</span>Helpers<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 59</span><span class="ansi-red-fg">   </span><span class="ansi-green-fg">return</span> df<span class="ansi-blue-fg">.</span>apply<span class="ansi-blue-fg">(</span><span class="ansi-green-fg">lambda</span> x<span class="ansi-blue-fg">:</span> cls<span class="ansi-blue-fg">.</span>fromSeries<span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> axis<span class="ansi-blue-fg">=</span><span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>to_list<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     60</span> 
-<span class="ansi-green-intense-fg ansi-bold">     61</span> 
-
-<span class="ansi-red-fg">NameError</span>: name &#39;df&#39; is not defined</pre>
 </div>
 </div>
 
@@ -495,55 +326,7 @@ db shape is (45149, 52)
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">resetS3Cache</span><span class="p">(</span> <span class="n">bucketName</span><span class="o">=</span> <span class="n">INVENTORY_BUCKET_NAME</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;allData&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-  <span class="sd">&#39;&#39;&#39; upload changes to s3&#39;&#39;&#39;</span>
-  <span class="c1">###### get all data</span>
-<span class="c1">#   allData = cls.loadFromS3(bucketName = bucketName, key = key, **kwargs)</span>
-<span class="c1">#   originalData = allData.copy()</span>
-<span class="c1">#   logging.debug(f&#39;all data is {len(allData)}&#39;)</span>
-
-  <span class="n">allData</span> <span class="o">=</span> <span class="p">{}</span>
-  <span class="c1">##### get change list</span>
-  <span class="n">changeList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">scan</span><span class="p">())</span>
-  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">changeList</span><span class="p">)</span><span class="si">}</span><span class="s1"> changes to update&#39;</span><span class="p">)</span>
-
-  <span class="c1">##### batch write</span>
-  <span class="k">with</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">batch_write</span><span class="p">()</span> <span class="k">as</span> <span class="n">batch</span><span class="p">:</span>
-    <span class="k">for</span> <span class="n">dbObject</span> <span class="ow">in</span> <span class="n">changeList</span><span class="p">:</span>
-      <span class="n">item</span> <span class="o">=</span> <span class="n">dbObject</span><span class="o">.</span><span class="n">data</span>
-      <span class="c1"># if product doesnt exist, create an empty dict</span>
-      <span class="k">if</span> <span class="ow">not</span> <span class="n">allData</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;iprcode&#39;</span><span class="p">]):</span> <span class="n">allData</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;iprcode&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
-      <span class="c1"># if cprcode doesnt exist, create an empty dict</span>
-      <span class="k">if</span> <span class="ow">not</span> <span class="n">allData</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;iprcode&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;cprcode&#39;</span><span class="p">]):</span> <span class="n">allData</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;iprcode&#39;</span><span class="p">]][</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;cprcode&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
-      <span class="c1"># update product</span>
-      <span class="n">allData</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;iprcode&#39;</span><span class="p">]][</span><span class="n">item</span><span class="p">[</span><span class="s1">&#39;cprcode&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
-      <span class="c1"># set no change to all data after update</span>
-
-  <span class="c1">####### update s3</span>
-  <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">saveAllS3</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;allData&#39;</span><span class="p">,</span> 
-                <span class="n">objectToSave</span> <span class="o">=</span> <span class="n">allData</span><span class="p">,</span> 
-                <span class="n">bucket</span> <span class="o">=</span> <span class="n">bucketName</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    
-  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;alldata is </span><span class="si">{</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">allData</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">allData</span>
-    
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># database = resetS3Cache()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># ProductDatabase.resetS3Cache()</span>
 </pre></div>
 
     </div>
@@ -564,9 +347,9 @@ db shape is (45149, 52)
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="dumpToS3" class="doc_header"><code>dumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L126" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>dumpToS3</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>500</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="cacheDb" class="doc_header"><code>cacheDb</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L110" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cacheDb</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>100</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
-<p>upload changes to s3</p>
+<p>cache db to s3 and local efs</p>
 
 </div>
 
@@ -593,6 +376,77 @@ db shape is (45149, 52)
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">ProductDatabase</span><span class="o">.</span><span class="n">cacheDb</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>loading hashkey allData-hash
+loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+data is still in sync, using local cache
+quering for changes
+convert to df
+(100, 52)
+hashKey is allData-hash
+saving hash to s3
+saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+CPU times: user 3.02 s, sys: 436 ms, total: 3.46 s
+Wall time: 5.58 s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@add_class_method</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">dumpToS3</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">bucketName</span><span class="o">=</span> <span class="n">INVENTORY_BUCKET_NAME</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;allData&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+  <span class="bp">cls</span><span class="o">.</span><span class="n">cacheDb</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
 <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">dumpToS3</span><span class="p">()</span>
 </pre></div>
 
@@ -606,29 +460,19 @@ db shape is (45149, 52)
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>cache exist
-loading hashkey allData-hash
-loaded hash isPzfrumW4Vib/5yh3/4UtOHZI88U=
-found a valid cache, using cache
-not finished, doing the next batch of 500
-cache exist
-loading hashkey allData-hash
-loaded hash isPzfrumW4Vib/5yh3/4UtOHZI88U=
-found a valid cache, using cache
-CPU times: user 1.31 s, sys: 255 ms, total: 1.57 s
-Wall time: 2.74 s
+<pre>loading hashkey allData-hash
+loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+data is still in sync, using local cache
+quering for changes
+convert to df
+(400, 52)
+hashKey is allData-hash
+saving hash to s3
+saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+CPU times: user 6.95 s, sys: 409 ms, total: 7.36 s
+Wall time: 9.58 s
 </pre>
 </div>
-</div>
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&#39;saved 45149 products&#39;</pre>
-</div>
-
 </div>
 
 </div>
@@ -648,7 +492,7 @@ Wall time: 2.74 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L175" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L132" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -690,13 +534,18 @@ Wall time: 2.74 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>cache exist
-loading hashkey allData-hash
-loaded hash isPzfrumW4Vib/5yh3/4UtOHZI88U=
-found a valid cache, using cache
-saved 45149 products
-CPU times: user 625 ms, sys: 77.1 ms, total: 702 ms
-Wall time: 1.47 s
+<pre>loading hashkey allData-hash
+loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+data is still in sync, using local cache
+quering for changes
+convert to df
+(0, 0)
+hashKey is allData-hash
+saving hash to s3
+saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+True
+CPU times: user 1.63 s, sys: 245 ms, total: 1.88 s
+Wall time: 3.8 s
 </pre>
 </div>
 </div>
@@ -724,7 +573,7 @@ Wall time: 1.47 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L189" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
+<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L139" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
 </blockquote>
 <p>Product(iprcode: str, cprcode: str, data: Union[~CatchAllVar, NoneType])</p>
 
@@ -749,7 +598,7 @@ Wall time: 1.47 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L195" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
+<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L145" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
 </blockquote>
 <p>ValueUpdate(items: List[villaProductDatabase.database.Product])</p>
 
@@ -781,7 +630,7 @@ Wall time: 1.47 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L199" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
+<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L149" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -846,146 +695,13 @@ Wall time: 1.47 s
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="valueUpdate" class="doc_header"><code>valueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L202" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate</code>(<strong><code>inputs</code></strong>)</p>
-</blockquote>
-<p>check for difference and batch update the changes in product data</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sampleProducts</span> <span class="o">=</span> <span class="p">[{</span> <span class="s1">&#39;cprcode&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;iprcode&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;oprcode&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;ordertype&#39;</span><span class="p">:</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_abb&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT YOUNG KALE 2&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_active&#39;</span><span class="p">:</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_cgcode&#39;</span><span class="p">:</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_code&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_dpcode&#39;</span><span class="p">:</span> <span class="s1">&#39;19&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_engname&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAAT YOUNG KALE 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_ggcode&#39;</span><span class="p">:</span> <span class="s1">&#39;057&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_market&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT ยอดคะน้า 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_name&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT ยอดคะน้า 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_puqty&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sa_method&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sucode1&#39;</span><span class="p">:</span> <span class="s1">&#39;CM845&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_suref3&#39;</span><span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;prtype&#39;</span><span class="p">:</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;psqty&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pstype&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">}]</span> <span class="c1">#ProductDatabase.valueUpdate({&#39;items&#39;:sampleProducts})</span>
-<span class="n">ValueUpdate</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s1">&#39;items&#39;</span><span class="p">:</span><span class="n">sampleProducts</span><span class="p">})</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;items&#39;: [{&#39;iprcode&#39;: &#39;0171670&#39;,
-   &#39;cprcode&#39;: &#39;0171670&#39;,
-   &#39;oprcode&#39;: &#39;0171670&#39;,
-   &#39;ordertype&#39;: &#39;Y&#39;,
-   &#39;pr_abb&#39;: &#39;JIRAPAT YOUNG KALE 2&#39;,
-   &#39;pr_active&#39;: &#39;Y&#39;,
-   &#39;pr_cgcode&#39;: &#39;05&#39;,
-   &#39;pr_code&#39;: &#39;0171670&#39;,
-   &#39;pr_dpcode&#39;: &#39;19&#39;,
-   &#39;pr_engname&#39;: &#39;JIRAAT YOUNG KALE 200 G.&#39;,
-   &#39;pr_ggcode&#39;: &#39;057&#39;,
-   &#39;pr_market&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;,
-   &#39;pr_name&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;,
-   &#39;pr_puqty&#39;: &#39;1&#39;,
-   &#39;pr_sa_method&#39;: &#39;1&#39;,
-   &#39;pr_sucode1&#39;: &#39;CM845&#39;,
-   &#39;pr_suref3&#39;: &#39;A&#39;,
-   &#39;prtype&#39;: &#39;I&#39;,
-   &#39;psqty&#39;: &#39;1&#39;,
-   &#39;pstype&#39;: &#39;1&#39;}]}</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="valueUpdate2" class="doc_header"><code>valueUpdate2</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L256" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate2</code>(<strong><code>inputs</code></strong>)</p>
-</blockquote>
-<p>check for difference and batch update the changes in product data</p>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sampleProducts</span> <span class="o">=</span> <span class="p">[{</span> <span class="s1">&#39;cprcode&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;iprcode&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;oprcode&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;ordertype&#39;</span><span class="p">:</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_abb&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT YOUNG KALE 2&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_active&#39;</span><span class="p">:</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_cgcode&#39;</span><span class="p">:</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_code&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_dpcode&#39;</span><span class="p">:</span> <span class="s1">&#39;19&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_engname&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAAT YOUNG KALE 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_ggcode&#39;</span><span class="p">:</span> <span class="s1">&#39;057&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_market&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT ยอดคะน้า 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_name&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT ยอดคะน้า 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_puqty&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sa_method&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sucode1&#39;</span><span class="p">:</span> <span class="s1">&#39;CM845&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_suref3&#39;</span><span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;prtype&#39;</span><span class="p">:</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;psqty&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pstype&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">}]</span> <span class="c1">#ProductDatabase.valueUpdate({&#39;items&#39;:sampleProducts})</span>
 <span class="n">products</span> <span class="o">=</span> <span class="n">ValueUpdate</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s1">&#39;items&#39;</span><span class="p">:</span><span class="n">sampleProducts</span><span class="p">})</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="c1"># print(products[0])</span>
 <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">valueUpdate2</span><span class="p">(</span><span class="n">products</span><span class="p">)</span>
 </pre></div>
 
@@ -999,13 +715,13 @@ Wall time: 1.47 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.012 ms
-divided into chunks 0.5640000000000001 ms
-cache exist
+<pre>input validated 0.013 ms
+divided into chunks 0.24000000000000002 ms
 loading hashkey allData-hash
-loaded hash isPzfrumW4Vib/5yh3/4UtOHZI88U=
-found a valid cache, using cache
-get all from s3 982.624 ms
+loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+data is still in sync, using local cache
+get all from s3 852.132 ms
+incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 </pre>
 </div>
 </div>
@@ -1019,7 +735,7 @@ get all from s3 982.624 ms
  &#39;failure&#39;: 0,
  &#39;skipped&#39;: 0,
  &#39;failureMessage&#39;: [],
- &#39;timetaken(ms)&#39;: 982.977}</pre>
+ &#39;timetaken(ms)&#39;: 920.48}</pre>
 </div>
 
 </div>
@@ -1041,7 +757,7 @@ get all from s3 982.624 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L316" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L152" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1081,10 +797,24 @@ get all from s3 982.624 ms
 
 <div class="output_area">
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>input validated 0.013 ms
+divided into chunks 2.442 ms
+loading hashkey allData-hash
+loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+data is still in sync, using local cache
+get all from s3 854.869 ms
+incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:6.074999999999999}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:938.16}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -1122,7 +852,7 @@ get all from s3 982.624 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L322" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L158" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1164,6 +894,26 @@ get all from s3 982.624 ms
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>input validated 0.012 ms
+divided into chunks 0.388 ms
+loading hashkey allData-hash
+loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+data is still in sync, using local cache
+get all from s3 947.9459999999999 ms
+incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
     {% endraw %}
 
@@ -1178,7 +928,7 @@ get all from s3 982.624 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L330" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L166" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1222,10 +972,24 @@ get all from s3 982.624 ms
 
 <div class="output_area">
 
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>input validated 0.011 ms
+divided into chunks 0.11900000000000001 ms
+loading hashkey allData-hash
+loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+data is still in sync, using local cache
+get all from s3 959.3340000000001 ms
+incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:0,&#34;failure&#34;:0,&#34;skipped&#34;:1,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:5.6129999999999995}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:1041.612}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -1312,7 +1076,7 @@ get all from s3 982.624 ms
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">singleProductQuery</span><span class="p">(</span><span class="n">sampleQueryInput</span><span class="p">)</span><span class="o">.</span><span class="n">toSeries</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">singleProductQuery</span><span class="p">(</span><span class="n">sampleQueryInput</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -1327,27 +1091,58 @@ get all from s3 982.624 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>0171670         {&#39;cprcode&#39;: &#39;0171670&#39;, &#39;iprcode&#39;: &#39;0171670&#39;, &#39;...
-iprcode                                                   0171670
-cprcode                                                   0171670
-oprcode                                                   0171670
-ordertype                                                       Y
-pr_abb                                       JIRAPAT YOUNG KALE 2
-pr_active                                                       Y
-pr_cgcode                                                      05
-pr_code                                                   0171670
-pr_dpcode                                                      19
-pr_engname                               JIRAAT YOUNG KALE 200 G.
-pr_ggcode                                                     057
-pr_market                                 JIRAPAT ยอดคะน้า 200 G.
-pr_name                                   JIRAPAT ยอดคะน้า 200 G.
-pr_puqty                                                        1
-pr_sa_method                                                    1
-pr_sucode1                                                  CM845
-pr_suref3                                                       A
-prtype                                                          I
-psqty                                                           1
-pstype                                                          1
+<pre>cprcode                                            0171670
+iprcode                                            0171670
+oprcode                                            0171670
+ordertype                                                Y
+pr_abb                                JIRAPAT YOUNG KALE 2
+pr_active                                                Y
+pr_cgcode                                               05
+pr_code                                            0171670
+pr_dpcode                                               19
+pr_engname                        JIRAAT YOUNG KALE 200 G.
+pr_ggcode                                              057
+pr_market                          JIRAPAT ยอดคะน้า 200 G.
+pr_name                            JIRAPAT ยอดคะน้า 200 G.
+pr_puqty                                                 1
+pr_sa_method                                             1
+pr_sucode1                                           CM845
+pr_suref3                                                A
+prtype                                                   I
+psqty                                                    1
+pstype                                                   1
+pr_country_th                                         none
+pr_country_en                                         none
+pr_keyword_th                                         none
+pr_keyword_en                                         none
+pr_filter_th                                          none
+pr_filter_en                                          none
+online_category_l1_th                                 none
+online_category_l1_en                                 none
+online_category_l2_th                                 none
+online_category_l2_en                                 none
+online_category_l3_th                                 none
+online_category_l3_en                                 none
+villa_category_l1_en                                  none
+villa_category_l2_en                                  none
+villa_category_l3_en                                  none
+villa_category_l4_en                                  none
+content_en               0171670 JIRAPAT YOUNG KALE 200 G.
+content_th                       JIRAPAT YOUNG KALE 200 G.
+hema_brand_th                                         none
+hema_brand_en                                         none
+hema_sizedesc                                         none
+pr_brand_en                                           none
+pr_brand_th                                           none
+pr_online_name_en                                     none
+pr_online_name_th                                     none
+hema_name_en                                          none
+hema_name_th                                          none
+pr_name_en                                            none
+pr_name_th                                            none
+pr_barcode                                            none
+pr_barcode2                                           none
+sort_weight                                           none
 dtype: object</pre>
 </div>
 
@@ -1370,7 +1165,7 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L345" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L181" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1413,7 +1208,7 @@ dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;0171670&#34;:{&#34;cprcode&#34;:&#34;0171670&#34;,&#34;iprcode&#34;:&#34;0171670&#34;,&#34;oprcode&#34;:&#34;0171670&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;JIRAPAT YOUNG KALE 2&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;05&#34;,&#34;pr_code&#34;:&#34;0171670&#34;,&#34;pr_dpcode&#34;:&#34;19&#34;,&#34;pr_engname&#34;:&#34;JIRAPAT YOUNG KALE 200 G.&#34;,&#34;pr_ggcode&#34;:&#34;057&#34;,&#34;pr_market&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_name&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_puqty&#34;:&#34;1.00&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;CM845&#34;,&#34;pr_suref3&#34;:&#34;A&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;pr_country_th&#34;:&#34;none&#34;,&#34;pr_country_en&#34;:&#34;none&#34;,&#34;pr_keyword_th&#34;:&#34;none&#34;,&#34;pr_keyword_en&#34;:&#34;none&#34;,&#34;pr_filter_th&#34;:&#34;none&#34;,&#34;pr_filter_en&#34;:&#34;none&#34;,&#34;online_category_l1_th&#34;:&#34;none&#34;,&#34;online_category_l1_en&#34;:&#34;none&#34;,&#34;online_category_l2_th&#34;:&#34;none&#34;,&#34;online_category_l2_en&#34;:&#34;none&#34;,&#34;online_category_l3_th&#34;:&#34;none&#34;,&#34;online_category_l3_en&#34;:&#34;none&#34;,&#34;content_en&#34;:&#34;0171670 JIRAPAT YOUNG KALE 200 G.&#34;,&#34;content_th&#34;:&#34;JIRAPAT YOUNG KALE 200 G.&#34;,&#34;hema_brand_th&#34;:&#34;none&#34;,&#34;hema_brand_en&#34;:&#34;none&#34;,&#34;hema_sizedesc&#34;:&#34;none&#34;},&#34;iprcode&#34;:&#34;0171670&#34;,&#34;cprcode&#34;:&#34;0171670&#34;,&#34;oprcode&#34;:&#34;0171670&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;JIRAPAT YOUNG KALE 2&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;05&#34;,&#34;pr_code&#34;:&#34;0171670&#34;,&#34;pr_dpcode&#34;:&#34;19&#34;,&#34;pr_engname&#34;:&#34;JIRAAT YOUNG KALE 200 G.&#34;,&#34;pr_ggcode&#34;:&#34;057&#34;,&#34;pr_market&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_name&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_puqty&#34;:&#34;1&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;CM845&#34;,&#34;pr_suref3&#34;:&#34;A&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;cprcode&#34;:&#34;0171670&#34;,&#34;iprcode&#34;:&#34;0171670&#34;,&#34;oprcode&#34;:&#34;0171670&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;JIRAPAT YOUNG KALE 2&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;05&#34;,&#34;pr_code&#34;:&#34;0171670&#34;,&#34;pr_dpcode&#34;:&#34;19&#34;,&#34;pr_engname&#34;:&#34;JIRAAT YOUNG KALE 200 G.&#34;,&#34;pr_ggcode&#34;:&#34;057&#34;,&#34;pr_market&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_name&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_puqty&#34;:&#34;1&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;CM845&#34;,&#34;pr_suref3&#34;:&#34;A&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;pr_country_th&#34;:&#34;none&#34;,&#34;pr_country_en&#34;:&#34;none&#34;,&#34;pr_keyword_th&#34;:&#34;none&#34;,&#34;pr_keyword_en&#34;:&#34;none&#34;,&#34;pr_filter_th&#34;:&#34;none&#34;,&#34;pr_filter_en&#34;:&#34;none&#34;,&#34;online_category_l1_th&#34;:&#34;none&#34;,&#34;online_category_l1_en&#34;:&#34;none&#34;,&#34;online_category_l2_th&#34;:&#34;none&#34;,&#34;online_category_l2_en&#34;:&#34;none&#34;,&#34;online_category_l3_th&#34;:&#34;none&#34;,&#34;online_category_l3_en&#34;:&#34;none&#34;,&#34;villa_category_l1_en&#34;:&#34;none&#34;,&#34;villa_category_l2_en&#34;:&#34;none&#34;,&#34;villa_category_l3_en&#34;:&#34;none&#34;,&#34;villa_category_l4_en&#34;:&#34;none&#34;,&#34;content_en&#34;:&#34;0171670 JIRAPAT YOUNG KALE 200 G.&#34;,&#34;content_th&#34;:&#34;JIRAPAT YOUNG KALE 200 G.&#34;,&#34;hema_brand_th&#34;:&#34;none&#34;,&#34;hema_brand_en&#34;:&#34;none&#34;,&#34;hema_sizedesc&#34;:&#34;none&#34;,&#34;pr_brand_en&#34;:&#34;none&#34;,&#34;pr_brand_th&#34;:&#34;none&#34;,&#34;pr_online_name_en&#34;:&#34;none&#34;,&#34;pr_online_name_th&#34;:&#34;none&#34;,&#34;hema_name_en&#34;:&#34;none&#34;,&#34;hema_name_th&#34;:&#34;none&#34;,&#34;pr_name_en&#34;:&#34;none&#34;,&#34;pr_name_th&#34;:&#34;none&#34;,&#34;pr_barcode&#34;:&#34;none&#34;,&#34;pr_barcode2&#34;:&#34;none&#34;,&#34;sort_weight&#34;:&#34;none&#34;}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -1476,11 +1271,21 @@ dtype: object</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">s3bz.s3bz</span> <span class="kn">import</span> <span class="n">Requests</span>
-<span class="n">url</span> <span class="o">=</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">allQuery</span><span class="p">(</span><span class="n">bucket</span> <span class="o">=</span> <span class="n">INVENTORY_BUCKET_NAME</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s1">&#39;allData&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">zlib</span>
+<span class="o">%</span><span class="k">time</span> url = ProductDatabase.allQuery(bucket = INVENTORY_BUCKET_NAME, key=&#39;allData-json.zl&#39;)
 <span class="nb">print</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
 <span class="c1"># response = requests.get(url)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">Requests</span><span class="o">.</span><span class="n">getContentFromUrl</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;received </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span><span class="si">}</span><span class="s1"> results, the first one is </span><span class="si">{</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">retrieveJsonZl</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+  <span class="n">response</span><span class="p">:</span><span class="n">requests</span><span class="o">.</span><span class="n">Response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+    <span class="n">jsonDb</span> <span class="o">=</span> <span class="n">zlib</span><span class="o">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+    <span class="n">newDb</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">jsonDb</span><span class="p">,</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;split&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">newDb</span>
+<span class="o">%</span><span class="k">time</span> newDb = retrieveJsonZl(url)
+<span class="n">newDb</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -1494,10 +1299,187 @@ dtype: object</pre>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
-https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=JlQUPmevbHN%2BWsh0kHmq16MbDV8%3D&amp;Expires=1608532515
-received 73095 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;, &#39;iprcode&#39;: &#39;0217153&#39;, &#39;oprcode&#39;: &#39;0217153&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;98&#39;, &#39;pr_code&#39;: &#39;0217153&#39;, &#39;pr_dpcode&#39;: &#39;28&#39;, &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_ggcode&#39;: &#39;003&#39;, &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;, &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_puqty&#39;: &#39;24&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;F1222&#39;, &#39;pr_suref3&#39;: &#39;S&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;&#39;, &#39;pr_country_en&#39;: &#39;United Kingdom&#39;, &#39;pr_keyword_th&#39;: &#39;&#39;, &#39;pr_keyword_en&#39;: &#39;&#39;, &#39;pr_filter_th&#39;: &#39;&#39;, &#39;pr_filter_en&#39;: &#39;&#39;, &#39;online_category_l1_th&#39;: &#39;&#39;, &#39;online_category_l1_en&#39;: &#39;&#39;, &#39;online_category_l2_th&#39;: &#39;&#39;, &#39;online_category_l2_en&#39;: &#39;&#39;, &#39;online_category_l3_th&#39;: &#39;&#39;, &#39;online_category_l3_en&#39;: &#39;&#39;, &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;, &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;, &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;, &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;, &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_brand_th&#39;: &#39;&#39;, &#39;hema_brand_en&#39;: &#39;&#39;, &#39;hema_sizedesc&#39;: &#39;&#39;, &#39;pr_brand_en&#39;: &#39;&#39;, &#39;pr_brand_th&#39;: &#39;&#39;, &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_barcode&#39;: &#39;5060148383378&#39;, &#39;pr_barcode2&#39;: &#39;506014838337&#39;, &#39;sort_weight&#39;: &#39;0&#39;}})
+CPU times: user 25.4 ms, sys: 0 ns, total: 25.4 ms
+Wall time: 362 ms
+https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData-json.zl?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=LiKDC%2BSpI%2FJH%2BoqDt7tsW5lhFmA%3D&amp;Expires=1608787369
+CPU times: user 1.64 s, sys: 204 ms, total: 1.85 s
+Wall time: 1.96 s
 </pre>
 </div>
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cprcode</th>
+      <th>iprcode</th>
+      <th>oprcode</th>
+      <th>ordertype</th>
+      <th>pr_abb</th>
+      <th>pr_active</th>
+      <th>pr_cgcode</th>
+      <th>pr_code</th>
+      <th>pr_dpcode</th>
+      <th>pr_engname</th>
+      <th>...</th>
+      <th>pr_brand_th</th>
+      <th>pr_online_name_en</th>
+      <th>pr_online_name_th</th>
+      <th>hema_name_en</th>
+      <th>hema_name_th</th>
+      <th>pr_name_en</th>
+      <th>pr_name_th</th>
+      <th>pr_barcode</th>
+      <th>pr_barcode2</th>
+      <th>sort_weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>217153</td>
+      <td>217153</td>
+      <td>217153</td>
+      <td>Y</td>
+      <td>COCOA LOCO MILK CHOC</td>
+      <td>Y</td>
+      <td>98</td>
+      <td>217153</td>
+      <td>28</td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>...</td>
+      <td></td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>5060148383378</td>
+      <td>506014838337</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>235141</td>
+      <td>235141</td>
+      <td>235141</td>
+      <td>Y</td>
+      <td>EEBOO-PZCT3-PUZZLE</td>
+      <td>Y</td>
+      <td>8</td>
+      <td>235141</td>
+      <td>19</td>
+      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>...</td>
+      <td></td>
+      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>EEBOO-PZCT3-ตัวต่อนับเลข ANIMAL COUNTING_3ED</td>
+      <td>689196509575</td>
+      <td>68919650957</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>182223</td>
+      <td>182223</td>
+      <td>182223</td>
+      <td>Y</td>
+      <td>CIRIO PIZZASSIMO 400</td>
+      <td>Y</td>
+      <td>6</td>
+      <td>182223</td>
+      <td>6</td>
+      <td>CIRIO PIZZASSIMO 400G.</td>
+      <td>...</td>
+      <td>CIRIO</td>
+      <td>Cirio Pizzassimo 400g</td>
+      <td>Cirio Pizzassimo 400g</td>
+      <td>Pizzassimo</td>
+      <td>Pizzassimo</td>
+      <td>CIRIO PIZZASSIMO 400G.</td>
+      <td>CIRIO ซอสทำพิซซ่า 400 G.</td>
+      <td>8000320997266</td>
+      <td>800032099726</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>124461</td>
+      <td>124461</td>
+      <td>124461</td>
+      <td>Y</td>
+      <td>NEW CHOICE LYCHEE</td>
+      <td>Y</td>
+      <td>2</td>
+      <td>124461</td>
+      <td>2</td>
+      <td>NEW CHOICE LYCHEE</td>
+      <td>...</td>
+      <td>New Choice</td>
+      <td>New Choice Lychee</td>
+      <td>NEW CHOICE กลิ่นลิ้นจี่</td>
+      <td>New Choice Lychee</td>
+      <td>NEW CHOICE กลิ่นลิ้นจี่</td>
+      <td>NEW CHOICE LYCHEE</td>
+      <td>NEW CHOICE กลิ่นลิ้นจี่</td>
+      <td>8938501660121</td>
+      <td>893850166012</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>171670</td>
+      <td>171670</td>
+      <td>171670</td>
+      <td>Y</td>
+      <td>JIRAPAT YOUNG KALE 2</td>
+      <td>Y</td>
+      <td>5</td>
+      <td>171670</td>
+      <td>19</td>
+      <td>JIRAPAT YOUNG KALE 200 G.</td>
+      <td>...</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 52 columns</p>
+</div>
+</div>
+
 </div>
 
 </div>
@@ -1517,7 +1499,7 @@ received 73095 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L354" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L190" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1547,8 +1529,8 @@ received 73095 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;:
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
 <span class="kn">from</span> <span class="nn">s3bz.s3bz</span> <span class="kn">import</span> <span class="n">Requests</span>
 <span class="n">url</span> <span class="o">=</span> <span class="n">Response</span><span class="o">.</span><span class="n">fromDict</span><span class="p">(</span><span class="n">lambdaAllQuery</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">body</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">Requests</span><span class="o">.</span><span class="n">getContentFromUrl</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;received </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span><span class="si">}</span><span class="s1"> results, the first one is </span><span class="si">{</span><span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="o">%</span><span class="n">time</span> <span class="n">newDb</span> <span class="o">=</span> <span class="n">retrieveJsonZl</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">newDb</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 
     </div>
@@ -1562,11 +1544,22 @@ received 73095 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;:
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
-received 73095 results, the first one is (&#39;0217153&#39;, {&#39;0217153&#39;: {&#39;cprcode&#39;: &#39;0217153&#39;, &#39;iprcode&#39;: &#39;0217153&#39;, &#39;oprcode&#39;: &#39;0217153&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;COCOA LOCO MILK CHOC&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;98&#39;, &#39;pr_code&#39;: &#39;0217153&#39;, &#39;pr_dpcode&#39;: &#39;28&#39;, &#39;pr_engname&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_ggcode&#39;: &#39;003&#39;, &#39;pr_market&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL&#39;, &#39;pr_name&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_puqty&#39;: &#39;24&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;F1222&#39;, &#39;pr_suref3&#39;: &#39;S&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;&#39;, &#39;pr_country_en&#39;: &#39;United Kingdom&#39;, &#39;pr_keyword_th&#39;: &#39;&#39;, &#39;pr_keyword_en&#39;: &#39;&#39;, &#39;pr_filter_th&#39;: &#39;&#39;, &#39;pr_filter_en&#39;: &#39;&#39;, &#39;online_category_l1_th&#39;: &#39;&#39;, &#39;online_category_l1_en&#39;: &#39;&#39;, &#39;online_category_l2_th&#39;: &#39;&#39;, &#39;online_category_l2_en&#39;: &#39;&#39;, &#39;online_category_l3_th&#39;: &#39;&#39;, &#39;online_category_l3_en&#39;: &#39;&#39;, &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;, &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;, &#39;villa_category_l3_en&#39;: &#39;Cookies &amp; Snacks&#39;, &#39;villa_category_l4_en&#39;: &#39;Biscuits &amp; Crackers&#39;, &#39;content_en&#39;: &#39;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;content_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_brand_th&#39;: &#39;&#39;, &#39;hema_brand_en&#39;: &#39;&#39;, &#39;hema_sizedesc&#39;: &#39;&#39;, &#39;pr_brand_en&#39;: &#39;&#39;, &#39;pr_brand_th&#39;: &#39;&#39;, &#39;pr_online_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_online_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;hema_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_en&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_name_th&#39;: &#39;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#39;, &#39;pr_barcode&#39;: &#39;5060148383378&#39;, &#39;pr_barcode2&#39;: &#39;506014838337&#39;, &#39;sort_weight&#39;: &#39;0&#39;}})
-CPU times: user 6.72 s, sys: 339 ms, total: 7.06 s
-Wall time: 7.59 s
+CPU times: user 1.55 s, sys: 246 ms, total: 1.79 s
+Wall time: 1.87 s
+CPU times: user 1.58 s, sys: 246 ms, total: 1.82 s
+Wall time: 2.19 s
 </pre>
 </div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(45149, 52)</pre>
+</div>
+
 </div>
 
 </div>
@@ -1604,8 +1597,8 @@ Wall time: 7.59 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>checking scan time
-CPU times: user 16.2 s, sys: 915 ms, total: 17.2 s
-Wall time: 29.3 s
+CPU times: user 16.1 s, sys: 685 ms, total: 16.8 s
+Wall time: 29.5 s
 </pre>
 </div>
 </div>

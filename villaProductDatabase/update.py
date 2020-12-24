@@ -2,7 +2,7 @@
 
 __all__ = ['DBHASHLOCATION', 'DBCACHELOCATION', 'DATABASE_TABLE_NAME', 'INVENTORY_BUCKET_NAME', 'INPUT_BUCKET_NAME',
            'REGION', 'ACCESS_KEY_ID', 'SECRET_ACCESS_KEY', 'LINEKEY', 'Updater', 'updateWithDict', 'Product',
-           'ValueUpdate', 'valueUpdate2']
+           'ValueUpdate', 'chunks', 'valueUpdate2']
 
 # Cell
 from s3bz.s3bz import S3
@@ -14,6 +14,7 @@ from base64 import b64encode, b64decode
 from dataclasses_json import dataclass_json, Undefined, CatchAll
 from dataclasses import dataclass
 from typing import List
+from datetime import datetime
 import os, logging
 
 # Cell
@@ -57,8 +58,9 @@ class Product:
 class ValueUpdate:
   items: List[Product]
 #export
+def chunks(l, n): return [l[x: x+n] for x in range(0, len(l), n)]
 @add_class_method(Updater)
-def valueUpdate2(cls, inputs):
+def valueUpdate2(cls, inputs:List[dict]):
     '''
       check for difference and batch update the changes in product data
     '''
@@ -79,7 +81,7 @@ def valueUpdate2(cls, inputs):
     ##### dividing input into batch of 500
     inputBatches = chunks(validInputs, 500)
     print(f'divided into chunks {(datetime.now()-t0).total_seconds()*1000} ms')
-    items = cls.loadFromS3()
+    db = cls.loadFromCache().fillna('none')
     print(f'get all from s3 {(datetime.now()-t0).total_seconds()*1000} ms')
 
     for inputBatch in inputBatches:
@@ -89,15 +91,19 @@ def valueUpdate2(cls, inputs):
           iprcode = input_['iprcode']
           cprcode = input_['cprcode']
 
-          # check if product is in the database, if not, create an empty class with the product code
-#           incumbentBr = next(cls.query(iprcode , cls.cprcode == cprcode), cls(iprcode = iprcode, cprcode = cprcode, data = {}))
-          incumbentBr = cls.fromDict(items.get(iprcode) or {'iprcode': iprcode, 'cprcode': cprcode})
-          # save original data to a variable
-          originalData = incumbentBr.data.copy()
-          # update data
-          updatedData = cls.updateWithDict(incumbentBr, input_)
+          ##### check if product is in the database, if not, create an empty class with the product code
+          incumbentSeries = db[db['cprcode']==cprcode].iloc[0]
+          if incumbentSeries.any:
+            print(f'incumbentSeries is type {type(incumbentSeries)}')
+            incumbentItem = cls.fromSeries(incumbentSeries)
+          else: incumbentItem = cls.fromDict({'iprcode': iprcode, 'cprcode': cprcode})
 
-          logging.info(f'incumbentBr is {incumbentBr.iprcode}\n, prcode is {iprcode}')
+          ##### make a copy of original data
+          originalData = incumbentItem.data.copy()
+          ###### update data
+          updatedData = cls.updateWithDict(incumbentItem, input_)
+
+          logging.info(f'incumbentBr is {incumbentItem.iprcode}\n, prcode is {iprcode}')
 
           # check for difference
           try:

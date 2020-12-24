@@ -2,7 +2,7 @@
 
 __all__ = ['DBHASHLOCATION', 'DBCACHELOCATION', 'DATABASE_TABLE_NAME', 'INVENTORY_BUCKET_NAME', 'INPUT_BUCKET_NAME',
            'REGION', 'ACCESS_KEY_ID', 'SECRET_ACCESS_KEY', 'LINEKEY', 'ALLDATAKEY', 'S3Cache', 'loadFromCache',
-           'saveRemoteCache']
+           'saveRemoteCache', 'resetS3Cache']
 
 # Cell
 from s3bz.s3bz import S3
@@ -47,19 +47,28 @@ def loadFromCache(cls, key=ALLDATAKEY, localCache=DBCACHELOCATION,
                   localHash=DBHASHLOCATION, bucket=INVENTORY_BUCKET_NAME):
   ## check for local object and its hash
   if os.path.exists(localCache) and os.path.exists(localHash):
-    localHash = pdUtils.loadLocalHash(path=localHash)
-    remoteHash = pdUtils.loadRemoteHash(key=key, bucket=bucket)
-    if localHash == remoteHash:
-      print('data is still in sync, using local cache')
-      db = pdUtils.loadLocalCache(path=localCache)
-      return db
-    else:
-      print('remote hash is not the same, load remote cache')
+    try:
+      localHash = pdUtils.loadLocalHash(path=localHash)
+      logging.debug(f'localHash is {localHash}')
+      remoteHash = pdUtils.loadRemoteHash(key=key, bucket=bucket)
+      logging.debug(f'remoteHash is {remoteHash}')
+
+      if localHash == remoteHash:
+        print('data is still in sync, using local cache')
+        db = pdUtils.loadLocalCache(path=localCache)
+        return db
+      else:
+        print('remote hash is not the same, load remote cache')
+    except Exception as e: print(f'local loading error{e}, loading remote hash')
   ### load from remote cache
-  db = pdUtils.loadRemoteCache(key=key, bucket=bucket)
+  try:
+    db = pdUtils.loadRemoteCache(key=key, bucket=bucket)
+    pdUtils.saveLocalCache(db, path=localCache)
+    pdUtils.saveLocalHash(db, path = localHash)
+  except Exception as e:
+    print(f'locding remtoe failed {e} returning blank df')
+    db = pd.DataFrame()
   ### save to local cache
-  pdUtils.saveLocalCache(db, path=localCache)
-  pdUtils.saveLocalHash(db, path = localHash)
   return db
 
 # Cell
@@ -71,3 +80,22 @@ def saveRemoteCache(cls ,db:pd.DataFrame, key= ALLDATAKEY,
   pdUtils.saveRemoteCache(data=db, key= key,
                           bucket=bucket, localCachePath=localCachePath,
                           localHashPath=localHashPath)
+  jsonDb = db.to_json(orient='split')
+  zlibArc = zlib.compress(jsonDb.encode())
+  tmpPath = '/tmp/zlibJsonCache.zl'
+  with open(tmpPath, 'wb') as f:
+    f.write(zlibArc)
+  S3.saveFile(key=f'{key}-json.zl',path=tmpPath,bucket=bucket)
+
+
+
+# Cell
+@add_class_method(S3Cache)
+def resetS3Cache(cls, bucketName= INVENTORY_BUCKET_NAME, key = 'allData', limit=10000, **kwargs):
+  ''' upload changes to s3'''
+  ###### get all data
+  items:List[cls] = cls.scanDb(limit=limit)
+  db:pd.DataFrame = cls.toDf(items)
+  print(f'{db.shape} changes to update')
+  cls.saveRemoteCache(db)
+  return True
