@@ -209,69 +209,12 @@ Wall time: 850 ms
 </div>
     {% endraw %}
 
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L98" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
-</blockquote>
-<p>ProductsFromList(iprcodes: List[str])</p>
-
-</div>
-
-</div>
-
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dump-database-to-s3">Dump database to s3<a class="anchor-link" href="#Dump-database-to-s3"> </a></h3>
 </div>
 </div>
-
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaProductsFromList" class="doc_header"><code>lambdaProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L102" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaProductsFromList</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -301,8 +244,8 @@ Wall time: 850 ms
 loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
 db shape is (45149, 52)
-CPU times: user 269 ms, sys: 54 ms, total: 323 ms
-Wall time: 743 ms
+CPU times: user 331 ms, sys: 42.6 ms, total: 374 ms
+Wall time: 768 ms
 </pre>
 </div>
 </div>
@@ -313,12 +256,6 @@ Wall time: 743 ms
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Dump-database-to-s3">Dump database to s3<a class="anchor-link" href="#Dump-database-to-s3"> </a></h3>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -347,7 +284,7 @@ Wall time: 743 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="cacheDb" class="doc_header"><code>cacheDb</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L110" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cacheDb</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>100</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="cacheDb" class="doc_header"><code>cacheDb</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L96" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cacheDb</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>100</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>cache db to s3 and local efs</p>
 
@@ -492,7 +429,7 @@ Wall time: 9.58 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L132" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L118" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -539,13 +476,13 @@ loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
 quering for changes
 convert to df
-(0, 0)
+(1, 52)
 hashKey is allData-hash
 saving hash to s3
 saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 True
-CPU times: user 1.63 s, sys: 245 ms, total: 1.88 s
-Wall time: 3.8 s
+CPU times: user 1.94 s, sys: 313 ms, total: 2.26 s
+Wall time: 4.25 s
 </pre>
 </div>
 </div>
@@ -573,7 +510,7 @@ Wall time: 3.8 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L139" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
+<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L125" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
 </blockquote>
 <p>Product(iprcode: str, cprcode: str, data: Union[~CatchAllVar, NoneType])</p>
 
@@ -598,7 +535,7 @@ Wall time: 3.8 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L145" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
+<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L131" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
 </blockquote>
 <p>ValueUpdate(items: List[villaProductDatabase.database.Product])</p>
 
@@ -630,7 +567,7 @@ Wall time: 3.8 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L149" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
+<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L135" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -757,7 +694,7 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L152" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L138" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -852,7 +789,7 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L158" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L144" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -928,7 +865,7 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L166" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L152" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1016,6 +953,118 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 </div>
 </div>
 </div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L169" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+</blockquote>
+<p>ProductsFromList(iprcodes: List[str])</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="lambdaProductsFromList" class="doc_header"><code>lambdaProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L173" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaProductsFromList</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="o">.</span><span class="n">getInput</span><span class="p">({</span><span class="s1">&#39;iprcodes&#39;</span><span class="p">:[</span><span class="s1">&#39;0000009&#39;</span><span class="p">,</span><span class="s1">&#39;203915&#39;</span><span class="p">,</span><span class="s1">&#39;0217153&#39;</span><span class="p">]})</span>
+<span class="n">lambdaProductsFromList</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>loading hashkey allData-hash
+loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+data is still in sync, using local cache
+db shape is (45149, 52)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;body&#39;: &#39;[{&#34;cprcode&#34;:&#34;0217153&#34;,&#34;iprcode&#34;:&#34;0217153&#34;,&#34;oprcode&#34;:&#34;0217153&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;COCOA LOCO MILK CHOC&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;98&#34;,&#34;pr_code&#34;:&#34;0217153&#34;,&#34;pr_dpcode&#34;:&#34;28&#34;,&#34;pr_engname&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_ggcode&#34;:&#34;003&#34;,&#34;pr_market&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL&#34;,&#34;pr_name&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_puqty&#34;:&#34;24.00&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;F1239&#34;,&#34;pr_suref3&#34;:&#34;S&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;pr_country_th&#34;:&#34;&#34;,&#34;pr_country_en&#34;:&#34;United Kingdom&#34;,&#34;pr_keyword_th&#34;:&#34;&#34;,&#34;pr_keyword_en&#34;:&#34;&#34;,&#34;pr_filter_th&#34;:&#34;&#34;,&#34;pr_filter_en&#34;:&#34;&#34;,&#34;online_category_l1_th&#34;:&#34;&#34;,&#34;online_category_l1_en&#34;:&#34;&#34;,&#34;online_category_l2_th&#34;:&#34;&#34;,&#34;online_category_l2_en&#34;:&#34;&#34;,&#34;online_category_l3_th&#34;:&#34;&#34;,&#34;online_category_l3_en&#34;:&#34;&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Grocery&#34;,&#34;villa_category_l3_en&#34;:&#34;Cookies &amp; Snacks&#34;,&#34;villa_category_l4_en&#34;:&#34;Biscuits &amp; Crackers&#34;,&#34;content_en&#34;:&#34;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;content_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_brand_th&#34;:&#34;&#34;,&#34;hema_brand_en&#34;:&#34;&#34;,&#34;hema_sizedesc&#34;:&#34;&#34;,&#34;pr_brand_en&#34;:&#34;&#34;,&#34;pr_brand_th&#34;:&#34;&#34;,&#34;pr_online_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_online_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_barcode&#34;:&#34;5060148383378&#34;,&#34;pr_barcode2&#34;:&#34;506014838337&#34;,&#34;sort_weight&#34;:&#34;0&#34;},{&#34;cprcode&#34;:&#34;0000009&#34;,&#34;iprcode&#34;:&#34;0000009&#34;,&#34;oprcode&#34;:&#34;0000009&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;J. WALKER RED 70 CL.&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;01&#34;,&#34;pr_code&#34;:&#34;0000009&#34;,&#34;pr_dpcode&#34;:&#34;01&#34;,&#34;pr_engname&#34;:&#34;JOHNNIE WALKER RED 70 CL.&#34;,&#34;pr_ggcode&#34;:&#34;001&#34;,&#34;pr_market&#34;:&#34;J. WALKER RED 70 CL&#34;,&#34;pr_name&#34;:&#34;JOHNNIE WALKER RED 70 CL&#34;,&#34;pr_puqty&#34;:&#34;12.00&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;1782&#34;,&#34;pr_suref3&#34;:&#34;A&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;pr_country_th&#34;:&#34;&#34;,&#34;pr_country_en&#34;:&#34;United Kingdom&#34;,&#34;pr_keyword_th&#34;:&#34;&#34;,&#34;pr_keyword_en&#34;:&#34;&#34;,&#34;pr_filter_th&#34;:&#34;Alcohol,Spirits  Liqueurs&#34;,&#34;pr_filter_en&#34;:&#34;Alcohol,Spirits  Liqueurs&#34;,&#34;online_category_l1_th&#34;:&#34;\\u0e40\\u0e1a\\u0e35\\u0e22\\u0e23\\u0e4c, \\u0e44\\u0e27\\u0e19\\u0e4c\\u0e41\\u0e25\\u0e30\\u0e2a\\u0e38\\u0e23\\u0e32&#34;,&#34;online_category_l1_en&#34;:&#34;Beer Wine &amp; Spirits&#34;,&#34;online_category_l2_th&#34;:&#34;\\u0e40\\u0e2b\\u0e25\\u0e49\\u0e32&#34;,&#34;online_category_l2_en&#34;:&#34;Spirits &amp; Liqueurs&#34;,&#34;online_category_l3_th&#34;:&#34;&#34;,&#34;online_category_l3_en&#34;:&#34;&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Alcohol &amp; Beverage&#34;,&#34;villa_category_l3_en&#34;:&#34;Whisky&#34;,&#34;villa_category_l4_en&#34;:&#34;Scoth Whisky&#34;,&#34;content_en&#34;:&#34;0000009 Johnnie Walker Red 700ml&#34;,&#34;content_th&#34;:&#34;JOHNNIE WALKER RED 700ml&#34;,&#34;hema_brand_th&#34;:&#34;Johnnie Walker&#34;,&#34;hema_brand_en&#34;:&#34;Johnnie Walker&#34;,&#34;hema_sizedesc&#34;:&#34;700ml&#34;,&#34;pr_brand_en&#34;:&#34;Johnnie Walker&#34;,&#34;pr_brand_th&#34;:&#34;Johnnie Walker&#34;,&#34;pr_online_name_en&#34;:&#34;Johnnie Walker Red 700ml&#34;,&#34;pr_online_name_th&#34;:&#34;JOHNNIE WALKER RED 700ml&#34;,&#34;hema_name_en&#34;:&#34;Johnnie Walker Red&#34;,&#34;hema_name_th&#34;:&#34;JOHNNIE WALKER RED&#34;,&#34;pr_name_en&#34;:&#34;JOHNNIE WALKER RED 70 CL.&#34;,&#34;pr_name_th&#34;:&#34;JOHNNIE WALKER RED 70 CL&#34;,&#34;pr_barcode&#34;:null,&#34;pr_barcode2&#34;:null,&#34;sort_weight&#34;:&#34;0&#34;},{&#34;cprcode&#34;:&#34;203915&#34;,&#34;iprcode&#34;:&#34;203915&#34;,&#34;oprcode&#34;:&#34;203915&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;MEIJI GUMMY CHOCO GR&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;4&#34;,&#34;pr_code&#34;:&#34;203915&#34;,&#34;pr_dpcode&#34;:&#34;2.0&#34;,&#34;pr_engname&#34;:&#34;MEIJI GUMMY CHOCO GREEN GRAPE 30G&#34;,&#34;pr_ggcode&#34;:&#34;2&#34;,&#34;pr_market&#34;:&#34;\\u0e40\\u0e21\\u0e08\\u0e34 \\u0e01\\u0e31\\u0e21\\u0e21\\u0e35\\u0e48 \\u0e0a\\u0e47\\u0e2d\\u0e01\\u0e42\\u0e01 \\u0e01\\u0e23\\u0e35\\u0e19\\u0e40\\u0e01\\u0e23\\u0e1b 30&#34;,&#34;pr_name&#34;:&#34;\\u0e40\\u0e21\\u0e08\\u0e34 \\u0e01\\u0e31\\u0e21\\u0e21\\u0e35\\u0e48 \\u0e0a\\u0e47\\u0e2d\\u0e01\\u0e42\\u0e01 \\u0e01\\u0e23\\u0e35\\u0e19\\u0e40\\u0e01\\u0e23\\u0e1b 30 \\u0e01\\u0e23\\u0e31\\u0e21&#34;,&#34;pr_puqty&#34;:&#34;20.0&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;2943&#34;,&#34;pr_suref3&#34;:&#34;C&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1.0&#34;,&#34;pstype&#34;:&#34;1.0&#34;,&#34;pr_country_th&#34;:&#34;none&#34;,&#34;pr_country_en&#34;:&#34;China&#34;,&#34;pr_keyword_th&#34;:&#34;none&#34;,&#34;pr_keyword_en&#34;:&#34;none&#34;,&#34;pr_filter_th&#34;:&#34;Grocery,Chocolate&#34;,&#34;pr_filter_en&#34;:&#34;Grocery,Chocolate&#34;,&#34;online_category_l1_th&#34;:&#34;\\u0e2a\\u0e34\\u0e19\\u0e04\\u0e49\\u0e32\\u0e1a\\u0e23\\u0e34\\u0e42\\u0e20\\u0e04&#34;,&#34;online_category_l1_en&#34;:&#34;Grocery&#34;,&#34;online_category_l2_th&#34;:&#34;\\u0e0a\\u0e47\\u0e2d\\u0e04\\u0e42\\u0e01\\u0e41\\u0e25\\u0e15&#34;,&#34;online_category_l2_en&#34;:&#34;Chocolate&#34;,&#34;online_category_l3_th&#34;:&#34;none&#34;,&#34;online_category_l3_en&#34;:&#34;none&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Grocery&#34;,&#34;villa_category_l3_en&#34;:&#34;Candies&#34;,&#34;villa_category_l4_en&#34;:&#34;Confectionery&#34;,&#34;content_en&#34;:&#34;0203915 Meiji Gummy Choco Green Grape 30g&#34;,&#34;content_th&#34;:&#34;Meiji Gummy Choco Green Grape 30g&#34;,&#34;hema_brand_th&#34;:&#34;Meiji&#34;,&#34;hema_brand_en&#34;:&#34;Meiji&#34;,&#34;hema_sizedesc&#34;:&#34;30g&#34;,&#34;pr_brand_en&#34;:&#34;MEIJI&#34;,&#34;pr_brand_th&#34;:&#34;MEIJI&#34;,&#34;pr_online_name_en&#34;:&#34;Meiji Gummy Choco Green Grape 30g&#34;,&#34;pr_online_name_th&#34;:&#34;Meiji Gummy Choco Green Grape 30g&#34;,&#34;hema_name_en&#34;:&#34;Gummy Choco Green Grape&#34;,&#34;hema_name_th&#34;:&#34;Gummy Choco Green Grape&#34;,&#34;pr_name_en&#34;:&#34;MEIJI GUMMY CHOCO GREEN GRAPE 30G&#34;,&#34;pr_name_th&#34;:&#34;\\u0e40\\u0e21\\u0e08\\u0e34 \\u0e01\\u0e31\\u0e21\\u0e21\\u0e35\\u0e48 \\u0e0a\\u0e47\\u0e2d\\u0e01\\u0e42\\u0e01 \\u0e01\\u0e23\\u0e35\\u0e19\\u0e40\\u0e01\\u0e23\\u0e1b 30 \\u0e01\\u0e23\\u0e31\\u0e21&#34;,&#34;pr_barcode&#34;:null,&#34;pr_barcode2&#34;:null,&#34;sort_weight&#34;:&#34;0.0&#34;}]&#39;,
+ &#39;statusCode&#39;: 200,
+ &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
+  &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
+  &#39;Access-Control-Allow-Methods&#39;: &#39;*&#39;}}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">

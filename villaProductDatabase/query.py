@@ -63,7 +63,11 @@ import sys
 def productsFromList(cls,cprcodes:List[str])->pd.DataFrame:
   db = cls.loadFromCache()
   print(f'db shape is {db.shape}')
-  products = db[db['cprcode'].isin(cprcodes)]
+  try:
+    products = db[db['cprcode'].isin(cprcodes)]
+  except:
+    print(db.head())
+    raise Exception(f'{db.head()} is not a valid db')
   return products
 
 # Cell
