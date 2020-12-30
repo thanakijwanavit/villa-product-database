@@ -3,7 +3,8 @@
 __all__ = ['DATABASE_TABLE_NAME', 'INVENTORY_BUCKET_NAME', 'INPUT_BUCKET_NAME', 'REGION', 'ACCESS_KEY_ID',
            'SECRET_ACCESS_KEY', 'LINEKEY', 'DBHASHLOCATION', 'DBCACHELOCATION', 'ProductDatabase', 'cacheDb',
            'lambdaDumpToS3', 'Product', 'ValueUpdate', 'chunks', 'lambdaUpdateProduct', 'updateS3Input',
-           'lambdaUpdateS3', 'ProductsFromList', 'lambdaProductsFromList', 'lambdaSingleQuery', 'lambdaAllQuery']
+           'lambdaUpdateS3', 'ProductsFromList', 'lambdaProductsFromList', 'lambdaSingleQuery', 'lambdaAllQuery',
+           'lambdaAllQueryFeather']
 
 # Cell
 import pandas as pd
@@ -191,3 +192,12 @@ def lambdaSingleQuery(event, _):
 def lambdaAllQuery(event, *args):
   url = ProductDatabase.allQuery(bucket = INVENTORY_BUCKET_NAME, key='allData-json.zl')
   return Response.getReturn(body = {'url': url})
+
+# Cell
+def lambdaAllQueryFeather(event, *args):
+  key = 'allData'
+  bucket = INVENTORY_BUCKET_NAME
+  url = ProductDatabase.allQuery(bucket = INVENTORY_BUCKET_NAME, key=key)
+  hashCode = pdUtils.loadRemoteHash(key=key, bucket=bucket)
+
+  return Response.getReturn(body = {'url': url, 'hash': hashCode})
