@@ -17,6 +17,7 @@ from pprint import pprint
 from nicHelper.wrappers import add_method, add_class_method, add_static_method
 from nicHelper.dictUtil import stripDict, printDict
 from nicHelper.exception import errorString
+from nicHelper import pdUtils
 from awsSchema.apigateway import Response, Event
 from dataclasses_json import dataclass_json, Undefined, CatchAll
 from dataclasses import dataclass
@@ -187,6 +188,6 @@ def lambdaSingleQuery(event, _):
   return Response.returnSuccess(body = result)
 
 # Cell
-def lambdaAllQuery(event, _):
+def lambdaAllQuery(event, *args):
   url = ProductDatabase.allQuery(bucket = INVENTORY_BUCKET_NAME, key='allData-json.zl')
   return Response.getReturn(body = {'url': url})
