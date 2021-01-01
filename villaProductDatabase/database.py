@@ -198,6 +198,5 @@ def lambdaAllQueryFeather(event, *args):
   key = 'allData'
   bucket = INVENTORY_BUCKET_NAME
   url = ProductDatabase.allQuery(bucket = INVENTORY_BUCKET_NAME, key=key)
-  hashCode = pdUtils.loadRemoteHash(key=key, bucket=bucket)
-
+  hashCode = pdUtils.loadRemoteHash(key=key, bucket=bucket, useUrl = True)
   return Response.getReturn(body = {'url': url, 'hash': hashCode})
