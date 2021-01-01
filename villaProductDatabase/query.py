@@ -47,7 +47,7 @@ class Querier:
 @add_class_method(Querier)
 def allQuery(cls, key = 'allData', bucket = os.environ.get('INVENTORY_BUCKET_NAME'), **kwargs):
   print(bucket)
-  result = S3.presign(key, bucket = bucket, **kwargs)
+  result = S3.presign(key, bucket = bucket, checkExist=False,  **kwargs)
   return result
 
 # Cell

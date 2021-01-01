@@ -183,7 +183,54 @@ None
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">Tester</span><span class="o">.</span><span class="n">allQuery</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">boto3</span>
+<span class="o">%</span><span class="k">time</span> result = S3.presign(key=&#39;allData&#39;, bucket = os.environ.get(&#39;INVENTORY_BUCKET_NAME&#39;))
+<span class="o">%</span><span class="k">time</span> boto3.client(&#39;s3&#39;).generate_presigned_url( &#39;get_object&#39;, Params={&#39;Bucket&#39;: os.environ.get(&#39;INVENTORY_BUCKET_NAME&#39;), &#39;Key&#39;: &#39;allData&#39;}, ExpiresIn=86400)
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 96.9 ms, sys: 12.8 ms, total: 110 ms
+Wall time: 445 ms
+CPU times: user 6.13 ms, sys: 0 ns, total: 6.13 ms
+Wall time: 5.93 ms
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;https://product-bucket-dev-manual.s3.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=yUdTO4C1G3LM9SZeG5d%2FxZmiZFA%3D&amp;Expires=1609564730&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Tester</span><span class="o">.</span><span class="n">allQuery</span><span class="p">()</span>
 <span class="n">result</span>
 </pre></div>
 
@@ -198,6 +245,8 @@ None
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
+CPU times: user 5.36 ms, sys: 27 µs, total: 5.39 ms
+Wall time: 5.28 ms
 </pre>
 </div>
 </div>
@@ -207,7 +256,7 @@ None
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=LNLuLFVBya8eIrkG3v%2FvRR24INU%3D&amp;Expires=1608726988&#39;</pre>
+<pre>&#39;https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=2caXzVjIiM58I0sGkPLHk%2Fb2NX8%3D&amp;Expires=1609479330&#39;</pre>
 </div>
 
 </div>
@@ -313,8 +362,8 @@ None
 loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
 db shape is (45149, 52)
-CPU times: user 257 ms, sys: 113 ms, total: 370 ms
-Wall time: 742 ms
+CPU times: user 359 ms, sys: 70.9 ms, total: 430 ms
+Wall time: 2.26 s
 </pre>
 </div>
 </div>
@@ -419,8 +468,8 @@ Wall time: 742 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 4.11 ms, sys: 14 µs, total: 4.13 ms
-Wall time: 8.06 ms
+<pre>CPU times: user 4.08 ms, sys: 0 ns, total: 4.08 ms
+Wall time: 8.95 ms
 </pre>
 </div>
 </div>

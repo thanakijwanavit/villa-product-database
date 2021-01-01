@@ -30,7 +30,7 @@ from .schema import KeySchema, createIndex
 from .update import Updater
 from requests import post
 
-import pickle, json, boto3, bz2, requests, validators, os, logging, traceback
+import pickle, json, boto3, bz2, requests, validators, os, logging, traceback, zlib
 
 # Cell
 import os

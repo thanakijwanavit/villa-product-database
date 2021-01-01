@@ -15,7 +15,7 @@ from base64 import b64encode, b64decode
 from pandas.util import hash_pandas_object
 from hashlib import sha1
 import pandas as pd
-import os, logging
+import os, logging, zlib
 
 # Cell
 import os

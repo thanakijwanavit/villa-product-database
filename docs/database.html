@@ -154,8 +154,8 @@ You can create the table by with the <code>create_table</code> method.</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>engname is JOHNNIE WALKER RED 70 CL.
  name is changed to  testName
-CPU times: user 3.02 ms, sys: 0 ns, total: 3.02 ms
-Wall time: 5.74 ms
+CPU times: user 3.17 ms, sys: 0 ns, total: 3.17 ms
+Wall time: 5.88 ms
 </pre>
 </div>
 </div>
@@ -197,8 +197,8 @@ Wall time: 5.74 ms
 <pre>loading hashkey allData-hash
 loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
-CPU times: user 383 ms, sys: 48.9 ms, total: 432 ms
-Wall time: 850 ms
+CPU times: user 364 ms, sys: 114 ms, total: 478 ms
+Wall time: 968 ms
 </pre>
 </div>
 </div>
@@ -215,47 +215,6 @@ Wall time: 850 ms
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="o">.</span><span class="n">getInput</span><span class="p">({</span><span class="s1">&#39;iprcodes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0217153&#39;</span><span class="p">,</span><span class="s1">&#39;203915&#39;</span><span class="p">,</span><span class="s1">&#39;0000009&#39;</span><span class="p">]})</span>
-<span class="n">response</span> <span class="o">=</span> <span class="n">lambdaProductsFromList</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">Response</span><span class="o">.</span><span class="n">parseBody</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;result length is not 3 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
-<span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">,</span> <span class="s1">&#39;result type is not dict&#39;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>loading hashkey allData-hash
-loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-data is still in sync, using local cache
-db shape is (45149, 52)
-CPU times: user 331 ms, sys: 42.6 ms, total: 374 ms
-Wall time: 768 ms
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -335,8 +294,8 @@ convert to df
 hashKey is allData-hash
 saving hash to s3
 saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-CPU times: user 3.02 s, sys: 436 ms, total: 3.46 s
-Wall time: 5.58 s
+CPU times: user 5.1 s, sys: 464 ms, total: 5.56 s
+Wall time: 7.24 s
 </pre>
 </div>
 </div>
@@ -406,8 +365,8 @@ convert to df
 hashKey is allData-hash
 saving hash to s3
 saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-CPU times: user 6.95 s, sys: 409 ms, total: 7.36 s
-Wall time: 9.58 s
+CPU times: user 9.27 s, sys: 490 ms, total: 9.76 s
+Wall time: 22.1 s
 </pre>
 </div>
 </div>
@@ -476,13 +435,13 @@ loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
 quering for changes
 convert to df
-(1, 52)
+(0, 0)
 hashKey is allData-hash
 saving hash to s3
 saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 True
-CPU times: user 1.94 s, sys: 313 ms, total: 2.26 s
-Wall time: 4.25 s
+CPU times: user 3.51 s, sys: 393 ms, total: 3.9 s
+Wall time: 5.44 s
 </pre>
 </div>
 </div>
@@ -652,12 +611,12 @@ Wall time: 4.25 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.013 ms
-divided into chunks 0.24000000000000002 ms
+<pre>input validated 0.012 ms
+divided into chunks 0.11 ms
 loading hashkey allData-hash
 loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
-get all from s3 852.132 ms
+get all from s3 571.13 ms
 incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 </pre>
 </div>
@@ -672,7 +631,7 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
  &#39;failure&#39;: 0,
  &#39;skipped&#39;: 0,
  &#39;failureMessage&#39;: [],
- &#39;timetaken(ms)&#39;: 920.48}</pre>
+ &#39;timetaken(ms)&#39;: 639.656}</pre>
 </div>
 
 </div>
@@ -735,12 +694,12 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.013 ms
-divided into chunks 2.442 ms
+<pre>input validated 0.012 ms
+divided into chunks 0.6890000000000001 ms
 loading hashkey allData-hash
 loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
-get all from s3 854.869 ms
+get all from s3 585.9689999999999 ms
 incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 </pre>
 </div>
@@ -751,7 +710,7 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:938.16}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:642.768}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -837,12 +796,12 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.012 ms
-divided into chunks 0.388 ms
+<pre>input validated 0.013 ms
+divided into chunks 0.439 ms
 loading hashkey allData-hash
 loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
-get all from s3 947.9459999999999 ms
+get all from s3 592.305 ms
 incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 </pre>
 </div>
@@ -910,12 +869,12 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.011 ms
-divided into chunks 0.11900000000000001 ms
+<pre>input validated 0.014 ms
+divided into chunks 0.118 ms
 loading hashkey allData-hash
 loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
-get all from s3 959.3340000000001 ms
+get all from s3 538.668 ms
 incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 </pre>
 </div>
@@ -926,7 +885,7 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:1041.612}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:596.111}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -1012,6 +971,47 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">event</span> <span class="o">=</span> <span class="n">Event</span><span class="o">.</span><span class="n">getInput</span><span class="p">({</span><span class="s1">&#39;iprcodes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;0217153&#39;</span><span class="p">,</span><span class="s1">&#39;203915&#39;</span><span class="p">,</span><span class="s1">&#39;0000009&#39;</span><span class="p">]})</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">lambdaProductsFromList</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Response</span><span class="o">.</span><span class="n">parseBody</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;result length is not 3 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+<span class="k">assert</span> <span class="nb">type</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="nb">dict</span><span class="p">,</span> <span class="s1">&#39;result type is not dict&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>loading hashkey allData-hash
+loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+data is still in sync, using local cache
+db shape is (45149, 52)
+CPU times: user 292 ms, sys: 76.9 ms, total: 368 ms
+Wall time: 788 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -1348,11 +1348,11 @@ dtype: object</pre>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
-CPU times: user 25.4 ms, sys: 0 ns, total: 25.4 ms
-Wall time: 362 ms
-https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData-json.zl?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=LiKDC%2BSpI%2FJH%2BoqDt7tsW5lhFmA%3D&amp;Expires=1608787369
-CPU times: user 1.64 s, sys: 204 ms, total: 1.85 s
-Wall time: 1.96 s
+CPU times: user 5.68 ms, sys: 0 ns, total: 5.68 ms
+Wall time: 5.44 ms
+https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData-json.zl?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=dgaWblk45u0ewp3vk%2BQRBTkudOY%3D&amp;Expires=1609479695
+CPU times: user 1.39 s, sys: 302 ms, total: 1.69 s
+Wall time: 1.77 s
 </pre>
 </div>
 </div>
@@ -1748,10 +1748,10 @@ Name: pr_suref3, dtype: int64</pre>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
-CPU times: user 1.82 s, sys: 403 ms, total: 2.22 s
-Wall time: 6.07 s
-CPU times: user 1.86 s, sys: 410 ms, total: 2.27 s
-Wall time: 6.65 s
+CPU times: user 1.59 s, sys: 211 ms, total: 1.8 s
+Wall time: 1.96 s
+CPU times: user 1.6 s, sys: 211 ms, total: 1.81 s
+Wall time: 1.97 s
 </pre>
 </div>
 </div>
@@ -1816,8 +1816,10 @@ Wall time: 6.65 s
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">Response</span><span class="o">.</span><span class="n">fromDict</span><span class="p">(</span><span class="n">lambdaAllQueryFeather</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">body</span>
-<span class="n">result</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">time</span> r = lambdaAllQueryFeather(&#39;&#39;)
+<span class="o">%</span><span class="k">time</span> result = Response.fromDict(r).body
+<span class="n">url</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+<span class="o">%</span><span class="k">time</span> pd.read_feather(url)
 </pre></div>
 
     </div>
@@ -1833,6 +1835,12 @@ Wall time: 6.65 s
 <pre>product-bucket-dev-manual
 loading hashkey allData-hash
 loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+CPU times: user 48.7 ms, sys: 0 ns, total: 48.7 ms
+Wall time: 160 ms
+CPU times: user 25 µs, sys: 0 ns, total: 25 µs
+Wall time: 29.3 µs
+CPU times: user 339 ms, sys: 60.2 ms, total: 399 ms
+Wall time: 573 ms
 </pre>
 </div>
 </div>
@@ -1840,10 +1848,317 @@ loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 <div class="output_area">
 
 
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<div class="output_text output_subarea output_execute_result">
-<pre>{&#39;url&#39;: &#39;https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=PYOJ1EtgSlcE6maYdQrpOOzvoiI%3D&amp;Expires=1609312238&#39;,
- &#39;hash&#39;: &#39;e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b&#39;}</pre>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cprcode</th>
+      <th>iprcode</th>
+      <th>oprcode</th>
+      <th>ordertype</th>
+      <th>pr_abb</th>
+      <th>pr_active</th>
+      <th>pr_cgcode</th>
+      <th>pr_code</th>
+      <th>pr_dpcode</th>
+      <th>pr_engname</th>
+      <th>...</th>
+      <th>pr_brand_th</th>
+      <th>pr_online_name_en</th>
+      <th>pr_online_name_th</th>
+      <th>hema_name_en</th>
+      <th>hema_name_th</th>
+      <th>pr_name_en</th>
+      <th>pr_name_th</th>
+      <th>pr_barcode</th>
+      <th>pr_barcode2</th>
+      <th>sort_weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0217153</td>
+      <td>0217153</td>
+      <td>0217153</td>
+      <td>Y</td>
+      <td>COCOA LOCO MILK CHOC</td>
+      <td>Y</td>
+      <td>98</td>
+      <td>0217153</td>
+      <td>28</td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>...</td>
+      <td></td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>5060148383378</td>
+      <td>506014838337</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0235141</td>
+      <td>0235141</td>
+      <td>0235141</td>
+      <td>Y</td>
+      <td>EEBOO-PZCT3-PUZZLE</td>
+      <td>Y</td>
+      <td>08</td>
+      <td>0235141</td>
+      <td>19</td>
+      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>...</td>
+      <td></td>
+      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>EEBOO-PZCT3-ตัวต่อนับเลข ANIMAL COUNTING_3ED</td>
+      <td>689196509575</td>
+      <td>68919650957</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0182223</td>
+      <td>0182223</td>
+      <td>0182223</td>
+      <td>Y</td>
+      <td>CIRIO PIZZASSIMO 400</td>
+      <td>Y</td>
+      <td>06</td>
+      <td>0182223</td>
+      <td>06</td>
+      <td>CIRIO PIZZASSIMO 400G.</td>
+      <td>...</td>
+      <td>CIRIO</td>
+      <td>Cirio Pizzassimo 400g</td>
+      <td>Cirio Pizzassimo 400g</td>
+      <td>Pizzassimo</td>
+      <td>Pizzassimo</td>
+      <td>CIRIO PIZZASSIMO 400G.</td>
+      <td>CIRIO ซอสทำพิซซ่า 400 G.</td>
+      <td>8000320997266</td>
+      <td>800032099726</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0124461</td>
+      <td>0124461</td>
+      <td>0124461</td>
+      <td>Y</td>
+      <td>NEW CHOICE LYCHEE</td>
+      <td>Y</td>
+      <td>02</td>
+      <td>0124461</td>
+      <td>02</td>
+      <td>NEW CHOICE LYCHEE</td>
+      <td>...</td>
+      <td>New Choice</td>
+      <td>New Choice Lychee</td>
+      <td>NEW CHOICE กลิ่นลิ้นจี่</td>
+      <td>New Choice Lychee</td>
+      <td>NEW CHOICE กลิ่นลิ้นจี่</td>
+      <td>NEW CHOICE LYCHEE</td>
+      <td>NEW CHOICE กลิ่นลิ้นจี่</td>
+      <td>8938501660121</td>
+      <td>893850166012</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0171670</td>
+      <td>0171670</td>
+      <td>0171670</td>
+      <td>Y</td>
+      <td>JIRAPAT YOUNG KALE 2</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0171670</td>
+      <td>19</td>
+      <td>JIRAPAT YOUNG KALE 200 G.</td>
+      <td>...</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>45144</th>
+      <td>0226783</td>
+      <td>0226783</td>
+      <td>0226783</td>
+      <td>Y</td>
+      <td>BETAGRO เป็ดย่างครึ่</td>
+      <td>Y</td>
+      <td>74</td>
+      <td>0226783</td>
+      <td>19</td>
+      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
+      <td>...</td>
+      <td></td>
+      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
+      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
+      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
+      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
+      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
+      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
+      <td>2269245</td>
+      <td>226924</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>45145</th>
+      <td>0236832</td>
+      <td>0236832</td>
+      <td>0236832</td>
+      <td>Y</td>
+      <td>หน้ากากอนามัย3ชั้น ช</td>
+      <td>Y</td>
+      <td>06</td>
+      <td>0236832</td>
+      <td>09</td>
+      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู</td>
+      <td>...</td>
+      <td></td>
+      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู</td>
+      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู</td>
+      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู</td>
+      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู</td>
+      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู</td>
+      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู P.3</td>
+      <td>8857121193256</td>
+      <td>885712119325</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>45146</th>
+      <td>0225419</td>
+      <td>0225419</td>
+      <td>0225419</td>
+      <td>Y</td>
+      <td>DKFF BEETROOT</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0225419</td>
+      <td>19</td>
+      <td>DKFF BEETROOT</td>
+      <td>...</td>
+      <td></td>
+      <td>DKFF BEETROOT</td>
+      <td>DKFF BEETROOT</td>
+      <td>DKFF BEETROOT</td>
+      <td>DKFF BEETROOT</td>
+      <td>DKFF BEETROOT</td>
+      <td>DKFF บีทรูท</td>
+      <td>2264772</td>
+      <td>226477</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>45147</th>
+      <td>0217647</td>
+      <td>0217647</td>
+      <td>0217647</td>
+      <td>Y</td>
+      <td>GRAPE GREEN SHINE MU</td>
+      <td>Y</td>
+      <td>02</td>
+      <td>0217647</td>
+      <td>19</td>
+      <td>GRAPE GREEN SHINE MUSCUT</td>
+      <td>...</td>
+      <td></td>
+      <td>GRAPE GREEN SHINE MUSCUT</td>
+      <td>องุ่นเขียว ซัยน์มัสคัท 900G</td>
+      <td>GRAPE GREEN SHINE MUSCUT</td>
+      <td>องุ่นเขียว ซัยน์มัสคัท 900G</td>
+      <td>GRAPE GREEN SHINE MUSCUT</td>
+      <td>องุ่นเขียว ซัยน์มัสคัท 900G</td>
+      <td>2247207</td>
+      <td>224720</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>45148</th>
+      <td>0236616</td>
+      <td>0236616</td>
+      <td>0236616</td>
+      <td>Y</td>
+      <td>GREEN THUMB581445</td>
+      <td>Y</td>
+      <td>08</td>
+      <td>0236616</td>
+      <td>19</td>
+      <td>GREEN THUMB581445</td>
+      <td>...</td>
+      <td></td>
+      <td>GREEN THUMB581445</td>
+      <td>GREEN THUMB581445</td>
+      <td>GREEN THUMB581445</td>
+      <td>GREEN THUMB581445</td>
+      <td>GREEN THUMB581445</td>
+      <td>GREEN THUMB-ข้อต่อ 581445</td>
+      <td>052088047088</td>
+      <td>05208804708</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>45149 rows × 52 columns</p>
+</div>
 </div>
 
 </div>
@@ -1901,8 +2216,8 @@ loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>checking scan time
-CPU times: user 16.1 s, sys: 685 ms, total: 16.8 s
-Wall time: 29.5 s
+CPU times: user 15.9 s, sys: 1.07 s, total: 17 s
+Wall time: 28.4 s
 </pre>
 </div>
 </div>
