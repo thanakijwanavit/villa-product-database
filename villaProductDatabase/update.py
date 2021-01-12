@@ -94,7 +94,11 @@ def valueUpdate2(cls, inputs:List[dict]):
 
           ##### check if product is in the database, if not, create an empty class with the product code
           if 'cprcode' in db.columns:
-            incumbentSeries = db[db['cprcode']==cprcode].iloc[0]
+            incumbentDb = db[db['cprcode']==cprcode]
+            if incumbentDb.empty:
+              incumbentSeries = pd.Series()
+            else:
+              incumbentSeries = incumbentDb.iloc[0]
             if incumbentSeries.any:
               print(f'incumbentSeries is type {type(incumbentSeries)}')
               incumbentItem = cls.fromSeries(incumbentSeries)
