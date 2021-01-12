@@ -100,7 +100,7 @@ def valueUpdate2(cls, inputs:List[dict]):
             else:
               incumbentSeries = incumbentDb.iloc[0]
             if incumbentSeries.any:
-              print(f'incumbentSeries is type {type(incumbentSeries)}')
+#               print(f'incumbentSeries is type {type(incumbentSeries)}')
               incumbentItem = cls.fromSeries(incumbentSeries)
             else: incumbentItem = cls.fromDict({'iprcode': iprcode, 'cprcode': cprcode})
           else: incumbentItem = cls.fromDict({'iprcode': iprcode, 'cprcode': cprcode})
