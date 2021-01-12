@@ -15,6 +15,7 @@ from dataclasses_json import dataclass_json, Undefined, CatchAll
 from dataclasses import dataclass
 from typing import List
 from datetime import datetime
+import pandas as pd
 import os, logging
 
 # Cell
@@ -92,10 +93,12 @@ def valueUpdate2(cls, inputs:List[dict]):
           cprcode = input_['cprcode']
 
           ##### check if product is in the database, if not, create an empty class with the product code
-          incumbentSeries = db[db['cprcode']==cprcode].iloc[0]
-          if incumbentSeries.any:
-            print(f'incumbentSeries is type {type(incumbentSeries)}')
-            incumbentItem = cls.fromSeries(incumbentSeries)
+          if 'cprcode' in db.columns:
+            incumbentSeries = db[db['cprcode']==cprcode].iloc[0]
+            if incumbentSeries.any:
+              print(f'incumbentSeries is type {type(incumbentSeries)}')
+              incumbentItem = cls.fromSeries(incumbentSeries)
+            else: incumbentItem = cls.fromDict({'iprcode': iprcode, 'cprcode': cprcode})
           else: incumbentItem = cls.fromDict({'iprcode': iprcode, 'cprcode': cprcode})
 
           ##### make a copy of original data

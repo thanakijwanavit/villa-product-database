@@ -154,8 +154,8 @@ You can create the table by with the <code>create_table</code> method.</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>engname is JOHNNIE WALKER RED 70 CL.
  name is changed to  testName
-CPU times: user 0 ns, sys: 3.35 ms, total: 3.35 ms
-Wall time: 6.34 ms
+CPU times: user 3.91 ms, sys: 0 ns, total: 3.91 ms
+Wall time: 6.97 ms
 </pre>
 </div>
 </div>
@@ -197,8 +197,8 @@ Wall time: 6.34 ms
 <pre>loading hashkey allData-hash
 loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
-CPU times: user 359 ms, sys: 118 ms, total: 476 ms
-Wall time: 862 ms
+CPU times: user 432 ms, sys: 0 ns, total: 432 ms
+Wall time: 586 ms
 </pre>
 </div>
 </div>
@@ -294,8 +294,8 @@ convert to df
 hashKey is allData-hash
 saving hash to s3
 saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-CPU times: user 5.23 s, sys: 480 ms, total: 5.71 s
-Wall time: 7.56 s
+CPU times: user 5.41 s, sys: 0 ns, total: 5.41 s
+Wall time: 7.19 s
 </pre>
 </div>
 </div>
@@ -365,8 +365,8 @@ convert to df
 hashKey is allData-hash
 saving hash to s3
 saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-CPU times: user 9.19 s, sys: 464 ms, total: 9.65 s
-Wall time: 11.6 s
+CPU times: user 9.25 s, sys: 0 ns, total: 9.25 s
+Wall time: 11.4 s
 </pre>
 </div>
 </div>
@@ -440,8 +440,8 @@ hashKey is allData-hash
 saving hash to s3
 saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 True
-CPU times: user 3.49 s, sys: 408 ms, total: 3.9 s
-Wall time: 5.76 s
+CPU times: user 3.79 s, sys: 0 ns, total: 3.79 s
+Wall time: 5.42 s
 </pre>
 </div>
 </div>
@@ -611,12 +611,12 @@ Wall time: 5.76 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.014 ms
-divided into chunks 0.11699999999999999 ms
+<pre>input validated 0.013 ms
+divided into chunks 1.138 ms
 loading hashkey allData-hash
 loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
 data is still in sync, using local cache
-get all from s3 560.333 ms
+get all from s3 543.353 ms
 incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 </pre>
 </div>
@@ -631,7 +631,7 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
  &#39;failure&#39;: 0,
  &#39;skipped&#39;: 0,
  &#39;failureMessage&#39;: [],
- &#39;timetaken(ms)&#39;: 630.459}</pre>
+ &#39;timetaken(ms)&#39;: 610.757}</pre>
 </div>
 
 </div>
@@ -797,13 +797,89 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>input validated 0.012 ms
-divided into chunks 0.12000000000000001 ms
+divided into chunks 0.437 ms
 loading hashkey allData-hash
-loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-data is still in sync, using local cache
-get all from s3 518.829 ms
-incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
+error downloading file An error occurred (404) when calling the HeadObject operation: Not Found
+local loading error&#39;list&#39; object has no attribute &#39;get&#39;, loading remote hash
+locding remtoe failed An error occurred (404) when calling the HeadObject operation: Not Found returning blank df
+get all from s3 237.40200000000002 ms
 </pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pandas/core/indexes/base.py</span> in <span class="ansi-cyan-fg">get_loc</span><span class="ansi-blue-fg">(self, key, method, tolerance)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2897</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 2898</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_engine<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>casted_key<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2899</span>             <span class="ansi-green-fg">except</span> KeyError <span class="ansi-green-fg">as</span> err<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">pandas/_libs/index.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.index.IndexEngine.get_loc</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">pandas/_libs/index.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.index.IndexEngine.get_loc</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-green-fg">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="ansi-blue-fg">()</span>
+
+<span class="ansi-red-fg">KeyError</span>: &#39;cprcode&#39;
+
+The above exception was the direct cause of the following exception:
+
+<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-31-c472d2bc5685&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>                      accelerate = True)
+<span class="ansi-green-intense-fg ansi-bold">      6</span> logging<span class="ansi-blue-fg">.</span>info<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;test input data saved to s3&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg"> </span>updateResult <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>updateS3Input<span class="ansi-blue-fg">(</span> inputBucketName<span class="ansi-blue-fg">=</span>INPUT_BUCKET_NAME<span class="ansi-blue-fg">,</span> key<span class="ansi-blue-fg">=</span> inputKeyName<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      8</span> 
+<span class="ansi-green-intense-fg ansi-bold">      9</span> logging<span class="ansi-blue-fg">.</span>info<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f&#39;s3 save result is {saveResult} update result is {updateResult}&#39;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     34</span>         <span class="ansi-blue-fg">@</span>classmethod
+<span class="ansi-green-intense-fg ansi-bold">     35</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 36</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span> cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     37</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     38</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-30-a6538ce90b4c&gt;</span> in <span class="ansi-cyan-fg">updateS3Input</span><span class="ansi-blue-fg">(cls, inputBucketName, key, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">def</span> updateS3Input<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> inputBucketName <span class="ansi-blue-fg">=</span> INPUT_BUCKET_NAME<span class="ansi-blue-fg">,</span> key <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span>   products <span class="ansi-blue-fg">=</span> S3<span class="ansi-blue-fg">.</span>load<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">=</span>key<span class="ansi-blue-fg">,</span> bucket <span class="ansi-blue-fg">=</span> inputBucketName<span class="ansi-blue-fg">,</span>  <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">   </span>updateResult <span class="ansi-blue-fg">=</span> cls<span class="ansi-blue-fg">.</span>valueUpdate2<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">&#39;items&#39;</span><span class="ansi-blue-fg">:</span>products<span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span>   <span class="ansi-green-fg">return</span> updateResult
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     34</span>         <span class="ansi-blue-fg">@</span>classmethod
+<span class="ansi-green-intense-fg ansi-bold">     35</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">---&gt; 36</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span> cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     37</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     38</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
+
+<span class="ansi-green-fg">~/SageMaker/stacks/villaMaster/villa-master-dev/product/database2/villaProductDatabase/update.py</span> in <span class="ansi-cyan-fg">valueUpdate2</span><span class="ansi-blue-fg">(cls, inputs)</span>
+<span class="ansi-green-intense-fg ansi-bold">     93</span> 
+<span class="ansi-green-intense-fg ansi-bold">     94</span>           <span class="ansi-red-fg">##### check if product is in the database, if not, create an empty class with the product code</span>
+<span class="ansi-green-fg">---&gt; 95</span><span class="ansi-red-fg">           </span>incumbentSeries <span class="ansi-blue-fg">=</span> db<span class="ansi-blue-fg">[</span>db<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;cprcode&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">==</span>cprcode<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>iloc<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">     96</span>           <span class="ansi-green-fg">if</span> incumbentSeries<span class="ansi-blue-fg">.</span>any<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">     97</span>             print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f&#39;incumbentSeries is type {type(incumbentSeries)}&#39;</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pandas/core/frame.py</span> in <span class="ansi-cyan-fg">__getitem__</span><span class="ansi-blue-fg">(self, key)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2904</span>             <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">.</span>nlevels <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">   2905</span>                 <span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_getitem_multilevel<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">-&gt; 2906</span><span class="ansi-red-fg">             </span>indexer <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2907</span>             <span class="ansi-green-fg">if</span> is_integer<span class="ansi-blue-fg">(</span>indexer<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">   2908</span>                 indexer <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>indexer<span class="ansi-blue-fg">]</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pandas/core/indexes/base.py</span> in <span class="ansi-cyan-fg">get_loc</span><span class="ansi-blue-fg">(self, key, method, tolerance)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2898</span>                 <span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_engine<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>casted_key<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   2899</span>             <span class="ansi-green-fg">except</span> KeyError <span class="ansi-green-fg">as</span> err<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 2900</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">raise</span> KeyError<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">from</span> err
+<span class="ansi-green-intense-fg ansi-bold">   2901</span> 
+<span class="ansi-green-intense-fg ansi-bold">   2902</span>         <span class="ansi-green-fg">if</span> tolerance <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">KeyError</span>: &#39;cprcode&#39;</pre>
 </div>
 </div>
 
@@ -869,13 +945,13 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.013 ms
-divided into chunks 0.12000000000000001 ms
+<pre>input validated 0.053 ms
+divided into chunks 0.17300000000000001 ms
 loading hashkey allData-hash
-loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-data is still in sync, using local cache
-get all from s3 516.904 ms
-incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
+error downloading file An error occurred (404) when calling the HeadObject operation: Not Found
+local loading error&#39;list&#39; object has no attribute &#39;get&#39;, loading remote hash
+locding remtoe failed An error occurred (404) when calling the HeadObject operation: Not Found returning blank df
+get all from s3 194.14999999999998 ms
 </pre>
 </div>
 </div>
@@ -885,8 +961,8 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:581.551}&#39;,
- &#39;statusCode&#39;: 200,
+<pre>{&#39;body&#39;: &#39;{&#34;error&#34;:&#34;Traceback (most recent call last):\\n  File \\&#34;\\/home\\/ec2-user\\/SageMaker\\/.persisted_conda\\/python38\\/lib\\/python3.8\\/site-packages\\/pandas\\/core\\/indexes\\/base.py\\&#34;, line 2898, in get_loc\\n    return self._engine.get_loc(casted_key)\\n  File \\&#34;pandas\\/_libs\\/index.pyx\\&#34;, line 70, in pandas._libs.index.IndexEngine.get_loc\\n  File \\&#34;pandas\\/_libs\\/index.pyx\\&#34;, line 101, in pandas._libs.index.IndexEngine.get_loc\\n  File \\&#34;pandas\\/_libs\\/hashtable_class_helper.pxi\\&#34;, line 1675, in pandas._libs.hashtable.PyObjectHashTable.get_item\\n  File \\&#34;pandas\\/_libs\\/hashtable_class_helper.pxi\\&#34;, line 1683, in pandas._libs.hashtable.PyObjectHashTable.get_item\\nKeyError: \&#39;cprcode\&#39;\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \\&#34;&lt;ipython-input-28-ca6b85a42a07&gt;\\&#34;, line 5, in lambdaUpdateS3\\n    updateResult = ProductDatabase.updateS3Input(\\n  File \\&#34;\\/home\\/ec2-user\\/SageMaker\\/.persisted_conda\\/python38\\/lib\\/python3.8\\/site-packages\\/nicHelper\\/wrappers.py\\&#34;, line 36, in wrapper\\n    return func( cls, *args, **kwargs)\\n  File \\&#34;&lt;ipython-input-24-a6538ce90b4c&gt;\\&#34;, line 5, in updateS3Input\\n    updateResult = cls.valueUpdate2({\&#39;items\&#39;:products})\\n  File \\&#34;\\/home\\/ec2-user\\/SageMaker\\/.persisted_conda\\/python38\\/lib\\/python3.8\\/site-packages\\/nicHelper\\/wrappers.py\\&#34;, line 36, in wrapper\\n    return func( cls, *args, **kwargs)\\n  File \\&#34;\\/home\\/ec2-user\\/SageMaker\\/stacks\\/villaMaster\\/villa-master-dev\\/product\\/database2\\/villaProductDatabase\\/update.py\\&#34;, line 95, in valueUpdate2\\n    incumbentSeries = db[db[\&#39;cprcode\&#39;]==cprcode].iloc[0]\\n  File \\&#34;\\/home\\/ec2-user\\/SageMaker\\/.persisted_conda\\/python38\\/lib\\/python3.8\\/site-packages\\/pandas\\/core\\/frame.py\\&#34;, line 2906, in __getitem__\\n    indexer = self.columns.get_loc(key)\\n  File \\&#34;\\/home\\/ec2-user\\/SageMaker\\/.persisted_conda\\/python38\\/lib\\/python3.8\\/site-packages\\/pandas\\/core\\/indexes\\/base.py\\&#34;, line 2900, in get_loc\\n    raise KeyError(key) from err\\nKeyError: \&#39;cprcode\&#39;\\n&#34;}&#39;,
+ &#39;statusCode&#39;: 400,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Methods&#39;: &#39;*&#39;}}</pre>

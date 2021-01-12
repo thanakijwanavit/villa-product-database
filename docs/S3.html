@@ -124,7 +124,7 @@ longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="S3Cache" class="doc_header"><code>class</code> <code>S3Cache</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L41" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>S3Cache</code>()</p>
+<h2 id="S3Cache" class="doc_header"><code>class</code> <code>S3Cache</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L42" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>S3Cache</code>()</p>
 </blockquote>
 
 </div>
@@ -186,7 +186,7 @@ longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="loadFromCache" class="doc_header"><code>loadFromCache</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>loadFromCache</code>(<strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>localCache</code></strong>=<em><code>'/mnt/efs/database.cache'</code></em>, <strong><code>localHash</code></strong>=<em><code>'/mnt/efs/database.hash'</code></em>, <strong><code>bucket</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="loadFromCache" class="doc_header"><code>loadFromCache</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L46" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>loadFromCache</code>(<strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>localCache</code></strong>=<em><code>'/mnt/efs/database.cache'</code></em>, <strong><code>localHash</code></strong>=<em><code>'/mnt/efs/database.hash'</code></em>, <strong><code>bucket</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 
 </div>
@@ -202,6 +202,27 @@ longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sampleDict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cprcode&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;iprcode&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;oprcode&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;ordertype&#39;</span><span class="p">:</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_abb&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT YOUG KALE 2&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_active&#39;</span><span class="p">:</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_cgcode&#39;</span><span class="p">:</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_code&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_dpcode&#39;</span><span class="p">:</span> <span class="s1">&#39;19&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_engname&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT YOUNG KALE 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_ggcode&#39;</span><span class="p">:</span> <span class="s1">&#39;057&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_market&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT ยอดคะน้า 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_name&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT ยอดคะน้า 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_puqty&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sa_method&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sucode1&#39;</span><span class="p">:</span> <span class="s1">&#39;CM845     &#39;</span><span class="p">,</span> <span class="s1">&#39;pr_suref3&#39;</span><span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;prtype&#39;</span><span class="p">:</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;psqty&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pstype&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">}</span>
+<span class="n">sampleDict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;cprcode&#39;</span><span class="p">,</span> <span class="s1">&#39;iprcode&#39;</span><span class="p">,</span> <span class="s1">&#39;oprcode&#39;</span><span class="p">,</span> <span class="s1">&#39;ordertype&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_abb&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_active&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_cgcode&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_code&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_dpcode&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_engname&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_ggcode&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_market&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_name&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_puqty&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sa_method&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sucode1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_suref3&#39;</span><span class="p">,</span> <span class="s1">&#39;prtype&#39;</span><span class="p">,</span> <span class="s1">&#39;psqty&#39;</span><span class="p">,</span> <span class="s1">&#39;pstype&#39;</span><span class="p">]</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="n">keys</span><span class="p">)</span>
+<span class="n">DUMMYDATA</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;cprcode&#39;</span><span class="p">:</span> <span class="s1">&#39;000000&#39;</span><span class="p">,</span> <span class="s1">&#39;iprcode&#39;</span><span class="p">:</span> <span class="s1">&#39;000000&#39;</span><span class="p">,</span> <span class="s1">&#39;oprcode&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;ordertype&#39;</span><span class="p">:</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_abb&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT YOUG KALE 2&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_active&#39;</span><span class="p">:</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_cgcode&#39;</span><span class="p">:</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_code&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_dpcode&#39;</span><span class="p">:</span> <span class="s1">&#39;19&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_engname&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT YOUNG KALE 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_ggcode&#39;</span><span class="p">:</span> <span class="s1">&#39;057&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_market&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT ยอดคะน้า 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_name&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT ยอดคะน้า 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_puqty&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sa_method&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sucode1&#39;</span><span class="p">:</span> <span class="s1">&#39;CM845     &#39;</span><span class="p">,</span> <span class="s1">&#39;pr_suref3&#39;</span><span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;prtype&#39;</span><span class="p">:</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;psqty&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pstype&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">}</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -229,6 +250,7 @@ longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>INFO:root:using accelerate endpoint
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
 </pre>
 </div>
 </div>
@@ -244,9 +266,7 @@ longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>INFO:root:object exists, loading
-INFO:root:using accelerate endpoint
-INFO:root:using accelerate endpoint
+<pre>INFO:root:using accelerate endpoint
 </pre>
 </div>
 </div>
@@ -254,11 +274,21 @@ INFO:root:using accelerate endpoint
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>loaded hash is PzfrumW4Vib/5yh3/4UtOHZI88U=
-remote hash is not the same, load remote cache
-CPU times: user 1.2 s, sys: 257 ms, total: 1.46 s
-Wall time: 2.32 s
+<pre>loaded hash is d0c0857f93ea21a99bc59a7c459dea6b8341d7cf
+data is still in sync, using local cache
 </pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+
+<span class="ansi-red-fg">AssertionError</span>: </pre>
 </div>
 </div>
 
@@ -323,6 +353,26 @@ Wall time: 2.32 s
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>cprcode</th>
+      <th>iprcode</th>
+      <th>oprcode</th>
+      <th>ordertype</th>
+      <th>pr_abb</th>
+      <th>pr_active</th>
+      <th>pr_cgcode</th>
+      <th>pr_code</th>
+      <th>pr_dpcode</th>
+      <th>pr_engname</th>
+      <th>pr_ggcode</th>
+      <th>pr_market</th>
+      <th>pr_name</th>
+      <th>pr_puqty</th>
+      <th>pr_sa_method</th>
+      <th>pr_sucode1</th>
+      <th>pr_suref3</th>
+      <th>prtype</th>
+      <th>psqty</th>
+      <th>pstype</th>
     </tr>
   </thead>
   <tbody>
@@ -356,7 +406,7 @@ Wall time: 2.32 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="saveRemoteCache" class="doc_header"><code>saveRemoteCache</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L76" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>saveRemoteCache</code>(<strong><code>db</code></strong>:<code>DataFrame</code>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>bucket</code></strong>=<em><code>None</code></em>, <strong><code>localCachePath</code></strong>=<em><code>'/mnt/efs/database.cache'</code></em>, <strong><code>localHashPath</code></strong>=<em><code>'/mnt/efs/database.hash'</code></em>)</p>
+<h4 id="saveRemoteCache" class="doc_header"><code>saveRemoteCache</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L77" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>saveRemoteCache</code>(<strong><code>db</code></strong>:<code>DataFrame</code>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>bucket</code></strong>=<em><code>None</code></em>, <strong><code>localCachePath</code></strong>=<em><code>'/mnt/efs/database.cache'</code></em>, <strong><code>localHashPath</code></strong>=<em><code>'/mnt/efs/database.hash'</code></em>)</p>
 </blockquote>
 
 </div>
@@ -384,8 +434,9 @@ Wall time: 2.32 s
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">sampleDict</span><span class="p">])</span>
 <span class="n">Tester</span><span class="o">.</span><span class="n">saveRemoteCache</span><span class="p">(</span><span class="n">db</span><span class="p">)</span>
-<span class="k">assert</span> <span class="n">pdUtils</span><span class="o">.</span><span class="n">getDfHash</span><span class="p">(</span><span class="n">db</span><span class="p">)</span> <span class="o">==</span> <span class="n">pdUtils</span><span class="o">.</span><span class="n">getDfHash</span><span class="p">(</span><span class="n">Tester</span><span class="o">.</span><span class="n">loadFromCache</span><span class="p">())</span>
+<span class="k">assert</span> <span class="n">pdUtils</span><span class="o">.</span><span class="n">getDfHash</span><span class="p">(</span><span class="n">db</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span> <span class="o">==</span> <span class="n">pdUtils</span><span class="o">.</span><span class="n">getDfHash</span><span class="p">(</span><span class="n">Tester</span><span class="o">.</span><span class="n">loadFromCache</span><span class="p">()),</span> <span class="s1">&#39;save fail&#39;</span>
 </pre></div>
 
     </div>
@@ -408,12 +459,68 @@ INFO:root:using accelerate endpoint
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>hashKey is allData-hash
+<pre>   cprcode  iprcode  oprcode ordertype               pr_abb pr_active  \
+0  0171670  0171670  0171670         Y  JIRAPAT YOUG KALE 2         Y   
+
+  pr_cgcode  pr_code pr_dpcode                 pr_engname pr_ggcode  \
+0        05  0171670        19  JIRAPAT YOUNG KALE 200 G.       057   
+
+                 pr_market                  pr_name pr_puqty pr_sa_method  \
+0  JIRAPAT ยอดคะน้า 200 G.  JIRAPAT ยอดคะน้า 200 G.        1            1   
+
+   pr_sucode1 pr_suref3 prtype psqty pstype  
+0  CM845              A      I     1      1  
+hashKey is allData-hash
 saving hash to s3
-saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+saved hash d0c0857f93ea21a99bc59a7c459dea6b8341d7cf
 </pre>
 </div>
 </div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:root:using accelerate endpoint
+INFO:root:using accelerate endpoint
+INFO:root:using accelerate endpoint
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>loading hashkey allData-hash
+loaded hash is d0c0857f93ea21a99bc59a7c459dea6b8341d7cf
+data is still in sync, using local cache
+CPU times: user 123 ms, sys: 11.7 ms, total: 134 ms
+Wall time: 529 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Tester</span><span class="o">.</span><span class="n">loadFromCache</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
 
 <div class="output_area">
 
@@ -428,30 +535,104 @@ INFO:root:using accelerate endpoint
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>INFO:root:object exists, loading
-INFO:root:using accelerate endpoint
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+loaded hash is d0c0857f93ea21a99bc59a7c459dea6b8341d7cf
 data is still in sync, using local cache
-CPU times: user 3.92 s, sys: 457 ms, total: 4.38 s
-Wall time: 5.94 s
 </pre>
 </div>
 </div>
 
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cprcode</th>
+      <th>iprcode</th>
+      <th>oprcode</th>
+      <th>ordertype</th>
+      <th>pr_abb</th>
+      <th>pr_active</th>
+      <th>pr_cgcode</th>
+      <th>pr_code</th>
+      <th>pr_dpcode</th>
+      <th>pr_engname</th>
+      <th>pr_ggcode</th>
+      <th>pr_market</th>
+      <th>pr_name</th>
+      <th>pr_puqty</th>
+      <th>pr_sa_method</th>
+      <th>pr_sucode1</th>
+      <th>pr_suref3</th>
+      <th>prtype</th>
+      <th>psqty</th>
+      <th>pstype</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0171670</td>
+      <td>0171670</td>
+      <td>0171670</td>
+      <td>Y</td>
+      <td>JIRAPAT YOUG KALE 2</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0171670</td>
+      <td>19</td>
+      <td>JIRAPAT YOUNG KALE 200 G.</td>
+      <td>057</td>
+      <td>JIRAPAT ยอดคะน้า 200 G.</td>
+      <td>JIRAPAT ยอดคะน้า 200 G.</td>
+      <td>1</td>
+      <td>1</td>
+      <td>CM845</td>
+      <td>A</td>
+      <td>I</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">db</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to_feather</span><span class="p">(</span><span class="s1">&#39;/tmp/test&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
 </div>
 </div>
 
@@ -475,7 +656,7 @@ Wall time: 5.94 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="resetS3Cache" class="doc_header"><code>resetS3Cache</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L93" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>resetS3Cache</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>10000</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="resetS3Cache" class="doc_header"><code>resetS3Cache</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/s3.py#L100" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>resetS3Cache</code>(<strong><code>bucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>'allData'</code></em>, <strong><code>limit</code></strong>=<em><code>10000</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 <p>upload changes to s3</p>
 
@@ -520,6 +701,72 @@ Wall time: 5.94 s
 <pre>INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
 </pre>
 </div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(1, 20) changes to update
+   cprcode  iprcode  oprcode ordertype                pr_abb pr_active  \
+0  0171670  0171670  0171670         Y  JIRAPAT YOUNG KALE 2         Y   
+
+  pr_cgcode  pr_code pr_dpcode                pr_engname pr_ggcode  \
+0        05  0171670        19  JIRAAT YOUNG KALE 200 G.       057   
+
+                 pr_market                  pr_name pr_puqty pr_sa_method  \
+0  JIRAPAT ยอดคะน้า 200 G.  JIRAPAT ยอดคะน้า 200 G.        1            1   
+
+  pr_sucode1 pr_suref3 prtype psqty pstype  
+0      CM845         A      I     1      1  
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:root:using accelerate endpoint
+INFO:root:data was saved to s3
+INFO:root:using accelerate endpoint
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>hashKey is allData-hash
+saving hash to s3
+saved hash 43a007725a68e2be2ca47be21c49845cf840b3ef
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:root:using accelerate endpoint
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 139 ms, sys: 3.67 ms, total: 142 ms
+Wall time: 523 ms
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
 </div>
 
 </div>
@@ -569,14 +816,14 @@ Wall time: 5.94 s
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 379 ms, sys: 39.4 ms, total: 418 ms
-Wall time: 417 ms
-CPU times: user 1.41 s, sys: 14.7 ms, total: 1.42 s
-Wall time: 1.46 s
-CPU times: user 126 ms, sys: 63.3 ms, total: 189 ms
-Wall time: 189 ms
-CPU times: user 848 ms, sys: 74.8 ms, total: 923 ms
-Wall time: 920 ms
+<pre>CPU times: user 100 µs, sys: 18 µs, total: 118 µs
+Wall time: 124 µs
+CPU times: user 49 µs, sys: 9 µs, total: 58 µs
+Wall time: 62.7 µs
+CPU times: user 376 µs, sys: 70 µs, total: 446 µs
+Wall time: 312 µs
+CPU times: user 26 µs, sys: 4 µs, total: 30 µs
+Wall time: 35.5 µs
 </pre>
 </div>
 </div>
@@ -609,8 +856,8 @@ Wall time: 920 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>45878793
-6645115
+<pre>589
+279
 </pre>
 </div>
 </div>
