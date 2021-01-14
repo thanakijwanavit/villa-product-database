@@ -154,8 +154,8 @@ You can create the table by with the <code>create_table</code> method.</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>engname is JOHNNIE WALKER RED 70 CL.
  name is changed to  testName
-CPU times: user 3.91 ms, sys: 0 ns, total: 3.91 ms
-Wall time: 6.97 ms
+CPU times: user 10.2 ms, sys: 0 ns, total: 10.2 ms
+Wall time: 12.7 ms
 </pre>
 </div>
 </div>
@@ -272,6 +272,15 @@ Wall time: 586 ms
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="c1"># originalDb = ProductDatabase.loadFromCache()</span>
+<span class="c1"># listPd = list(product.needsUpdateIndex.query(&#39;Y&#39;, limit=5))</span>
+<span class="c1"># changesDf = ProductDatabase.toDf(listPd)</span>
+<span class="c1"># changesDf.set_index(&#39;cprcode&#39;, inplace=True)</span>
+<span class="c1"># originalDb.set_index(&#39;cprcode&#39;,inplace=True)</span>
+<span class="c1"># newDf = originalDb.append(changesDf)</span>
+<span class="c1"># newDf.reset_index(inplace=True)</span>
+<span class="c1"># originalDb</span>
+
 <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">cacheDb</span><span class="p">()</span>
 </pre></div>
 
@@ -286,16 +295,16 @@ Wall time: 586 ms
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+loaded hash is 211e72cc25eae74c9b1a49ea6fc1480548cde052
 data is still in sync, using local cache
 quering for changes
 convert to df
-(100, 52)
+(100, 53)
 hashKey is allData-hash
 saving hash to s3
-saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-CPU times: user 5.41 s, sys: 0 ns, total: 5.41 s
-Wall time: 7.19 s
+saved hash ef207804b464ea25a12a48f5fb1be980547cc3bf
+CPU times: user 1.36 s, sys: 0 ns, total: 1.36 s
+Wall time: 2.41 s
 </pre>
 </div>
 </div>
@@ -303,9 +312,317 @@ Wall time: 7.19 s
 <div class="output_area">
 
 
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
 
-<div class="output_text output_subarea output_execute_result">
-<pre>True</pre>
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cprcode</th>
+      <th>iprcode</th>
+      <th>oprcode</th>
+      <th>ordertype</th>
+      <th>pr_abb</th>
+      <th>pr_active</th>
+      <th>pr_cgcode</th>
+      <th>pr_code</th>
+      <th>pr_dpcode</th>
+      <th>pr_engname</th>
+      <th>...</th>
+      <th>pr_name_th</th>
+      <th>pr_online_name_en</th>
+      <th>pr_online_name_th</th>
+      <th>sort_weight</th>
+      <th>villa_category_l1_en</th>
+      <th>villa_category_l2_en</th>
+      <th>villa_category_l3_en</th>
+      <th>villa_category_l4_en</th>
+      <th>SaleMode_unit</th>
+      <th>master_online</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0171670</td>
+      <td>0171670</td>
+      <td>0171670</td>
+      <td>Y</td>
+      <td>JIRAPAT YOUG KALE 2</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0171670</td>
+      <td>19</td>
+      <td>JIRAPAT YOUNG KALE 200 G.</td>
+      <td>...</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0243940</td>
+      <td>0243940</td>
+      <td>0243940</td>
+      <td>Y</td>
+      <td>KIDDO 4M SUPER NOVA</td>
+      <td>Y</td>
+      <td>14</td>
+      <td>0243940</td>
+      <td>19</td>
+      <td>KIDDO 4M SUPER NOVA 20PCS WITH PLANETS</td>
+      <td>...</td>
+      <td>KIDDO ของเล่นดาวเรืองแสงและดาวเคราะห์</td>
+      <td>KIDDO 4M SUPER NOVA 20PCS WITH PLANETS</td>
+      <td>KIDDO 4M SUPER NOVA 20PCS WITH PLANETS</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Toys</td>
+      <td>Kiddo Toys</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0227760</td>
+      <td>0227759</td>
+      <td>0227759</td>
+      <td>N</td>
+      <td>PORK SAUSAGE PATTIES</td>
+      <td>Y</td>
+      <td>83</td>
+      <td>0227760</td>
+      <td>19</td>
+      <td>PORK SAUSAGE PATTIES</td>
+      <td>...</td>
+      <td>(ขาย) PORK SAUSAGE PATTIES หลายบาร์ 0227759</td>
+      <td>Pork Sausage Patties</td>
+      <td>(ขาย) PORK SAUSAGE PATTIES หลายบาร์ 0227759</td>
+      <td>0</td>
+      <td>Fresh</td>
+      <td>Delicatessen</td>
+      <td>Local</td>
+      <td>Sausages</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0232665</td>
+      <td>0232665</td>
+      <td>0232665</td>
+      <td>Y</td>
+      <td>PF EGG PLANT</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0232665</td>
+      <td>19</td>
+      <td>PF EGG PLANT</td>
+      <td>...</td>
+      <td>PF มะเขือม่วงใหญ่</td>
+      <td>PF EGG PLANT</td>
+      <td>PF EGG PLANT</td>
+      <td>0</td>
+      <td>Fresh</td>
+      <td>Fresh Produce</td>
+      <td>Fruits &amp; Vegetable Local</td>
+      <td>Local Vegetable</td>
+      <td>GRAMS</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0121435</td>
+      <td>0121435</td>
+      <td>0121435</td>
+      <td>Y</td>
+      <td>STLE KOKO KRUNCH  DU</td>
+      <td>Y</td>
+      <td>07</td>
+      <td>0121435</td>
+      <td>05</td>
+      <td>NESTLE KOKO KRUNCH  DUO CEREAL 330 G.</td>
+      <td>...</td>
+      <td>NESTLE KOKO KRUNCH DUO CEREAL 330 G.</td>
+      <td>Koko Krunch Duo Cereal 330g</td>
+      <td>Koko Krunch Duo Cereal 330g</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Baby Food &amp; Milk / Breakfast Food</td>
+      <td>Cereal / Muesli</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>196</th>
+      <td>0225375</td>
+      <td>0225375</td>
+      <td>0225375</td>
+      <td>Y</td>
+      <td>ANO PINOT CHARDONNAY</td>
+      <td>Y</td>
+      <td>10</td>
+      <td>0225375</td>
+      <td>01</td>
+      <td>ANO PINOT CHARDONNAY BRUT</td>
+      <td>...</td>
+      <td>CINZANO PINOT CHARDONNAY BRUT</td>
+      <td>Cinzano Pinot Chardonnay Brut 750ml</td>
+      <td>Cinzano Pinot Chardonnay Brut 750ml</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Alcohol &amp; Beverage</td>
+      <td>Champagne</td>
+      <td>Prosecco</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>197</th>
+      <td>0240617</td>
+      <td>0240617</td>
+      <td>0240617</td>
+      <td>Y</td>
+      <td>2 TRAY BLACK CLEAR</td>
+      <td>Y</td>
+      <td>52</td>
+      <td>0240617</td>
+      <td>17</td>
+      <td>2 TRAY BLACK CLEAR</td>
+      <td>...</td>
+      <td>ถาด 2 ช่องพร้อมฝาสีดำ</td>
+      <td>2 TRAY BLACK CLEAR</td>
+      <td>2 TRAY BLACK CLEAR</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Store Supply</td>
+      <td>Tray</td>
+      <td></td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>198</th>
+      <td>0217813</td>
+      <td>0217813</td>
+      <td>0217813</td>
+      <td>Y</td>
+      <td>MONOPRIX HERRING FIL</td>
+      <td>Y</td>
+      <td>82</td>
+      <td>0217813</td>
+      <td>28</td>
+      <td>MONOPRIX HERRING FILET SMOKED TERRIN MX</td>
+      <td>...</td>
+      <td>MONOPRIX HERRING FILET SMOKED TERRIN MX</td>
+      <td>Monoprix Smoked Herring Fillet Terrin Mix 200g</td>
+      <td>Monoprix Smoked Herring Fillet Terrin Mix 200g</td>
+      <td>0</td>
+      <td>Fresh</td>
+      <td>Delicatessen</td>
+      <td>Import</td>
+      <td>Seafood</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>199</th>
+      <td>0231742</td>
+      <td>0231742</td>
+      <td>0231742</td>
+      <td>Y</td>
+      <td>GALBANI FETTA GOLOSA</td>
+      <td>Y</td>
+      <td>74</td>
+      <td>0231742</td>
+      <td>19</td>
+      <td>GALBANI FETTA GOLOSA 8KG</td>
+      <td>...</td>
+      <td>กัลบานีเฟทต้าโกโลซาแฮม 8กก</td>
+      <td>GALBANI FETTA GOLOSA 8KG</td>
+      <td>GALBANI FETTA GOLOSA 8KG</td>
+      <td>0</td>
+      <td>Fresh</td>
+      <td>Delicatessen</td>
+      <td>Import</td>
+      <td>Sausages</td>
+      <td>GRAMS</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>200</th>
+      <td>0238195</td>
+      <td>0238195</td>
+      <td>0238195</td>
+      <td>Y</td>
+      <td>HOMEMADE CHIPS AND</td>
+      <td>Y</td>
+      <td>74</td>
+      <td>0238195</td>
+      <td>19</td>
+      <td>HOMEMADE CHIPS AND  SALSA</td>
+      <td>...</td>
+      <td>(ขาย)0238194 โฮมเมด ชิปส์ กับ ซัลซ่า</td>
+      <td>Sunrise Tacos Homemade Chips and Salsa (blank)</td>
+      <td>Sunrise Tacos Homemade Chips and Salsa (blank)</td>
+      <td>0</td>
+      <td>Fresh</td>
+      <td>Delicatessen</td>
+      <td>Local</td>
+      <td>International Foods</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>201 rows × 54 columns</p>
+</div>
 </div>
 
 </div>
@@ -325,7 +642,7 @@ Wall time: 7.19 s
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@add_class_method</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">dumpToS3</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">bucketName</span><span class="o">=</span> <span class="n">INVENTORY_BUCKET_NAME</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;allData&#39;</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-  <span class="bp">cls</span><span class="o">.</span><span class="n">cacheDb</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+  <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">cacheDb</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -357,18 +674,336 @@ Wall time: 7.19 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-data is still in sync, using local cache
+loaded hash is 8fa1eb84fee3076dd1ca5c11bb5f460412480cc1
+remote hash is not the same, load remote cache
 quering for changes
 convert to df
-(400, 52)
+(1000, 53)
 hashKey is allData-hash
 saving hash to s3
-saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-CPU times: user 9.25 s, sys: 0 ns, total: 9.25 s
-Wall time: 11.4 s
+saved hash d8c7090261753c24c62945a8ba6ca7a9551c2803
+CPU times: user 12.9 s, sys: 0 ns, total: 12.9 s
+Wall time: 15.3 s
 </pre>
 </div>
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cprcode</th>
+      <th>iprcode</th>
+      <th>oprcode</th>
+      <th>ordertype</th>
+      <th>pr_abb</th>
+      <th>pr_active</th>
+      <th>pr_cgcode</th>
+      <th>pr_code</th>
+      <th>pr_dpcode</th>
+      <th>pr_engname</th>
+      <th>...</th>
+      <th>pr_name_th</th>
+      <th>pr_online_name_en</th>
+      <th>pr_online_name_th</th>
+      <th>sort_weight</th>
+      <th>villa_category_l1_en</th>
+      <th>villa_category_l2_en</th>
+      <th>villa_category_l3_en</th>
+      <th>villa_category_l4_en</th>
+      <th>SaleMode_unit</th>
+      <th>master_online</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0171670</td>
+      <td>0171670</td>
+      <td>0171670</td>
+      <td>Y</td>
+      <td>JIRAPAT YOUG KALE 2</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0171670</td>
+      <td>19</td>
+      <td>JIRAPAT YOUNG KALE 200 G.</td>
+      <td>...</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0243940</td>
+      <td>0243940</td>
+      <td>0243940</td>
+      <td>Y</td>
+      <td>KIDDO 4M SUPER NOVA</td>
+      <td>Y</td>
+      <td>14</td>
+      <td>0243940</td>
+      <td>19</td>
+      <td>KIDDO 4M SUPER NOVA 20PCS WITH PLANETS</td>
+      <td>...</td>
+      <td>KIDDO ของเล่นดาวเรืองแสงและดาวเคราะห์</td>
+      <td>KIDDO 4M SUPER NOVA 20PCS WITH PLANETS</td>
+      <td>KIDDO 4M SUPER NOVA 20PCS WITH PLANETS</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Toys</td>
+      <td>Kiddo Toys</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0227760</td>
+      <td>0227759</td>
+      <td>0227759</td>
+      <td>N</td>
+      <td>PORK SAUSAGE PATTIES</td>
+      <td>Y</td>
+      <td>83</td>
+      <td>0227760</td>
+      <td>19</td>
+      <td>PORK SAUSAGE PATTIES</td>
+      <td>...</td>
+      <td>(ขาย) PORK SAUSAGE PATTIES หลายบาร์ 0227759</td>
+      <td>Pork Sausage Patties</td>
+      <td>(ขาย) PORK SAUSAGE PATTIES หลายบาร์ 0227759</td>
+      <td>0</td>
+      <td>Fresh</td>
+      <td>Delicatessen</td>
+      <td>Local</td>
+      <td>Sausages</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0232665</td>
+      <td>0232665</td>
+      <td>0232665</td>
+      <td>Y</td>
+      <td>PF EGG PLANT</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0232665</td>
+      <td>19</td>
+      <td>PF EGG PLANT</td>
+      <td>...</td>
+      <td>PF มะเขือม่วงใหญ่</td>
+      <td>PF EGG PLANT</td>
+      <td>PF EGG PLANT</td>
+      <td>0</td>
+      <td>Fresh</td>
+      <td>Fresh Produce</td>
+      <td>Fruits &amp; Vegetable Local</td>
+      <td>Local Vegetable</td>
+      <td>GRAMS</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0121435</td>
+      <td>0121435</td>
+      <td>0121435</td>
+      <td>Y</td>
+      <td>STLE KOKO KRUNCH  DU</td>
+      <td>Y</td>
+      <td>07</td>
+      <td>0121435</td>
+      <td>05</td>
+      <td>NESTLE KOKO KRUNCH  DUO CEREAL 330 G.</td>
+      <td>...</td>
+      <td>NESTLE KOKO KRUNCH DUO CEREAL 330 G.</td>
+      <td>Koko Krunch Duo Cereal 330g</td>
+      <td>Koko Krunch Duo Cereal 330g</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Baby Food &amp; Milk / Breakfast Food</td>
+      <td>Cereal / Muesli</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1696</th>
+      <td>0241125</td>
+      <td>0241125</td>
+      <td>0241125</td>
+      <td>Y</td>
+      <td>KAMBLY BUTTERFLY SAL</td>
+      <td>Y</td>
+      <td>01</td>
+      <td>0241125</td>
+      <td>02</td>
+      <td>KAMBLY BUTTERFLY SALTED CARAMEL</td>
+      <td>...</td>
+      <td>แคมบลีย์ บัตเตอร์ฟลาย ซอลต์เต็ด คาราเมล</td>
+      <td>KAMBLY BUTTERFLY SALTED CARAMEL</td>
+      <td>KAMBLY BUTTERFLY SALTED CARAMEL</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Cookies &amp; Snacks</td>
+      <td>Biscuits &amp; Crackers</td>
+      <td>ITEM</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>1697</th>
+      <td>0235325</td>
+      <td>0235325</td>
+      <td>0235325</td>
+      <td>Y</td>
+      <td>BALLOON-CHRISTMAS OR</td>
+      <td>Y</td>
+      <td>16</td>
+      <td>0235325</td>
+      <td>19</td>
+      <td>BALLOON-CHRISTMAS ORNAMENT 3</td>
+      <td>...</td>
+      <td>BALLOON-คริสมาสต์ ออนาเม้น3</td>
+      <td>BALLOON-CHRISTMAS ORNAMENT 3</td>
+      <td>BALLOON-คริสมาสต์ ออนาเม้น3</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Household Hardware</td>
+      <td>Houseware</td>
+      <td>ITEM</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>1698</th>
+      <td>0182623</td>
+      <td>0182623</td>
+      <td>0182623</td>
+      <td>Y</td>
+      <td>MELON</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0182623</td>
+      <td>19</td>
+      <td>ยกเลิกMELON</td>
+      <td>...</td>
+      <td>QUALITY VEGETABEL แตงธิเบต</td>
+      <td>ยกเลิกMELON</td>
+      <td>ยกเลิกMELON</td>
+      <td>0</td>
+      <td>Fresh</td>
+      <td>Fresh Produce</td>
+      <td>Fruits &amp; Vegetable Local</td>
+      <td>Local Fruit</td>
+      <td>ITEM</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>1699</th>
+      <td>0214460</td>
+      <td>0214460</td>
+      <td>0214460</td>
+      <td>Y</td>
+      <td>MANICARE  M23051SMUD</td>
+      <td>Y</td>
+      <td>16</td>
+      <td>0214460</td>
+      <td>19</td>
+      <td>MANICARE  M23051SMUDGE BRUSH</td>
+      <td>...</td>
+      <td>MANICARE  M23051  แปรงทาตา</td>
+      <td>MANICARE  M23051SMUDGE BRUSH</td>
+      <td>MANICARE  M23051SMUDGE BRUSH</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>HBA</td>
+      <td>Cosmetics</td>
+      <td>ITEM</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>1700</th>
+      <td>0240731</td>
+      <td>0240731</td>
+      <td>0240731</td>
+      <td>Y</td>
+      <td>SUNTORY HAKUSHU SING</td>
+      <td>Y</td>
+      <td>01</td>
+      <td>0240731</td>
+      <td>01</td>
+      <td>SUNTORY HAKUSHU SINGLE MALT WHISKY 12 Y</td>
+      <td>...</td>
+      <td>ซันโทรี่ ฮากุชู  ซิงเกิ้ลมอลล์วิสกี้ 12 ปี</td>
+      <td>SUNTORY HAKUSHU SINGLE MALT WHISKY 12 Y</td>
+      <td>SUNTORY HAKUSHU SINGLE MALT WHISKY 12 Y</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Alcohol &amp; Beverage</td>
+      <td>Whisky</td>
+      <td></td>
+      <td>ITEM</td>
+      <td>N</td>
+    </tr>
+  </tbody>
+</table>
+<p>1701 rows × 54 columns</p>
+</div>
+</div>
+
 </div>
 
 </div>
@@ -388,7 +1023,7 @@ Wall time: 11.4 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L120" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -431,19 +1066,127 @@ Wall time: 11.4 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
+loaded hash is d8c7090261753c24c62945a8ba6ca7a9551c2803
 data is still in sync, using local cache
 quering for changes
 convert to df
-(0, 0)
+(500, 53)
 hashKey is allData-hash
 saving hash to s3
-saved hash e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-True
-CPU times: user 3.79 s, sys: 0 ns, total: 3.79 s
-Wall time: 5.42 s
+saved hash d20128693d487b6952a8ae8ef85e598812f72094
+{&#39;cprcode&#39;: &#39;0171670&#39;, &#39;iprcode&#39;: &#39;0171670&#39;, &#39;oprcode&#39;: &#39;0171670&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;JIRAPAT YOUG KALE 2&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;05&#39;, &#39;pr_code&#39;: &#39;0171670&#39;, &#39;pr_dpcode&#39;: &#39;19&#39;, &#39;pr_engname&#39;: &#39;JIRAPAT YOUNG KALE 200 G.&#39;, &#39;pr_ggcode&#39;: &#39;057&#39;, &#39;pr_market&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_name&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_puqty&#39;: &#39;1&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;CM845&#39;, &#39;pr_suref3&#39;: &#39;A&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;content_en&#39;: None, &#39;content_th&#39;: None, &#39;hema_brand_en&#39;: None, &#39;hema_brand_th&#39;: None, &#39;hema_name_en&#39;: None, &#39;hema_name_th&#39;: None, &#39;hema_sizedesc&#39;: None, &#39;online_category_l1_en&#39;: None, &#39;online_category_l1_th&#39;: None, &#39;online_category_l2_en&#39;: None, &#39;online_category_l2_th&#39;: None, &#39;online_category_l3_en&#39;: None, &#39;online_category_l3_th&#39;: None, &#39;pr_barcode&#39;: None, &#39;pr_barcode2&#39;: None, &#39;pr_brand_en&#39;: None, &#39;pr_brand_th&#39;: None, &#39;pr_country_en&#39;: None, &#39;pr_country_th&#39;: None, &#39;pr_filter_en&#39;: None, &#39;pr_filter_th&#39;: None, &#39;pr_keyword_en&#39;: None, &#39;pr_keyword_th&#39;: None, &#39;pr_name_en&#39;: None, &#39;pr_name_th&#39;: None, &#39;pr_online_name_en&#39;: None, &#39;pr_online_name_th&#39;: None, &#39;sort_weight&#39;: None, &#39;villa_category_l1_en&#39;: None, &#39;villa_category_l2_en&#39;: None, &#39;villa_category_l3_en&#39;: None, &#39;villa_category_l4_en&#39;: None, &#39;SaleMode_unit&#39;: None, &#39;master_online&#39;: None}
+CPU times: user 6.71 s, sys: 0 ns, total: 6.71 s
+Wall time: 8.23 s
 </pre>
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">product</span><span class="o">.</span><span class="n">loadFromCache</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>loading hashkey allData-hash
+loaded hash is e63c6c6ab5030e00da6c2c0352ea4a9c9cd573f8
+data is still in sync, using local cache
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cprcode</th>
+      <th>iprcode</th>
+      <th>oprcode</th>
+      <th>ordertype</th>
+      <th>pr_abb</th>
+      <th>pr_active</th>
+      <th>pr_cgcode</th>
+      <th>pr_code</th>
+      <th>pr_dpcode</th>
+      <th>pr_engname</th>
+      <th>pr_ggcode</th>
+      <th>pr_market</th>
+      <th>pr_name</th>
+      <th>pr_puqty</th>
+      <th>pr_sa_method</th>
+      <th>pr_sucode1</th>
+      <th>pr_suref3</th>
+      <th>prtype</th>
+      <th>psqty</th>
+      <th>pstype</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0171670</td>
+      <td>0171670</td>
+      <td>0171670</td>
+      <td>Y</td>
+      <td>JIRAPAT YOUG KALE 2</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0171670</td>
+      <td>19</td>
+      <td>JIRAPAT YOUNG KALE 200 G.</td>
+      <td>057</td>
+      <td>JIRAPAT ยอดคะน้า 200 G.</td>
+      <td>JIRAPAT ยอดคะน้า 200 G.</td>
+      <td>1</td>
+      <td>1</td>
+      <td>CM845</td>
+      <td>A</td>
+      <td>I</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
 </div>
 
 </div>
@@ -469,7 +1212,7 @@ Wall time: 5.42 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L127" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
+<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L129" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
 </blockquote>
 <p>Product(iprcode: str, cprcode: str, data: Union[~CatchAllVar, NoneType])</p>
 
@@ -494,7 +1237,7 @@ Wall time: 5.42 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L133" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
+<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L135" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
 </blockquote>
 <p>ValueUpdate(items: List[villaProductDatabase.database.Product])</p>
 
@@ -526,7 +1269,7 @@ Wall time: 5.42 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L137" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
+<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L139" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -653,7 +1396,7 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L140" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L142" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -748,7 +1491,7 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L146" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L148" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -900,7 +1643,7 @@ The above exception was the direct cause of the following exception:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L154" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L156" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -999,7 +1742,7 @@ get all from s3 194.14999999999998 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L171" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L173" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
 <p>ProductsFromList(iprcodes: List[str])</p>
 
@@ -1031,7 +1774,7 @@ get all from s3 194.14999999999998 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaProductsFromList" class="doc_header"><code>lambdaProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L175" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaProductsFromList</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
+<h4 id="lambdaProductsFromList" class="doc_header"><code>lambdaProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L177" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaProductsFromList</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1290,7 +2033,7 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L183" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L185" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1779,7 +2522,7 @@ Name: pr_suref3, dtype: int64</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L192" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
+<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L194" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1864,7 +2607,7 @@ Wall time: 2.26 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaAllQueryFeather" class="doc_header"><code>lambdaAllQueryFeather</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L197" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQueryFeather</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
+<h4 id="lambdaAllQueryFeather" class="doc_header"><code>lambdaAllQueryFeather</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L199" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQueryFeather</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
 </blockquote>
 
 </div>

@@ -106,20 +106,22 @@ def cacheDb(cls, bucketName = INVENTORY_BUCKET_NAME, key = 'allData', limit=100,
   changes = list(cls.needsUpdateIndex.query(cls.TRUE, limit=limit))
   print('convert to df')
   changesDf = cls.toDf(changes)
+  changesDf.set_index('cprcode', inplace=True)
   print(changesDf.shape)
-  updatedDb = db.copy()
-  updatedDb.update(changesDf)
+  db.set_index('cprcode', inplace=True)
+  updatedDb = db.append(changesDf)
+  updatedDb.reset_index(inplace=True)
   cls.saveRemoteCache(updatedDb)
   with cls.batch_write() as batch:
     for item in changes:
       item.setNoUpdate(batch=batch)
   cls.notify(f'db shape is {db.shape}')
-  return True
+  return updatedDb
 
 # Cell
 def lambdaDumpToS3(event, _):
   result = ProductDatabase.cacheDb(limit = 500)
-  return Response.getReturn(body = {'result': result})
+  return Response.getReturn(body = {'result': result.iloc[0].to_dict()})
 
 # Cell
 @dataclass_json(undefined=Undefined.INCLUDE)
