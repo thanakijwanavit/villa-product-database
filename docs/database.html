@@ -154,8 +154,8 @@ You can create the table by with the <code>create_table</code> method.</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>engname is JOHNNIE WALKER RED 70 CL.
  name is changed to  testName
-CPU times: user 10.2 ms, sys: 0 ns, total: 10.2 ms
-Wall time: 12.7 ms
+CPU times: user 3.4 ms, sys: 0 ns, total: 3.4 ms
+Wall time: 6.66 ms
 </pre>
 </div>
 </div>
@@ -195,10 +195,10 @@ Wall time: 12.7 ms
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-data is still in sync, using local cache
-CPU times: user 432 ms, sys: 0 ns, total: 432 ms
-Wall time: 586 ms
+loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
+remote hash is not the same, load remote cache
+CPU times: user 570 ms, sys: 104 ms, total: 674 ms
+Wall time: 1.22 s
 </pre>
 </div>
 </div>
@@ -295,16 +295,135 @@ Wall time: 586 ms
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is 211e72cc25eae74c9b1a49ea6fc1480548cde052
-data is still in sync, using local cache
+loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
+remote hash is not the same, load remote cache
 quering for changes
 convert to df
-(100, 53)
+(100, 54)
+       cprcode  iprcode  oprcode ordertype                pr_abb pr_active  \
+0      0231705  0231705  0231705         Y  SMOKED CIRCLE HAM (1         Y   
+1      0224567  0224567  0224567         Y  VEDETT EXTRA ORDINAR         Y   
+2      0198937  0198937  0198937         Y  MOOTOWN CHEESE DIP &amp;         Y   
+3      0222115  0222115  0222115         Y   WERNLI PETIT BEURRE         Y   
+4      0237423  0237423  0237423         Y  THE CUTLERYLIGHT-COL         Y   
+...        ...      ...      ...       ...                   ...       ...   
+15996  0242597  0242597  0242597         Y  ROYAL CANIN FCN INTE         Y   
+15997  0210428  0210428  0210428         Y  POLO WHITE SHIRT SIZ         Y   
+15998  0119503  0119503  0119503         Y  HUA HIN BAKERY ITALI         Y   
+15999  0239331  0239331  0239331         Y   CrocodileCreek45507         Y   
+16000      NaN  0238496  0238496         Y    Oral-B Extra Pack2         Y   
+
+      pr_cgcode  pr_code pr_dpcode                                pr_engname  \
+0            73  0231705        19                  SMOKED CIRCLE HAM (165G)   
+1            08  0224567        01                 VEDETT EXTRA ORDINARY IPA   
+2            99  0198937        28  MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA   
+3            01  0222115        02           WERNLI PETIT BEURRE NOIR 125 G.   
+4            08  0237423        19  THE CUTLERYLIGHT-COLOURED ROUND TABLE MA   
+...         ...      ...       ...                                       ...   
+15996        54  0242597        19       ROYAL CANIN FCN INTENSE HAIRBALL 2K   
+15997        08  0210428        19                  POLO WHITE SHIRT SIZE 3S   
+15998        15  0119503        19        HUA HIN BAKERY ITALIAN BREAD 450 G   
+15999        08  0239331        19            CROCODILE CREEK,45507,MERMAIDS   
+16000        02  0238496        09           ORAL-B EXTRA FRESH 500ML. PACK2   
+
+       ...                                      pr_keyword_th  \
+0      ...                                                      
+1      ...  เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...   
+2      ...                                                ชีส   
+3      ...                                                      
+4      ...                                                      
+...    ...                                                ...   
+15996  ...                                                      
+15997  ...                                                      
+15998  ...                                           เบเกอรี่   
+15999  ...                                                      
+16000  ...                                                      
+
+                                     pr_name_en  \
+0                      SMOKED CIRCLE HAM (165G)   
+1                     VEDETT EXTRA ORDINARY IPA   
+2      MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA   
+3               WERNLI PETIT BEURRE NOIR 125 G.   
+4      THE CUTLERYLIGHT-COLOURED ROUND TABLE MA   
+...                                         ...   
+15996       ROYAL CANIN FCN INTENSE HAIRBALL 2K   
+15997                  POLO WHITE SHIRT SIZE 3S   
+15998        HUA HIN BAKERY ITALIAN BREAD 450 G   
+15999            CROCODILE CREEK,45507,MERMAIDS   
+16000           ORAL-B EXTRA FRESH 500ML. PACK2   
+
+                                            pr_name_th  \
+0                           สโมคเซอร์เคิลแฮม 165  กรัม   
+1                            VEDETT EXTRA ORDINARY IPA   
+2           MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK   
+3            เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.   
+4                     THE CUTLERY เสื่อรองจานกลมสีอ่อน   
+...                                                ...   
+15996              ROYAL CANIN FCN INTENSE HAIRBALL 2K   
+15997                 เสื้อในหลวง รุ่นปกแถบขาว-SIZE 3S   
+15998            HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.   
+15999  CROCODILE CREEK-กระเป๋าสะพายหลัง 45507,MERMAIDS   
+16000  น้ำยาบ้วนปากออรัลบี เอ็กซ์ตร้าเฟรช500มล.แพ็คคู่   
+
+                              pr_online_name_en  \
+0                      SMOKED CIRCLE HAM (165G)   
+1               Vedett Extra Ordinary Ipa 330ml   
+2      MooTown Cheese Dip &amp; Pretzel Sticks 128g   
+3               Wernli Petit Beurre Noir 125 G.   
+4      THE CUTLERYLIGHT-COLOURED ROUND TABLE MA   
+...                                         ...   
+15996       ROYAL CANIN FCN INTENSE HAIRBALL 2K   
+15997                  POLO WHITE SHIRT SIZE 3S   
+15998        Hua Hin Bakery Italian Bread 450 G   
+15999              Crocodile Creek45507Mermaids   
+16000           ORAL-B EXTRA FRESH 500ML. PACK2   
+
+                                    pr_online_name_th sort_weight  \
+0                            SMOKED CIRCLE HAM (165G)           0   
+1                     Vedett Extra Ordinary Ipa 330ml           0   
+2            MooTown Cheese Dip &amp; Pretzel Sticks 128g           0   
+3           เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.           0   
+4            THE CUTLERYLIGHT-COLOURED ROUND TABLE MA           0   
+...                                               ...         ...   
+15996             ROYAL CANIN FCN INTENSE HAIRBALL 2K           0   
+15997                        POLO WHITE SHIRT SIZE 3S           0   
+15998           HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.           0   
+15999  CROCODILE CREEK-กระเป๋าสะพายหลัง 45507MERMAIDS           0   
+16000                 ORAL-B EXTRA FRESH 500ML. PACK2           0   
+
+      villa_category_l1_en villa_category_l2_en villa_category_l3_en  \
+0                    Fresh         Delicatessen                Local   
+1              Dry Grocery   Alcohol &amp; Beverage          Beer Import   
+2              Dry Grocery              Grocery     Cookies &amp; Snacks   
+3              Dry Grocery              Grocery     Cookies &amp; Snacks   
+4              Dry Grocery            Household   Household Hardware   
+...                    ...                  ...                  ...   
+15996          Dry Grocery            Household         Pet Supplies   
+15997          Dry Grocery              Grocery             Seasonal   
+15998                Fresh        Fresh Produce               Bakery   
+15999          Dry Grocery            Household                 Toys   
+16000          Dry Grocery            Household   Household Products   
+
+      villa_category_l4_en  
+0                 Sausages  
+1              Beer Import  
+2      Biscuits &amp; Crackers  
+3      Biscuits &amp; Crackers  
+4              Kitchenware  
+...                    ...  
+15996                  Dog  
+15997                  TBA  
+15998       Bread category  
+15999             Kidoodle  
+16000             Cleaning  
+
+[16001 rows x 55 columns]
 hashKey is allData-hash
 saving hash to s3
-saved hash ef207804b464ea25a12a48f5fb1be980547cc3bf
-CPU times: user 1.36 s, sys: 0 ns, total: 1.36 s
-Wall time: 2.41 s
+saved hash 44d5a59eafeb67bc2d6be19b27affa3099638ead
+saving to remote cache
+CPU times: user 3 s, sys: 234 ms, total: 3.24 s
+Wall time: 5.02 s
 </pre>
 </div>
 </div>
@@ -342,6 +461,8 @@ Wall time: 2.41 s
       <th>pr_dpcode</th>
       <th>pr_engname</th>
       <th>...</th>
+      <th>pr_keyword_th</th>
+      <th>pr_name_en</th>
       <th>pr_name_th</th>
       <th>pr_online_name_en</th>
       <th>pr_online_name_th</th>
@@ -350,130 +471,128 @@ Wall time: 2.41 s
       <th>villa_category_l2_en</th>
       <th>villa_category_l3_en</th>
       <th>villa_category_l4_en</th>
-      <th>SaleMode_unit</th>
-      <th>master_online</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0171670</td>
-      <td>0171670</td>
-      <td>0171670</td>
+      <td>0231705</td>
+      <td>0231705</td>
+      <td>0231705</td>
       <td>Y</td>
-      <td>JIRAPAT YOUG KALE 2</td>
+      <td>SMOKED CIRCLE HAM (1</td>
       <td>Y</td>
-      <td>05</td>
-      <td>0171670</td>
+      <td>73</td>
+      <td>0231705</td>
       <td>19</td>
-      <td>JIRAPAT YOUNG KALE 200 G.</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
       <td>...</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0243940</td>
-      <td>0243940</td>
-      <td>0243940</td>
-      <td>Y</td>
-      <td>KIDDO 4M SUPER NOVA</td>
-      <td>Y</td>
-      <td>14</td>
-      <td>0243940</td>
-      <td>19</td>
-      <td>KIDDO 4M SUPER NOVA 20PCS WITH PLANETS</td>
-      <td>...</td>
-      <td>KIDDO ของเล่นดาวเรืองแสงและดาวเคราะห์</td>
-      <td>KIDDO 4M SUPER NOVA 20PCS WITH PLANETS</td>
-      <td>KIDDO 4M SUPER NOVA 20PCS WITH PLANETS</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Toys</td>
-      <td>Kiddo Toys</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0227760</td>
-      <td>0227759</td>
-      <td>0227759</td>
-      <td>N</td>
-      <td>PORK SAUSAGE PATTIES</td>
-      <td>Y</td>
-      <td>83</td>
-      <td>0227760</td>
-      <td>19</td>
-      <td>PORK SAUSAGE PATTIES</td>
-      <td>...</td>
-      <td>(ขาย) PORK SAUSAGE PATTIES หลายบาร์ 0227759</td>
-      <td>Pork Sausage Patties</td>
-      <td>(ขาย) PORK SAUSAGE PATTIES หลายบาร์ 0227759</td>
+      <td></td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>สโมคเซอร์เคิลแฮม 165  กรัม</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
       <td>0</td>
       <td>Fresh</td>
       <td>Delicatessen</td>
       <td>Local</td>
       <td>Sausages</td>
-      <td>None</td>
-      <td>None</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>0232665</td>
-      <td>0232665</td>
-      <td>0232665</td>
+      <th>1</th>
+      <td>0224567</td>
+      <td>0224567</td>
+      <td>0224567</td>
       <td>Y</td>
-      <td>PF EGG PLANT</td>
+      <td>VEDETT EXTRA ORDINAR</td>
       <td>Y</td>
-      <td>05</td>
-      <td>0232665</td>
-      <td>19</td>
-      <td>PF EGG PLANT</td>
+      <td>08</td>
+      <td>0224567</td>
+      <td>01</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
       <td>...</td>
-      <td>PF มะเขือม่วงใหญ่</td>
-      <td>PF EGG PLANT</td>
-      <td>PF EGG PLANT</td>
+      <td>เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>Vedett Extra Ordinary Ipa 330ml</td>
+      <td>Vedett Extra Ordinary Ipa 330ml</td>
       <td>0</td>
-      <td>Fresh</td>
-      <td>Fresh Produce</td>
-      <td>Fruits &amp; Vegetable Local</td>
-      <td>Local Vegetable</td>
-      <td>GRAMS</td>
-      <td>N</td>
+      <td>Dry Grocery</td>
+      <td>Alcohol &amp; Beverage</td>
+      <td>Beer Import</td>
+      <td>Beer Import</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>0121435</td>
-      <td>0121435</td>
-      <td>0121435</td>
+      <th>2</th>
+      <td>0198937</td>
+      <td>0198937</td>
+      <td>0198937</td>
       <td>Y</td>
-      <td>STLE KOKO KRUNCH  DU</td>
+      <td>MOOTOWN CHEESE DIP &amp;</td>
       <td>Y</td>
-      <td>07</td>
-      <td>0121435</td>
-      <td>05</td>
-      <td>NESTLE KOKO KRUNCH  DUO CEREAL 330 G.</td>
+      <td>99</td>
+      <td>0198937</td>
+      <td>28</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
       <td>...</td>
-      <td>NESTLE KOKO KRUNCH DUO CEREAL 330 G.</td>
-      <td>Koko Krunch Duo Cereal 330g</td>
-      <td>Koko Krunch Duo Cereal 330g</td>
+      <td>ชีส</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK</td>
+      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
+      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
       <td>0</td>
       <td>Dry Grocery</td>
       <td>Grocery</td>
-      <td>Baby Food &amp; Milk / Breakfast Food</td>
-      <td>Cereal / Muesli</td>
-      <td>None</td>
-      <td>None</td>
+      <td>Cookies &amp; Snacks</td>
+      <td>Biscuits &amp; Crackers</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0222115</td>
+      <td>0222115</td>
+      <td>0222115</td>
+      <td>Y</td>
+      <td>WERNLI PETIT BEURRE</td>
+      <td>Y</td>
+      <td>01</td>
+      <td>0222115</td>
+      <td>02</td>
+      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
+      <td>...</td>
+      <td></td>
+      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
+      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
+      <td>Wernli Petit Beurre Noir 125 G.</td>
+      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Cookies &amp; Snacks</td>
+      <td>Biscuits &amp; Crackers</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0237423</td>
+      <td>0237423</td>
+      <td>0237423</td>
+      <td>Y</td>
+      <td>THE CUTLERYLIGHT-COL</td>
+      <td>Y</td>
+      <td>08</td>
+      <td>0237423</td>
+      <td>19</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>...</td>
+      <td></td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>THE CUTLERY เสื่อรองจานกลมสีอ่อน</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Household Hardware</td>
+      <td>Kitchenware</td>
     </tr>
     <tr>
       <th>...</th>
@@ -500,128 +619,128 @@ Wall time: 2.41 s
       <td>...</td>
     </tr>
     <tr>
-      <th>196</th>
-      <td>0225375</td>
-      <td>0225375</td>
-      <td>0225375</td>
+      <th>15996</th>
+      <td>0242597</td>
+      <td>0242597</td>
+      <td>0242597</td>
       <td>Y</td>
-      <td>ANO PINOT CHARDONNAY</td>
+      <td>ROYAL CANIN FCN INTE</td>
       <td>Y</td>
-      <td>10</td>
-      <td>0225375</td>
-      <td>01</td>
-      <td>ANO PINOT CHARDONNAY BRUT</td>
+      <td>54</td>
+      <td>0242597</td>
+      <td>19</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
       <td>...</td>
-      <td>CINZANO PINOT CHARDONNAY BRUT</td>
-      <td>Cinzano Pinot Chardonnay Brut 750ml</td>
-      <td>Cinzano Pinot Chardonnay Brut 750ml</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Alcohol &amp; Beverage</td>
-      <td>Champagne</td>
-      <td>Prosecco</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>197</th>
-      <td>0240617</td>
-      <td>0240617</td>
-      <td>0240617</td>
-      <td>Y</td>
-      <td>2 TRAY BLACK CLEAR</td>
-      <td>Y</td>
-      <td>52</td>
-      <td>0240617</td>
-      <td>17</td>
-      <td>2 TRAY BLACK CLEAR</td>
-      <td>...</td>
-      <td>ถาด 2 ช่องพร้อมฝาสีดำ</td>
-      <td>2 TRAY BLACK CLEAR</td>
-      <td>2 TRAY BLACK CLEAR</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Store Supply</td>
-      <td>Tray</td>
       <td></td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>198</th>
-      <td>0217813</td>
-      <td>0217813</td>
-      <td>0217813</td>
-      <td>Y</td>
-      <td>MONOPRIX HERRING FIL</td>
-      <td>Y</td>
-      <td>82</td>
-      <td>0217813</td>
-      <td>28</td>
-      <td>MONOPRIX HERRING FILET SMOKED TERRIN MX</td>
-      <td>...</td>
-      <td>MONOPRIX HERRING FILET SMOKED TERRIN MX</td>
-      <td>Monoprix Smoked Herring Fillet Terrin Mix 200g</td>
-      <td>Monoprix Smoked Herring Fillet Terrin Mix 200g</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
       <td>0</td>
-      <td>Fresh</td>
-      <td>Delicatessen</td>
-      <td>Import</td>
-      <td>Seafood</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Pet Supplies</td>
+      <td>Dog</td>
     </tr>
     <tr>
-      <th>199</th>
-      <td>0231742</td>
-      <td>0231742</td>
-      <td>0231742</td>
+      <th>15997</th>
+      <td>0210428</td>
+      <td>0210428</td>
+      <td>0210428</td>
       <td>Y</td>
-      <td>GALBANI FETTA GOLOSA</td>
+      <td>POLO WHITE SHIRT SIZ</td>
       <td>Y</td>
-      <td>74</td>
-      <td>0231742</td>
+      <td>08</td>
+      <td>0210428</td>
       <td>19</td>
-      <td>GALBANI FETTA GOLOSA 8KG</td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
       <td>...</td>
-      <td>กัลบานีเฟทต้าโกโลซาแฮม 8กก</td>
-      <td>GALBANI FETTA GOLOSA 8KG</td>
-      <td>GALBANI FETTA GOLOSA 8KG</td>
+      <td></td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>เสื้อในหลวง รุ่นปกแถบขาว-SIZE 3S</td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
       <td>0</td>
-      <td>Fresh</td>
-      <td>Delicatessen</td>
-      <td>Import</td>
-      <td>Sausages</td>
-      <td>GRAMS</td>
-      <td>N</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Seasonal</td>
+      <td>TBA</td>
     </tr>
     <tr>
-      <th>200</th>
-      <td>0238195</td>
-      <td>0238195</td>
-      <td>0238195</td>
+      <th>15998</th>
+      <td>0119503</td>
+      <td>0119503</td>
+      <td>0119503</td>
       <td>Y</td>
-      <td>HOMEMADE CHIPS AND</td>
+      <td>HUA HIN BAKERY ITALI</td>
       <td>Y</td>
-      <td>74</td>
-      <td>0238195</td>
+      <td>15</td>
+      <td>0119503</td>
       <td>19</td>
-      <td>HOMEMADE CHIPS AND  SALSA</td>
+      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
       <td>...</td>
-      <td>(ขาย)0238194 โฮมเมด ชิปส์ กับ ซัลซ่า</td>
-      <td>Sunrise Tacos Homemade Chips and Salsa (blank)</td>
-      <td>Sunrise Tacos Homemade Chips and Salsa (blank)</td>
+      <td>เบเกอรี่</td>
+      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
+      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
+      <td>Hua Hin Bakery Italian Bread 450 G</td>
+      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
       <td>0</td>
       <td>Fresh</td>
-      <td>Delicatessen</td>
-      <td>Local</td>
-      <td>International Foods</td>
+      <td>Fresh Produce</td>
+      <td>Bakery</td>
+      <td>Bread category</td>
+    </tr>
+    <tr>
+      <th>15999</th>
+      <td>0239331</td>
+      <td>0239331</td>
+      <td>0239331</td>
+      <td>Y</td>
+      <td>CrocodileCreek45507</td>
+      <td>Y</td>
+      <td>08</td>
+      <td>0239331</td>
+      <td>19</td>
+      <td>CROCODILE CREEK,45507,MERMAIDS</td>
+      <td>...</td>
+      <td></td>
+      <td>CROCODILE CREEK,45507,MERMAIDS</td>
+      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507,MERMAIDS</td>
+      <td>Crocodile Creek45507Mermaids</td>
+      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507MERMAIDS</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Toys</td>
+      <td>Kidoodle</td>
+    </tr>
+    <tr>
+      <th>0238496</th>
       <td>NaN</td>
-      <td>NaN</td>
+      <td>0238496</td>
+      <td>0238496</td>
+      <td>Y</td>
+      <td>Oral-B Extra Pack2</td>
+      <td>Y</td>
+      <td>02</td>
+      <td>0238496</td>
+      <td>09</td>
+      <td>ORAL-B EXTRA FRESH 500ML. PACK2</td>
+      <td>...</td>
+      <td></td>
+      <td>ORAL-B EXTRA FRESH 500ML. PACK2</td>
+      <td>น้ำยาบ้วนปากออรัลบี เอ็กซ์ตร้าเฟรช500มล.แพ็คคู่</td>
+      <td>ORAL-B EXTRA FRESH 500ML. PACK2</td>
+      <td>ORAL-B EXTRA FRESH 500ML. PACK2</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Household Products</td>
+      <td>Cleaning</td>
     </tr>
   </tbody>
 </table>
-<p>201 rows × 54 columns</p>
+<p>16001 rows × 55 columns</p>
 </div>
 </div>
 
@@ -674,16 +793,135 @@ Wall time: 2.41 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is 8fa1eb84fee3076dd1ca5c11bb5f460412480cc1
-remote hash is not the same, load remote cache
+loaded hash is 44d5a59eafeb67bc2d6be19b27affa3099638ead
+data is still in sync, using local cache
 quering for changes
 convert to df
-(1000, 53)
+(1000, 54)
+       cprcode  iprcode  oprcode ordertype                pr_abb pr_active  \
+0      0231705  0231705  0231705         Y  SMOKED CIRCLE HAM (1         Y   
+1      0224567  0224567  0224567         Y  VEDETT EXTRA ORDINAR         Y   
+2      0198937  0198937  0198937         Y  MOOTOWN CHEESE DIP &amp;         Y   
+3      0222115  0222115  0222115         Y   WERNLI PETIT BEURRE         Y   
+4      0237423  0237423  0237423         Y  THE CUTLERYLIGHT-COL         Y   
+...        ...      ...      ...       ...                   ...       ...   
+15996  0242597  0242597  0242597         Y  ROYAL CANIN FCN INTE         Y   
+15997  0210428  0210428  0210428         Y  POLO WHITE SHIRT SIZ         Y   
+15998  0119503  0119503  0119503         Y  HUA HIN BAKERY ITALI         Y   
+15999  0239331  0239331  0239331         Y   CrocodileCreek45507         Y   
+16000      NaN  0230058  0230058         Y  VITA APPLE JUICE 250         Y   
+
+      pr_cgcode  pr_code pr_dpcode                                pr_engname  \
+0            73  0231705        19                  SMOKED CIRCLE HAM (165G)   
+1            08  0224567        01                 VEDETT EXTRA ORDINARY IPA   
+2            99  0198937        28  MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA   
+3            01  0222115        02           WERNLI PETIT BEURRE NOIR 125 G.   
+4            08  0237423        19  THE CUTLERYLIGHT-COLOURED ROUND TABLE MA   
+...         ...      ...       ...                                       ...   
+15996        54  0242597        19       ROYAL CANIN FCN INTENSE HAIRBALL 2K   
+15997        08  0210428        19                  POLO WHITE SHIRT SIZE 3S   
+15998        15  0119503        19        HUA HIN BAKERY ITALIAN BREAD 450 G   
+15999        08  0239331        19            CROCODILE CREEK,45507,MERMAIDS   
+16000        05  0230058        20                  VITA APPLE JUICE 250 ML.   
+
+       ...                                      pr_keyword_th  \
+0      ...                                                      
+1      ...  เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...   
+2      ...                                                ชีส   
+3      ...                                                      
+4      ...                                                      
+...    ...                                                ...   
+15996  ...                                                      
+15997  ...                                                      
+15998  ...                                           เบเกอรี่   
+15999  ...                                                      
+16000  ...                                           น้ำผลไม้   
+
+                                     pr_name_en  \
+0                      SMOKED CIRCLE HAM (165G)   
+1                     VEDETT EXTRA ORDINARY IPA   
+2      MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA   
+3               WERNLI PETIT BEURRE NOIR 125 G.   
+4      THE CUTLERYLIGHT-COLOURED ROUND TABLE MA   
+...                                         ...   
+15996       ROYAL CANIN FCN INTENSE HAIRBALL 2K   
+15997                  POLO WHITE SHIRT SIZE 3S   
+15998        HUA HIN BAKERY ITALIAN BREAD 450 G   
+15999            CROCODILE CREEK,45507,MERMAIDS   
+16000                  VITA APPLE JUICE 250 ML.   
+
+                                            pr_name_th  \
+0                           สโมคเซอร์เคิลแฮม 165  กรัม   
+1                            VEDETT EXTRA ORDINARY IPA   
+2           MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK   
+3            เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.   
+4                     THE CUTLERY เสื่อรองจานกลมสีอ่อน   
+...                                                ...   
+15996              ROYAL CANIN FCN INTENSE HAIRBALL 2K   
+15997                 เสื้อในหลวง รุ่นปกแถบขาว-SIZE 3S   
+15998            HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.   
+15999  CROCODILE CREEK-กระเป๋าสะพายหลัง 45507,MERMAIDS   
+16000           วิต้า น้ำผลไม้รสแอปเปิ้ลไม่มีน้ำตาล250   
+
+                              pr_online_name_en  \
+0                      SMOKED CIRCLE HAM (165G)   
+1               Vedett Extra Ordinary Ipa 330ml   
+2      MooTown Cheese Dip &amp; Pretzel Sticks 128g   
+3               Wernli Petit Beurre Noir 125 G.   
+4      THE CUTLERYLIGHT-COLOURED ROUND TABLE MA   
+...                                         ...   
+15996       ROYAL CANIN FCN INTENSE HAIRBALL 2K   
+15997                  POLO WHITE SHIRT SIZE 3S   
+15998        Hua Hin Bakery Italian Bread 450 G   
+15999              Crocodile Creek45507Mermaids   
+16000                  VITA APPLE JUICE 250 ML.   
+
+                                    pr_online_name_th sort_weight  \
+0                            SMOKED CIRCLE HAM (165G)           0   
+1                     Vedett Extra Ordinary Ipa 330ml           0   
+2            MooTown Cheese Dip &amp; Pretzel Sticks 128g           0   
+3           เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.           0   
+4            THE CUTLERYLIGHT-COLOURED ROUND TABLE MA           0   
+...                                               ...         ...   
+15996             ROYAL CANIN FCN INTENSE HAIRBALL 2K           0   
+15997                        POLO WHITE SHIRT SIZE 3S           0   
+15998           HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.           0   
+15999  CROCODILE CREEK-กระเป๋าสะพายหลัง 45507MERMAIDS           0   
+16000                        VITA APPLE JUICE 250 ML.           0   
+
+      villa_category_l1_en villa_category_l2_en villa_category_l3_en  \
+0                    Fresh         Delicatessen                Local   
+1              Dry Grocery   Alcohol &amp; Beverage          Beer Import   
+2              Dry Grocery              Grocery     Cookies &amp; Snacks   
+3              Dry Grocery              Grocery     Cookies &amp; Snacks   
+4              Dry Grocery            Household   Household Hardware   
+...                    ...                  ...                  ...   
+15996          Dry Grocery            Household         Pet Supplies   
+15997          Dry Grocery              Grocery             Seasonal   
+15998                Fresh        Fresh Produce               Bakery   
+15999          Dry Grocery            Household                 Toys   
+16000          Dry Grocery   Alcohol &amp; Beverage                Juice   
+
+      villa_category_l4_en  
+0                 Sausages  
+1              Beer Import  
+2      Biscuits &amp; Crackers  
+3      Biscuits &amp; Crackers  
+4              Kitchenware  
+...                    ...  
+15996                  Dog  
+15997                  TBA  
+15998       Bread category  
+15999             Kidoodle  
+16000         Juice Import  
+
+[16001 rows x 55 columns]
 hashKey is allData-hash
 saving hash to s3
-saved hash d8c7090261753c24c62945a8ba6ca7a9551c2803
-CPU times: user 12.9 s, sys: 0 ns, total: 12.9 s
-Wall time: 15.3 s
+saved hash 299b410cfb43b21b22e4e9a954cefec5b4fd6c61
+saving to remote cache
+CPU times: user 13.6 s, sys: 176 ms, total: 13.7 s
+Wall time: 16.1 s
 </pre>
 </div>
 </div>
@@ -721,6 +959,8 @@ Wall time: 15.3 s
       <th>pr_dpcode</th>
       <th>pr_engname</th>
       <th>...</th>
+      <th>pr_keyword_th</th>
+      <th>pr_name_en</th>
       <th>pr_name_th</th>
       <th>pr_online_name_en</th>
       <th>pr_online_name_th</th>
@@ -729,130 +969,128 @@ Wall time: 15.3 s
       <th>villa_category_l2_en</th>
       <th>villa_category_l3_en</th>
       <th>villa_category_l4_en</th>
-      <th>SaleMode_unit</th>
-      <th>master_online</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0171670</td>
-      <td>0171670</td>
-      <td>0171670</td>
+      <td>0231705</td>
+      <td>0231705</td>
+      <td>0231705</td>
       <td>Y</td>
-      <td>JIRAPAT YOUG KALE 2</td>
+      <td>SMOKED CIRCLE HAM (1</td>
       <td>Y</td>
-      <td>05</td>
-      <td>0171670</td>
+      <td>73</td>
+      <td>0231705</td>
       <td>19</td>
-      <td>JIRAPAT YOUNG KALE 200 G.</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
       <td>...</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0243940</td>
-      <td>0243940</td>
-      <td>0243940</td>
-      <td>Y</td>
-      <td>KIDDO 4M SUPER NOVA</td>
-      <td>Y</td>
-      <td>14</td>
-      <td>0243940</td>
-      <td>19</td>
-      <td>KIDDO 4M SUPER NOVA 20PCS WITH PLANETS</td>
-      <td>...</td>
-      <td>KIDDO ของเล่นดาวเรืองแสงและดาวเคราะห์</td>
-      <td>KIDDO 4M SUPER NOVA 20PCS WITH PLANETS</td>
-      <td>KIDDO 4M SUPER NOVA 20PCS WITH PLANETS</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Toys</td>
-      <td>Kiddo Toys</td>
-      <td>None</td>
-      <td>None</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0227760</td>
-      <td>0227759</td>
-      <td>0227759</td>
-      <td>N</td>
-      <td>PORK SAUSAGE PATTIES</td>
-      <td>Y</td>
-      <td>83</td>
-      <td>0227760</td>
-      <td>19</td>
-      <td>PORK SAUSAGE PATTIES</td>
-      <td>...</td>
-      <td>(ขาย) PORK SAUSAGE PATTIES หลายบาร์ 0227759</td>
-      <td>Pork Sausage Patties</td>
-      <td>(ขาย) PORK SAUSAGE PATTIES หลายบาร์ 0227759</td>
+      <td></td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>สโมคเซอร์เคิลแฮม 165  กรัม</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
       <td>0</td>
       <td>Fresh</td>
       <td>Delicatessen</td>
       <td>Local</td>
       <td>Sausages</td>
-      <td>None</td>
-      <td>None</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>0232665</td>
-      <td>0232665</td>
-      <td>0232665</td>
+      <th>1</th>
+      <td>0224567</td>
+      <td>0224567</td>
+      <td>0224567</td>
       <td>Y</td>
-      <td>PF EGG PLANT</td>
+      <td>VEDETT EXTRA ORDINAR</td>
       <td>Y</td>
-      <td>05</td>
-      <td>0232665</td>
-      <td>19</td>
-      <td>PF EGG PLANT</td>
+      <td>08</td>
+      <td>0224567</td>
+      <td>01</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
       <td>...</td>
-      <td>PF มะเขือม่วงใหญ่</td>
-      <td>PF EGG PLANT</td>
-      <td>PF EGG PLANT</td>
+      <td>เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>Vedett Extra Ordinary Ipa 330ml</td>
+      <td>Vedett Extra Ordinary Ipa 330ml</td>
       <td>0</td>
-      <td>Fresh</td>
-      <td>Fresh Produce</td>
-      <td>Fruits &amp; Vegetable Local</td>
-      <td>Local Vegetable</td>
-      <td>GRAMS</td>
-      <td>N</td>
+      <td>Dry Grocery</td>
+      <td>Alcohol &amp; Beverage</td>
+      <td>Beer Import</td>
+      <td>Beer Import</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>0121435</td>
-      <td>0121435</td>
-      <td>0121435</td>
+      <th>2</th>
+      <td>0198937</td>
+      <td>0198937</td>
+      <td>0198937</td>
       <td>Y</td>
-      <td>STLE KOKO KRUNCH  DU</td>
+      <td>MOOTOWN CHEESE DIP &amp;</td>
       <td>Y</td>
-      <td>07</td>
-      <td>0121435</td>
-      <td>05</td>
-      <td>NESTLE KOKO KRUNCH  DUO CEREAL 330 G.</td>
+      <td>99</td>
+      <td>0198937</td>
+      <td>28</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
       <td>...</td>
-      <td>NESTLE KOKO KRUNCH DUO CEREAL 330 G.</td>
-      <td>Koko Krunch Duo Cereal 330g</td>
-      <td>Koko Krunch Duo Cereal 330g</td>
+      <td>ชีส</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK</td>
+      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
+      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
       <td>0</td>
       <td>Dry Grocery</td>
       <td>Grocery</td>
-      <td>Baby Food &amp; Milk / Breakfast Food</td>
-      <td>Cereal / Muesli</td>
-      <td>None</td>
-      <td>None</td>
+      <td>Cookies &amp; Snacks</td>
+      <td>Biscuits &amp; Crackers</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0222115</td>
+      <td>0222115</td>
+      <td>0222115</td>
+      <td>Y</td>
+      <td>WERNLI PETIT BEURRE</td>
+      <td>Y</td>
+      <td>01</td>
+      <td>0222115</td>
+      <td>02</td>
+      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
+      <td>...</td>
+      <td></td>
+      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
+      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
+      <td>Wernli Petit Beurre Noir 125 G.</td>
+      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Cookies &amp; Snacks</td>
+      <td>Biscuits &amp; Crackers</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0237423</td>
+      <td>0237423</td>
+      <td>0237423</td>
+      <td>Y</td>
+      <td>THE CUTLERYLIGHT-COL</td>
+      <td>Y</td>
+      <td>08</td>
+      <td>0237423</td>
+      <td>19</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>...</td>
+      <td></td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>THE CUTLERY เสื่อรองจานกลมสีอ่อน</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Household Hardware</td>
+      <td>Kitchenware</td>
     </tr>
     <tr>
       <th>...</th>
@@ -879,128 +1117,128 @@ Wall time: 15.3 s
       <td>...</td>
     </tr>
     <tr>
-      <th>1696</th>
-      <td>0241125</td>
-      <td>0241125</td>
-      <td>0241125</td>
+      <th>15996</th>
+      <td>0242597</td>
+      <td>0242597</td>
+      <td>0242597</td>
       <td>Y</td>
-      <td>KAMBLY BUTTERFLY SAL</td>
+      <td>ROYAL CANIN FCN INTE</td>
       <td>Y</td>
-      <td>01</td>
-      <td>0241125</td>
-      <td>02</td>
-      <td>KAMBLY BUTTERFLY SALTED CARAMEL</td>
+      <td>54</td>
+      <td>0242597</td>
+      <td>19</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
       <td>...</td>
-      <td>แคมบลีย์ บัตเตอร์ฟลาย ซอลต์เต็ด คาราเมล</td>
-      <td>KAMBLY BUTTERFLY SALTED CARAMEL</td>
-      <td>KAMBLY BUTTERFLY SALTED CARAMEL</td>
+      <td></td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Pet Supplies</td>
+      <td>Dog</td>
+    </tr>
+    <tr>
+      <th>15997</th>
+      <td>0210428</td>
+      <td>0210428</td>
+      <td>0210428</td>
+      <td>Y</td>
+      <td>POLO WHITE SHIRT SIZ</td>
+      <td>Y</td>
+      <td>08</td>
+      <td>0210428</td>
+      <td>19</td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>...</td>
+      <td></td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>เสื้อในหลวง รุ่นปกแถบขาว-SIZE 3S</td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
       <td>0</td>
       <td>Dry Grocery</td>
       <td>Grocery</td>
-      <td>Cookies &amp; Snacks</td>
-      <td>Biscuits &amp; Crackers</td>
-      <td>ITEM</td>
-      <td>N</td>
+      <td>Seasonal</td>
+      <td>TBA</td>
     </tr>
     <tr>
-      <th>1697</th>
-      <td>0235325</td>
-      <td>0235325</td>
-      <td>0235325</td>
+      <th>15998</th>
+      <td>0119503</td>
+      <td>0119503</td>
+      <td>0119503</td>
       <td>Y</td>
-      <td>BALLOON-CHRISTMAS OR</td>
+      <td>HUA HIN BAKERY ITALI</td>
       <td>Y</td>
-      <td>16</td>
-      <td>0235325</td>
+      <td>15</td>
+      <td>0119503</td>
       <td>19</td>
-      <td>BALLOON-CHRISTMAS ORNAMENT 3</td>
+      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
       <td>...</td>
-      <td>BALLOON-คริสมาสต์ ออนาเม้น3</td>
-      <td>BALLOON-CHRISTMAS ORNAMENT 3</td>
-      <td>BALLOON-คริสมาสต์ ออนาเม้น3</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Household Hardware</td>
-      <td>Houseware</td>
-      <td>ITEM</td>
-      <td>Y</td>
-    </tr>
-    <tr>
-      <th>1698</th>
-      <td>0182623</td>
-      <td>0182623</td>
-      <td>0182623</td>
-      <td>Y</td>
-      <td>MELON</td>
-      <td>Y</td>
-      <td>05</td>
-      <td>0182623</td>
-      <td>19</td>
-      <td>ยกเลิกMELON</td>
-      <td>...</td>
-      <td>QUALITY VEGETABEL แตงธิเบต</td>
-      <td>ยกเลิกMELON</td>
-      <td>ยกเลิกMELON</td>
+      <td>เบเกอรี่</td>
+      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
+      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
+      <td>Hua Hin Bakery Italian Bread 450 G</td>
+      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
       <td>0</td>
       <td>Fresh</td>
       <td>Fresh Produce</td>
-      <td>Fruits &amp; Vegetable Local</td>
-      <td>Local Fruit</td>
-      <td>ITEM</td>
-      <td>N</td>
+      <td>Bakery</td>
+      <td>Bread category</td>
     </tr>
     <tr>
-      <th>1699</th>
-      <td>0214460</td>
-      <td>0214460</td>
-      <td>0214460</td>
+      <th>15999</th>
+      <td>0239331</td>
+      <td>0239331</td>
+      <td>0239331</td>
       <td>Y</td>
-      <td>MANICARE  M23051SMUD</td>
+      <td>CrocodileCreek45507</td>
       <td>Y</td>
-      <td>16</td>
-      <td>0214460</td>
+      <td>08</td>
+      <td>0239331</td>
       <td>19</td>
-      <td>MANICARE  M23051SMUDGE BRUSH</td>
+      <td>CROCODILE CREEK,45507,MERMAIDS</td>
       <td>...</td>
-      <td>MANICARE  M23051  แปรงทาตา</td>
-      <td>MANICARE  M23051SMUDGE BRUSH</td>
-      <td>MANICARE  M23051SMUDGE BRUSH</td>
+      <td></td>
+      <td>CROCODILE CREEK,45507,MERMAIDS</td>
+      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507,MERMAIDS</td>
+      <td>Crocodile Creek45507Mermaids</td>
+      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507MERMAIDS</td>
       <td>0</td>
       <td>Dry Grocery</td>
       <td>Household</td>
-      <td>HBA</td>
-      <td>Cosmetics</td>
-      <td>ITEM</td>
-      <td>N</td>
+      <td>Toys</td>
+      <td>Kidoodle</td>
     </tr>
     <tr>
-      <th>1700</th>
-      <td>0240731</td>
-      <td>0240731</td>
-      <td>0240731</td>
+      <th>0230058</th>
+      <td>NaN</td>
+      <td>0230058</td>
+      <td>0230058</td>
       <td>Y</td>
-      <td>SUNTORY HAKUSHU SING</td>
+      <td>VITA APPLE JUICE 250</td>
       <td>Y</td>
-      <td>01</td>
-      <td>0240731</td>
-      <td>01</td>
-      <td>SUNTORY HAKUSHU SINGLE MALT WHISKY 12 Y</td>
+      <td>05</td>
+      <td>0230058</td>
+      <td>20</td>
+      <td>VITA APPLE JUICE 250 ML.</td>
       <td>...</td>
-      <td>ซันโทรี่ ฮากุชู  ซิงเกิ้ลมอลล์วิสกี้ 12 ปี</td>
-      <td>SUNTORY HAKUSHU SINGLE MALT WHISKY 12 Y</td>
-      <td>SUNTORY HAKUSHU SINGLE MALT WHISKY 12 Y</td>
+      <td>น้ำผลไม้</td>
+      <td>VITA APPLE JUICE 250 ML.</td>
+      <td>วิต้า น้ำผลไม้รสแอปเปิ้ลไม่มีน้ำตาล250</td>
+      <td>VITA APPLE JUICE 250 ML.</td>
+      <td>VITA APPLE JUICE 250 ML.</td>
       <td>0</td>
       <td>Dry Grocery</td>
       <td>Alcohol &amp; Beverage</td>
-      <td>Whisky</td>
-      <td></td>
-      <td>ITEM</td>
-      <td>N</td>
+      <td>Juice</td>
+      <td>Juice Import</td>
     </tr>
   </tbody>
 </table>
-<p>1701 rows × 54 columns</p>
+<p>16001 rows × 55 columns</p>
 </div>
 </div>
 
@@ -1023,7 +1261,7 @@ Wall time: 15.3 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaDumpToS3" class="doc_header"><code>lambdaDumpToS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L123" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaDumpToS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1066,17 +1304,10 @@ Wall time: 15.3 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is d8c7090261753c24c62945a8ba6ca7a9551c2803
+loaded hash is 299b410cfb43b21b22e4e9a954cefec5b4fd6c61
 data is still in sync, using local cache
 quering for changes
 convert to df
-(500, 53)
-hashKey is allData-hash
-saving hash to s3
-saved hash d20128693d487b6952a8ae8ef85e598812f72094
-{&#39;cprcode&#39;: &#39;0171670&#39;, &#39;iprcode&#39;: &#39;0171670&#39;, &#39;oprcode&#39;: &#39;0171670&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;JIRAPAT YOUG KALE 2&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;05&#39;, &#39;pr_code&#39;: &#39;0171670&#39;, &#39;pr_dpcode&#39;: &#39;19&#39;, &#39;pr_engname&#39;: &#39;JIRAPAT YOUNG KALE 200 G.&#39;, &#39;pr_ggcode&#39;: &#39;057&#39;, &#39;pr_market&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_name&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_puqty&#39;: &#39;1&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;CM845&#39;, &#39;pr_suref3&#39;: &#39;A&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;content_en&#39;: None, &#39;content_th&#39;: None, &#39;hema_brand_en&#39;: None, &#39;hema_brand_th&#39;: None, &#39;hema_name_en&#39;: None, &#39;hema_name_th&#39;: None, &#39;hema_sizedesc&#39;: None, &#39;online_category_l1_en&#39;: None, &#39;online_category_l1_th&#39;: None, &#39;online_category_l2_en&#39;: None, &#39;online_category_l2_th&#39;: None, &#39;online_category_l3_en&#39;: None, &#39;online_category_l3_th&#39;: None, &#39;pr_barcode&#39;: None, &#39;pr_barcode2&#39;: None, &#39;pr_brand_en&#39;: None, &#39;pr_brand_th&#39;: None, &#39;pr_country_en&#39;: None, &#39;pr_country_th&#39;: None, &#39;pr_filter_en&#39;: None, &#39;pr_filter_th&#39;: None, &#39;pr_keyword_en&#39;: None, &#39;pr_keyword_th&#39;: None, &#39;pr_name_en&#39;: None, &#39;pr_name_th&#39;: None, &#39;pr_online_name_en&#39;: None, &#39;pr_online_name_th&#39;: None, &#39;sort_weight&#39;: None, &#39;villa_category_l1_en&#39;: None, &#39;villa_category_l2_en&#39;: None, &#39;villa_category_l3_en&#39;: None, &#39;villa_category_l4_en&#39;: None, &#39;SaleMode_unit&#39;: None, &#39;master_online&#39;: None}
-CPU times: user 6.71 s, sys: 0 ns, total: 6.71 s
-Wall time: 8.23 s
 </pre>
 </div>
 </div>
@@ -1108,8 +1339,8 @@ Wall time: 8.23 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is e63c6c6ab5030e00da6c2c0352ea4a9c9cd573f8
-data is still in sync, using local cache
+loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
+remote hash is not the same, load remote cache
 </pre>
 </div>
 </div>
@@ -1146,44 +1377,287 @@ data is still in sync, using local cache
       <th>pr_code</th>
       <th>pr_dpcode</th>
       <th>pr_engname</th>
-      <th>pr_ggcode</th>
-      <th>pr_market</th>
-      <th>pr_name</th>
-      <th>pr_puqty</th>
-      <th>pr_sa_method</th>
-      <th>pr_sucode1</th>
-      <th>pr_suref3</th>
-      <th>prtype</th>
-      <th>psqty</th>
-      <th>pstype</th>
+      <th>...</th>
+      <th>pr_keyword_th</th>
+      <th>pr_name_en</th>
+      <th>pr_name_th</th>
+      <th>pr_online_name_en</th>
+      <th>pr_online_name_th</th>
+      <th>sort_weight</th>
+      <th>villa_category_l1_en</th>
+      <th>villa_category_l2_en</th>
+      <th>villa_category_l3_en</th>
+      <th>villa_category_l4_en</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0171670</td>
-      <td>0171670</td>
-      <td>0171670</td>
+      <td>0231705</td>
+      <td>0231705</td>
+      <td>0231705</td>
       <td>Y</td>
-      <td>JIRAPAT YOUG KALE 2</td>
+      <td>SMOKED CIRCLE HAM (1</td>
       <td>Y</td>
-      <td>05</td>
-      <td>0171670</td>
+      <td>73</td>
+      <td>0231705</td>
       <td>19</td>
-      <td>JIRAPAT YOUNG KALE 200 G.</td>
-      <td>057</td>
-      <td>JIRAPAT ยอดคะน้า 200 G.</td>
-      <td>JIRAPAT ยอดคะน้า 200 G.</td>
-      <td>1</td>
-      <td>1</td>
-      <td>CM845</td>
-      <td>A</td>
-      <td>I</td>
-      <td>1</td>
-      <td>1</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>...</td>
+      <td></td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>สโมคเซอร์เคิลแฮม 165  กรัม</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>0</td>
+      <td>Fresh</td>
+      <td>Delicatessen</td>
+      <td>Local</td>
+      <td>Sausages</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0224567</td>
+      <td>0224567</td>
+      <td>0224567</td>
+      <td>Y</td>
+      <td>VEDETT EXTRA ORDINAR</td>
+      <td>Y</td>
+      <td>08</td>
+      <td>0224567</td>
+      <td>01</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>...</td>
+      <td>เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>Vedett Extra Ordinary Ipa 330ml</td>
+      <td>Vedett Extra Ordinary Ipa 330ml</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Alcohol &amp; Beverage</td>
+      <td>Beer Import</td>
+      <td>Beer Import</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0198937</td>
+      <td>0198937</td>
+      <td>0198937</td>
+      <td>Y</td>
+      <td>MOOTOWN CHEESE DIP &amp;</td>
+      <td>Y</td>
+      <td>99</td>
+      <td>0198937</td>
+      <td>28</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
+      <td>...</td>
+      <td>ชีส</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK</td>
+      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
+      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Cookies &amp; Snacks</td>
+      <td>Biscuits &amp; Crackers</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0222115</td>
+      <td>0222115</td>
+      <td>0222115</td>
+      <td>Y</td>
+      <td>WERNLI PETIT BEURRE</td>
+      <td>Y</td>
+      <td>01</td>
+      <td>0222115</td>
+      <td>02</td>
+      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
+      <td>...</td>
+      <td></td>
+      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
+      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
+      <td>Wernli Petit Beurre Noir 125 G.</td>
+      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Cookies &amp; Snacks</td>
+      <td>Biscuits &amp; Crackers</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0237423</td>
+      <td>0237423</td>
+      <td>0237423</td>
+      <td>Y</td>
+      <td>THE CUTLERYLIGHT-COL</td>
+      <td>Y</td>
+      <td>08</td>
+      <td>0237423</td>
+      <td>19</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>...</td>
+      <td></td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>THE CUTLERY เสื่อรองจานกลมสีอ่อน</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Household Hardware</td>
+      <td>Kitchenware</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>15995</th>
+      <td>0089545</td>
+      <td>0089545</td>
+      <td>0089545</td>
+      <td>Y</td>
+      <td>SEASONING HERBS TOM</td>
+      <td>Y</td>
+      <td>17</td>
+      <td>0089545</td>
+      <td>19</td>
+      <td>SEASONING HERBS TOM KHA 100 G.</td>
+      <td>...</td>
+      <td></td>
+      <td>SEASONING HERBS TOM KHA 100 G.</td>
+      <td>ไป-กิน-ข้าว ต้มข่า 100 กรัม</td>
+      <td>SEASONING HERBS TOM KHA 100 G.</td>
+      <td>SEASONING HERBS TOM KHA 100 G.</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Oil &amp; Seasoning &amp; Sauce</td>
+      <td>Cooking Needs</td>
+    </tr>
+    <tr>
+      <th>15996</th>
+      <td>0242597</td>
+      <td>0242597</td>
+      <td>0242597</td>
+      <td>Y</td>
+      <td>ROYAL CANIN FCN INTE</td>
+      <td>Y</td>
+      <td>54</td>
+      <td>0242597</td>
+      <td>19</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>...</td>
+      <td></td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Pet Supplies</td>
+      <td>Dog</td>
+    </tr>
+    <tr>
+      <th>15997</th>
+      <td>0210428</td>
+      <td>0210428</td>
+      <td>0210428</td>
+      <td>Y</td>
+      <td>POLO WHITE SHIRT SIZ</td>
+      <td>Y</td>
+      <td>08</td>
+      <td>0210428</td>
+      <td>19</td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>...</td>
+      <td></td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>เสื้อในหลวง รุ่นปกแถบขาว-SIZE 3S</td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Seasonal</td>
+      <td>TBA</td>
+    </tr>
+    <tr>
+      <th>15998</th>
+      <td>0119503</td>
+      <td>0119503</td>
+      <td>0119503</td>
+      <td>Y</td>
+      <td>HUA HIN BAKERY ITALI</td>
+      <td>Y</td>
+      <td>15</td>
+      <td>0119503</td>
+      <td>19</td>
+      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
+      <td>...</td>
+      <td>เบเกอรี่</td>
+      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
+      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
+      <td>Hua Hin Bakery Italian Bread 450 G</td>
+      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
+      <td>0</td>
+      <td>Fresh</td>
+      <td>Fresh Produce</td>
+      <td>Bakery</td>
+      <td>Bread category</td>
+    </tr>
+    <tr>
+      <th>15999</th>
+      <td>0239331</td>
+      <td>0239331</td>
+      <td>0239331</td>
+      <td>Y</td>
+      <td>CrocodileCreek45507</td>
+      <td>Y</td>
+      <td>08</td>
+      <td>0239331</td>
+      <td>19</td>
+      <td>CROCODILE CREEK,45507,MERMAIDS</td>
+      <td>...</td>
+      <td></td>
+      <td>CROCODILE CREEK,45507,MERMAIDS</td>
+      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507,MERMAIDS</td>
+      <td>Crocodile Creek45507Mermaids</td>
+      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507MERMAIDS</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Toys</td>
+      <td>Kidoodle</td>
     </tr>
   </tbody>
 </table>
+<p>16000 rows × 55 columns</p>
 </div>
 </div>
 
@@ -1212,7 +1686,7 @@ data is still in sync, using local cache
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L129" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
+<h2 id="Product" class="doc_header"><code>class</code> <code>Product</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L130" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Product</code>(<strong><code>iprcode</code></strong>:<code>str</code>, <strong><code>cprcode</code></strong>:<code>str</code>, <strong><code>data</code></strong>:<code>Optional</code>[<code>CatchAllVar</code>])</p>
 </blockquote>
 <p>Product(iprcode: str, cprcode: str, data: Union[~CatchAllVar, NoneType])</p>
 
@@ -1237,7 +1711,7 @@ data is still in sync, using local cache
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L135" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
+<h2 id="ValueUpdate" class="doc_header"><code>class</code> <code>ValueUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L136" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/database.html#Product"><code>Product</code></a>])</p>
 </blockquote>
 <p>ValueUpdate(items: List[villaProductDatabase.database.Product])</p>
 
@@ -1269,7 +1743,7 @@ data is still in sync, using local cache
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L139" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
+<h4 id="chunks" class="doc_header"><code>chunks</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L140" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunks</code>(<strong><code>l</code></strong>, <strong><code>n</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1354,13 +1828,12 @@ data is still in sync, using local cache
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.013 ms
-divided into chunks 1.138 ms
+<pre>input validated 0.015000000000000001 ms
+divided into chunks 0.8109999999999999 ms
 loading hashkey allData-hash
-loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-data is still in sync, using local cache
-get all from s3 543.353 ms
-incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
+loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
+remote hash is not the same, load remote cache
+get all from s3 1058.4389999999999 ms
 </pre>
 </div>
 </div>
@@ -1374,7 +1847,7 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
  &#39;failure&#39;: 0,
  &#39;skipped&#39;: 0,
  &#39;failureMessage&#39;: [],
- &#39;timetaken(ms)&#39;: 610.757}</pre>
+ &#39;timetaken(ms)&#39;: 1081.0720000000001}</pre>
 </div>
 
 </div>
@@ -1396,7 +1869,7 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L142" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateProduct" class="doc_header"><code>lambdaUpdateProduct</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L143" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateProduct</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1437,13 +1910,12 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.011 ms
-divided into chunks 0.315 ms
+<pre>input validated 0.014 ms
+divided into chunks 0.553 ms
 loading hashkey allData-hash
-loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-data is still in sync, using local cache
-get all from s3 511.995 ms
-incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
+loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
+remote hash is not the same, load remote cache
+get all from s3 1053.943 ms
 </pre>
 </div>
 </div>
@@ -1453,7 +1925,7 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:572.1460000000001}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:1076.91}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -1491,7 +1963,7 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L148" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
+<h4 id="updateS3Input" class="doc_header"><code>updateS3Input</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L149" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateS3Input</code>(<strong><code>inputBucketName</code></strong>=<em><code>None</code></em>, <strong><code>key</code></strong>=<em><code>''</code></em>, <strong>**<code>kwargs</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1539,90 +2011,13 @@ incumbentSeries is type &lt;class &#39;pandas.core.series.Series&#39;&gt;
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.012 ms
-divided into chunks 0.437 ms
+<pre>input validated 0.013 ms
+divided into chunks 0.122 ms
 loading hashkey allData-hash
-error downloading file An error occurred (404) when calling the HeadObject operation: Not Found
-local loading error&#39;list&#39; object has no attribute &#39;get&#39;, loading remote hash
-locding remtoe failed An error occurred (404) when calling the HeadObject operation: Not Found returning blank df
-get all from s3 237.40200000000002 ms
+loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
+remote hash is not the same, load remote cache
+get all from s3 1041.13 ms
 </pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pandas/core/indexes/base.py</span> in <span class="ansi-cyan-fg">get_loc</span><span class="ansi-blue-fg">(self, key, method, tolerance)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2897</span>             <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 2898</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_engine<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>casted_key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2899</span>             <span class="ansi-green-fg">except</span> KeyError <span class="ansi-green-fg">as</span> err<span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">pandas/_libs/index.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.index.IndexEngine.get_loc</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/_libs/index.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.index.IndexEngine.get_loc</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-green-fg">pandas/_libs/hashtable_class_helper.pxi</span> in <span class="ansi-cyan-fg">pandas._libs.hashtable.PyObjectHashTable.get_item</span><span class="ansi-blue-fg">()</span>
-
-<span class="ansi-red-fg">KeyError</span>: &#39;cprcode&#39;
-
-The above exception was the direct cause of the following exception:
-
-<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-31-c472d2bc5685&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span>                      accelerate = True)
-<span class="ansi-green-intense-fg ansi-bold">      6</span> logging<span class="ansi-blue-fg">.</span>info<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;test input data saved to s3&#39;</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg"> </span>updateResult <span class="ansi-blue-fg">=</span> ProductDatabase<span class="ansi-blue-fg">.</span>updateS3Input<span class="ansi-blue-fg">(</span> inputBucketName<span class="ansi-blue-fg">=</span>INPUT_BUCKET_NAME<span class="ansi-blue-fg">,</span> key<span class="ansi-blue-fg">=</span> inputKeyName<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      8</span> 
-<span class="ansi-green-intense-fg ansi-bold">      9</span> logging<span class="ansi-blue-fg">.</span>info<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f&#39;s3 save result is {saveResult} update result is {updateResult}&#39;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     34</span>         <span class="ansi-blue-fg">@</span>classmethod
-<span class="ansi-green-intense-fg ansi-bold">     35</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 36</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span> cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     37</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     38</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
-
-<span class="ansi-green-fg">&lt;ipython-input-30-a6538ce90b4c&gt;</span> in <span class="ansi-cyan-fg">updateS3Input</span><span class="ansi-blue-fg">(cls, inputBucketName, key, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> <span class="ansi-green-fg">def</span> updateS3Input<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> inputBucketName <span class="ansi-blue-fg">=</span> INPUT_BUCKET_NAME<span class="ansi-blue-fg">,</span> key <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">&#39;&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span>   products <span class="ansi-blue-fg">=</span> S3<span class="ansi-blue-fg">.</span>load<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">=</span>key<span class="ansi-blue-fg">,</span> bucket <span class="ansi-blue-fg">=</span> inputBucketName<span class="ansi-blue-fg">,</span>  <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 5</span><span class="ansi-red-fg">   </span>updateResult <span class="ansi-blue-fg">=</span> cls<span class="ansi-blue-fg">.</span>valueUpdate2<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">&#39;items&#39;</span><span class="ansi-blue-fg">:</span>products<span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">      6</span>   <span class="ansi-green-fg">return</span> updateResult
-
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     34</span>         <span class="ansi-blue-fg">@</span>classmethod
-<span class="ansi-green-intense-fg ansi-bold">     35</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 36</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span> cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     37</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     38</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
-
-<span class="ansi-green-fg">~/SageMaker/stacks/villaMaster/villa-master-dev/product/database2/villaProductDatabase/update.py</span> in <span class="ansi-cyan-fg">valueUpdate2</span><span class="ansi-blue-fg">(cls, inputs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     93</span> 
-<span class="ansi-green-intense-fg ansi-bold">     94</span>           <span class="ansi-red-fg">##### check if product is in the database, if not, create an empty class with the product code</span>
-<span class="ansi-green-fg">---&gt; 95</span><span class="ansi-red-fg">           </span>incumbentSeries <span class="ansi-blue-fg">=</span> db<span class="ansi-blue-fg">[</span>db<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;cprcode&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">==</span>cprcode<span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">.</span>iloc<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">     96</span>           <span class="ansi-green-fg">if</span> incumbentSeries<span class="ansi-blue-fg">.</span>any<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     97</span>             print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f&#39;incumbentSeries is type {type(incumbentSeries)}&#39;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pandas/core/frame.py</span> in <span class="ansi-cyan-fg">__getitem__</span><span class="ansi-blue-fg">(self, key)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2904</span>             <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">.</span>nlevels <span class="ansi-blue-fg">&gt;</span> <span class="ansi-cyan-fg">1</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   2905</span>                 <span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_getitem_multilevel<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">-&gt; 2906</span><span class="ansi-red-fg">             </span>indexer <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>columns<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2907</span>             <span class="ansi-green-fg">if</span> is_integer<span class="ansi-blue-fg">(</span>indexer<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">   2908</span>                 indexer <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span>indexer<span class="ansi-blue-fg">]</span>
-
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pandas/core/indexes/base.py</span> in <span class="ansi-cyan-fg">get_loc</span><span class="ansi-blue-fg">(self, key, method, tolerance)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2898</span>                 <span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>_engine<span class="ansi-blue-fg">.</span>get_loc<span class="ansi-blue-fg">(</span>casted_key<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">   2899</span>             <span class="ansi-green-fg">except</span> KeyError <span class="ansi-green-fg">as</span> err<span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">-&gt; 2900</span><span class="ansi-red-fg">                 </span><span class="ansi-green-fg">raise</span> KeyError<span class="ansi-blue-fg">(</span>key<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">from</span> err
-<span class="ansi-green-intense-fg ansi-bold">   2901</span> 
-<span class="ansi-green-intense-fg ansi-bold">   2902</span>         <span class="ansi-green-fg">if</span> tolerance <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
-
-<span class="ansi-red-fg">KeyError</span>: &#39;cprcode&#39;</pre>
 </div>
 </div>
 
@@ -1643,7 +2038,7 @@ The above exception was the direct cause of the following exception:
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L156" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaUpdateS3" class="doc_header"><code>lambdaUpdateS3</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L157" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaUpdateS3</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1688,13 +2083,12 @@ The above exception was the direct cause of the following exception:
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.053 ms
-divided into chunks 0.17300000000000001 ms
+<pre>input validated 0.015000000000000001 ms
+divided into chunks 0.424 ms
 loading hashkey allData-hash
-error downloading file An error occurred (404) when calling the HeadObject operation: Not Found
-local loading error&#39;list&#39; object has no attribute &#39;get&#39;, loading remote hash
-locding remtoe failed An error occurred (404) when calling the HeadObject operation: Not Found returning blank df
-get all from s3 194.14999999999998 ms
+loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
+remote hash is not the same, load remote cache
+get all from s3 1153.338 ms
 </pre>
 </div>
 </div>
@@ -1704,8 +2098,8 @@ get all from s3 194.14999999999998 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;error&#34;:&#34;Traceback (most recent call last):\\n  File \\&#34;\\/home\\/ec2-user\\/SageMaker\\/.persisted_conda\\/python38\\/lib\\/python3.8\\/site-packages\\/pandas\\/core\\/indexes\\/base.py\\&#34;, line 2898, in get_loc\\n    return self._engine.get_loc(casted_key)\\n  File \\&#34;pandas\\/_libs\\/index.pyx\\&#34;, line 70, in pandas._libs.index.IndexEngine.get_loc\\n  File \\&#34;pandas\\/_libs\\/index.pyx\\&#34;, line 101, in pandas._libs.index.IndexEngine.get_loc\\n  File \\&#34;pandas\\/_libs\\/hashtable_class_helper.pxi\\&#34;, line 1675, in pandas._libs.hashtable.PyObjectHashTable.get_item\\n  File \\&#34;pandas\\/_libs\\/hashtable_class_helper.pxi\\&#34;, line 1683, in pandas._libs.hashtable.PyObjectHashTable.get_item\\nKeyError: \&#39;cprcode\&#39;\\n\\nThe above exception was the direct cause of the following exception:\\n\\nTraceback (most recent call last):\\n  File \\&#34;&lt;ipython-input-28-ca6b85a42a07&gt;\\&#34;, line 5, in lambdaUpdateS3\\n    updateResult = ProductDatabase.updateS3Input(\\n  File \\&#34;\\/home\\/ec2-user\\/SageMaker\\/.persisted_conda\\/python38\\/lib\\/python3.8\\/site-packages\\/nicHelper\\/wrappers.py\\&#34;, line 36, in wrapper\\n    return func( cls, *args, **kwargs)\\n  File \\&#34;&lt;ipython-input-24-a6538ce90b4c&gt;\\&#34;, line 5, in updateS3Input\\n    updateResult = cls.valueUpdate2({\&#39;items\&#39;:products})\\n  File \\&#34;\\/home\\/ec2-user\\/SageMaker\\/.persisted_conda\\/python38\\/lib\\/python3.8\\/site-packages\\/nicHelper\\/wrappers.py\\&#34;, line 36, in wrapper\\n    return func( cls, *args, **kwargs)\\n  File \\&#34;\\/home\\/ec2-user\\/SageMaker\\/stacks\\/villaMaster\\/villa-master-dev\\/product\\/database2\\/villaProductDatabase\\/update.py\\&#34;, line 95, in valueUpdate2\\n    incumbentSeries = db[db[\&#39;cprcode\&#39;]==cprcode].iloc[0]\\n  File \\&#34;\\/home\\/ec2-user\\/SageMaker\\/.persisted_conda\\/python38\\/lib\\/python3.8\\/site-packages\\/pandas\\/core\\/frame.py\\&#34;, line 2906, in __getitem__\\n    indexer = self.columns.get_loc(key)\\n  File \\&#34;\\/home\\/ec2-user\\/SageMaker\\/.persisted_conda\\/python38\\/lib\\/python3.8\\/site-packages\\/pandas\\/core\\/indexes\\/base.py\\&#34;, line 2900, in get_loc\\n    raise KeyError(key) from err\\nKeyError: \&#39;cprcode\&#39;\\n&#34;}&#39;,
- &#39;statusCode&#39;: 400,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:1174.987}&#39;,
+ &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Methods&#39;: &#39;*&#39;}}</pre>
@@ -1742,7 +2136,7 @@ get all from s3 194.14999999999998 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L173" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
+<h2 id="ProductsFromList" class="doc_header"><code>class</code> <code>ProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L174" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProductsFromList</code>(<strong><code>iprcodes</code></strong>:<code>List</code>[<code>str</code>])</p>
 </blockquote>
 <p>ProductsFromList(iprcodes: List[str])</p>
 
@@ -1774,7 +2168,7 @@ get all from s3 194.14999999999998 ms
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaProductsFromList" class="doc_header"><code>lambdaProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L177" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaProductsFromList</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
+<h4 id="lambdaProductsFromList" class="doc_header"><code>lambdaProductsFromList</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L178" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaProductsFromList</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -1820,12 +2214,22 @@ get all from s3 194.14999999999998 ms
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-data is still in sync, using local cache
-db shape is (45149, 52)
-CPU times: user 292 ms, sys: 53 ms, total: 345 ms
-Wall time: 424 ms
+loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
+remote hash is not the same, load remote cache
+db shape is (16000, 55)
 </pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+
+<span class="ansi-red-fg">AssertionError</span>: result length is not 3 1</pre>
 </div>
 </div>
 
@@ -1857,9 +2261,9 @@ Wall time: 424 ms
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-data is still in sync, using local cache
-db shape is (45149, 52)
+loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
+remote hash is not the same, load remote cache
+db shape is (16000, 55)
 </pre>
 </div>
 </div>
@@ -1869,7 +2273,7 @@ db shape is (45149, 52)
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;[{&#34;cprcode&#34;:&#34;0217153&#34;,&#34;iprcode&#34;:&#34;0217153&#34;,&#34;oprcode&#34;:&#34;0217153&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;COCOA LOCO MILK CHOC&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;98&#34;,&#34;pr_code&#34;:&#34;0217153&#34;,&#34;pr_dpcode&#34;:&#34;28&#34;,&#34;pr_engname&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_ggcode&#34;:&#34;003&#34;,&#34;pr_market&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL&#34;,&#34;pr_name&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_puqty&#34;:&#34;24.00&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;F1239&#34;,&#34;pr_suref3&#34;:&#34;S&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;pr_country_th&#34;:&#34;&#34;,&#34;pr_country_en&#34;:&#34;United Kingdom&#34;,&#34;pr_keyword_th&#34;:&#34;&#34;,&#34;pr_keyword_en&#34;:&#34;&#34;,&#34;pr_filter_th&#34;:&#34;&#34;,&#34;pr_filter_en&#34;:&#34;&#34;,&#34;online_category_l1_th&#34;:&#34;&#34;,&#34;online_category_l1_en&#34;:&#34;&#34;,&#34;online_category_l2_th&#34;:&#34;&#34;,&#34;online_category_l2_en&#34;:&#34;&#34;,&#34;online_category_l3_th&#34;:&#34;&#34;,&#34;online_category_l3_en&#34;:&#34;&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Grocery&#34;,&#34;villa_category_l3_en&#34;:&#34;Cookies &amp; Snacks&#34;,&#34;villa_category_l4_en&#34;:&#34;Biscuits &amp; Crackers&#34;,&#34;content_en&#34;:&#34;0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;content_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_brand_th&#34;:&#34;&#34;,&#34;hema_brand_en&#34;:&#34;&#34;,&#34;hema_sizedesc&#34;:&#34;&#34;,&#34;pr_brand_en&#34;:&#34;&#34;,&#34;pr_brand_th&#34;:&#34;&#34;,&#34;pr_online_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_online_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_barcode&#34;:&#34;5060148383378&#34;,&#34;pr_barcode2&#34;:&#34;506014838337&#34;,&#34;sort_weight&#34;:&#34;0&#34;},{&#34;cprcode&#34;:&#34;0000009&#34;,&#34;iprcode&#34;:&#34;0000009&#34;,&#34;oprcode&#34;:&#34;0000009&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;J. WALKER RED 70 CL.&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;01&#34;,&#34;pr_code&#34;:&#34;0000009&#34;,&#34;pr_dpcode&#34;:&#34;01&#34;,&#34;pr_engname&#34;:&#34;JOHNNIE WALKER RED 70 CL.&#34;,&#34;pr_ggcode&#34;:&#34;001&#34;,&#34;pr_market&#34;:&#34;J. WALKER RED 70 CL&#34;,&#34;pr_name&#34;:&#34;JOHNNIE WALKER RED 70 CL&#34;,&#34;pr_puqty&#34;:&#34;12.00&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;1782&#34;,&#34;pr_suref3&#34;:&#34;A&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;pr_country_th&#34;:&#34;&#34;,&#34;pr_country_en&#34;:&#34;United Kingdom&#34;,&#34;pr_keyword_th&#34;:&#34;&#34;,&#34;pr_keyword_en&#34;:&#34;&#34;,&#34;pr_filter_th&#34;:&#34;Alcohol,Spirits  Liqueurs&#34;,&#34;pr_filter_en&#34;:&#34;Alcohol,Spirits  Liqueurs&#34;,&#34;online_category_l1_th&#34;:&#34;\\u0e40\\u0e1a\\u0e35\\u0e22\\u0e23\\u0e4c, \\u0e44\\u0e27\\u0e19\\u0e4c\\u0e41\\u0e25\\u0e30\\u0e2a\\u0e38\\u0e23\\u0e32&#34;,&#34;online_category_l1_en&#34;:&#34;Beer Wine &amp; Spirits&#34;,&#34;online_category_l2_th&#34;:&#34;\\u0e40\\u0e2b\\u0e25\\u0e49\\u0e32&#34;,&#34;online_category_l2_en&#34;:&#34;Spirits &amp; Liqueurs&#34;,&#34;online_category_l3_th&#34;:&#34;&#34;,&#34;online_category_l3_en&#34;:&#34;&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Alcohol &amp; Beverage&#34;,&#34;villa_category_l3_en&#34;:&#34;Whisky&#34;,&#34;villa_category_l4_en&#34;:&#34;Scoth Whisky&#34;,&#34;content_en&#34;:&#34;0000009 Johnnie Walker Red 700ml&#34;,&#34;content_th&#34;:&#34;JOHNNIE WALKER RED 700ml&#34;,&#34;hema_brand_th&#34;:&#34;Johnnie Walker&#34;,&#34;hema_brand_en&#34;:&#34;Johnnie Walker&#34;,&#34;hema_sizedesc&#34;:&#34;700ml&#34;,&#34;pr_brand_en&#34;:&#34;Johnnie Walker&#34;,&#34;pr_brand_th&#34;:&#34;Johnnie Walker&#34;,&#34;pr_online_name_en&#34;:&#34;Johnnie Walker Red 700ml&#34;,&#34;pr_online_name_th&#34;:&#34;JOHNNIE WALKER RED 700ml&#34;,&#34;hema_name_en&#34;:&#34;Johnnie Walker Red&#34;,&#34;hema_name_th&#34;:&#34;JOHNNIE WALKER RED&#34;,&#34;pr_name_en&#34;:&#34;JOHNNIE WALKER RED 70 CL.&#34;,&#34;pr_name_th&#34;:&#34;JOHNNIE WALKER RED 70 CL&#34;,&#34;pr_barcode&#34;:null,&#34;pr_barcode2&#34;:null,&#34;sort_weight&#34;:&#34;0&#34;},{&#34;cprcode&#34;:&#34;203915&#34;,&#34;iprcode&#34;:&#34;203915&#34;,&#34;oprcode&#34;:&#34;203915&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;MEIJI GUMMY CHOCO GR&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;4&#34;,&#34;pr_code&#34;:&#34;203915&#34;,&#34;pr_dpcode&#34;:&#34;2.0&#34;,&#34;pr_engname&#34;:&#34;MEIJI GUMMY CHOCO GREEN GRAPE 30G&#34;,&#34;pr_ggcode&#34;:&#34;2&#34;,&#34;pr_market&#34;:&#34;\\u0e40\\u0e21\\u0e08\\u0e34 \\u0e01\\u0e31\\u0e21\\u0e21\\u0e35\\u0e48 \\u0e0a\\u0e47\\u0e2d\\u0e01\\u0e42\\u0e01 \\u0e01\\u0e23\\u0e35\\u0e19\\u0e40\\u0e01\\u0e23\\u0e1b 30&#34;,&#34;pr_name&#34;:&#34;\\u0e40\\u0e21\\u0e08\\u0e34 \\u0e01\\u0e31\\u0e21\\u0e21\\u0e35\\u0e48 \\u0e0a\\u0e47\\u0e2d\\u0e01\\u0e42\\u0e01 \\u0e01\\u0e23\\u0e35\\u0e19\\u0e40\\u0e01\\u0e23\\u0e1b 30 \\u0e01\\u0e23\\u0e31\\u0e21&#34;,&#34;pr_puqty&#34;:&#34;20.0&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;2943&#34;,&#34;pr_suref3&#34;:&#34;C&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1.0&#34;,&#34;pstype&#34;:&#34;1.0&#34;,&#34;pr_country_th&#34;:&#34;none&#34;,&#34;pr_country_en&#34;:&#34;China&#34;,&#34;pr_keyword_th&#34;:&#34;none&#34;,&#34;pr_keyword_en&#34;:&#34;none&#34;,&#34;pr_filter_th&#34;:&#34;Grocery,Chocolate&#34;,&#34;pr_filter_en&#34;:&#34;Grocery,Chocolate&#34;,&#34;online_category_l1_th&#34;:&#34;\\u0e2a\\u0e34\\u0e19\\u0e04\\u0e49\\u0e32\\u0e1a\\u0e23\\u0e34\\u0e42\\u0e20\\u0e04&#34;,&#34;online_category_l1_en&#34;:&#34;Grocery&#34;,&#34;online_category_l2_th&#34;:&#34;\\u0e0a\\u0e47\\u0e2d\\u0e04\\u0e42\\u0e01\\u0e41\\u0e25\\u0e15&#34;,&#34;online_category_l2_en&#34;:&#34;Chocolate&#34;,&#34;online_category_l3_th&#34;:&#34;none&#34;,&#34;online_category_l3_en&#34;:&#34;none&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Grocery&#34;,&#34;villa_category_l3_en&#34;:&#34;Candies&#34;,&#34;villa_category_l4_en&#34;:&#34;Confectionery&#34;,&#34;content_en&#34;:&#34;0203915 Meiji Gummy Choco Green Grape 30g&#34;,&#34;content_th&#34;:&#34;Meiji Gummy Choco Green Grape 30g&#34;,&#34;hema_brand_th&#34;:&#34;Meiji&#34;,&#34;hema_brand_en&#34;:&#34;Meiji&#34;,&#34;hema_sizedesc&#34;:&#34;30g&#34;,&#34;pr_brand_en&#34;:&#34;MEIJI&#34;,&#34;pr_brand_th&#34;:&#34;MEIJI&#34;,&#34;pr_online_name_en&#34;:&#34;Meiji Gummy Choco Green Grape 30g&#34;,&#34;pr_online_name_th&#34;:&#34;Meiji Gummy Choco Green Grape 30g&#34;,&#34;hema_name_en&#34;:&#34;Gummy Choco Green Grape&#34;,&#34;hema_name_th&#34;:&#34;Gummy Choco Green Grape&#34;,&#34;pr_name_en&#34;:&#34;MEIJI GUMMY CHOCO GREEN GRAPE 30G&#34;,&#34;pr_name_th&#34;:&#34;\\u0e40\\u0e21\\u0e08\\u0e34 \\u0e01\\u0e31\\u0e21\\u0e21\\u0e35\\u0e48 \\u0e0a\\u0e47\\u0e2d\\u0e01\\u0e42\\u0e01 \\u0e01\\u0e23\\u0e35\\u0e19\\u0e40\\u0e01\\u0e23\\u0e1b 30 \\u0e01\\u0e23\\u0e31\\u0e21&#34;,&#34;pr_barcode&#34;:null,&#34;pr_barcode2&#34;:null,&#34;sort_weight&#34;:&#34;0.0&#34;}]&#39;,
+<pre>{&#39;body&#39;: &#39;[{&#34;cprcode&#34;:&#34;0217153&#34;,&#34;iprcode&#34;:&#34;0217153&#34;,&#34;oprcode&#34;:&#34;0217153&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;COCOA LOCO MILK CHOC&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;98&#34;,&#34;pr_code&#34;:&#34;0217153&#34;,&#34;pr_dpcode&#34;:&#34;28&#34;,&#34;pr_engname&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_ggcode&#34;:&#34;003&#34;,&#34;pr_market&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL&#34;,&#34;pr_name&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_puqty&#34;:&#34;24.00&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;F1239&#34;,&#34;pr_suref3&#34;:&#34;S&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;SaleMode_unit&#34;:&#34;ITEM&#34;,&#34;ba_nprice&#34;:&#34;115.00&#34;,&#34;content_en&#34;:&#34;0217153 0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.  0217153-5060148383378  Dry Grocery Grocery Cookies &amp; Snacks Biscuits &amp; Crackers&#34;,&#34;content_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_brand_en&#34;:&#34;&#34;,&#34;hema_brand_th&#34;:&#34;&#34;,&#34;hema_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_sizedesc&#34;:&#34;&#34;,&#34;master_online&#34;:&#34;N&#34;,&#34;online_category_l1_en&#34;:&#34;&#34;,&#34;online_category_l1_th&#34;:&#34;&#34;,&#34;online_category_l2_en&#34;:&#34;&#34;,&#34;online_category_l2_th&#34;:&#34;&#34;,&#34;online_category_l3_en&#34;:&#34;&#34;,&#34;online_category_l3_th&#34;:&#34;&#34;,&#34;pr_barcode&#34;:&#34;5060148383378&#34;,&#34;pr_barcode2&#34;:&#34;506014838337&#34;,&#34;pr_brand_en&#34;:&#34;&#34;,&#34;pr_brand_th&#34;:&#34;&#34;,&#34;pr_country_en&#34;:&#34;United Kingdom&#34;,&#34;pr_country_th&#34;:&#34;&#34;,&#34;pr_filter_en&#34;:&#34;&#34;,&#34;pr_filter_th&#34;:&#34;&#34;,&#34;pr_keyword_en&#34;:&#34;&#34;,&#34;pr_keyword_th&#34;:&#34;&#34;,&#34;pr_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_online_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_online_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;sort_weight&#34;:&#34;0&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Grocery&#34;,&#34;villa_category_l3_en&#34;:&#34;Cookies &amp; Snacks&#34;,&#34;villa_category_l4_en&#34;:&#34;Biscuits &amp; Crackers&#34;}]&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -1959,58 +2363,26 @@ db shape is (45149, 52)
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>cprcode                                            0171670
-iprcode                                            0171670
-oprcode                                            0171670
-ordertype                                                Y
-pr_abb                                JIRAPAT YOUNG KALE 2
-pr_active                                                Y
-pr_cgcode                                               05
-pr_code                                            0171670
-pr_dpcode                                               19
-pr_engname                        JIRAAT YOUNG KALE 200 G.
-pr_ggcode                                              057
-pr_market                          JIRAPAT ยอดคะน้า 200 G.
-pr_name                            JIRAPAT ยอดคะน้า 200 G.
-pr_puqty                                                 1
-pr_sa_method                                             1
-pr_sucode1                                           CM845
-pr_suref3                                                A
-prtype                                                   I
-psqty                                                    1
-pstype                                                   1
-pr_country_th                                         none
-pr_country_en                                         none
-pr_keyword_th                                         none
-pr_keyword_en                                         none
-pr_filter_th                                          none
-pr_filter_en                                          none
-online_category_l1_th                                 none
-online_category_l1_en                                 none
-online_category_l2_th                                 none
-online_category_l2_en                                 none
-online_category_l3_th                                 none
-online_category_l3_en                                 none
-villa_category_l1_en                                  none
-villa_category_l2_en                                  none
-villa_category_l3_en                                  none
-villa_category_l4_en                                  none
-content_en               0171670 JIRAPAT YOUNG KALE 200 G.
-content_th                       JIRAPAT YOUNG KALE 200 G.
-hema_brand_th                                         none
-hema_brand_en                                         none
-hema_sizedesc                                         none
-pr_brand_en                                           none
-pr_brand_th                                           none
-pr_online_name_en                                     none
-pr_online_name_th                                     none
-hema_name_en                                          none
-hema_name_th                                          none
-pr_name_en                                            none
-pr_name_th                                            none
-pr_barcode                                            none
-pr_barcode2                                           none
-sort_weight                                           none
+<pre>iprcode                          0171670
+cprcode                          0171670
+oprcode                          0171670
+ordertype                              Y
+pr_abb              JIRAPAT YOUNG KALE 2
+pr_active                              Y
+pr_cgcode                             05
+pr_code                          0171670
+pr_dpcode                             19
+pr_engname      JIRAAT YOUNG KALE 200 G.
+pr_ggcode                            057
+pr_market        JIRAPAT ยอดคะน้า 200 G.
+pr_name          JIRAPAT ยอดคะน้า 200 G.
+pr_puqty                               1
+pr_sa_method                           1
+pr_sucode1                         CM845
+pr_suref3                              A
+prtype                                 I
+psqty                                  1
+pstype                                 1
 dtype: object</pre>
 </div>
 
@@ -2033,7 +2405,7 @@ dtype: object</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L185" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
+<h4 id="lambdaSingleQuery" class="doc_header"><code>lambdaSingleQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L186" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaSingleQuery</code>(<strong><code>event</code></strong>, <strong><code>_</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -2076,7 +2448,7 @@ dtype: object</pre>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;cprcode&#34;:&#34;0171670&#34;,&#34;iprcode&#34;:&#34;0171670&#34;,&#34;oprcode&#34;:&#34;0171670&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;JIRAPAT YOUNG KALE 2&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;05&#34;,&#34;pr_code&#34;:&#34;0171670&#34;,&#34;pr_dpcode&#34;:&#34;19&#34;,&#34;pr_engname&#34;:&#34;JIRAAT YOUNG KALE 200 G.&#34;,&#34;pr_ggcode&#34;:&#34;057&#34;,&#34;pr_market&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_name&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_puqty&#34;:&#34;1&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;CM845&#34;,&#34;pr_suref3&#34;:&#34;A&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;pr_country_th&#34;:&#34;none&#34;,&#34;pr_country_en&#34;:&#34;none&#34;,&#34;pr_keyword_th&#34;:&#34;none&#34;,&#34;pr_keyword_en&#34;:&#34;none&#34;,&#34;pr_filter_th&#34;:&#34;none&#34;,&#34;pr_filter_en&#34;:&#34;none&#34;,&#34;online_category_l1_th&#34;:&#34;none&#34;,&#34;online_category_l1_en&#34;:&#34;none&#34;,&#34;online_category_l2_th&#34;:&#34;none&#34;,&#34;online_category_l2_en&#34;:&#34;none&#34;,&#34;online_category_l3_th&#34;:&#34;none&#34;,&#34;online_category_l3_en&#34;:&#34;none&#34;,&#34;villa_category_l1_en&#34;:&#34;none&#34;,&#34;villa_category_l2_en&#34;:&#34;none&#34;,&#34;villa_category_l3_en&#34;:&#34;none&#34;,&#34;villa_category_l4_en&#34;:&#34;none&#34;,&#34;content_en&#34;:&#34;0171670 JIRAPAT YOUNG KALE 200 G.&#34;,&#34;content_th&#34;:&#34;JIRAPAT YOUNG KALE 200 G.&#34;,&#34;hema_brand_th&#34;:&#34;none&#34;,&#34;hema_brand_en&#34;:&#34;none&#34;,&#34;hema_sizedesc&#34;:&#34;none&#34;,&#34;pr_brand_en&#34;:&#34;none&#34;,&#34;pr_brand_th&#34;:&#34;none&#34;,&#34;pr_online_name_en&#34;:&#34;none&#34;,&#34;pr_online_name_th&#34;:&#34;none&#34;,&#34;hema_name_en&#34;:&#34;none&#34;,&#34;hema_name_th&#34;:&#34;none&#34;,&#34;pr_name_en&#34;:&#34;none&#34;,&#34;pr_name_th&#34;:&#34;none&#34;,&#34;pr_barcode&#34;:&#34;none&#34;,&#34;pr_barcode2&#34;:&#34;none&#34;,&#34;sort_weight&#34;:&#34;none&#34;}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;iprcode&#34;:&#34;0171670&#34;,&#34;cprcode&#34;:&#34;0171670&#34;,&#34;oprcode&#34;:&#34;0171670&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;JIRAPAT YOUNG KALE 2&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;05&#34;,&#34;pr_code&#34;:&#34;0171670&#34;,&#34;pr_dpcode&#34;:&#34;19&#34;,&#34;pr_engname&#34;:&#34;JIRAAT YOUNG KALE 200 G.&#34;,&#34;pr_ggcode&#34;:&#34;057&#34;,&#34;pr_market&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_name&#34;:&#34;JIRAPAT \\u0e22\\u0e2d\\u0e14\\u0e04\\u0e30\\u0e19\\u0e49\\u0e32 200 G.&#34;,&#34;pr_puqty&#34;:&#34;1&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;CM845&#34;,&#34;pr_suref3&#34;:&#34;A&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -2167,11 +2539,11 @@ dtype: object</pre>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
-CPU times: user 6.34 ms, sys: 0 ns, total: 6.34 ms
-Wall time: 5.9 ms
-https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData-json.zl?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=4JyjYfvhauM6a7W6xi5JD5ZMGF0%3D&amp;Expires=1609503502
-CPU times: user 1.41 s, sys: 248 ms, total: 1.66 s
-Wall time: 1.74 s
+CPU times: user 5.59 ms, sys: 77 µs, total: 5.67 ms
+Wall time: 5.53 ms
+https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData-json.zl?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=RvBVWlvIKDZslpM%2BXcOxDIdiPBw%3D&amp;Expires=1610792580
+CPU times: user 625 ms, sys: 81.5 ms, total: 707 ms
+Wall time: 850 ms
 </pre>
 </div>
 </div>
@@ -2209,142 +2581,142 @@ Wall time: 1.74 s
       <th>pr_dpcode</th>
       <th>pr_engname</th>
       <th>...</th>
-      <th>pr_brand_th</th>
-      <th>pr_online_name_en</th>
-      <th>pr_online_name_th</th>
-      <th>hema_name_en</th>
-      <th>hema_name_th</th>
+      <th>pr_keyword_th</th>
       <th>pr_name_en</th>
       <th>pr_name_th</th>
-      <th>pr_barcode</th>
-      <th>pr_barcode2</th>
+      <th>pr_online_name_en</th>
+      <th>pr_online_name_th</th>
       <th>sort_weight</th>
+      <th>villa_category_l1_en</th>
+      <th>villa_category_l2_en</th>
+      <th>villa_category_l3_en</th>
+      <th>villa_category_l4_en</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>217153</td>
-      <td>217153</td>
-      <td>217153</td>
+      <td>231705</td>
+      <td>231705</td>
+      <td>231705</td>
       <td>Y</td>
-      <td>COCOA LOCO MILK CHOC</td>
+      <td>SMOKED CIRCLE HAM (1</td>
       <td>Y</td>
-      <td>98</td>
-      <td>217153</td>
-      <td>28</td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>73</td>
+      <td>231705</td>
+      <td>19</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
       <td>...</td>
       <td></td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
-      <td>5060148383378</td>
-      <td>506014838337</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>สโมคเซอร์เคิลแฮม 165  กรัม</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
       <td>0</td>
+      <td>Fresh</td>
+      <td>Delicatessen</td>
+      <td>Local</td>
+      <td>Sausages</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>235141</td>
-      <td>235141</td>
-      <td>235141</td>
+      <td>224567</td>
+      <td>224567</td>
+      <td>224567</td>
       <td>Y</td>
-      <td>EEBOO-PZCT3-PUZZLE</td>
+      <td>VEDETT EXTRA ORDINAR</td>
       <td>Y</td>
       <td>8</td>
-      <td>235141</td>
-      <td>19</td>
-      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>224567</td>
+      <td>1</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
       <td>...</td>
-      <td></td>
-      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
-      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
-      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
-      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
-      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
-      <td>EEBOO-PZCT3-ตัวต่อนับเลข ANIMAL COUNTING_3ED</td>
-      <td>689196509575</td>
-      <td>68919650957</td>
+      <td>เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>Vedett Extra Ordinary Ipa 330ml</td>
+      <td>Vedett Extra Ordinary Ipa 330ml</td>
       <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Alcohol &amp; Beverage</td>
+      <td>Beer Import</td>
+      <td>Beer Import</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>182223</td>
-      <td>182223</td>
-      <td>182223</td>
+      <td>198937</td>
+      <td>198937</td>
+      <td>198937</td>
       <td>Y</td>
-      <td>CIRIO PIZZASSIMO 400</td>
+      <td>MOOTOWN CHEESE DIP &amp;</td>
       <td>Y</td>
-      <td>6</td>
-      <td>182223</td>
-      <td>6</td>
-      <td>CIRIO PIZZASSIMO 400G.</td>
+      <td>99</td>
+      <td>198937</td>
+      <td>28</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
       <td>...</td>
-      <td>CIRIO</td>
-      <td>Cirio Pizzassimo 400g</td>
-      <td>Cirio Pizzassimo 400g</td>
-      <td>Pizzassimo</td>
-      <td>Pizzassimo</td>
-      <td>CIRIO PIZZASSIMO 400G.</td>
-      <td>CIRIO ซอสทำพิซซ่า 400 G.</td>
-      <td>8000320997266</td>
-      <td>800032099726</td>
+      <td>ชีส</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK</td>
+      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
+      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
       <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Cookies &amp; Snacks</td>
+      <td>Biscuits &amp; Crackers</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>124461</td>
-      <td>124461</td>
-      <td>124461</td>
+      <td>222115</td>
+      <td>222115</td>
+      <td>222115</td>
       <td>Y</td>
-      <td>NEW CHOICE LYCHEE</td>
+      <td>WERNLI PETIT BEURRE</td>
       <td>Y</td>
+      <td>1</td>
+      <td>222115</td>
       <td>2</td>
-      <td>124461</td>
-      <td>2</td>
-      <td>NEW CHOICE LYCHEE</td>
+      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
       <td>...</td>
-      <td>New Choice</td>
-      <td>New Choice Lychee</td>
-      <td>NEW CHOICE กลิ่นลิ้นจี่</td>
-      <td>New Choice Lychee</td>
-      <td>NEW CHOICE กลิ่นลิ้นจี่</td>
-      <td>NEW CHOICE LYCHEE</td>
-      <td>NEW CHOICE กลิ่นลิ้นจี่</td>
-      <td>8938501660121</td>
-      <td>893850166012</td>
+      <td></td>
+      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
+      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
+      <td>Wernli Petit Beurre Noir 125 G.</td>
+      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
       <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Cookies &amp; Snacks</td>
+      <td>Biscuits &amp; Crackers</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>171670</td>
-      <td>171670</td>
-      <td>171670</td>
+      <td>237423</td>
+      <td>237423</td>
+      <td>237423</td>
       <td>Y</td>
-      <td>JIRAPAT YOUNG KALE 2</td>
+      <td>THE CUTLERYLIGHT-COL</td>
       <td>Y</td>
-      <td>5</td>
-      <td>171670</td>
+      <td>8</td>
+      <td>237423</td>
       <td>19</td>
-      <td>JIRAPAT YOUNG KALE 200 G.</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
       <td>...</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
+      <td></td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>THE CUTLERY เสื่อรองจานกลมสีอ่อน</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Household Hardware</td>
+      <td>Kitchenware</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 52 columns</p>
+<p>5 rows × 55 columns</p>
 </div>
 </div>
 
@@ -2379,7 +2751,7 @@ Wall time: 1.74 s
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>20238</pre>
+<pre>8974</pre>
 </div>
 
 </div>
@@ -2413,7 +2785,7 @@ Wall time: 1.74 s
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>24911</pre>
+<pre>7026</pre>
 </div>
 
 </div>
@@ -2449,17 +2821,17 @@ Wall time: 1.74 s
 <pre>Index([&#39;cprcode&#39;, &#39;iprcode&#39;, &#39;oprcode&#39;, &#39;ordertype&#39;, &#39;pr_abb&#39;, &#39;pr_active&#39;,
        &#39;pr_cgcode&#39;, &#39;pr_code&#39;, &#39;pr_dpcode&#39;, &#39;pr_engname&#39;, &#39;pr_ggcode&#39;,
        &#39;pr_market&#39;, &#39;pr_name&#39;, &#39;pr_puqty&#39;, &#39;pr_sa_method&#39;, &#39;pr_sucode1&#39;,
-       &#39;pr_suref3&#39;, &#39;prtype&#39;, &#39;psqty&#39;, &#39;pstype&#39;, &#39;pr_country_th&#39;,
-       &#39;pr_country_en&#39;, &#39;pr_keyword_th&#39;, &#39;pr_keyword_en&#39;, &#39;pr_filter_th&#39;,
-       &#39;pr_filter_en&#39;, &#39;online_category_l1_th&#39;, &#39;online_category_l1_en&#39;,
-       &#39;online_category_l2_th&#39;, &#39;online_category_l2_en&#39;,
-       &#39;online_category_l3_th&#39;, &#39;online_category_l3_en&#39;,
-       &#39;villa_category_l1_en&#39;, &#39;villa_category_l2_en&#39;, &#39;villa_category_l3_en&#39;,
-       &#39;villa_category_l4_en&#39;, &#39;content_en&#39;, &#39;content_th&#39;, &#39;hema_brand_th&#39;,
-       &#39;hema_brand_en&#39;, &#39;hema_sizedesc&#39;, &#39;pr_brand_en&#39;, &#39;pr_brand_th&#39;,
-       &#39;pr_online_name_en&#39;, &#39;pr_online_name_th&#39;, &#39;hema_name_en&#39;,
-       &#39;hema_name_th&#39;, &#39;pr_name_en&#39;, &#39;pr_name_th&#39;, &#39;pr_barcode&#39;, &#39;pr_barcode2&#39;,
-       &#39;sort_weight&#39;],
+       &#39;pr_suref3&#39;, &#39;prtype&#39;, &#39;psqty&#39;, &#39;pstype&#39;, &#39;SaleMode_unit&#39;, &#39;ba_nprice&#39;,
+       &#39;content_en&#39;, &#39;content_th&#39;, &#39;hema_brand_en&#39;, &#39;hema_brand_th&#39;,
+       &#39;hema_name_en&#39;, &#39;hema_name_th&#39;, &#39;hema_sizedesc&#39;, &#39;master_online&#39;,
+       &#39;online_category_l1_en&#39;, &#39;online_category_l1_th&#39;,
+       &#39;online_category_l2_en&#39;, &#39;online_category_l2_th&#39;,
+       &#39;online_category_l3_en&#39;, &#39;online_category_l3_th&#39;, &#39;pr_barcode&#39;,
+       &#39;pr_barcode2&#39;, &#39;pr_brand_en&#39;, &#39;pr_brand_th&#39;, &#39;pr_country_en&#39;,
+       &#39;pr_country_th&#39;, &#39;pr_filter_en&#39;, &#39;pr_filter_th&#39;, &#39;pr_keyword_en&#39;,
+       &#39;pr_keyword_th&#39;, &#39;pr_name_en&#39;, &#39;pr_name_th&#39;, &#39;pr_online_name_en&#39;,
+       &#39;pr_online_name_th&#39;, &#39;sort_weight&#39;, &#39;villa_category_l1_en&#39;,
+       &#39;villa_category_l2_en&#39;, &#39;villa_category_l3_en&#39;, &#39;villa_category_l4_en&#39;],
       dtype=&#39;object&#39;)</pre>
 </div>
 
@@ -2493,13 +2865,11 @@ Wall time: 1.74 s
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>A     30759
-C      4463
-T      4263
-S      2828
-D      2557
-DS      277
-s         2
+<pre>A    11591
+T     1726
+C     1592
+S     1089
+s        2
 Name: pr_suref3, dtype: int64</pre>
 </div>
 
@@ -2522,7 +2892,7 @@ Name: pr_suref3, dtype: int64</pre>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L194" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
+<h4 id="lambdaAllQuery" class="doc_header"><code>lambdaAllQuery</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L195" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQuery</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -2566,10 +2936,10 @@ Name: pr_suref3, dtype: int64</pre>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
-CPU times: user 3.22 ms, sys: 3.98 ms, total: 7.2 ms
-Wall time: 17.1 ms
-CPU times: user 1.87 s, sys: 244 ms, total: 2.12 s
-Wall time: 2.26 s
+CPU times: user 6.47 ms, sys: 0 ns, total: 6.47 ms
+Wall time: 6.51 ms
+CPU times: user 605 ms, sys: 40.3 ms, total: 645 ms
+Wall time: 934 ms
 </pre>
 </div>
 </div>
@@ -2579,7 +2949,7 @@ Wall time: 2.26 s
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(45149, 52)</pre>
+<pre>(16000, 55)</pre>
 </div>
 
 </div>
@@ -2607,7 +2977,7 @@ Wall time: 2.26 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="lambdaAllQueryFeather" class="doc_header"><code>lambdaAllQueryFeather</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L199" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQueryFeather</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
+<h4 id="lambdaAllQueryFeather" class="doc_header"><code>lambdaAllQueryFeather</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L200" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaAllQueryFeather</code>(<strong><code>event</code></strong>, <strong>*<code>args</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -2654,13 +3024,13 @@ Wall time: 2.26 s
 loading hashkey allData-hash
 using url
 presign success
-loaded hash is e706d6d6b6a9a7e831045ed1e859e7fb24bd5e4b
-CPU times: user 34 ms, sys: 0 ns, total: 34 ms
-Wall time: 76.3 ms
-CPU times: user 19 µs, sys: 0 ns, total: 19 µs
-Wall time: 22.9 µs
-CPU times: user 300 ms, sys: 73.2 ms, total: 373 ms
-Wall time: 817 ms
+loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
+CPU times: user 28.4 ms, sys: 211 µs, total: 28.6 ms
+Wall time: 58.5 ms
+CPU times: user 21 µs, sys: 0 ns, total: 21 µs
+Wall time: 25 µs
+CPU times: user 128 ms, sys: 20.1 ms, total: 148 ms
+Wall time: 251 ms
 </pre>
 </div>
 </div>
@@ -2698,138 +3068,138 @@ Wall time: 817 ms
       <th>pr_dpcode</th>
       <th>pr_engname</th>
       <th>...</th>
-      <th>pr_brand_th</th>
-      <th>pr_online_name_en</th>
-      <th>pr_online_name_th</th>
-      <th>hema_name_en</th>
-      <th>hema_name_th</th>
+      <th>pr_keyword_th</th>
       <th>pr_name_en</th>
       <th>pr_name_th</th>
-      <th>pr_barcode</th>
-      <th>pr_barcode2</th>
+      <th>pr_online_name_en</th>
+      <th>pr_online_name_th</th>
       <th>sort_weight</th>
+      <th>villa_category_l1_en</th>
+      <th>villa_category_l2_en</th>
+      <th>villa_category_l3_en</th>
+      <th>villa_category_l4_en</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>0217153</td>
-      <td>0217153</td>
-      <td>0217153</td>
+      <td>0231705</td>
+      <td>0231705</td>
+      <td>0231705</td>
       <td>Y</td>
-      <td>COCOA LOCO MILK CHOC</td>
+      <td>SMOKED CIRCLE HAM (1</td>
       <td>Y</td>
-      <td>98</td>
-      <td>0217153</td>
-      <td>28</td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
+      <td>73</td>
+      <td>0231705</td>
+      <td>19</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
       <td>...</td>
       <td></td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
-      <td>COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.</td>
-      <td>5060148383378</td>
-      <td>506014838337</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>สโมคเซอร์เคิลแฮม 165  กรัม</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>SMOKED CIRCLE HAM (165G)</td>
       <td>0</td>
+      <td>Fresh</td>
+      <td>Delicatessen</td>
+      <td>Local</td>
+      <td>Sausages</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0235141</td>
-      <td>0235141</td>
-      <td>0235141</td>
+      <td>0224567</td>
+      <td>0224567</td>
+      <td>0224567</td>
       <td>Y</td>
-      <td>EEBOO-PZCT3-PUZZLE</td>
+      <td>VEDETT EXTRA ORDINAR</td>
       <td>Y</td>
       <td>08</td>
-      <td>0235141</td>
-      <td>19</td>
-      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
+      <td>0224567</td>
+      <td>01</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
       <td>...</td>
-      <td></td>
-      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
-      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
-      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
-      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
-      <td>EEBOO,ANIMAL COUNTING PUZZLE_3ED,PZCT3</td>
-      <td>EEBOO-PZCT3-ตัวต่อนับเลข ANIMAL COUNTING_3ED</td>
-      <td>689196509575</td>
-      <td>68919650957</td>
+      <td>เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>Vedett Extra Ordinary Ipa 330ml</td>
+      <td>Vedett Extra Ordinary Ipa 330ml</td>
       <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Alcohol &amp; Beverage</td>
+      <td>Beer Import</td>
+      <td>Beer Import</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0182223</td>
-      <td>0182223</td>
-      <td>0182223</td>
+      <td>0198937</td>
+      <td>0198937</td>
+      <td>0198937</td>
       <td>Y</td>
-      <td>CIRIO PIZZASSIMO 400</td>
+      <td>MOOTOWN CHEESE DIP &amp;</td>
       <td>Y</td>
-      <td>06</td>
-      <td>0182223</td>
-      <td>06</td>
-      <td>CIRIO PIZZASSIMO 400G.</td>
+      <td>99</td>
+      <td>0198937</td>
+      <td>28</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
       <td>...</td>
-      <td>CIRIO</td>
-      <td>Cirio Pizzassimo 400g</td>
-      <td>Cirio Pizzassimo 400g</td>
-      <td>Pizzassimo</td>
-      <td>Pizzassimo</td>
-      <td>CIRIO PIZZASSIMO 400G.</td>
-      <td>CIRIO ซอสทำพิซซ่า 400 G.</td>
-      <td>8000320997266</td>
-      <td>800032099726</td>
+      <td>ชีส</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
+      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK</td>
+      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
+      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
       <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Cookies &amp; Snacks</td>
+      <td>Biscuits &amp; Crackers</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0124461</td>
-      <td>0124461</td>
-      <td>0124461</td>
+      <td>0222115</td>
+      <td>0222115</td>
+      <td>0222115</td>
       <td>Y</td>
-      <td>NEW CHOICE LYCHEE</td>
+      <td>WERNLI PETIT BEURRE</td>
       <td>Y</td>
+      <td>01</td>
+      <td>0222115</td>
       <td>02</td>
-      <td>0124461</td>
-      <td>02</td>
-      <td>NEW CHOICE LYCHEE</td>
+      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
       <td>...</td>
-      <td>New Choice</td>
-      <td>New Choice Lychee</td>
-      <td>NEW CHOICE กลิ่นลิ้นจี่</td>
-      <td>New Choice Lychee</td>
-      <td>NEW CHOICE กลิ่นลิ้นจี่</td>
-      <td>NEW CHOICE LYCHEE</td>
-      <td>NEW CHOICE กลิ่นลิ้นจี่</td>
-      <td>8938501660121</td>
-      <td>893850166012</td>
+      <td></td>
+      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
+      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
+      <td>Wernli Petit Beurre Noir 125 G.</td>
+      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
       <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Cookies &amp; Snacks</td>
+      <td>Biscuits &amp; Crackers</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0171670</td>
-      <td>0171670</td>
-      <td>0171670</td>
+      <td>0237423</td>
+      <td>0237423</td>
+      <td>0237423</td>
       <td>Y</td>
-      <td>JIRAPAT YOUNG KALE 2</td>
+      <td>THE CUTLERYLIGHT-COL</td>
       <td>Y</td>
-      <td>05</td>
-      <td>0171670</td>
+      <td>08</td>
+      <td>0237423</td>
       <td>19</td>
-      <td>JIRAPAT YOUNG KALE 200 G.</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
       <td>...</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
-      <td>None</td>
+      <td></td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>THE CUTLERY เสื่อรองจานกลมสีอ่อน</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Household Hardware</td>
+      <td>Kitchenware</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2856,128 +3226,128 @@ Wall time: 817 ms
       <td>...</td>
     </tr>
     <tr>
-      <th>45144</th>
-      <td>0226783</td>
-      <td>0226783</td>
-      <td>0226783</td>
+      <th>15995</th>
+      <td>0089545</td>
+      <td>0089545</td>
+      <td>0089545</td>
       <td>Y</td>
-      <td>BETAGRO เป็ดย่างครึ่</td>
+      <td>SEASONING HERBS TOM</td>
       <td>Y</td>
-      <td>74</td>
-      <td>0226783</td>
+      <td>17</td>
+      <td>0089545</td>
       <td>19</td>
-      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
+      <td>SEASONING HERBS TOM KHA 100 G.</td>
       <td>...</td>
       <td></td>
-      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
-      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
-      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
-      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
-      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
-      <td>BETAGRO เป็ดย่างครึ่งตัว</td>
-      <td>2269245</td>
-      <td>226924</td>
+      <td>SEASONING HERBS TOM KHA 100 G.</td>
+      <td>ไป-กิน-ข้าว ต้มข่า 100 กรัม</td>
+      <td>SEASONING HERBS TOM KHA 100 G.</td>
+      <td>SEASONING HERBS TOM KHA 100 G.</td>
       <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Oil &amp; Seasoning &amp; Sauce</td>
+      <td>Cooking Needs</td>
     </tr>
     <tr>
-      <th>45145</th>
-      <td>0236832</td>
-      <td>0236832</td>
-      <td>0236832</td>
+      <th>15996</th>
+      <td>0242597</td>
+      <td>0242597</td>
+      <td>0242597</td>
       <td>Y</td>
-      <td>หน้ากากอนามัย3ชั้น ช</td>
+      <td>ROYAL CANIN FCN INTE</td>
       <td>Y</td>
-      <td>06</td>
-      <td>0236832</td>
-      <td>09</td>
-      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู</td>
-      <td>...</td>
-      <td></td>
-      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู</td>
-      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู</td>
-      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู</td>
-      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู</td>
-      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู</td>
-      <td>หน้ากากอนามัย3ชั้น ชนิดกระดาษแบบคล้องหู P.3</td>
-      <td>8857121193256</td>
-      <td>885712119325</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>45146</th>
-      <td>0225419</td>
-      <td>0225419</td>
-      <td>0225419</td>
-      <td>Y</td>
-      <td>DKFF BEETROOT</td>
-      <td>Y</td>
-      <td>05</td>
-      <td>0225419</td>
+      <td>54</td>
+      <td>0242597</td>
       <td>19</td>
-      <td>DKFF BEETROOT</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
       <td>...</td>
       <td></td>
-      <td>DKFF BEETROOT</td>
-      <td>DKFF BEETROOT</td>
-      <td>DKFF BEETROOT</td>
-      <td>DKFF BEETROOT</td>
-      <td>DKFF BEETROOT</td>
-      <td>DKFF บีทรูท</td>
-      <td>2264772</td>
-      <td>226477</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
       <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Pet Supplies</td>
+      <td>Dog</td>
     </tr>
     <tr>
-      <th>45147</th>
-      <td>0217647</td>
-      <td>0217647</td>
-      <td>0217647</td>
+      <th>15997</th>
+      <td>0210428</td>
+      <td>0210428</td>
+      <td>0210428</td>
       <td>Y</td>
-      <td>GRAPE GREEN SHINE MU</td>
-      <td>Y</td>
-      <td>02</td>
-      <td>0217647</td>
-      <td>19</td>
-      <td>GRAPE GREEN SHINE MUSCUT</td>
-      <td>...</td>
-      <td></td>
-      <td>GRAPE GREEN SHINE MUSCUT</td>
-      <td>องุ่นเขียว ซัยน์มัสคัท 900G</td>
-      <td>GRAPE GREEN SHINE MUSCUT</td>
-      <td>องุ่นเขียว ซัยน์มัสคัท 900G</td>
-      <td>GRAPE GREEN SHINE MUSCUT</td>
-      <td>องุ่นเขียว ซัยน์มัสคัท 900G</td>
-      <td>2247207</td>
-      <td>224720</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>45148</th>
-      <td>0236616</td>
-      <td>0236616</td>
-      <td>0236616</td>
-      <td>Y</td>
-      <td>GREEN THUMB581445</td>
+      <td>POLO WHITE SHIRT SIZ</td>
       <td>Y</td>
       <td>08</td>
-      <td>0236616</td>
+      <td>0210428</td>
       <td>19</td>
-      <td>GREEN THUMB581445</td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
       <td>...</td>
       <td></td>
-      <td>GREEN THUMB581445</td>
-      <td>GREEN THUMB581445</td>
-      <td>GREEN THUMB581445</td>
-      <td>GREEN THUMB581445</td>
-      <td>GREEN THUMB581445</td>
-      <td>GREEN THUMB-ข้อต่อ 581445</td>
-      <td>052088047088</td>
-      <td>05208804708</td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>เสื้อในหลวง รุ่นปกแถบขาว-SIZE 3S</td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>POLO WHITE SHIRT SIZE 3S</td>
       <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Grocery</td>
+      <td>Seasonal</td>
+      <td>TBA</td>
+    </tr>
+    <tr>
+      <th>15998</th>
+      <td>0119503</td>
+      <td>0119503</td>
+      <td>0119503</td>
+      <td>Y</td>
+      <td>HUA HIN BAKERY ITALI</td>
+      <td>Y</td>
+      <td>15</td>
+      <td>0119503</td>
+      <td>19</td>
+      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
+      <td>...</td>
+      <td>เบเกอรี่</td>
+      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
+      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
+      <td>Hua Hin Bakery Italian Bread 450 G</td>
+      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
+      <td>0</td>
+      <td>Fresh</td>
+      <td>Fresh Produce</td>
+      <td>Bakery</td>
+      <td>Bread category</td>
+    </tr>
+    <tr>
+      <th>15999</th>
+      <td>0239331</td>
+      <td>0239331</td>
+      <td>0239331</td>
+      <td>Y</td>
+      <td>CrocodileCreek45507</td>
+      <td>Y</td>
+      <td>08</td>
+      <td>0239331</td>
+      <td>19</td>
+      <td>CROCODILE CREEK,45507,MERMAIDS</td>
+      <td>...</td>
+      <td></td>
+      <td>CROCODILE CREEK,45507,MERMAIDS</td>
+      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507,MERMAIDS</td>
+      <td>Crocodile Creek45507Mermaids</td>
+      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507MERMAIDS</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>Toys</td>
+      <td>Kidoodle</td>
     </tr>
   </tbody>
 </table>
-<p>45149 rows × 52 columns</p>
+<p>16000 rows × 55 columns</p>
 </div>
 </div>
 
@@ -3004,6 +3374,26 @@ Wall time: 817 ms
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-50-1c996e7b9e05&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> database <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>read_feather<span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;url&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">assert</span> pdUtils<span class="ansi-blue-fg">.</span>getDfHash<span class="ansi-blue-fg">(</span>database<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">==</span> result<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;hash&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;database and hash are not the same&#39;</span>
+
+<span class="ansi-red-fg">AssertionError</span>: database and hash are not the same</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
     {% endraw %}
 
@@ -3026,32 +3416,6 @@ Wall time: 817 ms
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>checking scan time
-CPU times: user 16.1 s, sys: 1.01 s, total: 17.1 s
-Wall time: 30.5 s
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>106219</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 

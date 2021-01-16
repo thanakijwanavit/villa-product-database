@@ -108,10 +108,11 @@ def cacheDb(cls, bucketName = INVENTORY_BUCKET_NAME, key = 'allData', limit=100,
   changesDf = cls.toDf(changes)
   changesDf.set_index('cprcode', inplace=True)
   print(changesDf.shape)
-  db.set_index('cprcode', inplace=True)
-  updatedDb = db.append(changesDf)
-  updatedDb.reset_index(inplace=True)
+#   db.set_index('cprcode', inplace=True)
+  updatedDb = db.append(changesDf).drop_duplicates('cprcode', keep='last')
+#   updatedDb.reset_index(inplace=True)
   cls.saveRemoteCache(updatedDb)
+  print('saving to remote cache')
   with cls.batch_write() as batch:
     for item in changes:
       item.setNoUpdate(batch=batch)
