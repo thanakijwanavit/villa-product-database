@@ -154,8 +154,8 @@ You can create the table by with the <code>create_table</code> method.</p>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>engname is JOHNNIE WALKER RED 70 CL.
  name is changed to  testName
-CPU times: user 3.4 ms, sys: 0 ns, total: 3.4 ms
-Wall time: 6.66 ms
+CPU times: user 4.07 ms, sys: 2 µs, total: 4.07 ms
+Wall time: 6.98 ms
 </pre>
 </div>
 </div>
@@ -195,11 +195,21 @@ Wall time: 6.66 ms
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
+loaded hash is 4baf608857ea92134470646a017a6ad910cb2ec7
 remote hash is not the same, load remote cache
-CPU times: user 570 ms, sys: 104 ms, total: 674 ms
-Wall time: 1.22 s
 </pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+
+<span class="ansi-red-fg">AssertionError</span>: loadFrom cache not working</pre>
 </div>
 </div>
 
@@ -272,14 +282,6 @@ Wall time: 1.22 s
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="c1"># originalDb = ProductDatabase.loadFromCache()</span>
-<span class="c1"># listPd = list(product.needsUpdateIndex.query(&#39;Y&#39;, limit=5))</span>
-<span class="c1"># changesDf = ProductDatabase.toDf(listPd)</span>
-<span class="c1"># changesDf.set_index(&#39;cprcode&#39;, inplace=True)</span>
-<span class="c1"># originalDb.set_index(&#39;cprcode&#39;,inplace=True)</span>
-<span class="c1"># newDf = originalDb.append(changesDf)</span>
-<span class="c1"># newDf.reset_index(inplace=True)</span>
-<span class="c1"># originalDb</span>
 
 <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">cacheDb</span><span class="p">()</span>
 </pre></div>
@@ -295,135 +297,42 @@ Wall time: 1.22 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
+loaded hash is ce9daae2549a118c30078d6788446e17afc5530d
 remote hash is not the same, load remote cache
 quering for changes
 convert to df
 (100, 54)
-       cprcode  iprcode  oprcode ordertype                pr_abb pr_active  \
-0      0231705  0231705  0231705         Y  SMOKED CIRCLE HAM (1         Y   
-1      0224567  0224567  0224567         Y  VEDETT EXTRA ORDINAR         Y   
-2      0198937  0198937  0198937         Y  MOOTOWN CHEESE DIP &amp;         Y   
-3      0222115  0222115  0222115         Y   WERNLI PETIT BEURRE         Y   
-4      0237423  0237423  0237423         Y  THE CUTLERYLIGHT-COL         Y   
-...        ...      ...      ...       ...                   ...       ...   
-15996  0242597  0242597  0242597         Y  ROYAL CANIN FCN INTE         Y   
-15997  0210428  0210428  0210428         Y  POLO WHITE SHIRT SIZ         Y   
-15998  0119503  0119503  0119503         Y  HUA HIN BAKERY ITALI         Y   
-15999  0239331  0239331  0239331         Y   CrocodileCreek45507         Y   
-16000      NaN  0238496  0238496         Y    Oral-B Extra Pack2         Y   
+  cprcode  iprcode  oprcode ordertype               pr_abb pr_active  \
+0     NaN  0175853  0175853         Y  GEKKEIKAN KIREI UME         Y   
 
-      pr_cgcode  pr_code pr_dpcode                                pr_engname  \
-0            73  0231705        19                  SMOKED CIRCLE HAM (165G)   
-1            08  0224567        01                 VEDETT EXTRA ORDINARY IPA   
-2            99  0198937        28  MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA   
-3            01  0222115        02           WERNLI PETIT BEURRE NOIR 125 G.   
-4            08  0237423        19  THE CUTLERYLIGHT-COLOURED ROUND TABLE MA   
-...         ...      ...       ...                                       ...   
-15996        54  0242597        19       ROYAL CANIN FCN INTENSE HAIRBALL 2K   
-15997        08  0210428        19                  POLO WHITE SHIRT SIZE 3S   
-15998        15  0119503        19        HUA HIN BAKERY ITALIAN BREAD 450 G   
-15999        08  0239331        19            CROCODILE CREEK,45507,MERMAIDS   
-16000        02  0238496        09           ORAL-B EXTRA FRESH 500ML. PACK2   
+  pr_cgcode  pr_code pr_dpcode                          pr_engname  ...  \
+0        01  0175853        01  GEKKEIKAN KIREI UME COLLAGEN 300ML  ...   
 
-       ...                                      pr_keyword_th  \
-0      ...                                                      
-1      ...  เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...   
-2      ...                                                ชีส   
-3      ...                                                      
-4      ...                                                      
-...    ...                                                ...   
-15996  ...                                                      
-15997  ...                                                      
-15998  ...                                           เบเกอรี่   
-15999  ...                                                      
-16000  ...                                                      
+                                       pr_keyword_th  \
+0  บรั่นดี,วิสกี้,รัม,เหล้ารัม,จิน,วอดก้า,เตกีล่า...   
 
-                                     pr_name_en  \
-0                      SMOKED CIRCLE HAM (165G)   
-1                     VEDETT EXTRA ORDINARY IPA   
-2      MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA   
-3               WERNLI PETIT BEURRE NOIR 125 G.   
-4      THE CUTLERYLIGHT-COLOURED ROUND TABLE MA   
-...                                         ...   
-15996       ROYAL CANIN FCN INTENSE HAIRBALL 2K   
-15997                  POLO WHITE SHIRT SIZE 3S   
-15998        HUA HIN BAKERY ITALIAN BREAD 450 G   
-15999            CROCODILE CREEK,45507,MERMAIDS   
-16000           ORAL-B EXTRA FRESH 500ML. PACK2   
+                           pr_name_en  \
+0  GEKKEIKAN KIREI UME COLLAGEN 300ML   
 
-                                            pr_name_th  \
-0                           สโมคเซอร์เคิลแฮม 165  กรัม   
-1                            VEDETT EXTRA ORDINARY IPA   
-2           MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK   
-3            เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.   
-4                     THE CUTLERY เสื่อรองจานกลมสีอ่อน   
-...                                                ...   
-15996              ROYAL CANIN FCN INTENSE HAIRBALL 2K   
-15997                 เสื้อในหลวง รุ่นปกแถบขาว-SIZE 3S   
-15998            HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.   
-15999  CROCODILE CREEK-กระเป๋าสะพายหลัง 45507,MERMAIDS   
-16000  น้ำยาบ้วนปากออรัลบี เอ็กซ์ตร้าเฟรช500มล.แพ็คคู่   
+                                pr_name_th  \
+0  GEKKEIKAN คิเรอิ อุเมะ คอลลาเจน 300 ML.   
 
-                              pr_online_name_en  \
-0                      SMOKED CIRCLE HAM (165G)   
-1               Vedett Extra Ordinary Ipa 330ml   
-2      MooTown Cheese Dip &amp; Pretzel Sticks 128g   
-3               Wernli Petit Beurre Noir 125 G.   
-4      THE CUTLERYLIGHT-COLOURED ROUND TABLE MA   
-...                                         ...   
-15996       ROYAL CANIN FCN INTENSE HAIRBALL 2K   
-15997                  POLO WHITE SHIRT SIZE 3S   
-15998        Hua Hin Bakery Italian Bread 450 G   
-15999              Crocodile Creek45507Mermaids   
-16000           ORAL-B EXTRA FRESH 500ML. PACK2   
+                    pr_online_name_en  \
+0  Gekkeikan Kirei Ume Collagen 300ml   
 
-                                    pr_online_name_th sort_weight  \
-0                            SMOKED CIRCLE HAM (165G)           0   
-1                     Vedett Extra Ordinary Ipa 330ml           0   
-2            MooTown Cheese Dip &amp; Pretzel Sticks 128g           0   
-3           เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.           0   
-4            THE CUTLERYLIGHT-COLOURED ROUND TABLE MA           0   
-...                                               ...         ...   
-15996             ROYAL CANIN FCN INTENSE HAIRBALL 2K           0   
-15997                        POLO WHITE SHIRT SIZE 3S           0   
-15998           HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.           0   
-15999  CROCODILE CREEK-กระเป๋าสะพายหลัง 45507MERMAIDS           0   
-16000                 ORAL-B EXTRA FRESH 500ML. PACK2           0   
+                         pr_online_name_th sort_weight villa_category_l1_en  \
+0  GEKKEIKAN คิเรอิ อุเมะ คอลลาเจน 300 ML.           0          Dry Grocery   
 
-      villa_category_l1_en villa_category_l2_en villa_category_l3_en  \
-0                    Fresh         Delicatessen                Local   
-1              Dry Grocery   Alcohol &amp; Beverage          Beer Import   
-2              Dry Grocery              Grocery     Cookies &amp; Snacks   
-3              Dry Grocery              Grocery     Cookies &amp; Snacks   
-4              Dry Grocery            Household   Household Hardware   
-...                    ...                  ...                  ...   
-15996          Dry Grocery            Household         Pet Supplies   
-15997          Dry Grocery              Grocery             Seasonal   
-15998                Fresh        Fresh Produce               Bakery   
-15999          Dry Grocery            Household                 Toys   
-16000          Dry Grocery            Household   Household Products   
+  villa_category_l2_en villa_category_l3_en villa_category_l4_en  
+0   Alcohol &amp; Beverage              Liqueur                 Sake  
 
-      villa_category_l4_en  
-0                 Sausages  
-1              Beer Import  
-2      Biscuits &amp; Crackers  
-3      Biscuits &amp; Crackers  
-4              Kitchenware  
-...                    ...  
-15996                  Dog  
-15997                  TBA  
-15998       Bread category  
-15999             Kidoodle  
-16000             Cleaning  
-
-[16001 rows x 55 columns]
+[1 rows x 55 columns]
 hashKey is allData-hash
 saving hash to s3
-saved hash 44d5a59eafeb67bc2d6be19b27affa3099638ead
+saved hash 0389e66bd5d3529f863327858a17582ee4b87620
 saving to remote cache
-CPU times: user 3 s, sys: 234 ms, total: 3.24 s
-Wall time: 5.02 s
+CPU times: user 1.47 s, sys: 2.52 ms, total: 1.48 s
+Wall time: 2.62 s
 </pre>
 </div>
 </div>
@@ -475,272 +384,148 @@ Wall time: 5.02 s
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>0231705</td>
-      <td>0231705</td>
-      <td>0231705</td>
+      <th>0175853</th>
+      <td>NaN</td>
+      <td>0175853</td>
+      <td>0175853</td>
       <td>Y</td>
-      <td>SMOKED CIRCLE HAM (1</td>
+      <td>GEKKEIKAN KIREI UME</td>
       <td>Y</td>
-      <td>73</td>
-      <td>0231705</td>
-      <td>19</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>...</td>
-      <td></td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>สโมคเซอร์เคิลแฮม 165  กรัม</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>0</td>
-      <td>Fresh</td>
-      <td>Delicatessen</td>
-      <td>Local</td>
-      <td>Sausages</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0224567</td>
-      <td>0224567</td>
-      <td>0224567</td>
-      <td>Y</td>
-      <td>VEDETT EXTRA ORDINAR</td>
-      <td>Y</td>
-      <td>08</td>
-      <td>0224567</td>
       <td>01</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>0175853</td>
+      <td>01</td>
+      <td>GEKKEIKAN KIREI UME COLLAGEN 300ML</td>
       <td>...</td>
-      <td>เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
-      <td>Vedett Extra Ordinary Ipa 330ml</td>
-      <td>Vedett Extra Ordinary Ipa 330ml</td>
+      <td>บรั่นดี,วิสกี้,รัม,เหล้ารัม,จิน,วอดก้า,เตกีล่า...</td>
+      <td>GEKKEIKAN KIREI UME COLLAGEN 300ML</td>
+      <td>GEKKEIKAN คิเรอิ อุเมะ คอลลาเจน 300 ML.</td>
+      <td>Gekkeikan Kirei Ume Collagen 300ml</td>
+      <td>GEKKEIKAN คิเรอิ อุเมะ คอลลาเจน 300 ML.</td>
       <td>0</td>
       <td>Dry Grocery</td>
       <td>Alcohol &amp; Beverage</td>
-      <td>Beer Import</td>
-      <td>Beer Import</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0198937</td>
-      <td>0198937</td>
-      <td>0198937</td>
-      <td>Y</td>
-      <td>MOOTOWN CHEESE DIP &amp;</td>
-      <td>Y</td>
-      <td>99</td>
-      <td>0198937</td>
-      <td>28</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
-      <td>...</td>
-      <td>ชีส</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK</td>
-      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
-      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Cookies &amp; Snacks</td>
-      <td>Biscuits &amp; Crackers</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0222115</td>
-      <td>0222115</td>
-      <td>0222115</td>
-      <td>Y</td>
-      <td>WERNLI PETIT BEURRE</td>
-      <td>Y</td>
-      <td>01</td>
-      <td>0222115</td>
-      <td>02</td>
-      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
-      <td>...</td>
-      <td></td>
-      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
-      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
-      <td>Wernli Petit Beurre Noir 125 G.</td>
-      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Cookies &amp; Snacks</td>
-      <td>Biscuits &amp; Crackers</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0237423</td>
-      <td>0237423</td>
-      <td>0237423</td>
-      <td>Y</td>
-      <td>THE CUTLERYLIGHT-COL</td>
-      <td>Y</td>
-      <td>08</td>
-      <td>0237423</td>
-      <td>19</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>...</td>
-      <td></td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>THE CUTLERY เสื่อรองจานกลมสีอ่อน</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Household Hardware</td>
-      <td>Kitchenware</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>15996</th>
-      <td>0242597</td>
-      <td>0242597</td>
-      <td>0242597</td>
-      <td>Y</td>
-      <td>ROYAL CANIN FCN INTE</td>
-      <td>Y</td>
-      <td>54</td>
-      <td>0242597</td>
-      <td>19</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>...</td>
-      <td></td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Pet Supplies</td>
-      <td>Dog</td>
-    </tr>
-    <tr>
-      <th>15997</th>
-      <td>0210428</td>
-      <td>0210428</td>
-      <td>0210428</td>
-      <td>Y</td>
-      <td>POLO WHITE SHIRT SIZ</td>
-      <td>Y</td>
-      <td>08</td>
-      <td>0210428</td>
-      <td>19</td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
-      <td>...</td>
-      <td></td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
-      <td>เสื้อในหลวง รุ่นปกแถบขาว-SIZE 3S</td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Seasonal</td>
-      <td>TBA</td>
-    </tr>
-    <tr>
-      <th>15998</th>
-      <td>0119503</td>
-      <td>0119503</td>
-      <td>0119503</td>
-      <td>Y</td>
-      <td>HUA HIN BAKERY ITALI</td>
-      <td>Y</td>
-      <td>15</td>
-      <td>0119503</td>
-      <td>19</td>
-      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
-      <td>...</td>
-      <td>เบเกอรี่</td>
-      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
-      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
-      <td>Hua Hin Bakery Italian Bread 450 G</td>
-      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
-      <td>0</td>
-      <td>Fresh</td>
-      <td>Fresh Produce</td>
-      <td>Bakery</td>
-      <td>Bread category</td>
-    </tr>
-    <tr>
-      <th>15999</th>
-      <td>0239331</td>
-      <td>0239331</td>
-      <td>0239331</td>
-      <td>Y</td>
-      <td>CrocodileCreek45507</td>
-      <td>Y</td>
-      <td>08</td>
-      <td>0239331</td>
-      <td>19</td>
-      <td>CROCODILE CREEK,45507,MERMAIDS</td>
-      <td>...</td>
-      <td></td>
-      <td>CROCODILE CREEK,45507,MERMAIDS</td>
-      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507,MERMAIDS</td>
-      <td>Crocodile Creek45507Mermaids</td>
-      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507MERMAIDS</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Toys</td>
-      <td>Kidoodle</td>
-    </tr>
-    <tr>
-      <th>0238496</th>
-      <td>NaN</td>
-      <td>0238496</td>
-      <td>0238496</td>
-      <td>Y</td>
-      <td>Oral-B Extra Pack2</td>
-      <td>Y</td>
-      <td>02</td>
-      <td>0238496</td>
-      <td>09</td>
-      <td>ORAL-B EXTRA FRESH 500ML. PACK2</td>
-      <td>...</td>
-      <td></td>
-      <td>ORAL-B EXTRA FRESH 500ML. PACK2</td>
-      <td>น้ำยาบ้วนปากออรัลบี เอ็กซ์ตร้าเฟรช500มล.แพ็คคู่</td>
-      <td>ORAL-B EXTRA FRESH 500ML. PACK2</td>
-      <td>ORAL-B EXTRA FRESH 500ML. PACK2</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Household Products</td>
-      <td>Cleaning</td>
+      <td>Liqueur</td>
+      <td>Sake</td>
     </tr>
   </tbody>
 </table>
-<p>16001 rows × 55 columns</p>
+<p>1 rows × 55 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">lambdaAllQueryFeather</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Response</span><span class="o">.</span><span class="n">fromDict</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="o">.</span><span class="n">body</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;url&#39;</span><span class="p">]</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>product-bucket-dev-manual
+loading hashkey allData-hash
+using url
+presign success
+loaded hash is 11bb0d00bb3bd1d21e1f99c7dbc7cda050e55937
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cprcode</th>
+      <th>iprcode</th>
+      <th>oprcode</th>
+      <th>ordertype</th>
+      <th>pr_abb</th>
+      <th>pr_active</th>
+      <th>pr_cgcode</th>
+      <th>pr_code</th>
+      <th>pr_dpcode</th>
+      <th>pr_engname</th>
+      <th>...</th>
+      <th>sort_weight</th>
+      <th>villa_category_l1_en</th>
+      <th>villa_category_l2_en</th>
+      <th>villa_category_l3_en</th>
+      <th>villa_category_l4_en</th>
+      <th>SaleMode_unit</th>
+      <th>ba_nprice</th>
+      <th>master_online</th>
+      <th>pr_barcode</th>
+      <th>pr_barcode2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>None</td>
+      <td>0163956</td>
+      <td>0163956</td>
+      <td>Y</td>
+      <td>ESS.KAJAL PENCIL 19</td>
+      <td>Y</td>
+      <td>16</td>
+      <td>0163956</td>
+      <td>19</td>
+      <td>ESS.KAJAL PENCIL 19</td>
+      <td>...</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Household</td>
+      <td>HBA</td>
+      <td>Cosmetics</td>
+      <td>ITEM</td>
+      <td>55.00</td>
+      <td>N</td>
+      <td>4250338465774</td>
+      <td>425033846577</td>
+    </tr>
+  </tbody>
+</table>
+<p>1 rows × 55 columns</p>
 </div>
 </div>
 
@@ -793,135 +578,33 @@ Wall time: 5.02 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is 44d5a59eafeb67bc2d6be19b27affa3099638ead
+loaded hash is 0389e66bd5d3529f863327858a17582ee4b87620
 data is still in sync, using local cache
 quering for changes
 convert to df
 (1000, 54)
-       cprcode  iprcode  oprcode ordertype                pr_abb pr_active  \
-0      0231705  0231705  0231705         Y  SMOKED CIRCLE HAM (1         Y   
-1      0224567  0224567  0224567         Y  VEDETT EXTRA ORDINAR         Y   
-2      0198937  0198937  0198937         Y  MOOTOWN CHEESE DIP &amp;         Y   
-3      0222115  0222115  0222115         Y   WERNLI PETIT BEURRE         Y   
-4      0237423  0237423  0237423         Y  THE CUTLERYLIGHT-COL         Y   
-...        ...      ...      ...       ...                   ...       ...   
-15996  0242597  0242597  0242597         Y  ROYAL CANIN FCN INTE         Y   
-15997  0210428  0210428  0210428         Y  POLO WHITE SHIRT SIZ         Y   
-15998  0119503  0119503  0119503         Y  HUA HIN BAKERY ITALI         Y   
-15999  0239331  0239331  0239331         Y   CrocodileCreek45507         Y   
-16000      NaN  0230058  0230058         Y  VITA APPLE JUICE 250         Y   
+  cprcode iprcode oprcode ordertype         pr_abb pr_active pr_cgcode  \
+0     NaN  239199  239199         Y  BABY FOOD POT         Y        55   
 
-      pr_cgcode  pr_code pr_dpcode                                pr_engname  \
-0            73  0231705        19                  SMOKED CIRCLE HAM (165G)   
-1            08  0224567        01                 VEDETT EXTRA ORDINARY IPA   
-2            99  0198937        28  MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA   
-3            01  0222115        02           WERNLI PETIT BEURRE NOIR 125 G.   
-4            08  0237423        19  THE CUTLERYLIGHT-COLOURED ROUND TABLE MA   
-...         ...      ...       ...                                       ...   
-15996        54  0242597        19       ROYAL CANIN FCN INTENSE HAIRBALL 2K   
-15997        08  0210428        19                  POLO WHITE SHIRT SIZE 3S   
-15998        15  0119503        19        HUA HIN BAKERY ITALIAN BREAD 450 G   
-15999        08  0239331        19            CROCODILE CREEK,45507,MERMAIDS   
-16000        05  0230058        20                  VITA APPLE JUICE 250 ML.   
+   pr_code pr_dpcode     pr_engname  ...               pr_keyword_th  \
+0  0239199      19.0  BABY FOOD POT  ...  Mother&#39;s Corn,เด็ก,ของเด็ก   
 
-       ...                                      pr_keyword_th  \
-0      ...                                                      
-1      ...  เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...   
-2      ...                                                ชีส   
-3      ...                                                      
-4      ...                                                      
-...    ...                                                ...   
-15996  ...                                                      
-15997  ...                                                      
-15998  ...                                           เบเกอรี่   
-15999  ...                                                      
-16000  ...                                           น้ำผลไม้   
+      pr_name_en   pr_name_th            pr_online_name_en  \
+0  BABY FOOD POT  หม้อด้ามจับ  Mother&#39;s Corn Baby Food Pot   
 
-                                     pr_name_en  \
-0                      SMOKED CIRCLE HAM (165G)   
-1                     VEDETT EXTRA ORDINARY IPA   
-2      MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA   
-3               WERNLI PETIT BEURRE NOIR 125 G.   
-4      THE CUTLERYLIGHT-COLOURED ROUND TABLE MA   
-...                                         ...   
-15996       ROYAL CANIN FCN INTENSE HAIRBALL 2K   
-15997                  POLO WHITE SHIRT SIZE 3S   
-15998        HUA HIN BAKERY ITALIAN BREAD 450 G   
-15999            CROCODILE CREEK,45507,MERMAIDS   
-16000                  VITA APPLE JUICE 250 ML.   
+           pr_online_name_th sort_weight villa_category_l1_en  \
+0  Mother&#39;s Corn หม้อด้ามจับ         0.0                 none   
 
-                                            pr_name_th  \
-0                           สโมคเซอร์เคิลแฮม 165  กรัม   
-1                            VEDETT EXTRA ORDINARY IPA   
-2           MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK   
-3            เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.   
-4                     THE CUTLERY เสื่อรองจานกลมสีอ่อน   
-...                                                ...   
-15996              ROYAL CANIN FCN INTENSE HAIRBALL 2K   
-15997                 เสื้อในหลวง รุ่นปกแถบขาว-SIZE 3S   
-15998            HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.   
-15999  CROCODILE CREEK-กระเป๋าสะพายหลัง 45507,MERMAIDS   
-16000           วิต้า น้ำผลไม้รสแอปเปิ้ลไม่มีน้ำตาล250   
+  villa_category_l2_en villa_category_l3_en villa_category_l4_en  
+0                 none                 none                 none  
 
-                              pr_online_name_en  \
-0                      SMOKED CIRCLE HAM (165G)   
-1               Vedett Extra Ordinary Ipa 330ml   
-2      MooTown Cheese Dip &amp; Pretzel Sticks 128g   
-3               Wernli Petit Beurre Noir 125 G.   
-4      THE CUTLERYLIGHT-COLOURED ROUND TABLE MA   
-...                                         ...   
-15996       ROYAL CANIN FCN INTENSE HAIRBALL 2K   
-15997                  POLO WHITE SHIRT SIZE 3S   
-15998        Hua Hin Bakery Italian Bread 450 G   
-15999              Crocodile Creek45507Mermaids   
-16000                  VITA APPLE JUICE 250 ML.   
-
-                                    pr_online_name_th sort_weight  \
-0                            SMOKED CIRCLE HAM (165G)           0   
-1                     Vedett Extra Ordinary Ipa 330ml           0   
-2            MooTown Cheese Dip &amp; Pretzel Sticks 128g           0   
-3           เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.           0   
-4            THE CUTLERYLIGHT-COLOURED ROUND TABLE MA           0   
-...                                               ...         ...   
-15996             ROYAL CANIN FCN INTENSE HAIRBALL 2K           0   
-15997                        POLO WHITE SHIRT SIZE 3S           0   
-15998           HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.           0   
-15999  CROCODILE CREEK-กระเป๋าสะพายหลัง 45507MERMAIDS           0   
-16000                        VITA APPLE JUICE 250 ML.           0   
-
-      villa_category_l1_en villa_category_l2_en villa_category_l3_en  \
-0                    Fresh         Delicatessen                Local   
-1              Dry Grocery   Alcohol &amp; Beverage          Beer Import   
-2              Dry Grocery              Grocery     Cookies &amp; Snacks   
-3              Dry Grocery              Grocery     Cookies &amp; Snacks   
-4              Dry Grocery            Household   Household Hardware   
-...                    ...                  ...                  ...   
-15996          Dry Grocery            Household         Pet Supplies   
-15997          Dry Grocery              Grocery             Seasonal   
-15998                Fresh        Fresh Produce               Bakery   
-15999          Dry Grocery            Household                 Toys   
-16000          Dry Grocery   Alcohol &amp; Beverage                Juice   
-
-      villa_category_l4_en  
-0                 Sausages  
-1              Beer Import  
-2      Biscuits &amp; Crackers  
-3      Biscuits &amp; Crackers  
-4              Kitchenware  
-...                    ...  
-15996                  Dog  
-15997                  TBA  
-15998       Bread category  
-15999             Kidoodle  
-16000         Juice Import  
-
-[16001 rows x 55 columns]
+[1 rows x 55 columns]
 hashKey is allData-hash
 saving hash to s3
-saved hash 299b410cfb43b21b22e4e9a954cefec5b4fd6c61
+saved hash 41db1da8d120d67445cf74c15118b767f8a9d5d8
 saving to remote cache
-CPU times: user 13.6 s, sys: 176 ms, total: 13.7 s
-Wall time: 16.1 s
+CPU times: user 12.9 s, sys: 0 ns, total: 12.9 s
+Wall time: 14.9 s
 </pre>
 </div>
 </div>
@@ -973,272 +656,32 @@ Wall time: 16.1 s
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
-      <td>0231705</td>
-      <td>0231705</td>
-      <td>0231705</td>
-      <td>Y</td>
-      <td>SMOKED CIRCLE HAM (1</td>
-      <td>Y</td>
-      <td>73</td>
-      <td>0231705</td>
-      <td>19</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>...</td>
-      <td></td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>สโมคเซอร์เคิลแฮม 165  กรัม</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>0</td>
-      <td>Fresh</td>
-      <td>Delicatessen</td>
-      <td>Local</td>
-      <td>Sausages</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0224567</td>
-      <td>0224567</td>
-      <td>0224567</td>
-      <td>Y</td>
-      <td>VEDETT EXTRA ORDINAR</td>
-      <td>Y</td>
-      <td>08</td>
-      <td>0224567</td>
-      <td>01</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
-      <td>...</td>
-      <td>เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
-      <td>Vedett Extra Ordinary Ipa 330ml</td>
-      <td>Vedett Extra Ordinary Ipa 330ml</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Alcohol &amp; Beverage</td>
-      <td>Beer Import</td>
-      <td>Beer Import</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0198937</td>
-      <td>0198937</td>
-      <td>0198937</td>
-      <td>Y</td>
-      <td>MOOTOWN CHEESE DIP &amp;</td>
-      <td>Y</td>
-      <td>99</td>
-      <td>0198937</td>
-      <td>28</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
-      <td>...</td>
-      <td>ชีส</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK</td>
-      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
-      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Cookies &amp; Snacks</td>
-      <td>Biscuits &amp; Crackers</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0222115</td>
-      <td>0222115</td>
-      <td>0222115</td>
-      <td>Y</td>
-      <td>WERNLI PETIT BEURRE</td>
-      <td>Y</td>
-      <td>01</td>
-      <td>0222115</td>
-      <td>02</td>
-      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
-      <td>...</td>
-      <td></td>
-      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
-      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
-      <td>Wernli Petit Beurre Noir 125 G.</td>
-      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Cookies &amp; Snacks</td>
-      <td>Biscuits &amp; Crackers</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0237423</td>
-      <td>0237423</td>
-      <td>0237423</td>
-      <td>Y</td>
-      <td>THE CUTLERYLIGHT-COL</td>
-      <td>Y</td>
-      <td>08</td>
-      <td>0237423</td>
-      <td>19</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>...</td>
-      <td></td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>THE CUTLERY เสื่อรองจานกลมสีอ่อน</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Household Hardware</td>
-      <td>Kitchenware</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>15996</th>
-      <td>0242597</td>
-      <td>0242597</td>
-      <td>0242597</td>
-      <td>Y</td>
-      <td>ROYAL CANIN FCN INTE</td>
-      <td>Y</td>
-      <td>54</td>
-      <td>0242597</td>
-      <td>19</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>...</td>
-      <td></td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Pet Supplies</td>
-      <td>Dog</td>
-    </tr>
-    <tr>
-      <th>15997</th>
-      <td>0210428</td>
-      <td>0210428</td>
-      <td>0210428</td>
-      <td>Y</td>
-      <td>POLO WHITE SHIRT SIZ</td>
-      <td>Y</td>
-      <td>08</td>
-      <td>0210428</td>
-      <td>19</td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
-      <td>...</td>
-      <td></td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
-      <td>เสื้อในหลวง รุ่นปกแถบขาว-SIZE 3S</td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Seasonal</td>
-      <td>TBA</td>
-    </tr>
-    <tr>
-      <th>15998</th>
-      <td>0119503</td>
-      <td>0119503</td>
-      <td>0119503</td>
-      <td>Y</td>
-      <td>HUA HIN BAKERY ITALI</td>
-      <td>Y</td>
-      <td>15</td>
-      <td>0119503</td>
-      <td>19</td>
-      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
-      <td>...</td>
-      <td>เบเกอรี่</td>
-      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
-      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
-      <td>Hua Hin Bakery Italian Bread 450 G</td>
-      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
-      <td>0</td>
-      <td>Fresh</td>
-      <td>Fresh Produce</td>
-      <td>Bakery</td>
-      <td>Bread category</td>
-    </tr>
-    <tr>
-      <th>15999</th>
-      <td>0239331</td>
-      <td>0239331</td>
-      <td>0239331</td>
-      <td>Y</td>
-      <td>CrocodileCreek45507</td>
-      <td>Y</td>
-      <td>08</td>
-      <td>0239331</td>
-      <td>19</td>
-      <td>CROCODILE CREEK,45507,MERMAIDS</td>
-      <td>...</td>
-      <td></td>
-      <td>CROCODILE CREEK,45507,MERMAIDS</td>
-      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507,MERMAIDS</td>
-      <td>Crocodile Creek45507Mermaids</td>
-      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507MERMAIDS</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Toys</td>
-      <td>Kidoodle</td>
-    </tr>
-    <tr>
-      <th>0230058</th>
+      <th>239199</th>
       <td>NaN</td>
-      <td>0230058</td>
-      <td>0230058</td>
+      <td>239199</td>
+      <td>239199</td>
       <td>Y</td>
-      <td>VITA APPLE JUICE 250</td>
+      <td>BABY FOOD POT</td>
       <td>Y</td>
-      <td>05</td>
-      <td>0230058</td>
-      <td>20</td>
-      <td>VITA APPLE JUICE 250 ML.</td>
+      <td>55</td>
+      <td>0239199</td>
+      <td>19.0</td>
+      <td>BABY FOOD POT</td>
       <td>...</td>
-      <td>น้ำผลไม้</td>
-      <td>VITA APPLE JUICE 250 ML.</td>
-      <td>วิต้า น้ำผลไม้รสแอปเปิ้ลไม่มีน้ำตาล250</td>
-      <td>VITA APPLE JUICE 250 ML.</td>
-      <td>VITA APPLE JUICE 250 ML.</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Alcohol &amp; Beverage</td>
-      <td>Juice</td>
-      <td>Juice Import</td>
+      <td>Mother's Corn,เด็ก,ของเด็ก</td>
+      <td>BABY FOOD POT</td>
+      <td>หม้อด้ามจับ</td>
+      <td>Mother's Corn Baby Food Pot</td>
+      <td>Mother's Corn หม้อด้ามจับ</td>
+      <td>0.0</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
     </tr>
   </tbody>
 </table>
-<p>16001 rows × 55 columns</p>
+<p>1 rows × 55 columns</p>
 </div>
 </div>
 
@@ -1304,10 +747,110 @@ Wall time: 16.1 s
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is 299b410cfb43b21b22e4e9a954cefec5b4fd6c61
+loaded hash is c111d77a566f6529b6e24817eb0fea9c89ae85e8
 data is still in sync, using local cache
 quering for changes
 convert to df
+(500, 54)
+       iprcode  cprcode  oprcode ordertype                pr_abb pr_active  \
+0      0140942  0140942  0140942         Y  FRAGATA OLIVE POMACE         Y   
+1      0223750  0223750  0223750         Y  SAMYANG HOT CHICKHEN         Y   
+2      0203790  0203790  0203790         Y  KRISTY HAMPER 2016 G         Y   
+3      0207006  0207006  0207006         Y   MALEE 100%TANGERINE         Y   
+4       235078   235078   235078         Y  PLANEAT ROASTED SEAS         Y   
+...        ...      ...      ...       ...                   ...       ...   
+88551  0138956  0138956  0138956         Y  BONCHI CORP EBI AGES         Y   
+88552   222318   222318   222318         Y  386372 PACK PT FREEE         Y   
+88553  0066152  0066152  0066152         Y  NEOS  PACIFICE AROMA         Y   
+88554   184290   184290   184290         Y  ALLOWRIE BUTTER SALT         Y   
+88555   240882      NaN   240882         Y           TOUCH 20358         Y   
+
+      pr_cgcode  pr_code pr_dpcode                                pr_engname  \
+0            01  0140942        08           FRAGATA OLIVE POMACE OIL 2 LITE   
+1            04  0223750        03        SAMYANG HOT CHICKHEN CARBONARA130G   
+2            45  0203790        19                  KRISTY HAMPER 2016 SET G   
+3            03  0207006        20     MALEE 100%TANGERINE SUKHOTHAI 1000 ML   
+4            31  0235078      19.0  PLANEAT ROASTED SEASONED AJI BLACK PEPPE   
+...         ...      ...       ...                                       ...   
+88551        17  0138956        19                BONCHI CORP EBI AGESEN 92G   
+88552         8   222318      19.0  386372 PACK PT FREEEZER STORAGE CONTAINE   
+88553        20  0066152        19                   NEOS  PACIFICE AROMATIC   
+88554         1   184290      13.0              ALLOWRIE BUTTER SALTED 10 G.   
+88555        08  0240882      19.0                  TOUCH PIZZA CUTTER 20358   
+
+       ...                              hema_name_en  \
+0      ...                          Olive Pomace Oil   
+1      ...                   Hot Chickhen Carbonarag   
+2      ...                  KRISTY HAMPER 2016 SET G   
+3      ...                  100% Tangerine Sukhothai   
+4      ...  PLANEAT ROASTED SEASONED AJI BLACK PEPPE   
+...    ...                                       ...   
+88551  ...                BONCHI CORP EBI AGESEN 92G   
+88552  ...  386372 PACK PT FREEEZER STORAGE CONTAINE   
+88553  ...                   NEOS  PACIFICE AROMATIC   
+88554  ...              ALLOWRIE BUTTER SALTED 10 G.   
+88555  ...                                      none   
+
+                                   hema_name_th  \
+0                              Olive Pomace Oil   
+1                       Hot Chickhen Carbonarag   
+2                      KRISTY HAMPER 2016 SET G   
+3                      100% Tangerine Sukhothai   
+4      PLANEAT ROASTED SEASONED AJI BLACK PEPPE   
+...                                         ...   
+88551                BONCHI CORP EBI AGESEN 92G   
+88552  386372 PACK PT FREEEZER STORAGE CONTAINE   
+88553                   NEOS  PACIFICE AROMATIC   
+88554              ALLOWRIE BUTTER SALTED 10 G.   
+88555                                      none   
+
+                                     pr_name_en  \
+0               FRAGATA OLIVE POMACE OIL 2 LITE   
+1            SAMYANG HOT CHICKHEN CARBONARA130G   
+2                      KRISTY HAMPER 2016 SET G   
+3         MALEE 100%TANGERINE SUKHOTHAI 1000 ML   
+4      PLANEAT ROASTED SEASONED AJI BLACK PEPPE   
+...                                         ...   
+88551                BONCHI CORP EBI AGESEN 92G   
+88552  386372 PACK PT FREEEZER STORAGE CONTAINE   
+88553                   NEOS  PACIFICE AROMATIC   
+88554              ALLOWRIE BUTTER SALTED 10 G.   
+88555                  TOUCH PIZZA CUTTER 20358   
+
+                                         pr_name_th     pr_barcode  \
+0       FRAGATA น้ำมันมะกอกธรรมชาติ-กรรมวิธี 2 ลิตร  8410134118601   
+1              SAMYANG ฮอตชิคเค่น คาโบนาร่า 130กรัม  8801073113893   
+2                          KRISTY HAMPER 2016 SET G       22037909   
+3            มาลี น้ำส้มเขียวหวานสุโขทัย100% 1000ML  8853333016383   
+4         ปลาณีตปลาข้างเหลืองย่างรส รสพริกไทยดำ45G.           None   
+...                                             ...            ...   
+88551  BONCHI เอบิ อาเงะเซ็น (ขนมข้าวทอดกรอบรสกุ้ง)  8850358040508   
+88552  386372 ชุดกล่องอาหารปลอดสาร BPA 5 ชอ้นแอโรว์           None   
+88553               ขายทำคืน NEOS PACIFICE AROMATIC         661522   
+88554             ALLOWRIE เนยสดเค็มถ้วยเล็ก 10กรัม           None   
+88555               TOUCH มีดสเตนเลสตัดพิซซ่า 20358            NaN   
+
+        pr_barcode2 sort_weight master_online SaleMode_unit ba_nprice  
+0      841013411860           0             Y          ITEM    367.00  
+1      880107311389           0             Y          ITEM     55.00  
+2           2203790           0             N          ITEM    824.00  
+3      885333301638           0             Y          ITEM     68.00  
+4              None         0.0          None          None      None  
+...             ...         ...           ...           ...       ...  
+88551  885035804050           0             N          ITEM    150.00  
+88552          None         0.0          None          None      None  
+88553         66152           0             N          ITEM    230.00  
+88554          None         0.0          None          None      None  
+88555           NaN         0.0           NaN           NaN       NaN  
+
+[88556 rows x 55 columns]
+hashKey is allData-hash
+saving hash to s3
+saved hash d6cdaf07faa9f552c792296a88de1863cc3fac6a
+saving to remote cache
+{&#39;iprcode&#39;: &#39;0140942&#39;, &#39;cprcode&#39;: &#39;0140942&#39;, &#39;oprcode&#39;: &#39;0140942&#39;, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;FRAGATA OLIVE POMACE&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;01&#39;, &#39;pr_code&#39;: &#39;0140942&#39;, &#39;pr_dpcode&#39;: &#39;08&#39;, &#39;pr_engname&#39;: &#39;FRAGATA OLIVE POMACE OIL 2 LITE&#39;, &#39;pr_ggcode&#39;: &#39;008&#39;, &#39;pr_market&#39;: &#39;FRAGATA น้ำมันมะกอกธรรมชาติผสม&#39;, &#39;pr_name&#39;: &#39;FRAGATA น้ำมันมะกอกธรรมชาติ-กรรมวิธี 2 ลิตร&#39;, &#39;pr_puqty&#39;: &#39;8.00&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;1036&#39;, &#39;pr_suref3&#39;: &#39;A&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;&#39;, &#39;pr_country_en&#39;: &#39;&#39;, &#39;pr_keyword_th&#39;: &#39;&#39;, &#39;pr_keyword_en&#39;: &#39;cooking oil, oil cooking,Fragata Olive Pomace Oil, Fragata, Olive purity pomace oil, Omace oil olive pomace oil, cooking olive pomace oil, olive pomace oil cooking&#39;, &#39;pr_filter_th&#39;: &#39;Oils  Vinegar,Grocery&#39;, &#39;pr_filter_en&#39;: &#39;Oils  Vinegar,Grocery&#39;, &#39;online_category_l1_th&#39;: &#39;สินค้าบริโภค&#39;, &#39;online_category_l1_en&#39;: &#39;Grocery&#39;, &#39;online_category_l2_th&#39;: &#39;น้ำมันและน้ำส้มสายชู&#39;, &#39;online_category_l2_en&#39;: &#39;Oils &amp; Vinegar&#39;, &#39;online_category_l3_th&#39;: &#39;&#39;, &#39;online_category_l3_en&#39;: &#39;Cooking Oils&#39;, &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;, &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;, &#39;villa_category_l3_en&#39;: &#39;Oil &amp; Seasoning &amp; Sauce&#39;, &#39;villa_category_l4_en&#39;: &#39;Cooking Oil&#39;, &#39;content_en&#39;: &#39;0140942 0140942 Fragata Olive Pomace Oil 2L cooking oil, oil cooking,Fragata Olive Pomace Oil, Fragata, Olive purity pomace oil, Omace oil olive pomace oil, cooking olive pomace oil, olive pomace oil cooking\r\n 0140942-8410134118601 Fragata cooking oil, oil cooking,Fragata Olive Pomace Oil, Fragata, Olive purity pomace oil, Omace oil olive pomace oil, cooking olive pomace oil, olive pomace oil cooking&#39;, &#39;content_th&#39;: &#39;Fragata Olive Pomace Oil 2L Fragata&#39;, &#39;hema_brand_th&#39;: &#39;Fragata&#39;, &#39;hema_brand_en&#39;: &#39;Fragata&#39;, &#39;hema_sizedesc&#39;: &#39;2L&#39;, &#39;pr_brand_en&#39;: &#39;Fragata&#39;, &#39;pr_brand_th&#39;: &#39;Fragata&#39;, &#39;pr_online_name_en&#39;: &#39;Fragata Olive Pomace Oil 2L&#39;, &#39;pr_online_name_th&#39;: &#39;Fragata Olive Pomace Oil 2L&#39;, &#39;hema_name_en&#39;: &#39;Olive Pomace Oil&#39;, &#39;hema_name_th&#39;: &#39;Olive Pomace Oil&#39;, &#39;pr_name_en&#39;: &#39;FRAGATA OLIVE POMACE OIL 2 LITE&#39;, &#39;pr_name_th&#39;: &#39;FRAGATA น้ำมันมะกอกธรรมชาติ-กรรมวิธี 2 ลิตร&#39;, &#39;pr_barcode&#39;: &#39;8410134118601&#39;, &#39;pr_barcode2&#39;: &#39;841013411860&#39;, &#39;sort_weight&#39;: &#39;0&#39;, &#39;master_online&#39;: &#39;Y&#39;, &#39;SaleMode_unit&#39;: &#39;ITEM&#39;, &#39;ba_nprice&#39;: &#39;367.00&#39;}
+CPU times: user 14.1 s, sys: 1.04 s, total: 15.2 s
+Wall time: 17.9 s
 </pre>
 </div>
 </div>
@@ -1339,8 +882,8 @@ convert to df
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
-remote hash is not the same, load remote cache
+loaded hash is b742d2a5a3a4b12814b1a524222ae52dc371bfe5
+data is still in sync, using local cache
 </pre>
 </div>
 </div>
@@ -1393,123 +936,123 @@ remote hash is not the same, load remote cache
   <tbody>
     <tr>
       <th>0</th>
-      <td>0231705</td>
-      <td>0231705</td>
-      <td>0231705</td>
+      <td>0235414</td>
+      <td>0235414</td>
+      <td>0235414</td>
       <td>Y</td>
-      <td>SMOKED CIRCLE HAM (1</td>
+      <td>BIO CARROT SEEDS</td>
       <td>Y</td>
-      <td>73</td>
-      <td>0231705</td>
+      <td>05</td>
+      <td>0235414</td>
       <td>19</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>BIO CARROT SEEDS</td>
       <td>...</td>
       <td></td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>สโมคเซอร์เคิลแฮม 165  กรัม</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>BIO CARROT SEEDS</td>
+      <td>BIO CARROT SEEDS</td>
+      <td>BIO CARROT SEEDS</td>
+      <td>BIO CARROT SEEDS</td>
       <td>0</td>
       <td>Fresh</td>
-      <td>Delicatessen</td>
-      <td>Local</td>
-      <td>Sausages</td>
+      <td>Fresh Produce</td>
+      <td>Fruits &amp; Vegetable Import</td>
+      <td>Import Vegetable</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0224567</td>
-      <td>0224567</td>
-      <td>0224567</td>
+      <td>0220492</td>
+      <td>0220492</td>
+      <td>0220492</td>
       <td>Y</td>
-      <td>VEDETT EXTRA ORDINAR</td>
+      <td>COCOA DUTCH REFILL 3</td>
       <td>Y</td>
-      <td>08</td>
-      <td>0224567</td>
       <td>01</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>0220492</td>
+      <td>05</td>
+      <td>COCOA DUTCH REFILL 350G</td>
       <td>...</td>
-      <td>เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
-      <td>Vedett Extra Ordinary Ipa 330ml</td>
-      <td>Vedett Extra Ordinary Ipa 330ml</td>
+      <td></td>
+      <td>COCOA DUTCH REFILL 350G</td>
+      <td>โกโก้ดัทช์ ชนิดเติม 350กรัม</td>
+      <td>Cocoa Dutch Cocoa Powder 350g</td>
+      <td>Cocoa Dutch Cocoa Powder 350g</td>
       <td>0</td>
       <td>Dry Grocery</td>
-      <td>Alcohol &amp; Beverage</td>
-      <td>Beer Import</td>
-      <td>Beer Import</td>
+      <td>Grocery</td>
+      <td>Hot Beverages</td>
+      <td>Cocoa/Tea/Coffee</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0198937</td>
-      <td>0198937</td>
-      <td>0198937</td>
+      <td>0177701</td>
+      <td>0177701</td>
+      <td>0177701</td>
       <td>Y</td>
-      <td>MOOTOWN CHEESE DIP &amp;</td>
+      <td>NOTEBOOK 9/100</td>
       <td>Y</td>
-      <td>99</td>
-      <td>0198937</td>
-      <td>28</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
+      <td>02</td>
+      <td>0177701</td>
+      <td>30</td>
+      <td>NOTEBOOK 9/100</td>
       <td>...</td>
-      <td>ชีส</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK</td>
-      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
-      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
+      <td></td>
+      <td>NOTEBOOK 9/100</td>
+      <td>สมุดปกแข็ง 9/100</td>
+      <td>NOTEBOOK 9/100</td>
+      <td>NOTEBOOK 9/100</td>
       <td>0</td>
       <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Cookies &amp; Snacks</td>
-      <td>Biscuits &amp; Crackers</td>
+      <td>Store Supply</td>
+      <td>Stationary</td>
+      <td></td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0222115</td>
-      <td>0222115</td>
-      <td>0222115</td>
+      <td>0190154</td>
+      <td>0190154</td>
+      <td>0190154</td>
       <td>Y</td>
-      <td>WERNLI PETIT BEURRE</td>
+      <td>SPECIAL PRODUCT 2</td>
       <td>Y</td>
-      <td>01</td>
-      <td>0222115</td>
-      <td>02</td>
-      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
+      <td>48</td>
+      <td>0190154</td>
+      <td>19</td>
+      <td>SPECIAL PRODUCT 2</td>
       <td>...</td>
       <td></td>
-      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
-      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
-      <td>Wernli Petit Beurre Noir 125 G.</td>
-      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
+      <td>SPECIAL PRODUCT 2</td>
+      <td>SPECIAL PRODUCT 2</td>
+      <td>SPECIAL PRODUCT 2</td>
+      <td>SPECIAL PRODUCT 2</td>
       <td>0</td>
       <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Cookies &amp; Snacks</td>
-      <td>Biscuits &amp; Crackers</td>
+      <td>Alcohol &amp; Beverage</td>
+      <td>RTD</td>
+      <td></td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0237423</td>
-      <td>0237423</td>
-      <td>0237423</td>
+      <td>0062012</td>
+      <td>0062012</td>
+      <td>0062012</td>
       <td>Y</td>
-      <td>THE CUTLERYLIGHT-COL</td>
+      <td>WAI WAI BROWIR RICE</td>
       <td>Y</td>
-      <td>08</td>
-      <td>0237423</td>
-      <td>19</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>01</td>
+      <td>0062012</td>
+      <td>03</td>
+      <td>WAI WAI BROWIR RICE VERMICELLI 170 G.</td>
       <td>...</td>
       <td></td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>THE CUTLERY เสื่อรองจานกลมสีอ่อน</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>WAI WAI BROWIR RICE VERMICELLI 170 G.</td>
+      <td>WAI WAI เส้นหมี่ข้าวกล้อง 170 ก.</td>
+      <td>Wai Wai Browir Rice Vermicelli  170g</td>
+      <td>Wai Wai Browir Rice Vermicelli  170g</td>
       <td>0</td>
       <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Household Hardware</td>
-      <td>Kitchenware</td>
+      <td>Grocery</td>
+      <td>Pasta</td>
+      <td></td>
     </tr>
     <tr>
       <th>...</th>
@@ -1536,47 +1079,71 @@ remote hash is not the same, load remote cache
       <td>...</td>
     </tr>
     <tr>
-      <th>15995</th>
-      <td>0089545</td>
-      <td>0089545</td>
-      <td>0089545</td>
+      <th>496</th>
+      <td>0205990</td>
+      <td>0205990</td>
+      <td>0205990</td>
       <td>Y</td>
-      <td>SEASONING HERBS TOM</td>
+      <td>Foremost Yoghurt Mix</td>
       <td>Y</td>
-      <td>17</td>
-      <td>0089545</td>
-      <td>19</td>
-      <td>SEASONING HERBS TOM KHA 100 G.</td>
+      <td>85</td>
+      <td>0205990</td>
+      <td>23</td>
+      <td>FOREMOST YOGHURT MIXED FRUITS</td>
       <td>...</td>
-      <td></td>
-      <td>SEASONING HERBS TOM KHA 100 G.</td>
-      <td>ไป-กิน-ข้าว ต้มข่า 100 กรัม</td>
-      <td>SEASONING HERBS TOM KHA 100 G.</td>
-      <td>SEASONING HERBS TOM KHA 100 G.</td>
+      <td>โยเกิร์ต</td>
+      <td>FOREMOST YOGHURT MIXED FRUITS</td>
+      <td>โฟร์โมสต์ โยเกิต ผลไม้รวม 135*4</td>
+      <td>Foremost Yoghurt Mixed Fruits</td>
+      <td>โฟร์โมสต์ โยเกิต ผลไม้รวม 135*4</td>
       <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Oil &amp; Seasoning &amp; Sauce</td>
-      <td>Cooking Needs</td>
+      <td>Fresh</td>
+      <td>Dairy</td>
+      <td>Yogurt</td>
+      <td></td>
     </tr>
     <tr>
-      <th>15996</th>
-      <td>0242597</td>
-      <td>0242597</td>
-      <td>0242597</td>
+      <th>497</th>
+      <td>0211914</td>
+      <td>0211914</td>
+      <td>0211914</td>
       <td>Y</td>
-      <td>ROYAL CANIN FCN INTE</td>
+      <td>CPBALANCE CHILLI RIC</td>
+      <td>Y</td>
+      <td>84</td>
+      <td>0211914</td>
+      <td>22</td>
+      <td>CPBALANCE CHILLI RICECHICKEN BREAST</td>
+      <td>...</td>
+      <td>Frozen, Frozen meal</td>
+      <td>CPBALANCE CHILLI RICECHICKEN BREAST</td>
+      <td>ข้าวน้ำพริกอกไก่ ซีพีบาลานซ์</td>
+      <td>Cp balance Chilli Ricechicken Breast 190g</td>
+      <td>Cp balance Chilli Ricechicken Breast 190g</td>
+      <td>0</td>
+      <td>Fresh</td>
+      <td>Frozen</td>
+      <td>Frozen Meal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>498</th>
+      <td>0239245</td>
+      <td>0239245</td>
+      <td>0239245</td>
+      <td>Y</td>
+      <td>DOGSTER PLAY CHICKEN</td>
       <td>Y</td>
       <td>54</td>
-      <td>0242597</td>
+      <td>0239245</td>
       <td>19</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>DOGSTER PLAY CHICKEN MEAT FORMULA 40G</td>
       <td>...</td>
-      <td></td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>dogster,หมา,อาหารหมา,สัตว์เลี้ยง</td>
+      <td>DOGSTER PLAY CHICKEN MEAT FORMULA 40G</td>
+      <td>(รับ)ด็อกส์เตอร์เพลย์ สูตรเนื้อไก่</td>
+      <td>DOGSTER PLAY CHICKEN MEAT FORMULA 40G</td>
+      <td>DOGSTER PLAY CHICKEN MEAT FORMULA 40G</td>
       <td>0</td>
       <td>Dry Grocery</td>
       <td>Household</td>
@@ -1584,80 +1151,56 @@ remote hash is not the same, load remote cache
       <td>Dog</td>
     </tr>
     <tr>
-      <th>15997</th>
-      <td>0210428</td>
-      <td>0210428</td>
-      <td>0210428</td>
+      <th>499</th>
+      <td>0139097</td>
+      <td>0139097</td>
+      <td>0139097</td>
       <td>Y</td>
-      <td>POLO WHITE SHIRT SIZ</td>
+      <td>LEFFE BROWN 330 ML</td>
       <td>Y</td>
       <td>08</td>
-      <td>0210428</td>
-      <td>19</td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>0139097</td>
+      <td>01</td>
+      <td>LEFFE BROWN 330 ML</td>
+      <td>...</td>
+      <td>เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...</td>
+      <td>LEFFE BROWN 330 ML</td>
+      <td>LEFFE BROWN 330 ML</td>
+      <td>Leffe Brown  330ml</td>
+      <td>Leffe Brown  330ml</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Alcohol &amp; Beverage</td>
+      <td>Beer Import</td>
+      <td>Beer Import</td>
+    </tr>
+    <tr>
+      <th>500</th>
+      <td>None</td>
+      <td>0048935</td>
+      <td>0048935</td>
+      <td>Y</td>
+      <td>HEINZ PARSNIPS</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0048935</td>
+      <td>05</td>
+      <td>HEINZ PARSNIPS  CARROTS+SWEET POTATO 110</td>
       <td>...</td>
       <td></td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
-      <td>เสื้อในหลวง รุ่นปกแถบขาว-SIZE 3S</td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>HEINZ PARSNIPS  CARROTS+SWEET POTATO 110</td>
+      <td>HEINZ หัวไชเท้า+แครอท+มันฝรั่ง 110ก.</td>
+      <td>Heinz Parsnips Carrots+Sweet Potato 110g</td>
+      <td>Heinz Parsnips Carrots+Sweet Potato 110g</td>
       <td>0</td>
       <td>Dry Grocery</td>
       <td>Grocery</td>
-      <td>Seasonal</td>
-      <td>TBA</td>
-    </tr>
-    <tr>
-      <th>15998</th>
-      <td>0119503</td>
-      <td>0119503</td>
-      <td>0119503</td>
-      <td>Y</td>
-      <td>HUA HIN BAKERY ITALI</td>
-      <td>Y</td>
-      <td>15</td>
-      <td>0119503</td>
-      <td>19</td>
-      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
-      <td>...</td>
-      <td>เบเกอรี่</td>
-      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
-      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
-      <td>Hua Hin Bakery Italian Bread 450 G</td>
-      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
-      <td>0</td>
-      <td>Fresh</td>
-      <td>Fresh Produce</td>
-      <td>Bakery</td>
-      <td>Bread category</td>
-    </tr>
-    <tr>
-      <th>15999</th>
-      <td>0239331</td>
-      <td>0239331</td>
-      <td>0239331</td>
-      <td>Y</td>
-      <td>CrocodileCreek45507</td>
-      <td>Y</td>
-      <td>08</td>
-      <td>0239331</td>
-      <td>19</td>
-      <td>CROCODILE CREEK,45507,MERMAIDS</td>
-      <td>...</td>
-      <td></td>
-      <td>CROCODILE CREEK,45507,MERMAIDS</td>
-      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507,MERMAIDS</td>
-      <td>Crocodile Creek45507Mermaids</td>
-      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507MERMAIDS</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Toys</td>
-      <td>Kidoodle</td>
+      <td>Baby Food &amp; Milk / Breakfast Food</td>
+      <td>Baby Food</td>
     </tr>
   </tbody>
 </table>
-<p>16000 rows × 55 columns</p>
+<p>501 rows × 55 columns</p>
 </div>
 </div>
 
@@ -1828,12 +1371,12 @@ remote hash is not the same, load remote cache
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.015000000000000001 ms
-divided into chunks 0.8109999999999999 ms
+<pre>input validated 0.014 ms
+divided into chunks 0.125 ms
 loading hashkey allData-hash
-loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
-remote hash is not the same, load remote cache
-get all from s3 1058.4389999999999 ms
+loaded hash is b742d2a5a3a4b12814b1a524222ae52dc371bfe5
+data is still in sync, using local cache
+get all from s3 112.628 ms
 </pre>
 </div>
 </div>
@@ -1847,7 +1390,7 @@ get all from s3 1058.4389999999999 ms
  &#39;failure&#39;: 0,
  &#39;skipped&#39;: 0,
  &#39;failureMessage&#39;: [],
- &#39;timetaken(ms)&#39;: 1081.0720000000001}</pre>
+ &#39;timetaken(ms)&#39;: 115.861}</pre>
 </div>
 
 </div>
@@ -1910,12 +1453,12 @@ get all from s3 1058.4389999999999 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.014 ms
-divided into chunks 0.553 ms
+<pre>input validated 0.012 ms
+divided into chunks 0.5559999999999999 ms
 loading hashkey allData-hash
-loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
-remote hash is not the same, load remote cache
-get all from s3 1053.943 ms
+loaded hash is b742d2a5a3a4b12814b1a524222ae52dc371bfe5
+data is still in sync, using local cache
+get all from s3 165.01 ms
 </pre>
 </div>
 </div>
@@ -1925,7 +1468,7 @@ get all from s3 1053.943 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:1076.91}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:167.906}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -2011,12 +1554,12 @@ get all from s3 1053.943 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.013 ms
-divided into chunks 0.122 ms
+<pre>input validated 0.014 ms
+divided into chunks 0.12000000000000001 ms
 loading hashkey allData-hash
-loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
-remote hash is not the same, load remote cache
-get all from s3 1041.13 ms
+loaded hash is b742d2a5a3a4b12814b1a524222ae52dc371bfe5
+data is still in sync, using local cache
+get all from s3 225.839 ms
 </pre>
 </div>
 </div>
@@ -2083,12 +1626,12 @@ get all from s3 1041.13 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>input validated 0.015000000000000001 ms
-divided into chunks 0.424 ms
+<pre>input validated 0.014 ms
+divided into chunks 0.12300000000000001 ms
 loading hashkey allData-hash
-loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
-remote hash is not the same, load remote cache
-get all from s3 1153.338 ms
+loaded hash is b742d2a5a3a4b12814b1a524222ae52dc371bfe5
+data is still in sync, using local cache
+get all from s3 125.96499999999999 ms
 </pre>
 </div>
 </div>
@@ -2098,7 +1641,7 @@ get all from s3 1153.338 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:1174.987}&#39;,
+<pre>{&#39;body&#39;: &#39;{&#34;success&#34;:1,&#34;failure&#34;:0,&#34;skipped&#34;:0,&#34;failureMessage&#34;:[],&#34;timetaken(ms)&#34;:129.01999999999998}&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -2214,9 +1757,9 @@ get all from s3 1153.338 ms
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
-remote hash is not the same, load remote cache
-db shape is (16000, 55)
+loaded hash is b742d2a5a3a4b12814b1a524222ae52dc371bfe5
+data is still in sync, using local cache
+db shape is (501, 55)
 </pre>
 </div>
 </div>
@@ -2229,7 +1772,7 @@ db shape is (16000, 55)
 <span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
 <span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 
-<span class="ansi-red-fg">AssertionError</span>: result length is not 3 1</pre>
+<span class="ansi-red-fg">AssertionError</span>: result length is not 3 0</pre>
 </div>
 </div>
 
@@ -2261,9 +1804,9 @@ db shape is (16000, 55)
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
-remote hash is not the same, load remote cache
-db shape is (16000, 55)
+loaded hash is b742d2a5a3a4b12814b1a524222ae52dc371bfe5
+data is still in sync, using local cache
+db shape is (501, 55)
 </pre>
 </div>
 </div>
@@ -2273,7 +1816,7 @@ db shape is (16000, 55)
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;body&#39;: &#39;[{&#34;cprcode&#34;:&#34;0217153&#34;,&#34;iprcode&#34;:&#34;0217153&#34;,&#34;oprcode&#34;:&#34;0217153&#34;,&#34;ordertype&#34;:&#34;Y&#34;,&#34;pr_abb&#34;:&#34;COCOA LOCO MILK CHOC&#34;,&#34;pr_active&#34;:&#34;Y&#34;,&#34;pr_cgcode&#34;:&#34;98&#34;,&#34;pr_code&#34;:&#34;0217153&#34;,&#34;pr_dpcode&#34;:&#34;28&#34;,&#34;pr_engname&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_ggcode&#34;:&#34;003&#34;,&#34;pr_market&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL&#34;,&#34;pr_name&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_puqty&#34;:&#34;24.00&#34;,&#34;pr_sa_method&#34;:&#34;1&#34;,&#34;pr_sucode1&#34;:&#34;F1239&#34;,&#34;pr_suref3&#34;:&#34;S&#34;,&#34;prtype&#34;:&#34;I&#34;,&#34;psqty&#34;:&#34;1&#34;,&#34;pstype&#34;:&#34;1&#34;,&#34;SaleMode_unit&#34;:&#34;ITEM&#34;,&#34;ba_nprice&#34;:&#34;115.00&#34;,&#34;content_en&#34;:&#34;0217153 0217153 COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.  0217153-5060148383378  Dry Grocery Grocery Cookies &amp; Snacks Biscuits &amp; Crackers&#34;,&#34;content_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_brand_en&#34;:&#34;&#34;,&#34;hema_brand_th&#34;:&#34;&#34;,&#34;hema_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;hema_sizedesc&#34;:&#34;&#34;,&#34;master_online&#34;:&#34;N&#34;,&#34;online_category_l1_en&#34;:&#34;&#34;,&#34;online_category_l1_th&#34;:&#34;&#34;,&#34;online_category_l2_en&#34;:&#34;&#34;,&#34;online_category_l2_th&#34;:&#34;&#34;,&#34;online_category_l3_en&#34;:&#34;&#34;,&#34;online_category_l3_th&#34;:&#34;&#34;,&#34;pr_barcode&#34;:&#34;5060148383378&#34;,&#34;pr_barcode2&#34;:&#34;506014838337&#34;,&#34;pr_brand_en&#34;:&#34;&#34;,&#34;pr_brand_th&#34;:&#34;&#34;,&#34;pr_country_en&#34;:&#34;United Kingdom&#34;,&#34;pr_country_th&#34;:&#34;&#34;,&#34;pr_filter_en&#34;:&#34;&#34;,&#34;pr_filter_th&#34;:&#34;&#34;,&#34;pr_keyword_en&#34;:&#34;&#34;,&#34;pr_keyword_th&#34;:&#34;&#34;,&#34;pr_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_online_name_en&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;pr_online_name_th&#34;:&#34;COCOA LOCO MILK CHOCOLATE OWL LOLLY 26G.&#34;,&#34;sort_weight&#34;:&#34;0&#34;,&#34;villa_category_l1_en&#34;:&#34;Dry Grocery&#34;,&#34;villa_category_l2_en&#34;:&#34;Grocery&#34;,&#34;villa_category_l3_en&#34;:&#34;Cookies &amp; Snacks&#34;,&#34;villa_category_l4_en&#34;:&#34;Biscuits &amp; Crackers&#34;}]&#39;,
+<pre>{&#39;body&#39;: &#39;[]&#39;,
  &#39;statusCode&#39;: 200,
  &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
   &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
@@ -2539,11 +2082,11 @@ dtype: object</pre>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
-CPU times: user 5.59 ms, sys: 77 µs, total: 5.67 ms
-Wall time: 5.53 ms
-https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData-json.zl?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=RvBVWlvIKDZslpM%2BXcOxDIdiPBw%3D&amp;Expires=1610792580
-CPU times: user 625 ms, sys: 81.5 ms, total: 707 ms
-Wall time: 850 ms
+CPU times: user 6.17 ms, sys: 55 µs, total: 6.22 ms
+Wall time: 6.93 ms
+https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData-json.zl?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=LDfUCBeIBKZ3XAY0e5qwcHaEH8o%3D&amp;Expires=1611299229
+CPU times: user 61.2 ms, sys: 140 µs, total: 61.3 ms
+Wall time: 123 ms
 </pre>
 </div>
 </div>
@@ -2596,123 +2139,123 @@ Wall time: 850 ms
   <tbody>
     <tr>
       <th>0</th>
-      <td>231705</td>
-      <td>231705</td>
-      <td>231705</td>
+      <td>235414.0</td>
+      <td>235414</td>
+      <td>235414</td>
       <td>Y</td>
-      <td>SMOKED CIRCLE HAM (1</td>
+      <td>BIO CARROT SEEDS</td>
       <td>Y</td>
-      <td>73</td>
-      <td>231705</td>
+      <td>5</td>
+      <td>235414</td>
       <td>19</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>BIO CARROT SEEDS</td>
       <td>...</td>
       <td></td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>สโมคเซอร์เคิลแฮม 165  กรัม</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>BIO CARROT SEEDS</td>
+      <td>BIO CARROT SEEDS</td>
+      <td>BIO CARROT SEEDS</td>
+      <td>BIO CARROT SEEDS</td>
       <td>0</td>
       <td>Fresh</td>
-      <td>Delicatessen</td>
-      <td>Local</td>
-      <td>Sausages</td>
+      <td>Fresh Produce</td>
+      <td>Fruits &amp; Vegetable Import</td>
+      <td>Import Vegetable</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>224567</td>
-      <td>224567</td>
-      <td>224567</td>
+      <td>220492.0</td>
+      <td>220492</td>
+      <td>220492</td>
       <td>Y</td>
-      <td>VEDETT EXTRA ORDINAR</td>
+      <td>COCOA DUTCH REFILL 3</td>
       <td>Y</td>
-      <td>8</td>
-      <td>224567</td>
       <td>1</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>220492</td>
+      <td>5</td>
+      <td>COCOA DUTCH REFILL 350G</td>
       <td>...</td>
-      <td>เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
-      <td>Vedett Extra Ordinary Ipa 330ml</td>
-      <td>Vedett Extra Ordinary Ipa 330ml</td>
+      <td></td>
+      <td>COCOA DUTCH REFILL 350G</td>
+      <td>โกโก้ดัทช์ ชนิดเติม 350กรัม</td>
+      <td>Cocoa Dutch Cocoa Powder 350g</td>
+      <td>Cocoa Dutch Cocoa Powder 350g</td>
       <td>0</td>
       <td>Dry Grocery</td>
-      <td>Alcohol &amp; Beverage</td>
-      <td>Beer Import</td>
-      <td>Beer Import</td>
+      <td>Grocery</td>
+      <td>Hot Beverages</td>
+      <td>Cocoa/Tea/Coffee</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>198937</td>
-      <td>198937</td>
-      <td>198937</td>
+      <td>177701.0</td>
+      <td>177701</td>
+      <td>177701</td>
       <td>Y</td>
-      <td>MOOTOWN CHEESE DIP &amp;</td>
+      <td>NOTEBOOK 9/100</td>
       <td>Y</td>
-      <td>99</td>
-      <td>198937</td>
-      <td>28</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
+      <td>2</td>
+      <td>177701</td>
+      <td>30</td>
+      <td>NOTEBOOK 9/100</td>
       <td>...</td>
-      <td>ชีส</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK</td>
-      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
-      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
+      <td></td>
+      <td>NOTEBOOK 9/100</td>
+      <td>สมุดปกแข็ง 9/100</td>
+      <td>NOTEBOOK 9/100</td>
+      <td>NOTEBOOK 9/100</td>
       <td>0</td>
       <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Cookies &amp; Snacks</td>
-      <td>Biscuits &amp; Crackers</td>
+      <td>Store Supply</td>
+      <td>Stationary</td>
+      <td></td>
     </tr>
     <tr>
       <th>3</th>
-      <td>222115</td>
-      <td>222115</td>
-      <td>222115</td>
+      <td>190154.0</td>
+      <td>190154</td>
+      <td>190154</td>
       <td>Y</td>
-      <td>WERNLI PETIT BEURRE</td>
+      <td>SPECIAL PRODUCT 2</td>
       <td>Y</td>
-      <td>1</td>
-      <td>222115</td>
-      <td>2</td>
-      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
+      <td>48</td>
+      <td>190154</td>
+      <td>19</td>
+      <td>SPECIAL PRODUCT 2</td>
       <td>...</td>
       <td></td>
-      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
-      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
-      <td>Wernli Petit Beurre Noir 125 G.</td>
-      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
+      <td>SPECIAL PRODUCT 2</td>
+      <td>SPECIAL PRODUCT 2</td>
+      <td>SPECIAL PRODUCT 2</td>
+      <td>SPECIAL PRODUCT 2</td>
       <td>0</td>
       <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Cookies &amp; Snacks</td>
-      <td>Biscuits &amp; Crackers</td>
+      <td>Alcohol &amp; Beverage</td>
+      <td>RTD</td>
+      <td></td>
     </tr>
     <tr>
       <th>4</th>
-      <td>237423</td>
-      <td>237423</td>
-      <td>237423</td>
+      <td>62012.0</td>
+      <td>62012</td>
+      <td>62012</td>
       <td>Y</td>
-      <td>THE CUTLERYLIGHT-COL</td>
+      <td>WAI WAI BROWIR RICE</td>
       <td>Y</td>
-      <td>8</td>
-      <td>237423</td>
-      <td>19</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>1</td>
+      <td>62012</td>
+      <td>3</td>
+      <td>WAI WAI BROWIR RICE VERMICELLI 170 G.</td>
       <td>...</td>
       <td></td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>THE CUTLERY เสื่อรองจานกลมสีอ่อน</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>WAI WAI BROWIR RICE VERMICELLI 170 G.</td>
+      <td>WAI WAI เส้นหมี่ข้าวกล้อง 170 ก.</td>
+      <td>Wai Wai Browir Rice Vermicelli  170g</td>
+      <td>Wai Wai Browir Rice Vermicelli  170g</td>
       <td>0</td>
       <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Household Hardware</td>
-      <td>Kitchenware</td>
+      <td>Grocery</td>
+      <td>Pasta</td>
+      <td></td>
     </tr>
   </tbody>
 </table>
@@ -2751,7 +2294,7 @@ Wall time: 850 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>8974</pre>
+<pre>272</pre>
 </div>
 
 </div>
@@ -2785,7 +2328,7 @@ Wall time: 850 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>7026</pre>
+<pre>229</pre>
 </div>
 
 </div>
@@ -2865,11 +2408,10 @@ Wall time: 850 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>A    11591
-T     1726
-C     1592
-S     1089
-s        2
+<pre>A    366
+T     60
+C     38
+S     37
 Name: pr_suref3, dtype: int64</pre>
 </div>
 
@@ -2936,10 +2478,10 @@ Name: pr_suref3, dtype: int64</pre>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
-CPU times: user 6.47 ms, sys: 0 ns, total: 6.47 ms
-Wall time: 6.51 ms
-CPU times: user 605 ms, sys: 40.3 ms, total: 645 ms
-Wall time: 934 ms
+CPU times: user 6.3 ms, sys: 59 µs, total: 6.36 ms
+Wall time: 5.96 ms
+CPU times: user 53.9 ms, sys: 0 ns, total: 53.9 ms
+Wall time: 100 ms
 </pre>
 </div>
 </div>
@@ -2949,7 +2491,7 @@ Wall time: 934 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>(16000, 55)</pre>
+<pre>(501, 55)</pre>
 </div>
 
 </div>
@@ -3024,13 +2566,13 @@ Wall time: 934 ms
 loading hashkey allData-hash
 using url
 presign success
-loaded hash is 529cd4153ad333994bbd7713bcee0957bde5810f
-CPU times: user 28.4 ms, sys: 211 µs, total: 28.6 ms
-Wall time: 58.5 ms
-CPU times: user 21 µs, sys: 0 ns, total: 21 µs
-Wall time: 25 µs
-CPU times: user 128 ms, sys: 20.1 ms, total: 148 ms
-Wall time: 251 ms
+loaded hash is b742d2a5a3a4b12814b1a524222ae52dc371bfe5
+CPU times: user 23.4 ms, sys: 7.97 ms, total: 31.4 ms
+Wall time: 126 ms
+CPU times: user 18 µs, sys: 1e+03 ns, total: 19 µs
+Wall time: 22.6 µs
+CPU times: user 18.6 ms, sys: 3.9 ms, total: 22.5 ms
+Wall time: 83.7 ms
 </pre>
 </div>
 </div>
@@ -3083,123 +2625,123 @@ Wall time: 251 ms
   <tbody>
     <tr>
       <th>0</th>
-      <td>0231705</td>
-      <td>0231705</td>
-      <td>0231705</td>
+      <td>0235414</td>
+      <td>0235414</td>
+      <td>0235414</td>
       <td>Y</td>
-      <td>SMOKED CIRCLE HAM (1</td>
+      <td>BIO CARROT SEEDS</td>
       <td>Y</td>
-      <td>73</td>
-      <td>0231705</td>
+      <td>05</td>
+      <td>0235414</td>
       <td>19</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>BIO CARROT SEEDS</td>
       <td>...</td>
       <td></td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>สโมคเซอร์เคิลแฮม 165  กรัม</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
-      <td>SMOKED CIRCLE HAM (165G)</td>
+      <td>BIO CARROT SEEDS</td>
+      <td>BIO CARROT SEEDS</td>
+      <td>BIO CARROT SEEDS</td>
+      <td>BIO CARROT SEEDS</td>
       <td>0</td>
       <td>Fresh</td>
-      <td>Delicatessen</td>
-      <td>Local</td>
-      <td>Sausages</td>
+      <td>Fresh Produce</td>
+      <td>Fruits &amp; Vegetable Import</td>
+      <td>Import Vegetable</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>0224567</td>
-      <td>0224567</td>
-      <td>0224567</td>
+      <td>0220492</td>
+      <td>0220492</td>
+      <td>0220492</td>
       <td>Y</td>
-      <td>VEDETT EXTRA ORDINAR</td>
+      <td>COCOA DUTCH REFILL 3</td>
       <td>Y</td>
-      <td>08</td>
-      <td>0224567</td>
       <td>01</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
+      <td>0220492</td>
+      <td>05</td>
+      <td>COCOA DUTCH REFILL 350G</td>
       <td>...</td>
-      <td>เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
-      <td>VEDETT EXTRA ORDINARY IPA</td>
-      <td>Vedett Extra Ordinary Ipa 330ml</td>
-      <td>Vedett Extra Ordinary Ipa 330ml</td>
+      <td></td>
+      <td>COCOA DUTCH REFILL 350G</td>
+      <td>โกโก้ดัทช์ ชนิดเติม 350กรัม</td>
+      <td>Cocoa Dutch Cocoa Powder 350g</td>
+      <td>Cocoa Dutch Cocoa Powder 350g</td>
       <td>0</td>
       <td>Dry Grocery</td>
-      <td>Alcohol &amp; Beverage</td>
-      <td>Beer Import</td>
-      <td>Beer Import</td>
+      <td>Grocery</td>
+      <td>Hot Beverages</td>
+      <td>Cocoa/Tea/Coffee</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0198937</td>
-      <td>0198937</td>
-      <td>0198937</td>
+      <td>0177701</td>
+      <td>0177701</td>
+      <td>0177701</td>
       <td>Y</td>
-      <td>MOOTOWN CHEESE DIP &amp;</td>
+      <td>NOTEBOOK 9/100</td>
       <td>Y</td>
-      <td>99</td>
-      <td>0198937</td>
-      <td>28</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
+      <td>02</td>
+      <td>0177701</td>
+      <td>30</td>
+      <td>NOTEBOOK 9/100</td>
       <td>...</td>
-      <td>ชีส</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PA</td>
-      <td>MOOTOWN CHEESE DIP &amp; PRETZEL STICKS 5 PACK</td>
-      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
-      <td>MooTown Cheese Dip &amp; Pretzel Sticks 128g</td>
+      <td></td>
+      <td>NOTEBOOK 9/100</td>
+      <td>สมุดปกแข็ง 9/100</td>
+      <td>NOTEBOOK 9/100</td>
+      <td>NOTEBOOK 9/100</td>
       <td>0</td>
       <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Cookies &amp; Snacks</td>
-      <td>Biscuits &amp; Crackers</td>
+      <td>Store Supply</td>
+      <td>Stationary</td>
+      <td></td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0222115</td>
-      <td>0222115</td>
-      <td>0222115</td>
+      <td>0190154</td>
+      <td>0190154</td>
+      <td>0190154</td>
       <td>Y</td>
-      <td>WERNLI PETIT BEURRE</td>
+      <td>SPECIAL PRODUCT 2</td>
       <td>Y</td>
-      <td>01</td>
-      <td>0222115</td>
-      <td>02</td>
-      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
+      <td>48</td>
+      <td>0190154</td>
+      <td>19</td>
+      <td>SPECIAL PRODUCT 2</td>
       <td>...</td>
       <td></td>
-      <td>WERNLI PETIT BEURRE NOIR 125 G.</td>
-      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
-      <td>Wernli Petit Beurre Noir 125 G.</td>
-      <td>เวิร์นลี ฃ็อกโก เปอร์ติต เบอร์ นัว 125 G.</td>
+      <td>SPECIAL PRODUCT 2</td>
+      <td>SPECIAL PRODUCT 2</td>
+      <td>SPECIAL PRODUCT 2</td>
+      <td>SPECIAL PRODUCT 2</td>
       <td>0</td>
       <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Cookies &amp; Snacks</td>
-      <td>Biscuits &amp; Crackers</td>
+      <td>Alcohol &amp; Beverage</td>
+      <td>RTD</td>
+      <td></td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0237423</td>
-      <td>0237423</td>
-      <td>0237423</td>
+      <td>0062012</td>
+      <td>0062012</td>
+      <td>0062012</td>
       <td>Y</td>
-      <td>THE CUTLERYLIGHT-COL</td>
+      <td>WAI WAI BROWIR RICE</td>
       <td>Y</td>
-      <td>08</td>
-      <td>0237423</td>
-      <td>19</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>01</td>
+      <td>0062012</td>
+      <td>03</td>
+      <td>WAI WAI BROWIR RICE VERMICELLI 170 G.</td>
       <td>...</td>
       <td></td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>THE CUTLERY เสื่อรองจานกลมสีอ่อน</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
-      <td>THE CUTLERYLIGHT-COLOURED ROUND TABLE MA</td>
+      <td>WAI WAI BROWIR RICE VERMICELLI 170 G.</td>
+      <td>WAI WAI เส้นหมี่ข้าวกล้อง 170 ก.</td>
+      <td>Wai Wai Browir Rice Vermicelli  170g</td>
+      <td>Wai Wai Browir Rice Vermicelli  170g</td>
       <td>0</td>
       <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Household Hardware</td>
-      <td>Kitchenware</td>
+      <td>Grocery</td>
+      <td>Pasta</td>
+      <td></td>
     </tr>
     <tr>
       <th>...</th>
@@ -3226,47 +2768,71 @@ Wall time: 251 ms
       <td>...</td>
     </tr>
     <tr>
-      <th>15995</th>
-      <td>0089545</td>
-      <td>0089545</td>
-      <td>0089545</td>
+      <th>496</th>
+      <td>0205990</td>
+      <td>0205990</td>
+      <td>0205990</td>
       <td>Y</td>
-      <td>SEASONING HERBS TOM</td>
+      <td>Foremost Yoghurt Mix</td>
       <td>Y</td>
-      <td>17</td>
-      <td>0089545</td>
-      <td>19</td>
-      <td>SEASONING HERBS TOM KHA 100 G.</td>
+      <td>85</td>
+      <td>0205990</td>
+      <td>23</td>
+      <td>FOREMOST YOGHURT MIXED FRUITS</td>
       <td>...</td>
-      <td></td>
-      <td>SEASONING HERBS TOM KHA 100 G.</td>
-      <td>ไป-กิน-ข้าว ต้มข่า 100 กรัม</td>
-      <td>SEASONING HERBS TOM KHA 100 G.</td>
-      <td>SEASONING HERBS TOM KHA 100 G.</td>
+      <td>โยเกิร์ต</td>
+      <td>FOREMOST YOGHURT MIXED FRUITS</td>
+      <td>โฟร์โมสต์ โยเกิต ผลไม้รวม 135*4</td>
+      <td>Foremost Yoghurt Mixed Fruits</td>
+      <td>โฟร์โมสต์ โยเกิต ผลไม้รวม 135*4</td>
       <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Oil &amp; Seasoning &amp; Sauce</td>
-      <td>Cooking Needs</td>
+      <td>Fresh</td>
+      <td>Dairy</td>
+      <td>Yogurt</td>
+      <td></td>
     </tr>
     <tr>
-      <th>15996</th>
-      <td>0242597</td>
-      <td>0242597</td>
-      <td>0242597</td>
+      <th>497</th>
+      <td>0211914</td>
+      <td>0211914</td>
+      <td>0211914</td>
       <td>Y</td>
-      <td>ROYAL CANIN FCN INTE</td>
+      <td>CPBALANCE CHILLI RIC</td>
+      <td>Y</td>
+      <td>84</td>
+      <td>0211914</td>
+      <td>22</td>
+      <td>CPBALANCE CHILLI RICECHICKEN BREAST</td>
+      <td>...</td>
+      <td>Frozen, Frozen meal</td>
+      <td>CPBALANCE CHILLI RICECHICKEN BREAST</td>
+      <td>ข้าวน้ำพริกอกไก่ ซีพีบาลานซ์</td>
+      <td>Cp balance Chilli Ricechicken Breast 190g</td>
+      <td>Cp balance Chilli Ricechicken Breast 190g</td>
+      <td>0</td>
+      <td>Fresh</td>
+      <td>Frozen</td>
+      <td>Frozen Meal</td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>498</th>
+      <td>0239245</td>
+      <td>0239245</td>
+      <td>0239245</td>
+      <td>Y</td>
+      <td>DOGSTER PLAY CHICKEN</td>
       <td>Y</td>
       <td>54</td>
-      <td>0242597</td>
+      <td>0239245</td>
       <td>19</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>DOGSTER PLAY CHICKEN MEAT FORMULA 40G</td>
       <td>...</td>
-      <td></td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
-      <td>ROYAL CANIN FCN INTENSE HAIRBALL 2K</td>
+      <td>dogster,หมา,อาหารหมา,สัตว์เลี้ยง</td>
+      <td>DOGSTER PLAY CHICKEN MEAT FORMULA 40G</td>
+      <td>(รับ)ด็อกส์เตอร์เพลย์ สูตรเนื้อไก่</td>
+      <td>DOGSTER PLAY CHICKEN MEAT FORMULA 40G</td>
+      <td>DOGSTER PLAY CHICKEN MEAT FORMULA 40G</td>
       <td>0</td>
       <td>Dry Grocery</td>
       <td>Household</td>
@@ -3274,80 +2840,56 @@ Wall time: 251 ms
       <td>Dog</td>
     </tr>
     <tr>
-      <th>15997</th>
-      <td>0210428</td>
-      <td>0210428</td>
-      <td>0210428</td>
+      <th>499</th>
+      <td>0139097</td>
+      <td>0139097</td>
+      <td>0139097</td>
       <td>Y</td>
-      <td>POLO WHITE SHIRT SIZ</td>
+      <td>LEFFE BROWN 330 ML</td>
       <td>Y</td>
       <td>08</td>
-      <td>0210428</td>
-      <td>19</td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>0139097</td>
+      <td>01</td>
+      <td>LEFFE BROWN 330 ML</td>
+      <td>...</td>
+      <td>เบียร์,เบียร์กระป๋อง,เบียร์ขวด,เบียร์ลัง,เบียร...</td>
+      <td>LEFFE BROWN 330 ML</td>
+      <td>LEFFE BROWN 330 ML</td>
+      <td>Leffe Brown  330ml</td>
+      <td>Leffe Brown  330ml</td>
+      <td>0</td>
+      <td>Dry Grocery</td>
+      <td>Alcohol &amp; Beverage</td>
+      <td>Beer Import</td>
+      <td>Beer Import</td>
+    </tr>
+    <tr>
+      <th>500</th>
+      <td>None</td>
+      <td>0048935</td>
+      <td>0048935</td>
+      <td>Y</td>
+      <td>HEINZ PARSNIPS</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0048935</td>
+      <td>05</td>
+      <td>HEINZ PARSNIPS  CARROTS+SWEET POTATO 110</td>
       <td>...</td>
       <td></td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
-      <td>เสื้อในหลวง รุ่นปกแถบขาว-SIZE 3S</td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
-      <td>POLO WHITE SHIRT SIZE 3S</td>
+      <td>HEINZ PARSNIPS  CARROTS+SWEET POTATO 110</td>
+      <td>HEINZ หัวไชเท้า+แครอท+มันฝรั่ง 110ก.</td>
+      <td>Heinz Parsnips Carrots+Sweet Potato 110g</td>
+      <td>Heinz Parsnips Carrots+Sweet Potato 110g</td>
       <td>0</td>
       <td>Dry Grocery</td>
       <td>Grocery</td>
-      <td>Seasonal</td>
-      <td>TBA</td>
-    </tr>
-    <tr>
-      <th>15998</th>
-      <td>0119503</td>
-      <td>0119503</td>
-      <td>0119503</td>
-      <td>Y</td>
-      <td>HUA HIN BAKERY ITALI</td>
-      <td>Y</td>
-      <td>15</td>
-      <td>0119503</td>
-      <td>19</td>
-      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
-      <td>...</td>
-      <td>เบเกอรี่</td>
-      <td>HUA HIN BAKERY ITALIAN BREAD 450 G</td>
-      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
-      <td>Hua Hin Bakery Italian Bread 450 G</td>
-      <td>HUA HIN BAKERY อิตาเลี่ยน เบรด 450 ก.</td>
-      <td>0</td>
-      <td>Fresh</td>
-      <td>Fresh Produce</td>
-      <td>Bakery</td>
-      <td>Bread category</td>
-    </tr>
-    <tr>
-      <th>15999</th>
-      <td>0239331</td>
-      <td>0239331</td>
-      <td>0239331</td>
-      <td>Y</td>
-      <td>CrocodileCreek45507</td>
-      <td>Y</td>
-      <td>08</td>
-      <td>0239331</td>
-      <td>19</td>
-      <td>CROCODILE CREEK,45507,MERMAIDS</td>
-      <td>...</td>
-      <td></td>
-      <td>CROCODILE CREEK,45507,MERMAIDS</td>
-      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507,MERMAIDS</td>
-      <td>Crocodile Creek45507Mermaids</td>
-      <td>CROCODILE CREEK-กระเป๋าสะพายหลัง 45507MERMAIDS</td>
-      <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Household</td>
-      <td>Toys</td>
-      <td>Kidoodle</td>
+      <td>Baby Food &amp; Milk / Breakfast Food</td>
+      <td>Baby Food</td>
     </tr>
   </tbody>
 </table>
-<p>16000 rows × 55 columns</p>
+<p>501 rows × 55 columns</p>
 </div>
 </div>
 
@@ -3374,26 +2916,6 @@ Wall time: 251 ms
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-50-1c996e7b9e05&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> database <span class="ansi-blue-fg">=</span> pd<span class="ansi-blue-fg">.</span>read_feather<span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;url&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">assert</span> pdUtils<span class="ansi-blue-fg">.</span>getDfHash<span class="ansi-blue-fg">(</span>database<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">==</span> result<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;hash&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;database and hash are not the same&#39;</span>
-
-<span class="ansi-red-fg">AssertionError</span>: database and hash are not the same</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
 
@@ -3416,6 +2938,1059 @@ Wall time: 251 ms
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>checking scan time
+CPU times: user 4.09 s, sys: 178 ms, total: 4.27 s
+Wall time: 7.09 s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>24913</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="clearCache" class="doc_header"><code>clearCache</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L208" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clearCache</code>()</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">clearCache</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>       iprcode  cprcode  oprcode ordertype                pr_abb pr_active  \
+0      0140942  0140942  0140942         Y  FRAGATA OLIVE POMACE         Y   
+1      0223750  0223750  0223750         Y  SAMYANG HOT CHICKHEN         Y   
+2      0203790  0203790  0203790         Y  KRISTY HAMPER 2016 G         Y   
+3      0207006  0207006  0207006         Y   MALEE 100%TANGERINE         Y   
+4       235078   235078   235078         Y  PLANEAT ROASTED SEAS         Y   
+...        ...      ...      ...       ...                   ...       ...   
+88550   222555   222555   222555         Y  พวงมาลัยกล้วยไม้ 79บ         Y   
+88551  0138956  0138956  0138956         Y  BONCHI CORP EBI AGES         Y   
+88552   222318   222318   222318         Y  386372 PACK PT FREEE         Y   
+88553  0066152  0066152  0066152         Y  NEOS  PACIFICE AROMA         Y   
+88554   184290   184290   184290         Y  ALLOWRIE BUTTER SALT         Y   
+
+      pr_cgcode  pr_code pr_dpcode                                pr_engname  \
+0            01  0140942        08           FRAGATA OLIVE POMACE OIL 2 LITE   
+1            04  0223750        03        SAMYANG HOT CHICKHEN CARBONARA130G   
+2            45  0203790        19                  KRISTY HAMPER 2016 SET G   
+3            03  0207006        20     MALEE 100%TANGERINE SUKHOTHAI 1000 ML   
+4            31  0235078      19.0  PLANEAT ROASTED SEASONED AJI BLACK PEPPE   
+...         ...      ...       ...                                       ...   
+88550        27   222555      19.0                    พวงมาลัยกล้วยไม้ 79บาท   
+88551        17  0138956        19                BONCHI CORP EBI AGESEN 92G   
+88552         8   222318      19.0  386372 PACK PT FREEEZER STORAGE CONTAINE   
+88553        20  0066152        19                   NEOS  PACIFICE AROMATIC   
+88554         1   184290      13.0              ALLOWRIE BUTTER SALTED 10 G.   
+
+       ...                              hema_name_en  \
+0      ...                          Olive Pomace Oil   
+1      ...                   Hot Chickhen Carbonarag   
+2      ...                  KRISTY HAMPER 2016 SET G   
+3      ...                  100% Tangerine Sukhothai   
+4      ...  PLANEAT ROASTED SEASONED AJI BLACK PEPPE   
+...    ...                                       ...   
+88550  ...                            Orchid Garland   
+88551  ...                BONCHI CORP EBI AGESEN 92G   
+88552  ...  386372 PACK PT FREEEZER STORAGE CONTAINE   
+88553  ...                   NEOS  PACIFICE AROMATIC   
+88554  ...              ALLOWRIE BUTTER SALTED 10 G.   
+
+                                   hema_name_th  \
+0                              Olive Pomace Oil   
+1                       Hot Chickhen Carbonarag   
+2                      KRISTY HAMPER 2016 SET G   
+3                      100% Tangerine Sukhothai   
+4      PLANEAT ROASTED SEASONED AJI BLACK PEPPE   
+...                                         ...   
+88550                          พวงมาลัยกล้วยไม้   
+88551                BONCHI CORP EBI AGESEN 92G   
+88552  386372 PACK PT FREEEZER STORAGE CONTAINE   
+88553                   NEOS  PACIFICE AROMATIC   
+88554              ALLOWRIE BUTTER SALTED 10 G.   
+
+                                     pr_name_en  \
+0               FRAGATA OLIVE POMACE OIL 2 LITE   
+1            SAMYANG HOT CHICKHEN CARBONARA130G   
+2                      KRISTY HAMPER 2016 SET G   
+3         MALEE 100%TANGERINE SUKHOTHAI 1000 ML   
+4      PLANEAT ROASTED SEASONED AJI BLACK PEPPE   
+...                                         ...   
+88550                    พวงมาลัยกล้วยไม้ 79บาท   
+88551                BONCHI CORP EBI AGESEN 92G   
+88552  386372 PACK PT FREEEZER STORAGE CONTAINE   
+88553                   NEOS  PACIFICE AROMATIC   
+88554              ALLOWRIE BUTTER SALTED 10 G.   
+
+                                         pr_name_th     pr_barcode  \
+0       FRAGATA น้ำมันมะกอกธรรมชาติ-กรรมวิธี 2 ลิตร  8410134118601   
+1              SAMYANG ฮอตชิคเค่น คาโบนาร่า 130กรัม  8801073113893   
+2                          KRISTY HAMPER 2016 SET G       22037909   
+3            มาลี น้ำส้มเขียวหวานสุโขทัย100% 1000ML  8853333016383   
+4         ปลาณีตปลาข้างเหลืองย่างรส รสพริกไทยดำ45G.            NaN   
+...                                             ...            ...   
+88550                        พวงมาลัยกล้วยไม้ 79บาท            NaN   
+88551  BONCHI เอบิ อาเงะเซ็น (ขนมข้าวทอดกรอบรสกุ้ง)  8850358040508   
+88552  386372 ชุดกล่องอาหารปลอดสาร BPA 5 ชอ้นแอโรว์            NaN   
+88553               ขายทำคืน NEOS PACIFICE AROMATIC         661522   
+88554             ALLOWRIE เนยสดเค็มถ้วยเล็ก 10กรัม            NaN   
+
+        pr_barcode2 sort_weight master_online SaleMode_unit ba_nprice  
+0      841013411860           0             Y          ITEM    367.00  
+1      880107311389           0             Y          ITEM     55.00  
+2           2203790           0             N          ITEM    824.00  
+3      885333301638           0             Y          ITEM     68.00  
+4               NaN         0.0           NaN           NaN       NaN  
+...             ...         ...           ...           ...       ...  
+88550           NaN         0.0           NaN           NaN       NaN  
+88551  885035804050           0             N          ITEM    150.00  
+88552           NaN         0.0           NaN           NaN       NaN  
+88553         66152           0             N          ITEM    230.00  
+88554           NaN         0.0           NaN           NaN       NaN  
+
+[88555 rows x 55 columns]
+hashKey is allData-hash
+saving hash to s3
+saved hash c111d77a566f6529b6e24817eb0fea9c89ae85e8
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="n">ProductDatabase</span><span class="o">.</span><span class="n">allQuery</span><span class="p">()</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">read_feather</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>product-bucket-dev-manual
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>iprcode</th>
+      <th>cprcode</th>
+      <th>oprcode</th>
+      <th>ordertype</th>
+      <th>pr_abb</th>
+      <th>pr_active</th>
+      <th>pr_cgcode</th>
+      <th>pr_code</th>
+      <th>pr_dpcode</th>
+      <th>pr_engname</th>
+      <th>...</th>
+      <th>hema_name_en</th>
+      <th>hema_name_th</th>
+      <th>pr_name_en</th>
+      <th>pr_name_th</th>
+      <th>pr_barcode</th>
+      <th>pr_barcode2</th>
+      <th>sort_weight</th>
+      <th>master_online</th>
+      <th>SaleMode_unit</th>
+      <th>ba_nprice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0140942</td>
+      <td>0140942</td>
+      <td>0140942</td>
+      <td>Y</td>
+      <td>FRAGATA OLIVE POMACE</td>
+      <td>Y</td>
+      <td>01</td>
+      <td>0140942</td>
+      <td>08</td>
+      <td>FRAGATA OLIVE POMACE OIL 2 LITE</td>
+      <td>...</td>
+      <td>Olive Pomace Oil</td>
+      <td>Olive Pomace Oil</td>
+      <td>FRAGATA OLIVE POMACE OIL 2 LITE</td>
+      <td>FRAGATA น้ำมันมะกอกธรรมชาติ-กรรมวิธี 2 ลิตร</td>
+      <td>8410134118601</td>
+      <td>841013411860</td>
+      <td>0</td>
+      <td>Y</td>
+      <td>ITEM</td>
+      <td>367.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0223750</td>
+      <td>0223750</td>
+      <td>0223750</td>
+      <td>Y</td>
+      <td>SAMYANG HOT CHICKHEN</td>
+      <td>Y</td>
+      <td>04</td>
+      <td>0223750</td>
+      <td>03</td>
+      <td>SAMYANG HOT CHICKHEN CARBONARA130G</td>
+      <td>...</td>
+      <td>Hot Chickhen Carbonarag</td>
+      <td>Hot Chickhen Carbonarag</td>
+      <td>SAMYANG HOT CHICKHEN CARBONARA130G</td>
+      <td>SAMYANG ฮอตชิคเค่น คาโบนาร่า 130กรัม</td>
+      <td>8801073113893</td>
+      <td>880107311389</td>
+      <td>0</td>
+      <td>Y</td>
+      <td>ITEM</td>
+      <td>55.00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0203790</td>
+      <td>0203790</td>
+      <td>0203790</td>
+      <td>Y</td>
+      <td>KRISTY HAMPER 2016 G</td>
+      <td>Y</td>
+      <td>45</td>
+      <td>0203790</td>
+      <td>19</td>
+      <td>KRISTY HAMPER 2016 SET G</td>
+      <td>...</td>
+      <td>KRISTY HAMPER 2016 SET G</td>
+      <td>KRISTY HAMPER 2016 SET G</td>
+      <td>KRISTY HAMPER 2016 SET G</td>
+      <td>KRISTY HAMPER 2016 SET G</td>
+      <td>22037909</td>
+      <td>2203790</td>
+      <td>0</td>
+      <td>N</td>
+      <td>ITEM</td>
+      <td>824.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0207006</td>
+      <td>0207006</td>
+      <td>0207006</td>
+      <td>Y</td>
+      <td>MALEE 100%TANGERINE</td>
+      <td>Y</td>
+      <td>03</td>
+      <td>0207006</td>
+      <td>20</td>
+      <td>MALEE 100%TANGERINE SUKHOTHAI 1000 ML</td>
+      <td>...</td>
+      <td>100% Tangerine Sukhothai</td>
+      <td>100% Tangerine Sukhothai</td>
+      <td>MALEE 100%TANGERINE SUKHOTHAI 1000 ML</td>
+      <td>มาลี น้ำส้มเขียวหวานสุโขทัย100% 1000ML</td>
+      <td>8853333016383</td>
+      <td>885333301638</td>
+      <td>0</td>
+      <td>Y</td>
+      <td>ITEM</td>
+      <td>68.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>235078</td>
+      <td>235078</td>
+      <td>235078</td>
+      <td>Y</td>
+      <td>PLANEAT ROASTED SEAS</td>
+      <td>Y</td>
+      <td>31</td>
+      <td>0235078</td>
+      <td>19.0</td>
+      <td>PLANEAT ROASTED SEASONED AJI BLACK PEPPE</td>
+      <td>...</td>
+      <td>PLANEAT ROASTED SEASONED AJI BLACK PEPPE</td>
+      <td>PLANEAT ROASTED SEASONED AJI BLACK PEPPE</td>
+      <td>PLANEAT ROASTED SEASONED AJI BLACK PEPPE</td>
+      <td>ปลาณีตปลาข้างเหลืองย่างรส รสพริกไทยดำ45G.</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0.0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>88550</th>
+      <td>222555</td>
+      <td>222555</td>
+      <td>222555</td>
+      <td>Y</td>
+      <td>พวงมาลัยกล้วยไม้ 79บ</td>
+      <td>Y</td>
+      <td>27</td>
+      <td>222555</td>
+      <td>19.0</td>
+      <td>พวงมาลัยกล้วยไม้ 79บาท</td>
+      <td>...</td>
+      <td>Orchid Garland</td>
+      <td>พวงมาลัยกล้วยไม้</td>
+      <td>พวงมาลัยกล้วยไม้ 79บาท</td>
+      <td>พวงมาลัยกล้วยไม้ 79บาท</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0.0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>88551</th>
+      <td>0138956</td>
+      <td>0138956</td>
+      <td>0138956</td>
+      <td>Y</td>
+      <td>BONCHI CORP EBI AGES</td>
+      <td>Y</td>
+      <td>17</td>
+      <td>0138956</td>
+      <td>19</td>
+      <td>BONCHI CORP EBI AGESEN 92G</td>
+      <td>...</td>
+      <td>BONCHI CORP EBI AGESEN 92G</td>
+      <td>BONCHI CORP EBI AGESEN 92G</td>
+      <td>BONCHI CORP EBI AGESEN 92G</td>
+      <td>BONCHI เอบิ อาเงะเซ็น (ขนมข้าวทอดกรอบรสกุ้ง)</td>
+      <td>8850358040508</td>
+      <td>885035804050</td>
+      <td>0</td>
+      <td>N</td>
+      <td>ITEM</td>
+      <td>150.00</td>
+    </tr>
+    <tr>
+      <th>88552</th>
+      <td>222318</td>
+      <td>222318</td>
+      <td>222318</td>
+      <td>Y</td>
+      <td>386372 PACK PT FREEE</td>
+      <td>Y</td>
+      <td>8</td>
+      <td>222318</td>
+      <td>19.0</td>
+      <td>386372 PACK PT FREEEZER STORAGE CONTAINE</td>
+      <td>...</td>
+      <td>386372 PACK PT FREEEZER STORAGE CONTAINE</td>
+      <td>386372 PACK PT FREEEZER STORAGE CONTAINE</td>
+      <td>386372 PACK PT FREEEZER STORAGE CONTAINE</td>
+      <td>386372 ชุดกล่องอาหารปลอดสาร BPA 5 ชอ้นแอโรว์</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0.0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>88553</th>
+      <td>0066152</td>
+      <td>0066152</td>
+      <td>0066152</td>
+      <td>Y</td>
+      <td>NEOS  PACIFICE AROMA</td>
+      <td>Y</td>
+      <td>20</td>
+      <td>0066152</td>
+      <td>19</td>
+      <td>NEOS  PACIFICE AROMATIC</td>
+      <td>...</td>
+      <td>NEOS  PACIFICE AROMATIC</td>
+      <td>NEOS  PACIFICE AROMATIC</td>
+      <td>NEOS  PACIFICE AROMATIC</td>
+      <td>ขายทำคืน NEOS PACIFICE AROMATIC</td>
+      <td>661522</td>
+      <td>66152</td>
+      <td>0</td>
+      <td>N</td>
+      <td>ITEM</td>
+      <td>230.00</td>
+    </tr>
+    <tr>
+      <th>88554</th>
+      <td>184290</td>
+      <td>184290</td>
+      <td>184290</td>
+      <td>Y</td>
+      <td>ALLOWRIE BUTTER SALT</td>
+      <td>Y</td>
+      <td>1</td>
+      <td>184290</td>
+      <td>13.0</td>
+      <td>ALLOWRIE BUTTER SALTED 10 G.</td>
+      <td>...</td>
+      <td>ALLOWRIE BUTTER SALTED 10 G.</td>
+      <td>ALLOWRIE BUTTER SALTED 10 G.</td>
+      <td>ALLOWRIE BUTTER SALTED 10 G.</td>
+      <td>ALLOWRIE เนยสดเค็มถ้วยเล็ก 10กรัม</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0.0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+<p>88555 rows × 55 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="lambdaClearCache" class="doc_header"><code>lambdaClearCache</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/database.py#L218" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>lambdaClearCache</code>(<strong>*<code>args</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">lambdaClearCache</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>       iprcode  cprcode  oprcode ordertype                pr_abb pr_active  \
+0      0140942  0140942  0140942         Y  FRAGATA OLIVE POMACE         Y   
+1      0223750  0223750  0223750         Y  SAMYANG HOT CHICKHEN         Y   
+2      0203790  0203790  0203790         Y  KRISTY HAMPER 2016 G         Y   
+3      0207006  0207006  0207006         Y   MALEE 100%TANGERINE         Y   
+4       235078   235078   235078         Y  PLANEAT ROASTED SEAS         Y   
+...        ...      ...      ...       ...                   ...       ...   
+88550   222555   222555   222555         Y  พวงมาลัยกล้วยไม้ 79บ         Y   
+88551  0138956  0138956  0138956         Y  BONCHI CORP EBI AGES         Y   
+88552   222318   222318   222318         Y  386372 PACK PT FREEE         Y   
+88553  0066152  0066152  0066152         Y  NEOS  PACIFICE AROMA         Y   
+88554   184290   184290   184290         Y  ALLOWRIE BUTTER SALT         Y   
+
+      pr_cgcode  pr_code pr_dpcode                                pr_engname  \
+0            01  0140942        08           FRAGATA OLIVE POMACE OIL 2 LITE   
+1            04  0223750        03        SAMYANG HOT CHICKHEN CARBONARA130G   
+2            45  0203790        19                  KRISTY HAMPER 2016 SET G   
+3            03  0207006        20     MALEE 100%TANGERINE SUKHOTHAI 1000 ML   
+4            31  0235078      19.0  PLANEAT ROASTED SEASONED AJI BLACK PEPPE   
+...         ...      ...       ...                                       ...   
+88550        27   222555      19.0                    พวงมาลัยกล้วยไม้ 79บาท   
+88551        17  0138956        19                BONCHI CORP EBI AGESEN 92G   
+88552         8   222318      19.0  386372 PACK PT FREEEZER STORAGE CONTAINE   
+88553        20  0066152        19                   NEOS  PACIFICE AROMATIC   
+88554         1   184290      13.0              ALLOWRIE BUTTER SALTED 10 G.   
+
+       ...                              hema_name_en  \
+0      ...                          Olive Pomace Oil   
+1      ...                   Hot Chickhen Carbonarag   
+2      ...                  KRISTY HAMPER 2016 SET G   
+3      ...                  100% Tangerine Sukhothai   
+4      ...  PLANEAT ROASTED SEASONED AJI BLACK PEPPE   
+...    ...                                       ...   
+88550  ...                            Orchid Garland   
+88551  ...                BONCHI CORP EBI AGESEN 92G   
+88552  ...  386372 PACK PT FREEEZER STORAGE CONTAINE   
+88553  ...                   NEOS  PACIFICE AROMATIC   
+88554  ...              ALLOWRIE BUTTER SALTED 10 G.   
+
+                                   hema_name_th  \
+0                              Olive Pomace Oil   
+1                       Hot Chickhen Carbonarag   
+2                      KRISTY HAMPER 2016 SET G   
+3                      100% Tangerine Sukhothai   
+4      PLANEAT ROASTED SEASONED AJI BLACK PEPPE   
+...                                         ...   
+88550                          พวงมาลัยกล้วยไม้   
+88551                BONCHI CORP EBI AGESEN 92G   
+88552  386372 PACK PT FREEEZER STORAGE CONTAINE   
+88553                   NEOS  PACIFICE AROMATIC   
+88554              ALLOWRIE BUTTER SALTED 10 G.   
+
+                                     pr_name_en  \
+0               FRAGATA OLIVE POMACE OIL 2 LITE   
+1            SAMYANG HOT CHICKHEN CARBONARA130G   
+2                      KRISTY HAMPER 2016 SET G   
+3         MALEE 100%TANGERINE SUKHOTHAI 1000 ML   
+4      PLANEAT ROASTED SEASONED AJI BLACK PEPPE   
+...                                         ...   
+88550                    พวงมาลัยกล้วยไม้ 79บาท   
+88551                BONCHI CORP EBI AGESEN 92G   
+88552  386372 PACK PT FREEEZER STORAGE CONTAINE   
+88553                   NEOS  PACIFICE AROMATIC   
+88554              ALLOWRIE BUTTER SALTED 10 G.   
+
+                                         pr_name_th     pr_barcode  \
+0       FRAGATA น้ำมันมะกอกธรรมชาติ-กรรมวิธี 2 ลิตร  8410134118601   
+1              SAMYANG ฮอตชิคเค่น คาโบนาร่า 130กรัม  8801073113893   
+2                          KRISTY HAMPER 2016 SET G       22037909   
+3            มาลี น้ำส้มเขียวหวานสุโขทัย100% 1000ML  8853333016383   
+4         ปลาณีตปลาข้างเหลืองย่างรส รสพริกไทยดำ45G.            NaN   
+...                                             ...            ...   
+88550                        พวงมาลัยกล้วยไม้ 79บาท            NaN   
+88551  BONCHI เอบิ อาเงะเซ็น (ขนมข้าวทอดกรอบรสกุ้ง)  8850358040508   
+88552  386372 ชุดกล่องอาหารปลอดสาร BPA 5 ชอ้นแอโรว์            NaN   
+88553               ขายทำคืน NEOS PACIFICE AROMATIC         661522   
+88554             ALLOWRIE เนยสดเค็มถ้วยเล็ก 10กรัม            NaN   
+
+        pr_barcode2 sort_weight master_online SaleMode_unit ba_nprice  
+0      841013411860           0             Y          ITEM    367.00  
+1      880107311389           0             Y          ITEM     55.00  
+2           2203790           0             N          ITEM    824.00  
+3      885333301638           0             Y          ITEM     68.00  
+4               NaN         0.0           NaN           NaN       NaN  
+...             ...         ...           ...           ...       ...  
+88550           NaN         0.0           NaN           NaN       NaN  
+88551  885035804050           0             N          ITEM    150.00  
+88552           NaN         0.0           NaN           NaN       NaN  
+88553         66152           0             N          ITEM    230.00  
+88554           NaN         0.0           NaN           NaN       NaN  
+
+[88555 rows x 55 columns]
+hashKey is allData-hash
+saving hash to s3
+saved hash c111d77a566f6529b6e24817eb0fea9c89ae85e8
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;body&#39;: &#39;{}&#39;,
+ &#39;statusCode&#39;: 200,
+ &#39;headers&#39;: {&#39;Access-Control-Allow-Headers&#39;: &#39;*&#39;,
+  &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
+  &#39;Access-Control-Allow-Methods&#39;: &#39;*&#39;}}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ProductDatabase</span><span class="o">.</span><span class="n">loadFromCache</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>loading hashkey allData-hash
+loaded hash is c111d77a566f6529b6e24817eb0fea9c89ae85e8
+data is still in sync, using local cache
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>iprcode</th>
+      <th>cprcode</th>
+      <th>oprcode</th>
+      <th>ordertype</th>
+      <th>pr_abb</th>
+      <th>pr_active</th>
+      <th>pr_cgcode</th>
+      <th>pr_code</th>
+      <th>pr_dpcode</th>
+      <th>pr_engname</th>
+      <th>...</th>
+      <th>hema_name_en</th>
+      <th>hema_name_th</th>
+      <th>pr_name_en</th>
+      <th>pr_name_th</th>
+      <th>pr_barcode</th>
+      <th>pr_barcode2</th>
+      <th>sort_weight</th>
+      <th>master_online</th>
+      <th>SaleMode_unit</th>
+      <th>ba_nprice</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0140942</td>
+      <td>0140942</td>
+      <td>0140942</td>
+      <td>Y</td>
+      <td>FRAGATA OLIVE POMACE</td>
+      <td>Y</td>
+      <td>01</td>
+      <td>0140942</td>
+      <td>08</td>
+      <td>FRAGATA OLIVE POMACE OIL 2 LITE</td>
+      <td>...</td>
+      <td>Olive Pomace Oil</td>
+      <td>Olive Pomace Oil</td>
+      <td>FRAGATA OLIVE POMACE OIL 2 LITE</td>
+      <td>FRAGATA น้ำมันมะกอกธรรมชาติ-กรรมวิธี 2 ลิตร</td>
+      <td>8410134118601</td>
+      <td>841013411860</td>
+      <td>0</td>
+      <td>Y</td>
+      <td>ITEM</td>
+      <td>367.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0223750</td>
+      <td>0223750</td>
+      <td>0223750</td>
+      <td>Y</td>
+      <td>SAMYANG HOT CHICKHEN</td>
+      <td>Y</td>
+      <td>04</td>
+      <td>0223750</td>
+      <td>03</td>
+      <td>SAMYANG HOT CHICKHEN CARBONARA130G</td>
+      <td>...</td>
+      <td>Hot Chickhen Carbonarag</td>
+      <td>Hot Chickhen Carbonarag</td>
+      <td>SAMYANG HOT CHICKHEN CARBONARA130G</td>
+      <td>SAMYANG ฮอตชิคเค่น คาโบนาร่า 130กรัม</td>
+      <td>8801073113893</td>
+      <td>880107311389</td>
+      <td>0</td>
+      <td>Y</td>
+      <td>ITEM</td>
+      <td>55.00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0203790</td>
+      <td>0203790</td>
+      <td>0203790</td>
+      <td>Y</td>
+      <td>KRISTY HAMPER 2016 G</td>
+      <td>Y</td>
+      <td>45</td>
+      <td>0203790</td>
+      <td>19</td>
+      <td>KRISTY HAMPER 2016 SET G</td>
+      <td>...</td>
+      <td>KRISTY HAMPER 2016 SET G</td>
+      <td>KRISTY HAMPER 2016 SET G</td>
+      <td>KRISTY HAMPER 2016 SET G</td>
+      <td>KRISTY HAMPER 2016 SET G</td>
+      <td>22037909</td>
+      <td>2203790</td>
+      <td>0</td>
+      <td>N</td>
+      <td>ITEM</td>
+      <td>824.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0207006</td>
+      <td>0207006</td>
+      <td>0207006</td>
+      <td>Y</td>
+      <td>MALEE 100%TANGERINE</td>
+      <td>Y</td>
+      <td>03</td>
+      <td>0207006</td>
+      <td>20</td>
+      <td>MALEE 100%TANGERINE SUKHOTHAI 1000 ML</td>
+      <td>...</td>
+      <td>100% Tangerine Sukhothai</td>
+      <td>100% Tangerine Sukhothai</td>
+      <td>MALEE 100%TANGERINE SUKHOTHAI 1000 ML</td>
+      <td>มาลี น้ำส้มเขียวหวานสุโขทัย100% 1000ML</td>
+      <td>8853333016383</td>
+      <td>885333301638</td>
+      <td>0</td>
+      <td>Y</td>
+      <td>ITEM</td>
+      <td>68.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>235078</td>
+      <td>235078</td>
+      <td>235078</td>
+      <td>Y</td>
+      <td>PLANEAT ROASTED SEAS</td>
+      <td>Y</td>
+      <td>31</td>
+      <td>0235078</td>
+      <td>19.0</td>
+      <td>PLANEAT ROASTED SEASONED AJI BLACK PEPPE</td>
+      <td>...</td>
+      <td>PLANEAT ROASTED SEASONED AJI BLACK PEPPE</td>
+      <td>PLANEAT ROASTED SEASONED AJI BLACK PEPPE</td>
+      <td>PLANEAT ROASTED SEASONED AJI BLACK PEPPE</td>
+      <td>ปลาณีตปลาข้างเหลืองย่างรส รสพริกไทยดำ45G.</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0.0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>88550</th>
+      <td>222555</td>
+      <td>222555</td>
+      <td>222555</td>
+      <td>Y</td>
+      <td>พวงมาลัยกล้วยไม้ 79บ</td>
+      <td>Y</td>
+      <td>27</td>
+      <td>222555</td>
+      <td>19.0</td>
+      <td>พวงมาลัยกล้วยไม้ 79บาท</td>
+      <td>...</td>
+      <td>Orchid Garland</td>
+      <td>พวงมาลัยกล้วยไม้</td>
+      <td>พวงมาลัยกล้วยไม้ 79บาท</td>
+      <td>พวงมาลัยกล้วยไม้ 79บาท</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0.0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>88551</th>
+      <td>0138956</td>
+      <td>0138956</td>
+      <td>0138956</td>
+      <td>Y</td>
+      <td>BONCHI CORP EBI AGES</td>
+      <td>Y</td>
+      <td>17</td>
+      <td>0138956</td>
+      <td>19</td>
+      <td>BONCHI CORP EBI AGESEN 92G</td>
+      <td>...</td>
+      <td>BONCHI CORP EBI AGESEN 92G</td>
+      <td>BONCHI CORP EBI AGESEN 92G</td>
+      <td>BONCHI CORP EBI AGESEN 92G</td>
+      <td>BONCHI เอบิ อาเงะเซ็น (ขนมข้าวทอดกรอบรสกุ้ง)</td>
+      <td>8850358040508</td>
+      <td>885035804050</td>
+      <td>0</td>
+      <td>N</td>
+      <td>ITEM</td>
+      <td>150.00</td>
+    </tr>
+    <tr>
+      <th>88552</th>
+      <td>222318</td>
+      <td>222318</td>
+      <td>222318</td>
+      <td>Y</td>
+      <td>386372 PACK PT FREEE</td>
+      <td>Y</td>
+      <td>8</td>
+      <td>222318</td>
+      <td>19.0</td>
+      <td>386372 PACK PT FREEEZER STORAGE CONTAINE</td>
+      <td>...</td>
+      <td>386372 PACK PT FREEEZER STORAGE CONTAINE</td>
+      <td>386372 PACK PT FREEEZER STORAGE CONTAINE</td>
+      <td>386372 PACK PT FREEEZER STORAGE CONTAINE</td>
+      <td>386372 ชุดกล่องอาหารปลอดสาร BPA 5 ชอ้นแอโรว์</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0.0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>88553</th>
+      <td>0066152</td>
+      <td>0066152</td>
+      <td>0066152</td>
+      <td>Y</td>
+      <td>NEOS  PACIFICE AROMA</td>
+      <td>Y</td>
+      <td>20</td>
+      <td>0066152</td>
+      <td>19</td>
+      <td>NEOS  PACIFICE AROMATIC</td>
+      <td>...</td>
+      <td>NEOS  PACIFICE AROMATIC</td>
+      <td>NEOS  PACIFICE AROMATIC</td>
+      <td>NEOS  PACIFICE AROMATIC</td>
+      <td>ขายทำคืน NEOS PACIFICE AROMATIC</td>
+      <td>661522</td>
+      <td>66152</td>
+      <td>0</td>
+      <td>N</td>
+      <td>ITEM</td>
+      <td>230.00</td>
+    </tr>
+    <tr>
+      <th>88554</th>
+      <td>184290</td>
+      <td>184290</td>
+      <td>184290</td>
+      <td>Y</td>
+      <td>ALLOWRIE BUTTER SALT</td>
+      <td>Y</td>
+      <td>1</td>
+      <td>184290</td>
+      <td>13.0</td>
+      <td>ALLOWRIE BUTTER SALTED 10 G.</td>
+      <td>...</td>
+      <td>ALLOWRIE BUTTER SALTED 10 G.</td>
+      <td>ALLOWRIE BUTTER SALTED 10 G.</td>
+      <td>ALLOWRIE BUTTER SALTED 10 G.</td>
+      <td>ALLOWRIE เนยสดเค็มถ้วยเล็ก 10กรัม</td>
+      <td>None</td>
+      <td>None</td>
+      <td>0.0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+  </tbody>
+</table>
+<p>88555 rows × 55 columns</p>
+</div>
+</div>
+
+</div>
+
 </div>
 </div>
 
