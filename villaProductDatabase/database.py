@@ -4,7 +4,7 @@ __all__ = ['DATABASE_TABLE_NAME', 'INVENTORY_BUCKET_NAME', 'INPUT_BUCKET_NAME', 
            'SECRET_ACCESS_KEY', 'LINEKEY', 'DBHASHLOCATION', 'DBCACHELOCATION', 'ProductDatabase', 'cacheDb',
            'lambdaDumpToS3', 'Product', 'ValueUpdate', 'chunks', 'lambdaUpdateProduct', 'updateS3Input',
            'lambdaUpdateS3', 'ProductsFromList', 'lambdaProductsFromList', 'lambdaSingleQuery', 'lambdaAllQuery',
-           'lambdaAllQueryFeather']
+           'lambdaAllQueryFeather', 'clearCache', 'lambdaClearCache']
 
 # Cell
 import pandas as pd
@@ -203,3 +203,18 @@ def lambdaAllQueryFeather(event, *args):
   url = ProductDatabase.allQuery(bucket = INVENTORY_BUCKET_NAME, key=key)
   hashCode = pdUtils.loadRemoteHash(key=key, bucket=bucket, useUrl = True)
   return Response.getReturn(body = {'url': url, 'hash': hashCode})
+
+# Cell
+@add_class_method(ProductDatabase)
+def clearCache(cls):
+  r = (i.data for i in cls.scan())
+  df = pd.DataFrame(r)
+  res = cls.saveRemoteCache(df)
+  return res
+
+
+
+# Cell
+def lambdaClearCache(*args):
+  ProductDatabase.clearCache()
+  return Response.returnSuccess()
