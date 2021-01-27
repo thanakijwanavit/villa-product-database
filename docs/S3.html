@@ -251,6 +251,7 @@ longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>INFO:root:using accelerate endpoint
 INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:using accelerate endpoint
 </pre>
 </div>
 </div>
@@ -274,21 +275,11 @@ INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/c
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>loaded hash is 43a007725a68e2be2ca47be21c49845cf840b3ef
-data is still in sync, using local cache
+<pre>loaded hash is 8fcf833a7f88a978ee92f8f99cc10abe7455b792
+remote hash is not the same, load remote cache
+CPU times: user 2.63 s, sys: 612 ms, total: 3.24 s
+Wall time: 4.17 s
 </pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-
-<span class="ansi-red-fg">AssertionError</span>: </pre>
 </div>
 </div>
 
@@ -450,6 +441,8 @@ data is still in sync, using local cache
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>INFO:root:using accelerate endpoint
+INFO:root:data was saved to s3
+INFO:root:using accelerate endpoint
 </pre>
 </div>
 </div>
@@ -457,37 +450,9 @@ data is still in sync, using local cache
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>   cprcode  iprcode  oprcode ordertype               pr_abb pr_active  \
-0  0171670  0171670  0171670         Y  JIRAPAT YOUG KALE 2         Y   
-
-  pr_cgcode  pr_code pr_dpcode                 pr_engname pr_ggcode  \
-0        05  0171670        19  JIRAPAT YOUNG KALE 200 G.       057   
-
-                 pr_market                  pr_name pr_puqty pr_sa_method  \
-0  JIRAPAT ยอดคะน้า 200 G.  JIRAPAT ยอดคะน้า 200 G.        1            1   
-
-   pr_sucode1 pr_suref3 prtype psqty pstype  
-0  CM845              A      I     1      1  
-hashKey is allData-hash
+<pre>hashKey is allData-hash
 saving hash to s3
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>INFO:root:data was saved to s3
-INFO:root:using accelerate endpoint
-INFO:root:using accelerate endpoint
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>saved hash d0c0857f93ea21a99bc59a7c459dea6b8341d7cf
+saved hash d0c0857f93ea21a99bc59a7c459dea6b8341d7cf
 </pre>
 </div>
 </div>
@@ -496,6 +461,7 @@ INFO:root:using accelerate endpoint
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>INFO:root:using accelerate endpoint
+INFO:root:using accelerate endpoint
 INFO:root:using accelerate endpoint
 </pre>
 </div>
@@ -507,8 +473,8 @@ INFO:root:using accelerate endpoint
 <pre>loading hashkey allData-hash
 loaded hash is d0c0857f93ea21a99bc59a7c459dea6b8341d7cf
 data is still in sync, using local cache
-CPU times: user 124 ms, sys: 9.51 ms, total: 134 ms
-Wall time: 589 ms
+CPU times: user 124 ms, sys: 0 ns, total: 124 ms
+Wall time: 621 ms
 </pre>
 </div>
 </div>
