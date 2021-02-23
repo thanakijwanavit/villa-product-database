@@ -25,7 +25,7 @@ except Exception as e:
 class Querier:
 
   @staticmethod
-  def validateInputQuery(keys: list, input:dict):
+  def validateInputQuery(keys: list, input_:dict):
     '''
       check if input query contains the valid key
       data should have the following structure
@@ -37,10 +37,10 @@ class Querier:
       option, one of or both of the ib_procde must be present
     '''
     for key in keys:
-      if key not in input.keys():
+      if key not in input_.keys():
         raise ValueError(f"key {key} is missing from the input")
-      if not input.get(key).isdigit():
-        raise ValueError(f'key is not convertable to in {input.get(key)}')
+      if not type(input_.get(key))==int:
+        raise ValueError(f'key is not convertable to in {input_.get(key)}')
     return True
 
 # Cell
@@ -72,7 +72,8 @@ def productsFromList(cls,cprcodes:List[str])->pd.DataFrame:
 
 # Cell
 @add_class_method(Querier)
-def singleProductQuery(cls, input)->pd.Series:
-  if not cls.validateInputQuery(['iprcode'] , input): return f"error input {input}"
-  if (result:=next(cls.query(input.get('iprcode')),None)): return result.toSeries()
+def singleProductQuery(cls, input_)->pd.Series:
+#   if not cls.validateInputQuery(['iprcode'] , input_): return f"error input {input_}"
+  iprcode = int(input_['iprcode'])
+  if (result:=next(cls.query(iprcode),None)): return result.toSeries()
   else: raise Exception('product not found')

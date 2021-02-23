@@ -46,9 +46,9 @@ def createIndex(name, rangeKeyName= None, indexName = None, HashKeyType = Unicod
 
 # Cell
 class KeySchema(Model):
-  iprcode = UnicodeAttribute(hash_key=True, default = '')
-  cprcode = UnicodeAttribute(default = 'none', range_key = True)
-  oprcode = UnicodeAttribute(default = 'none')
+  iprcode = NumberAttribute(hash_key=True, default = 0)
+  cprcode = NumberAttribute(default = 0, range_key = True)
+  oprcode = NumberAttribute(default = 0)
   pr_dpcode = UnicodeAttribute(default = 'none')
   pr_barcode = UnicodeAttribute(default = 'none')
   pr_barcode2 = UnicodeAttribute(default = 'none')

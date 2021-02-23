@@ -82,7 +82,7 @@ nb_path: "Update.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Updater" class="doc_header"><code>class</code> <code>Updater</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/update.py#L44" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Updater</code>()</p>
+<h2 id="Updater" class="doc_header"><code>class</code> <code>Updater</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/update.py#L45" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Updater</code>()</p>
 </blockquote>
 
 </div>
@@ -143,7 +143,7 @@ nb_path: "Update.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="updateWithDict" class="doc_header"><code>updateWithDict</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/update.py#L48" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateWithDict</code>(<strong><code>originalObject</code></strong>:<a href="/villaProductDatabase/Update.html#Updater"><code>Updater</code></a>, <strong><code>inputDict</code></strong>:<code>dict</code>)</p>
+<h4 id="updateWithDict" class="doc_header"><code>updateWithDict</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/update.py#L49" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>updateWithDict</code>(<strong><code>originalObject</code></strong>:<a href="/villaProductDatabase/Update.html#Updater"><code>Updater</code></a>, <strong><code>inputDict</code></strong>:<code>dict</code>)</p>
 </blockquote>
 
 </div>
@@ -195,10 +195,39 @@ nb_path: "Update.ipynb"
 
 <div class="output_area">
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>engname is JIRAAT YOUNG KALE 200 G.
-testName
-</pre>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">StopIteration</span>                             Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-9-4477b8c95a55&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># test</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>item <span class="ansi-blue-fg">=</span> next<span class="ansi-blue-fg">(</span>Tester<span class="ansi-blue-fg">.</span>query<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">171670</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span> print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f&#39;engname is {item.data.get(&#34;pr_engname&#34;)}&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      4</span> 
+<span class="ansi-green-intense-fg ansi-bold">      5</span> updatedItem <span class="ansi-blue-fg">=</span> Tester<span class="ansi-blue-fg">.</span>updateWithDict<span class="ansi-blue-fg">(</span>item<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">&#39;pr_engname&#39;</span><span class="ansi-blue-fg">:</span><span class="ansi-blue-fg">&#39;testName&#39;</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/pagination.py</span> in <span class="ansi-cyan-fg">__next__</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">    192</span> 
+<span class="ansi-green-intense-fg ansi-bold">    193</span>         <span class="ansi-green-fg">while</span> self<span class="ansi-blue-fg">.</span>_index <span class="ansi-blue-fg">==</span> self<span class="ansi-blue-fg">.</span>_count<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 194</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_get_next_page<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    195</span> 
+<span class="ansi-green-intense-fg ansi-bold">    196</span>         item <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_items<span class="ansi-blue-fg">[</span>self<span class="ansi-blue-fg">.</span>_index<span class="ansi-blue-fg">]</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/pagination.py</span> in <span class="ansi-cyan-fg">_get_next_page</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">    174</span> 
+<span class="ansi-green-intense-fg ansi-bold">    175</span>     <span class="ansi-green-fg">def</span> _get_next_page<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">-&gt;</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 176</span><span class="ansi-red-fg">         </span>page <span class="ansi-blue-fg">=</span> next<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>page_iter<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    177</span>         self<span class="ansi-blue-fg">.</span>_count <span class="ansi-blue-fg">=</span> page<span class="ansi-blue-fg">[</span>CAMEL_COUNT<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">    178</span>         self<span class="ansi-blue-fg">.</span>_items <span class="ansi-blue-fg">=</span> page<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span>ITEMS<span class="ansi-blue-fg">)</span>  <span class="ansi-red-fg"># not returned if &#39;Select&#39; is set to &#39;COUNT&#39;</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/pagination.py</span> in <span class="ansi-cyan-fg">__next__</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">    102</span>     <span class="ansi-green-fg">def</span> __next__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">-&gt;</span> _T<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    103</span>         <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>_last_evaluated_key <span class="ansi-green-fg">is</span> <span class="ansi-green-fg">None</span> <span class="ansi-green-fg">and</span> <span class="ansi-green-fg">not</span> self<span class="ansi-blue-fg">.</span>_first_iteration<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 104</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> StopIteration<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    105</span> 
+<span class="ansi-green-intense-fg ansi-bold">    106</span>         self<span class="ansi-blue-fg">.</span>_first_iteration <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">False</span>
+
+<span class="ansi-red-fg">StopIteration</span>: </pre>
 </div>
 </div>
 
@@ -225,7 +254,7 @@ testName
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ValueUpdate2" class="doc_header"><code>class</code> <code>ValueUpdate2</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/update.py#L55" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate2</code>()</p>
+<h2 id="ValueUpdate2" class="doc_header"><code>class</code> <code>ValueUpdate2</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/update.py#L56" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ValueUpdate2</code>()</p>
 </blockquote>
 
 </div>
@@ -252,7 +281,7 @@ testName
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sampleProducts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;items&#39;</span><span class="p">:[{</span> <span class="s1">&#39;cprcode&#39;</span><span class="p">:</span> <span class="mi">171670</span><span class="p">,</span> <span class="s1">&#39;iprcode&#39;</span><span class="p">:</span> <span class="mi">171670</span><span class="p">,</span> <span class="s1">&#39;oprcode&#39;</span><span class="p">:</span> <span class="mi">171670</span><span class="p">,</span> <span class="s1">&#39;ordertype&#39;</span><span class="p">:</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_abb&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT YOUNG KALE 2&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_active&#39;</span><span class="p">:</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_cgcode&#39;</span><span class="p">:</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_code&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_dpcode&#39;</span><span class="p">:</span> <span class="s1">&#39;19&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_engname&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAAT YOUNG KALE 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_ggcode&#39;</span><span class="p">:</span> <span class="s1">&#39;057&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_market&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT ยอดคะน้า 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_name&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT ยอดคะน้า 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_puqty&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sa_method&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sucode1&#39;</span><span class="p">:</span> <span class="s1">&#39;CM845&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_suref3&#39;</span><span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;prtype&#39;</span><span class="p">:</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;psqty&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pstype&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">}]}</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sampleProducts</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;items&#39;</span><span class="p">:[{</span> <span class="s1">&#39;cprcode&#39;</span><span class="p">:</span> <span class="mi">171670</span><span class="p">,</span> <span class="s1">&#39;iprcode&#39;</span><span class="p">:</span> <span class="mi">171670</span><span class="p">,</span> <span class="s1">&#39;oprcode&#39;</span><span class="p">:</span> <span class="mi">171670</span><span class="p">,</span> <span class="s1">&#39;ordertype&#39;</span><span class="p">:</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_abb&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT YOUNG KALE 2&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_active&#39;</span><span class="p">:</span> <span class="s1">&#39;Y&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_cgcode&#39;</span><span class="p">:</span> <span class="s1">&#39;05&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_code&#39;</span><span class="p">:</span> <span class="s1">&#39;0171670&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_dpcode&#39;</span><span class="p">:</span> <span class="s1">&#39;19&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_engname&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAAT YOUNG KALE 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_ggcode&#39;</span><span class="p">:</span> <span class="s1">&#39;057&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_market&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT ยอดคะน้า 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_name&#39;</span><span class="p">:</span> <span class="s1">&#39;JIRAPAT ยอดคะน้า 200 G.&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_puqty&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sa_method&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_sucode1&#39;</span><span class="p">:</span> <span class="s1">&#39;CM845&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_suref3&#39;</span><span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;prtype&#39;</span><span class="p">:</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;psqty&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pstype&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_barcode&#39;</span><span class="p">:</span> <span class="s1">&#39;123&#39;</span><span class="p">,</span> <span class="s1">&#39;pr_barcode2&#39;</span><span class="p">:</span> <span class="s1">&#39;245&#39;</span><span class="p">}]}</span>
 <span class="c1"># t0 = datetime.now()</span>
 <span class="c1"># ValueUpdate2.chunks(sampleProducts, 500)</span>
 <span class="c1"># ValueUpdate2.getTimeElasped(t0)</span>
@@ -292,7 +321,9 @@ testName
   &#39;pr_suref3&#39;: &#39;A&#39;,
   &#39;prtype&#39;: &#39;I&#39;,
   &#39;psqty&#39;: &#39;1&#39;,
-  &#39;pstype&#39;: &#39;1&#39;}]</pre>
+  &#39;pstype&#39;: &#39;1&#39;,
+  &#39;pr_barcode&#39;: &#39;123&#39;,
+  &#39;pr_barcode2&#39;: &#39;245&#39;}]</pre>
 </div>
 
 </div>
@@ -343,7 +374,7 @@ testName
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="valueUpdate2" class="doc_header"><code>valueUpdate2</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/update.py#L123" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate2</code>(<strong><code>inputs</code></strong>:<code>List</code>[<code>dict</code>])</p>
+<h4 id="valueUpdate2" class="doc_header"><code>valueUpdate2</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/update.py#L124" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>valueUpdate2</code>(<strong><code>inputs</code></strong>:<code>List</code>[<code>dict</code>])</p>
 </blockquote>
 <p>check for difference and batch update the changes in product data</p>
 
@@ -390,6 +421,7 @@ testName
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>INFO:root:using accelerate endpoint
 INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:using accelerate endpoint
 </pre>
 </div>
 </div>
@@ -397,9 +429,9 @@ INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/c
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>products are [{&#39;cprcode&#39;: 171670, &#39;iprcode&#39;: 171670, &#39;oprcode&#39;: 171670, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;JIRAPAT YOUNG KALE 2&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;05&#39;, &#39;pr_code&#39;: &#39;0171670&#39;, &#39;pr_dpcode&#39;: &#39;19&#39;, &#39;pr_engname&#39;: &#39;JIRAAT YOUNG KALE 200 G.&#39;, &#39;pr_ggcode&#39;: &#39;057&#39;, &#39;pr_market&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_name&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_puqty&#39;: &#39;1&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;CM845&#39;, &#39;pr_suref3&#39;: &#39;A&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;}]
-time taken for validation  -0.022057 ms
-divided into chunks -0.022115 ms
+<pre>products are [{&#39;cprcode&#39;: 171670, &#39;iprcode&#39;: 171670, &#39;oprcode&#39;: 171670, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;JIRAPAT YOUNG KALE 2&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;05&#39;, &#39;pr_code&#39;: &#39;0171670&#39;, &#39;pr_dpcode&#39;: &#39;19&#39;, &#39;pr_engname&#39;: &#39;JIRAAT YOUNG KALE 200 G.&#39;, &#39;pr_ggcode&#39;: &#39;057&#39;, &#39;pr_market&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_name&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_puqty&#39;: &#39;1&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;CM845&#39;, &#39;pr_suref3&#39;: &#39;A&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_barcode&#39;: &#39;123&#39;, &#39;pr_barcode2&#39;: &#39;245&#39;}]
+time taken for validation  -0.023937 ms
+divided into chunks -0.024427 ms
 loading hashkey allData-hash
 </pre>
 </div>
@@ -408,12 +440,7 @@ loading hashkey allData-hash
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>INFO:root:object exists, loading
-INFO:root:using accelerate endpoint
-INFO:numexpr.utils:NumExpr defaulting to 2 threads.
-INFO:root:incumbentBr is 171670
-, prcode is 171670
-INFO:root:no change for 171670
+<pre>INFO:root:using accelerate endpoint
 </pre>
 </div>
 </div>
@@ -421,11 +448,32 @@ INFO:root:no change for 171670
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>loaded hash is 4315e49752277cb0f5dbad228fdbdcce714878f5
-data is still in sync, using local cache
-get all from s3 -0.877643 ms
-CPU times: user 146 ms, sys: 7.76 ms, total: 154 ms
-Wall time: 893 ms
+<pre>loaded hash is fef8a7b62e18cd6e4cd7ad89b90be9d917d5a657
+remote hash is not the same, load remote cache
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:numexpr.utils:NumExpr defaulting to 2 threads.
+INFO:root:incumbentBr is 171670
+, prcode is 171670
+INFO:root:product 171670 has changed from 
+{&#39;cprcode&#39;: 171670, &#39;iprcode&#39;: 171670, &#39;oprcode&#39;: 171670, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;JIRAPAT YOUNG KALE 2&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;05&#39;, &#39;pr_code&#39;: &#39;0171670&#39;, &#39;pr_dpcode&#39;: &#39;19&#39;, &#39;pr_engname&#39;: &#39;JIRAAT YOUNG KALE 200 G.&#39;, &#39;pr_ggcode&#39;: &#39;057&#39;, &#39;pr_market&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_name&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_puqty&#39;: &#39;1&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;CM845&#39;, &#39;pr_suref3&#39;: &#39;A&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;none&#39;, &#39;pr_country_en&#39;: &#39;none&#39;, &#39;pr_keyword_th&#39;: &#39;none&#39;, &#39;pr_keyword_en&#39;: &#39;none&#39;, &#39;pr_filter_th&#39;: &#39;none&#39;, &#39;pr_filter_en&#39;: &#39;none&#39;, &#39;online_category_l1_th&#39;: &#39;none&#39;, &#39;online_category_l1_en&#39;: &#39;none&#39;, &#39;online_category_l2_th&#39;: &#39;none&#39;, &#39;online_category_l2_en&#39;: &#39;none&#39;, &#39;online_category_l3_th&#39;: &#39;none&#39;, &#39;online_category_l3_en&#39;: &#39;none&#39;, &#39;villa_category_l1_en&#39;: &#39;none&#39;, &#39;villa_category_l2_en&#39;: &#39;none&#39;, &#39;villa_category_l3_en&#39;: &#39;none&#39;, &#39;villa_category_l4_en&#39;: &#39;none&#39;, &#39;content_en&#39;: &#39;none&#39;, &#39;content_th&#39;: &#39;none&#39;, &#39;hema_brand_th&#39;: &#39;none&#39;, &#39;hema_brand_en&#39;: &#39;none&#39;, &#39;hema_sizedesc&#39;: &#39;none&#39;, &#39;pr_brand_en&#39;: &#39;none&#39;, &#39;pr_brand_th&#39;: &#39;none&#39;, &#39;pr_online_name_en&#39;: &#39;none&#39;, &#39;pr_online_name_th&#39;: &#39;none&#39;, &#39;hema_name_en&#39;: &#39;none&#39;, &#39;hema_name_th&#39;: &#39;none&#39;, &#39;pr_name_en&#39;: &#39;none&#39;, &#39;pr_name_th&#39;: &#39;none&#39;, &#39;sort_weight&#39;: &#39;none&#39;, &#39;pr_barcode&#39;: &#39;none&#39;, &#39;pr_barcode2&#39;: &#39;none&#39;, &#39;master_online&#39;: &#39;none&#39;, &#39;SaleMode_unit&#39;: &#39;none&#39;, &#39;ba_nprice&#39;: &#39;none&#39;, &#39;sort_villa_sku&#39;: &#39;none&#39;} 
+{&#39;cprcode&#39;: 171670, &#39;iprcode&#39;: 171670, &#39;oprcode&#39;: 171670, &#39;ordertype&#39;: &#39;Y&#39;, &#39;pr_abb&#39;: &#39;JIRAPAT YOUNG KALE 2&#39;, &#39;pr_active&#39;: &#39;Y&#39;, &#39;pr_cgcode&#39;: &#39;05&#39;, &#39;pr_code&#39;: &#39;0171670&#39;, &#39;pr_dpcode&#39;: &#39;19&#39;, &#39;pr_engname&#39;: &#39;JIRAAT YOUNG KALE 200 G.&#39;, &#39;pr_ggcode&#39;: &#39;057&#39;, &#39;pr_market&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_name&#39;: &#39;JIRAPAT ยอดคะน้า 200 G.&#39;, &#39;pr_puqty&#39;: &#39;1&#39;, &#39;pr_sa_method&#39;: &#39;1&#39;, &#39;pr_sucode1&#39;: &#39;CM845&#39;, &#39;pr_suref3&#39;: &#39;A&#39;, &#39;prtype&#39;: &#39;I&#39;, &#39;psqty&#39;: &#39;1&#39;, &#39;pstype&#39;: &#39;1&#39;, &#39;pr_country_th&#39;: &#39;none&#39;, &#39;pr_country_en&#39;: &#39;none&#39;, &#39;pr_keyword_th&#39;: &#39;none&#39;, &#39;pr_keyword_en&#39;: &#39;none&#39;, &#39;pr_filter_th&#39;: &#39;none&#39;, &#39;pr_filter_en&#39;: &#39;none&#39;, &#39;online_category_l1_th&#39;: &#39;none&#39;, &#39;online_category_l1_en&#39;: &#39;none&#39;, &#39;online_category_l2_th&#39;: &#39;none&#39;, &#39;online_category_l2_en&#39;: &#39;none&#39;, &#39;online_category_l3_th&#39;: &#39;none&#39;, &#39;online_category_l3_en&#39;: &#39;none&#39;, &#39;villa_category_l1_en&#39;: &#39;none&#39;, &#39;villa_category_l2_en&#39;: &#39;none&#39;, &#39;villa_category_l3_en&#39;: &#39;none&#39;, &#39;villa_category_l4_en&#39;: &#39;none&#39;, &#39;content_en&#39;: &#39;none&#39;, &#39;content_th&#39;: &#39;none&#39;, &#39;hema_brand_th&#39;: &#39;none&#39;, &#39;hema_brand_en&#39;: &#39;none&#39;, &#39;hema_sizedesc&#39;: &#39;none&#39;, &#39;pr_brand_en&#39;: &#39;none&#39;, &#39;pr_brand_th&#39;: &#39;none&#39;, &#39;pr_online_name_en&#39;: &#39;none&#39;, &#39;pr_online_name_th&#39;: &#39;none&#39;, &#39;hema_name_en&#39;: &#39;none&#39;, &#39;hema_name_th&#39;: &#39;none&#39;, &#39;pr_name_en&#39;: &#39;none&#39;, &#39;pr_name_th&#39;: &#39;none&#39;, &#39;sort_weight&#39;: &#39;none&#39;, &#39;pr_barcode&#39;: &#39;123&#39;, &#39;pr_barcode2&#39;: &#39;245&#39;, &#39;master_online&#39;: &#39;none&#39;, &#39;SaleMode_unit&#39;: &#39;none&#39;, &#39;ba_nprice&#39;: &#39;none&#39;, &#39;sort_villa_sku&#39;: &#39;none&#39;}
+INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>get all from s3 -2.555379 ms
+CPU times: user 1.52 s, sys: 375 ms, total: 1.9 s
+Wall time: 2.77 s
 </pre>
 </div>
 </div>
@@ -435,11 +483,11 @@ Wall time: 893 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;success&#39;: 0,
+<pre>{&#39;success&#39;: 1,
  &#39;failure&#39;: 0,
- &#39;skipped&#39;: 1,
+ &#39;skipped&#39;: 0,
  &#39;failureMessage&#39;: [],
- &#39;timetaken(ms)&#39;: 892.983}</pre>
+ &#39;timetaken(ms)&#39;: 2741.48}</pre>
 </div>
 
 </div>
@@ -472,22 +520,7 @@ Wall time: 893 ms
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>INFO:root:using accelerate endpoint
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>loading hashkey allData-hash
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>INFO:root:object exists, loading
+INFO:root:using accelerate endpoint
 INFO:root:using accelerate endpoint
 </pre>
 </div>
@@ -496,8 +529,9 @@ INFO:root:using accelerate endpoint
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>loaded hash is 4315e49752277cb0f5dbad228fdbdcce714878f5
-data is still in sync, using local cache
+<pre>loading hashkey allData-hash
+loaded hash is fef8a7b62e18cd6e4cd7ad89b90be9d917d5a657
+remote hash is not the same, load remote cache
 </pre>
 </div>
 </div>
@@ -534,44 +568,287 @@ data is still in sync, using local cache
       <th>pr_code</th>
       <th>pr_dpcode</th>
       <th>pr_engname</th>
-      <th>pr_ggcode</th>
-      <th>pr_market</th>
-      <th>pr_name</th>
-      <th>pr_puqty</th>
-      <th>pr_sa_method</th>
-      <th>pr_sucode1</th>
-      <th>pr_suref3</th>
-      <th>prtype</th>
-      <th>psqty</th>
-      <th>pstype</th>
+      <th>...</th>
+      <th>hema_name_th</th>
+      <th>pr_name_en</th>
+      <th>pr_name_th</th>
+      <th>sort_weight</th>
+      <th>pr_barcode</th>
+      <th>pr_barcode2</th>
+      <th>master_online</th>
+      <th>SaleMode_unit</th>
+      <th>ba_nprice</th>
+      <th>sort_villa_sku</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <th>0</th>
-      <td>171670</td>
-      <td>171670</td>
-      <td>171670</td>
+      <td>225407</td>
+      <td>225407</td>
+      <td>225407</td>
       <td>Y</td>
-      <td>JIRAPAT YOUNG KALE 2</td>
+      <td>MOKU</td>
       <td>Y</td>
-      <td>05</td>
-      <td>0171670</td>
-      <td>19</td>
-      <td>JIRAAT YOUNG KALE 200 G.</td>
-      <td>057</td>
-      <td>JIRAPAT ยอดคะน้า 200 G.</td>
-      <td>JIRAPAT ยอดคะน้า 200 G.</td>
-      <td>1</td>
-      <td>1</td>
-      <td>CM845</td>
-      <td>A</td>
-      <td>I</td>
-      <td>1</td>
-      <td>1</td>
+      <td>87</td>
+      <td>225407</td>
+      <td>21.0</td>
+      <td>KONJAC LINGUINI</td>
+      <td>...</td>
+      <td>บุกเส้นแบน ตราโมกุ</td>
+      <td>KONJAC LINGUINI</td>
+      <td>บุกเส้นแบน ตราโมกุ</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>241101</td>
+      <td>241101</td>
+      <td>241101</td>
+      <td>Y</td>
+      <td>BUMILGOCHUJANG</td>
+      <td>Y</td>
+      <td>06</td>
+      <td>0241101</td>
+      <td>8.0</td>
+      <td>BUMILGOCHUJANG</td>
+      <td>...</td>
+      <td>none</td>
+      <td>BUMILGOCHUJANG</td>
+      <td>บูมิลโคชูจังซอสเผ้ดเกาหลี</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>190100</td>
+      <td>190100</td>
+      <td>190100</td>
+      <td>Y</td>
+      <td>WHITE SHIMEJI</td>
+      <td>Y</td>
+      <td>5</td>
+      <td>190100</td>
+      <td>19.0</td>
+      <td>WHITE SHIMEJI</td>
+      <td>...</td>
+      <td>QUALITY VEGETABLE เห็ดชิเมจิขาว</td>
+      <td>WHITE SHIMEJI</td>
+      <td>QUALITY VEGETABLE เห็ดชิเมจิขาว</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>62644</td>
+      <td>62644</td>
+      <td>62644</td>
+      <td>Y</td>
+      <td>STUTE APRICOT JAM430</td>
+      <td>Y</td>
+      <td>7</td>
+      <td>62644</td>
+      <td>8.0</td>
+      <td>STUTE APRICOT JAM 430 G.</td>
+      <td>...</td>
+      <td>Apricot Jam</td>
+      <td>STUTE APRICOT JAM 430 G.</td>
+      <td>STUTE APRICOT JAM 430 G.</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>192167</td>
+      <td>192167</td>
+      <td>192167</td>
+      <td>Y</td>
+      <td>**COLGATE TOTAL CHAR</td>
+      <td>Y</td>
+      <td>10</td>
+      <td>192167</td>
+      <td>9.0</td>
+      <td>**COLGATE TOTAL CHARCOAL DEEP CLEAN 150G</td>
+      <td>...</td>
+      <td>Total Charcoal Deep Clean</td>
+      <td>**COLGATE TOTAL CHARCOAL DEEP CLEAN 150G</td>
+      <td>COGATE ยสฟ.โททอลชาร์โคลดีพคลีน 150กรัม</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>43797</th>
+      <td>166008</td>
+      <td>166008</td>
+      <td>166008</td>
+      <td>Y</td>
+      <td>RIBBON 180 M. 21</td>
+      <td>Y</td>
+      <td>2</td>
+      <td>166008</td>
+      <td>25.0</td>
+      <td>RIBBON 180 M. 21</td>
+      <td>...</td>
+      <td>RIBBON 180 M. 21</td>
+      <td>RIBBON 180 M. 21</td>
+      <td>ริบบิ้นผ้า 180ม.21 มิล</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>43798</th>
+      <td>76931</td>
+      <td>76931</td>
+      <td>76931</td>
+      <td>Y</td>
+      <td>ST. REMY BRANDY 70CL</td>
+      <td>Y</td>
+      <td>16</td>
+      <td>76931</td>
+      <td>1.0</td>
+      <td>ST. REMY BRANDY 70CL.</td>
+      <td>...</td>
+      <td>Brandy</td>
+      <td>ST. REMY BRANDY 70CL.</td>
+      <td>ST. REMY BRANDY 70CL.</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>43799</th>
+      <td>203391</td>
+      <td>203391</td>
+      <td>203391</td>
+      <td>Y</td>
+      <td>CH TERREFORT-QUANCA</td>
+      <td>Y</td>
+      <td>10</td>
+      <td>203391</td>
+      <td>1.0</td>
+      <td>CH TERREFORT-QUANCARD</td>
+      <td>...</td>
+      <td>Bordeaux</td>
+      <td>CH TERREFORT-QUANCARD</td>
+      <td>CH TERREFORT-QUANCARD</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>43800</th>
+      <td>205603</td>
+      <td>205603</td>
+      <td>205603</td>
+      <td>Y</td>
+      <td>19 GRAIN WHEAT LOAF</td>
+      <td>Y</td>
+      <td>15</td>
+      <td>205603</td>
+      <td>19.0</td>
+      <td>19 GRAIN WHEAT LOAF</td>
+      <td>...</td>
+      <td>19 Grain Wheat Loaf</td>
+      <td>19 GRAIN WHEAT LOAF</td>
+      <td>ขนมปังโฮลวีตธัญพืช 19 ชนิด</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>43801</th>
+      <td>211585</td>
+      <td>211585</td>
+      <td>211585</td>
+      <td>Y</td>
+      <td>EGG</td>
+      <td>Y</td>
+      <td>49</td>
+      <td>211585</td>
+      <td>19.0</td>
+      <td>EGG</td>
+      <td>...</td>
+      <td>EGG</td>
+      <td>EGG</td>
+      <td>EGG</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>None</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
     </tr>
   </tbody>
 </table>
+<p>43802 rows × 56 columns</p>
 </div>
 </div>
 

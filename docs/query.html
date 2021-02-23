@@ -198,10 +198,10 @@ None
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 77.7 ms, sys: 3.52 ms, total: 81.2 ms
-Wall time: 542 ms
-CPU times: user 8.25 ms, sys: 57 µs, total: 8.31 ms
-Wall time: 8.32 ms
+<pre>CPU times: user 59.9 ms, sys: 8.02 ms, total: 67.9 ms
+Wall time: 67 ms
+CPU times: user 6.06 ms, sys: 0 ns, total: 6.06 ms
+Wall time: 5.8 ms
 </pre>
 </div>
 </div>
@@ -211,7 +211,7 @@ Wall time: 8.32 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;https://product-bucket-dev-manual.s3.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=RCt0fCZ%2FmVnjhTBDiaVYfA9U7%2FI%3D&amp;Expires=1611794163&#39;</pre>
+<pre>&#39;https://product-bucket-dev-manual.s3.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=3lTWIvC9nHQVv7rOroI2SgULUqQ%3D&amp;Expires=1612492843&#39;</pre>
 </div>
 
 </div>
@@ -245,8 +245,8 @@ Wall time: 8.32 ms
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>product-bucket-dev-manual
-CPU times: user 27.8 ms, sys: 0 ns, total: 27.8 ms
-Wall time: 328 ms
+CPU times: user 5.7 ms, sys: 252 µs, total: 5.95 ms
+Wall time: 5.63 ms
 </pre>
 </div>
 </div>
@@ -256,7 +256,7 @@ Wall time: 328 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&#39;https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=FGBTtRKGJl%2BvROJfysBXp5lunEo%3D&amp;Expires=1611708763&#39;</pre>
+<pre>&#39;https://product-bucket-dev-manual.s3-accelerate.amazonaws.com/allData?AWSAccessKeyId=AKIAVX4Z5TKDSNNNULGB&amp;Signature=2ba608v8qEBqmobTfkvu1VvEmFc%3D&amp;Expires=1612407443&#39;</pre>
 </div>
 
 </div>
@@ -359,24 +359,12 @@ Wall time: 328 ms
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>loading hashkey allData-hash
-loaded hash is 4c2637c97219e67a081834a3fa3a34495e7e6510
+loaded hash is 3b7e3d595a478355b8f7a9cb0219e561d63b795d
 data is still in sync, using local cache
-db shape is (1, 20)
+db shape is (43803, 50)
+CPU times: user 241 ms, sys: 121 ms, total: 362 ms
+Wall time: 437 ms
 </pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">AssertionError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-
-<span class="ansi-red-fg">AssertionError</span>: shape is not as intended Empty DataFrame
-Columns: [cprcode, iprcode, oprcode, ordertype, pr_abb, pr_active, pr_cgcode, pr_code, pr_dpcode, pr_engname, pr_ggcode, pr_market, pr_name, pr_puqty, pr_sa_method, pr_sucode1, pr_suref3, prtype, psqty, pstype]
-Index: []</pre>
 </div>
 </div>
 
@@ -479,25 +467,10 @@ Index: []</pre>
 
 <div class="output_area">
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">Exception</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-
-<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
-<span class="ansi-green-intense-fg ansi-bold">     34</span>         <span class="ansi-blue-fg">@</span>classmethod
-<span class="ansi-green-intense-fg ansi-bold">     35</span>         <span class="ansi-green-fg">def</span> wrapper<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 36</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> func<span class="ansi-blue-fg">(</span> cls<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     37</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
-<span class="ansi-green-intense-fg ansi-bold">     38</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
-
-<span class="ansi-green-fg">&lt;ipython-input-13-4f748956024e&gt;</span> in <span class="ansi-cyan-fg">singleProductQuery</span><span class="ansi-blue-fg">(cls, input_)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span>   <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> cls<span class="ansi-blue-fg">.</span>validateInputQuery<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">,</span> input_<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">f&#34;error input {input_}&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span>   <span class="ansi-green-fg">if</span> <span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">:=</span>next<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">.</span>query<span class="ansi-blue-fg">(</span>input_<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">return</span> result<span class="ansi-blue-fg">.</span>toSeries<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg">   </span><span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">raise</span> Exception<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;product not found&#39;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">Exception</span>: product not found</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 4.44 ms, sys: 92 µs, total: 4.53 ms
+Wall time: 7.82 ms
+</pre>
 </div>
 </div>
 
@@ -530,7 +503,7 @@ Index: []</pre>
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">Exception</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-18-9aff530392a8&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">&lt;ipython-input-16-9aff530392a8&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>Tester<span class="ansi-blue-fg">.</span>singleProductQuery<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">{</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">:</span><span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">}</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>to_dict<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
 
 <span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/nicHelper/wrappers.py</span> in <span class="ansi-cyan-fg">wrapper</span><span class="ansi-blue-fg">(cls, *args, **kwargs)</span>
@@ -540,10 +513,10 @@ Index: []</pre>
 <span class="ansi-green-intense-fg ansi-bold">     37</span>         setattr<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">,</span> func<span class="ansi-blue-fg">.</span>__name__<span class="ansi-blue-fg">,</span> wrapper<span class="ansi-blue-fg">)</span>
 <span class="ansi-green-intense-fg ansi-bold">     38</span>         <span class="ansi-red-fg"># Note we are not binding func, but wrapper which accepts self but does exactly the same as func</span>
 
-<span class="ansi-green-fg">&lt;ipython-input-13-4f748956024e&gt;</span> in <span class="ansi-cyan-fg">singleProductQuery</span><span class="ansi-blue-fg">(cls, input_)</span>
-<span class="ansi-green-intense-fg ansi-bold">      4</span>   <span class="ansi-green-fg">if</span> <span class="ansi-green-fg">not</span> cls<span class="ansi-blue-fg">.</span>validateInputQuery<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">,</span> input_<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">f&#34;error input {input_}&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">      5</span>   <span class="ansi-green-fg">if</span> <span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">:=</span>next<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">.</span>query<span class="ansi-blue-fg">(</span>input_<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">return</span> result<span class="ansi-blue-fg">.</span>toSeries<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
-<span class="ansi-green-fg">----&gt; 6</span><span class="ansi-red-fg">   </span><span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">raise</span> Exception<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;product not found&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">&lt;ipython-input-13-7eacc8d61bbf&gt;</span> in <span class="ansi-cyan-fg">singleProductQuery</span><span class="ansi-blue-fg">(cls, input_)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>   iprcode <span class="ansi-blue-fg">=</span> int<span class="ansi-blue-fg">(</span>input_<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;iprcode&#39;</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span>   <span class="ansi-green-fg">if</span> <span class="ansi-blue-fg">(</span>result<span class="ansi-blue-fg">:=</span>next<span class="ansi-blue-fg">(</span>cls<span class="ansi-blue-fg">.</span>query<span class="ansi-blue-fg">(</span>iprcode<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">return</span> result<span class="ansi-blue-fg">.</span>toSeries<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 7</span><span class="ansi-red-fg">   </span><span class="ansi-green-fg">else</span><span class="ansi-blue-fg">:</span> <span class="ansi-green-fg">raise</span> Exception<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;product not found&#39;</span><span class="ansi-blue-fg">)</span>
 
 <span class="ansi-red-fg">Exception</span>: product not found</pre>
 </div>

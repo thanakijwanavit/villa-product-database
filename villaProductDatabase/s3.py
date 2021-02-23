@@ -83,7 +83,7 @@ def saveRemoteCache(cls ,db:pd.DataFrame, key= ALLDATAKEY,
   db.columns = db.columns.astype(str)
   db = db.reset_index(drop=True)
 
-  print(db)
+#   print(db)
   pdUtils.saveRemoteCache(data=db, key= key,
                           bucket=bucket, localCachePath=localCachePath,
                           localHashPath=localHashPath)

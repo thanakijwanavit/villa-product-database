@@ -2,9 +2,9 @@
 
 __all__ = ['DATABASE_TABLE_NAME', 'INVENTORY_BUCKET_NAME', 'INPUT_BUCKET_NAME', 'REGION', 'ACCESS_KEY_ID',
            'SECRET_ACCESS_KEY', 'LINEKEY', 'DBHASHLOCATION', 'DBCACHELOCATION', 'INTCOLS', 'ProductDatabase', 'cacheDb',
-           'lambdaDumpToS3', 'lambdaUpdateProduct', 'updateS3Input', 'lambdaUpdateS3', 'ProductsFromList',
-           'lambdaProductsFromList', 'lambdaSingleQuery', 'lambdaAllQuery', 'lambdaAllQueryFeather', 'clearCache',
-           'lambdaClearCache']
+           'lambdaDumpToS3', 'Product', 'ValueUpdate', 'chunks', 'lambdaUpdateProduct', 'updateS3Input',
+           'lambdaUpdateS3', 'ProductsFromList', 'lambdaProductsFromList', 'lambdaSingleQuery', 'lambdaAllQuery',
+           'lambdaAllQueryFeather']
 
 # Cell
 import pandas as pd
@@ -44,7 +44,7 @@ SECRET_ACCESS_KEY = os.environ.get('PW') or None
 LINEKEY= os.environ.get('LINEKEY')
 DBHASHLOCATION = '/mnt/efs/database.hash'
 DBCACHELOCATION = '/mnt/efs/database.cache'
-INTCOLS = ['iprcode','cprcode', 'oprcode', 'pr_barcode', 'pr_barcode2', 'sellingPrice']
+INTCOLS = json.loads(os.environ.get('INTCOLS') or '{}')
 
 try:
   DAX_ENDPOINT = os.environ['DAX_ENDPOINT']
@@ -92,6 +92,11 @@ class ProductDatabase( Querier, Helpers, KeySchema, S3Cache, Updater):
     for k,v in inputDict.items():
       outputStr += f'{k} {v}\n'
     return outputStr
+  @staticmethod
+  def convertIntCols(products:List[dict])->List[dict]:
+    convertedProducts = [{k:int(float(v)) if k in INTCOLS else v for k,v in product.items()}for product in sampleProducts]
+    return convertedProducts
+
 
 
 
@@ -99,82 +104,59 @@ class ProductDatabase( Querier, Helpers, KeySchema, S3Cache, Updater):
 @add_class_method(ProductDatabase)
 def cacheDb(cls, bucketName = INVENTORY_BUCKET_NAME, key = 'allData', limit=100, **kwargs):
   '''cache db to s3 and local efs'''
-  def makeInt(db:pd.DataFrame)->pd.DataFrame:
-    '''convert relevent indexes into int'''
-    print('converting keys into int')
-    for col in db.columns:
-      if col in INTCOLS:
-        db[col] = db[col].astype(int)
-    return db
-
-  def loadFromCache()->pd.DataFrame:
-    '''loading data from cache'''
-    db:pd.DataFrame = cls.loadFromCache(key=key, localCache=DBCACHELOCATION,
-                                        localHash=DBHASHLOCATION, bucket=bucketName)
-    logging.debug(f'origin item is shape{db.shape}')
-    db = makeInt(db)
-    return db
-  def getChanges()->pd.DataFrame:
-    '''get changes from database'''
-    print('quering for changes')
-    changes = list(cls.needsUpdateIndex.query(cls.TRUE, limit=limit))
-    return changes
-
-  def pynamoToDf(pynamos:List[cls])->pd.DataFrame:
-    '''convert pynamo class to pandas dataframe'''
-    print('convert to df')
-    changesDf = cls.toDf(pynamos)
-    print(f'changesDf is shape {changesDf.shape}')
-    changesDf = makeInt(changesDf)
-    return changesDf
-
-  def saveToCache(db:pd.DataFrame)->bool:
-    print('saving to remote cache')
-    cls.saveRemoteCache(db)
-    return True
-
-  def updateDb(db:pd.DataFrame, update:pd.DataFrame)->pd.DataFrame:
-    updatedDb = db.append(update) ### append db with update
-    updatedDb = updatedDb.drop_duplicates('cprcode', keep='last') ## drop dup keep last
-    return updatedDb.reset_index(drop=True) #reset created index
-
-  def setNoUpdates(changes: List[cls]):
-    print('setting noupdate')
-    with cls.batch_write() as batch:
-      for item in changes:
-        item.setNoUpdate(batch=batch)
-
-  def lineNotifyUpdate(message:str):
-    cls.notify(message) ### notify with line
-
-
-  #### main #####
-  db = loadFromCache()
-  changes = getChanges()
-  changesDf = pynamoToDf(changes)
-  updatedDb = updateDb(db, changesDf) # update the db
-  saveToCache(updatedDb) # upload to s3
-  setNoUpdates(changes) ### remove update tag
-  lineNotifyUpdate(f'ran cacheDb, db shape is {db.shape}')
+  db:pd.DataFrame = cls.loadFromCache(key=key, localCache=DBCACHELOCATION,
+                                      localHash=DBHASHLOCATION, bucket=bucketName)
+  logging.debug(f'origin item is shape{db.shape}')
+  #### get change
+  print('quering for changes')
+  changes = list(cls.needsUpdateIndex.query(cls.TRUE, limit=limit))
+  print('convert to df')
+  changesDf = cls.toDf(changes)
+  changesDf.set_index('cprcode', inplace=True)
+  print(changesDf.shape)
+#   db.set_index('cprcode', inplace=True)
+  updatedDb = db.append(changesDf).drop_duplicates('cprcode', keep='last')
+#   updatedDb.reset_index(inplace=True)
+  cls.saveRemoteCache(updatedDb)
+  print('saving to remote cache')
+  with cls.batch_write() as batch:
+    for item in changes:
+      item.setNoUpdate(batch=batch)
+  cls.notify(f'db shape is {db.shape}')
   return updatedDb
 
 # Cell
 def lambdaDumpToS3(event, _):
   result = ProductDatabase.cacheDb(limit = 500)
-  dictResult = json.loads(result.iloc[0].to_json())
-  return Response.getReturn(body = {'result': dictResult})
+  return Response.getReturn(body = {'result': result.iloc[0].to_dict()})
+
+# Cell
+@dataclass_json(undefined=Undefined.INCLUDE)
+@dataclass
+class Product:
+  iprcode: int
+  cprcode: int
+  data: CatchAll
+@dataclass_json
+@dataclass
+class ValueUpdate:
+  items: List[Product]
+
+# Cell
+def chunks(l, n): return [l[x: x+n] for x in range(0, len(l), n)]
 
 # Cell
 def lambdaUpdateProduct (event, _):
   products = Event.parseBody(event)['products']
-  result = ProductDatabase.valueUpdate2({'items':products})
+  convertedProducts = ProductDatabase.convertIntCols(products)
+  result = ProductDatabase.valueUpdate2({'items':convertedProducts})
   return Response.getReturn(body = result)
 
 # Cell
 @add_class_method(ProductDatabase)
-def updateS3Input(cls, inputBucketName = INPUT_BUCKET_NAME, key = '', **kwargs):
+def updateS3Input(cls, inputBucketName:str = INPUT_BUCKET_NAME, key:str = '', **kwargs):
   products = S3.load(key=key, bucket = inputBucketName,  **kwargs)
-  updateResult = cls.valueUpdate2({'items':products})
+  updateResult = cls.valueUpdate2({'items':cls.convertIntCols(products)})
   return updateResult
 
 
@@ -228,18 +210,3 @@ def lambdaAllQueryFeather(event, *args):
   url = ProductDatabase.allQuery(bucket = INVENTORY_BUCKET_NAME, key=key)
   hashCode = pdUtils.loadRemoteHash(key=key, bucket=bucket, useUrl = True)
   return Response.getReturn(body = {'url': url, 'hash': hashCode})
-
-# Cell
-@add_class_method(ProductDatabase)
-def clearCache(cls):
-  r = (i.data for i in cls.scan())
-  df = pd.DataFrame(r)
-  res = cls.saveRemoteCache(df)
-  return res
-
-
-
-# Cell
-def lambdaClearCache(*args):
-  ProductDatabase.clearCache()
-  return Response.returnSuccess()
