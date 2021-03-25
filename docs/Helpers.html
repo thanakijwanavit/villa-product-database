@@ -109,7 +109,7 @@ longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Tester</span><span class="p">(</span><span class="n">ProductDatabase</span><span class="p">,</span> <span class="n">Helpers</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Tester</span><span class="p">(</span><span class="n">Helpers</span><span class="p">,</span> <span class="n">ProductDatabase</span><span class="p">,</span> <span class="p">):</span>
   <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
     <span class="n">table_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;DATABASE_TABLE_NAME&#39;</span><span class="p">)</span>
     <span class="n">region</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;REGION&#39;</span><span class="p">)</span>
@@ -338,8 +338,8 @@ longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 173 ms, sys: 27.4 ms, total: 200 ms
-Wall time: 360 ms
+<pre>CPU times: user 6.79 s, sys: 379 ms, total: 7.17 s
+Wall time: 11.6 s
 </pre>
 </div>
 </div>
@@ -349,7 +349,51 @@ Wall time: 360 ms
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>1000</pre>
+<pre>39738</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">table</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">Tester</span><span class="o">.</span><span class="n">scan</span><span class="p">())</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 7.14 s, sys: 400 ms, total: 7.54 s
+Wall time: 11.9 s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>39738</pre>
 </div>
 
 </div>
@@ -366,6 +410,348 @@ Wall time: 360 ms
 </div>
 </div>
 </div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">items</span> <span class="o">=</span> <span class="n">Tester</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">item</span><span class="o">.</span><span class="n">data</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cprcode</th>
+      <th>iprcode</th>
+      <th>oprcode</th>
+      <th>ordertype</th>
+      <th>pr_abb</th>
+      <th>pr_active</th>
+      <th>pr_cgcode</th>
+      <th>pr_code</th>
+      <th>pr_dpcode</th>
+      <th>pr_engname</th>
+      <th>...</th>
+      <th>hema_name_th</th>
+      <th>pr_name_en</th>
+      <th>pr_name_th</th>
+      <th>sort_weight</th>
+      <th>pr_barcode</th>
+      <th>pr_barcode2</th>
+      <th>master_online</th>
+      <th>SaleMode_unit</th>
+      <th>ba_nprice</th>
+      <th>sort_villa_sku</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>225407</td>
+      <td>225407</td>
+      <td>225407</td>
+      <td>Y</td>
+      <td>MOKU</td>
+      <td>Y</td>
+      <td>87</td>
+      <td>0225407</td>
+      <td>21</td>
+      <td>KONJAC LINGUINI</td>
+      <td>...</td>
+      <td>บุกเส้นแบน ตราโมกุ</td>
+      <td>KONJAC LINGUINI</td>
+      <td>บุกเส้นแบน ตราโมกุ</td>
+      <td>0</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>241101</td>
+      <td>241101</td>
+      <td>241101</td>
+      <td>Y</td>
+      <td>BUMILGOCHUJANG</td>
+      <td>Y</td>
+      <td>06</td>
+      <td>0241101</td>
+      <td>08</td>
+      <td>BUMILGOCHUJANG</td>
+      <td>...</td>
+      <td>nan</td>
+      <td>BUMILGOCHUJANG</td>
+      <td>บูมิลโคชูจังซอสเผ้ดเกาหลี</td>
+      <td>0</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>190100</td>
+      <td>190100</td>
+      <td>190100</td>
+      <td>Y</td>
+      <td>WHITE SHIMEJI</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0190100</td>
+      <td>19</td>
+      <td>WHITE SHIMEJI</td>
+      <td>...</td>
+      <td>QUALITY VEGETABLE เห็ดชิเมจิขาว</td>
+      <td>WHITE SHIMEJI</td>
+      <td>QUALITY VEGETABLE เห็ดชิเมจิขาว</td>
+      <td>0</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>192167</td>
+      <td>192167</td>
+      <td>192167</td>
+      <td>Y</td>
+      <td>**COLGATE TOTAL CHAR</td>
+      <td>Y</td>
+      <td>10</td>
+      <td>0192167</td>
+      <td>09</td>
+      <td>**COLGATE TOTAL CHARCOAL DEEP CLEAN 150G</td>
+      <td>...</td>
+      <td>Total Charcoal Deep Clean</td>
+      <td>**COLGATE TOTAL CHARCOAL DEEP CLEAN 150G</td>
+      <td>COGATE ยสฟ.โททอลชาร์โคลดีพคลีน 150กรัม</td>
+      <td>0</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>195886</td>
+      <td>195886</td>
+      <td>195886</td>
+      <td>Y</td>
+      <td>HERR'S MEDIUM SALSA</td>
+      <td>Y</td>
+      <td>07</td>
+      <td>0195886</td>
+      <td>08</td>
+      <td>HERR'S MEDIUM SALSA DIP 454 G.</td>
+      <td>...</td>
+      <td>Medium Salsa Dip</td>
+      <td>HERR'S MEDIUM SALSA DIP 454 G.</td>
+      <td>HERR'S มีเดีย ซัลซ่า ดิป ซอส 454 G.</td>
+      <td>0</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>95</th>
+      <td>224654</td>
+      <td>224654</td>
+      <td>224654</td>
+      <td>Y</td>
+      <td>FARMER UNION GREEK 1</td>
+      <td>Y</td>
+      <td>84</td>
+      <td>0224654</td>
+      <td>23</td>
+      <td>FARMER UNION GREEK 130 G.</td>
+      <td>...</td>
+      <td>Greek</td>
+      <td>FARMER UNION GREEK 130 G.</td>
+      <td>FARMER UNION กรีก 8021 130 G.</td>
+      <td>0</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <th>96</th>
+      <td>173999</td>
+      <td>173999</td>
+      <td>173999</td>
+      <td>Y</td>
+      <td>FG MUSGROOM WHITE BO</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0173999</td>
+      <td>19</td>
+      <td>FG MUSGROOM WHITE BOTTON 250 G</td>
+      <td>...</td>
+      <td>FG เห็ดไวท์บัททอน 250ก.</td>
+      <td>FG MUSGROOM WHITE BOTTON 250 G</td>
+      <td>FG เห็ดไวท์บัททอน 250กรัม</td>
+      <td>0</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <th>97</th>
+      <td>20308</td>
+      <td>20308</td>
+      <td>20308</td>
+      <td>Y</td>
+      <td>ALLOWRIE BUTTER SALT</td>
+      <td>Y</td>
+      <td>07</td>
+      <td>0020308</td>
+      <td>23</td>
+      <td>ALLOWRIE BUTTER SALTED 454 G.</td>
+      <td>...</td>
+      <td>Butter Salted</td>
+      <td>ALLOWRIE BUTTER SALTED 454 G.</td>
+      <td>ALLOWRIE เนยเค็ม 454 G.</td>
+      <td>0</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <th>98</th>
+      <td>156518</td>
+      <td>156518</td>
+      <td>156518</td>
+      <td>Y</td>
+      <td>BENNETT VITAMIN E SO</td>
+      <td>Y</td>
+      <td>16</td>
+      <td>0156518</td>
+      <td>19</td>
+      <td>BENNETT VITAMIN E SOAP</td>
+      <td>...</td>
+      <td>BENNETT VITAMIN E SOAP</td>
+      <td>BENNETT VITAMIN E SOAP</td>
+      <td>BENNETT สบู่วิตามินอี สูตรดั่งเดิม 130 กรัม</td>
+      <td>0</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+    </tr>
+    <tr>
+      <th>99</th>
+      <td>143859</td>
+      <td>143859</td>
+      <td>143859</td>
+      <td>Y</td>
+      <td>ORGANIC MIXED VEG</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0143859</td>
+      <td>19</td>
+      <td>ORGANIC MIXED VEG</td>
+      <td>...</td>
+      <td>ORGANIC MIXED VEG</td>
+      <td>ORGANIC MIXED VEG</td>
+      <td>ORGANIC ผักสลัดรวม</td>
+      <td>0</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+    </tr>
+  </tbody>
+</table>
+<p>100 rows × 56 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -419,8 +805,8 @@ Wall time: 360 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 1.27 s, sys: 102 µs, total: 1.27 s
-Wall time: 1.28 s
+<pre>CPU times: user 28.4 ms, sys: 252 µs, total: 28.7 ms
+Wall time: 49.2 ms
 </pre>
 </div>
 </div>
@@ -447,153 +833,153 @@ Wall time: 1.28 s
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>content_en</th>
-      <th>content_th</th>
       <th>cprcode</th>
-      <th>hema_brand_en</th>
-      <th>hema_brand_th</th>
-      <th>hema_name_en</th>
-      <th>hema_name_th</th>
-      <th>hema_sizedesc</th>
       <th>iprcode</th>
-      <th>online_category_l1_en</th>
+      <th>oprcode</th>
+      <th>ordertype</th>
+      <th>pr_abb</th>
+      <th>pr_active</th>
+      <th>pr_cgcode</th>
+      <th>pr_code</th>
+      <th>pr_dpcode</th>
+      <th>pr_engname</th>
       <th>...</th>
-      <th>pr_suref3</th>
-      <th>prtype</th>
-      <th>psqty</th>
-      <th>pstype</th>
+      <th>hema_name_th</th>
+      <th>pr_name_en</th>
+      <th>pr_name_th</th>
       <th>sort_weight</th>
-      <th>villa_category_l1_en</th>
-      <th>villa_category_l2_en</th>
-      <th>villa_category_l3_en</th>
-      <th>villa_category_l4_en</th>
-      <th>0171670</th>
+      <th>pr_barcode</th>
+      <th>pr_barcode2</th>
+      <th>master_online</th>
+      <th>SaleMode_unit</th>
+      <th>ba_nprice</th>
+      <th>sort_villa_sku</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0140942</th>
-      <td>0140942 Fragata Olive Pomace Oil 2L cooking oi...</td>
-      <td>Fragata Olive Pomace Oil 2L</td>
-      <td>0140942</td>
-      <td>Fragata</td>
-      <td>Fragata</td>
-      <td>Olive Pomace Oil</td>
-      <td>Olive Pomace Oil</td>
-      <td>2L</td>
-      <td>0140942</td>
-      <td>Grocery</td>
+      <th>0</th>
+      <td>225407</td>
+      <td>225407</td>
+      <td>225407</td>
+      <td>Y</td>
+      <td>MOKU</td>
+      <td>Y</td>
+      <td>87</td>
+      <td>0225407</td>
+      <td>21</td>
+      <td>KONJAC LINGUINI</td>
       <td>...</td>
-      <td>A</td>
-      <td>I</td>
-      <td>1</td>
-      <td>1</td>
+      <td>บุกเส้นแบน ตราโมกุ</td>
+      <td>KONJAC LINGUINI</td>
+      <td>บุกเส้นแบน ตราโมกุ</td>
       <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Oil &amp; Seasoning &amp; Sauce</td>
-      <td>Cooking Oil</td>
-      <td>NaN</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
     </tr>
     <tr>
-      <th>0223750</th>
-      <td>0223750 Samyang Hot Chickhen Carbonarag 130g s...</td>
-      <td>Samyang Hot Chickhen Carbonarag 130g</td>
-      <td>0223750</td>
-      <td>Samyang</td>
-      <td>Samyang</td>
-      <td>Hot Chickhen Carbonarag</td>
-      <td>Hot Chickhen Carbonarag</td>
-      <td>130g</td>
-      <td>0223750</td>
-      <td>Grocery</td>
+      <th>1</th>
+      <td>241101</td>
+      <td>241101</td>
+      <td>241101</td>
+      <td>Y</td>
+      <td>BUMILGOCHUJANG</td>
+      <td>Y</td>
+      <td>06</td>
+      <td>0241101</td>
+      <td>08</td>
+      <td>BUMILGOCHUJANG</td>
       <td>...</td>
-      <td>A</td>
-      <td>I</td>
-      <td>1</td>
-      <td>1</td>
+      <td>nan</td>
+      <td>BUMILGOCHUJANG</td>
+      <td>บูมิลโคชูจังซอสเผ้ดเกาหลี</td>
       <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Rice &amp; Noodles &amp; Japanese</td>
-      <td>Noodles</td>
-      <td>NaN</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
     </tr>
     <tr>
-      <th>0203790</th>
-      <td>0203790 KRISTY HAMPER 2016 SET G</td>
-      <td>KRISTY HAMPER 2016 SET G</td>
-      <td>0203790</td>
-      <td></td>
-      <td></td>
-      <td>KRISTY HAMPER 2016 SET G</td>
-      <td>KRISTY HAMPER 2016 SET G</td>
-      <td></td>
-      <td>0203790</td>
-      <td></td>
+      <th>2</th>
+      <td>190100</td>
+      <td>190100</td>
+      <td>190100</td>
+      <td>Y</td>
+      <td>WHITE SHIMEJI</td>
+      <td>Y</td>
+      <td>05</td>
+      <td>0190100</td>
+      <td>19</td>
+      <td>WHITE SHIMEJI</td>
       <td>...</td>
-      <td>A</td>
-      <td>I</td>
-      <td>1</td>
-      <td>1</td>
+      <td>QUALITY VEGETABLE เห็ดชิเมจิขาว</td>
+      <td>WHITE SHIMEJI</td>
+      <td>QUALITY VEGETABLE เห็ดชิเมจิขาว</td>
       <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Grocery</td>
-      <td>Oil &amp; Seasoning &amp; Sauce</td>
-      <td>Baking Needs</td>
-      <td>NaN</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
     </tr>
     <tr>
-      <th>0207006</th>
-      <td>0207006 Malee 100% Tangerine Sukhothai 1L juice</td>
-      <td>Malee 100% Tangerine Sukhothai 1L น้ำผลไม้</td>
-      <td>0207006</td>
-      <td>Malee</td>
-      <td>Malee</td>
-      <td>100% Tangerine Sukhothai</td>
-      <td>100% Tangerine Sukhothai</td>
-      <td>1L</td>
-      <td>0207006</td>
-      <td>Drinks</td>
+      <th>3</th>
+      <td>192167</td>
+      <td>192167</td>
+      <td>192167</td>
+      <td>Y</td>
+      <td>**COLGATE TOTAL CHAR</td>
+      <td>Y</td>
+      <td>10</td>
+      <td>0192167</td>
+      <td>09</td>
+      <td>**COLGATE TOTAL CHARCOAL DEEP CLEAN 150G</td>
       <td>...</td>
-      <td>C</td>
-      <td>I</td>
-      <td>1</td>
-      <td>1</td>
+      <td>Total Charcoal Deep Clean</td>
+      <td>**COLGATE TOTAL CHARCOAL DEEP CLEAN 150G</td>
+      <td>COGATE ยสฟ.โททอลชาร์โคลดีพคลีน 150กรัม</td>
       <td>0</td>
-      <td>Dry Grocery</td>
-      <td>Alcohol &amp; Beverage</td>
-      <td>Juice</td>
-      <td>Juice Local</td>
-      <td>NaN</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
+      <td>none</td>
     </tr>
     <tr>
-      <th>235078</th>
-      <td>0235078 PLANEAT ROASTED SEASONED AJI BLACK PEPPE</td>
-      <td>PLANEAT ROASTED SEASONED AJI BLACK PEPPE</td>
-      <td>235078</td>
-      <td>none</td>
-      <td>none</td>
-      <td>PLANEAT ROASTED SEASONED AJI BLACK PEPPE</td>
-      <td>PLANEAT ROASTED SEASONED AJI BLACK PEPPE</td>
-      <td>none</td>
-      <td>235078</td>
-      <td>none</td>
+      <th>4</th>
+      <td>195886</td>
+      <td>195886</td>
+      <td>195886</td>
+      <td>Y</td>
+      <td>HERR'S MEDIUM SALSA</td>
+      <td>Y</td>
+      <td>07</td>
+      <td>0195886</td>
+      <td>08</td>
+      <td>HERR'S MEDIUM SALSA DIP 454 G.</td>
       <td>...</td>
-      <td>A</td>
-      <td>I</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>0.0</td>
+      <td>Medium Salsa Dip</td>
+      <td>HERR'S MEDIUM SALSA DIP 454 G.</td>
+      <td>HERR'S มีเดีย ซัลซ่า ดิป ซอส 454 G.</td>
+      <td>0</td>
       <td>none</td>
       <td>none</td>
       <td>none</td>
       <td>none</td>
-      <td>NaN</td>
+      <td>none</td>
+      <td>none</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 53 columns</p>
+<p>5 rows × 56 columns</p>
 </div>
 </div>
 
@@ -622,7 +1008,7 @@ Wall time: 1.28 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="fromSeries" class="doc_header"><code>fromSeries</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L52" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fromSeries</code>(<strong><code>data</code></strong>:<code>Series</code>)</p>
+<h4 id="fromSeries" class="doc_header"><code>fromSeries</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L53" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fromSeries</code>(<strong><code>data</code></strong>:<code>Series</code>)</p>
 </blockquote>
 
 </div>
@@ -667,59 +1053,62 @@ Wall time: 1.28 s
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;content_en&#39;: &#39;0140942 Fragata Olive Pomace Oil 2L cooking oil, oil cooking,Fragata Olive Pomace Oil, Fragata, Olive purity pomace oil, Omace oil olive pomace oil, cooking olive pomace oil, olive pomace oil cooking&#39;,
- &#39;content_th&#39;: &#39;Fragata Olive Pomace Oil 2L&#39;,
- &#39;cprcode&#39;: &#39;0140942&#39;,
- &#39;hema_brand_en&#39;: &#39;Fragata&#39;,
- &#39;hema_brand_th&#39;: &#39;Fragata&#39;,
- &#39;hema_name_en&#39;: &#39;Olive Pomace Oil&#39;,
- &#39;hema_name_th&#39;: &#39;Olive Pomace Oil&#39;,
- &#39;hema_sizedesc&#39;: &#39;2L&#39;,
- &#39;iprcode&#39;: &#39;0140942&#39;,
- &#39;online_category_l1_en&#39;: &#39;Grocery&#39;,
- &#39;online_category_l1_th&#39;: &#39;สินค้าบริโภค&#39;,
- &#39;online_category_l2_en&#39;: &#39;Oils &amp; Vinegar&#39;,
- &#39;online_category_l2_th&#39;: &#39;น้ำมันและน้ำส้มสายชู&#39;,
- &#39;online_category_l3_en&#39;: &#39;&#39;,
- &#39;online_category_l3_th&#39;: &#39;&#39;,
- &#39;oprcode&#39;: &#39;0140942&#39;,
+<pre>{&#39;SaleMode_unit&#39;: &#39;none&#39;,
+ &#39;ba_nprice&#39;: &#39;none&#39;,
+ &#39;content_en&#39;: &#39;0225407 KONJAC LINGUINI&#39;,
+ &#39;content_th&#39;: &#39;บุกเส้นแบน ตราโมกุ&#39;,
+ &#39;cprcode&#39;: 225407.0,
+ &#39;hema_brand_en&#39;: &#39;nan&#39;,
+ &#39;hema_brand_th&#39;: &#39;nan&#39;,
+ &#39;hema_name_en&#39;: &#39;KONJAC LINGUINI&#39;,
+ &#39;hema_name_th&#39;: &#39;บุกเส้นแบน ตราโมกุ&#39;,
+ &#39;hema_sizedesc&#39;: &#39;nan&#39;,
+ &#39;iprcode&#39;: 225407.0,
+ &#39;master_online&#39;: &#39;none&#39;,
+ &#39;online_category_l1_en&#39;: &#39;Delicatessen &amp; Eggs&#39;,
+ &#39;online_category_l1_th&#39;: &#39;อาหารสำเร็จรูปและไข่&#39;,
+ &#39;online_category_l2_en&#39;: &#39;Ready Meals&#39;,
+ &#39;online_category_l2_th&#39;: &#39;อาหารพร้อมทาน&#39;,
+ &#39;online_category_l3_en&#39;: &#39;nan&#39;,
+ &#39;online_category_l3_th&#39;: &#39;nan&#39;,
+ &#39;oprcode&#39;: 225407.0,
  &#39;ordertype&#39;: &#39;Y&#39;,
- &#39;pr_abb&#39;: &#39;FRAGATA OLIVE POMACE&#39;,
+ &#39;pr_abb&#39;: &#39;MOKU&#39;,
  &#39;pr_active&#39;: &#39;Y&#39;,
- &#39;pr_barcode&#39;: &#39;8410134118601&#39;,
- &#39;pr_barcode2&#39;: &#39;841013411860&#39;,
- &#39;pr_brand_en&#39;: &#39;Fragata&#39;,
- &#39;pr_brand_th&#39;: &#39;Fragata&#39;,
- &#39;pr_cgcode&#39;: &#39;01&#39;,
- &#39;pr_code&#39;: &#39;0140942&#39;,
- &#39;pr_country_en&#39;: &#39;&#39;,
- &#39;pr_country_th&#39;: &#39;&#39;,
- &#39;pr_dpcode&#39;: &#39;08&#39;,
- &#39;pr_engname&#39;: &#39;FRAGATA OLIVE POMACE OIL 2 LITE&#39;,
- &#39;pr_filter_en&#39;: &#39;Oils  Vinegar,Grocery&#39;,
- &#39;pr_filter_th&#39;: &#39;Oils  Vinegar,Grocery&#39;,
- &#39;pr_ggcode&#39;: &#39;008&#39;,
- &#39;pr_keyword_en&#39;: &#39;cooking oil, oil cooking,Fragata Olive Pomace Oil, Fragata, Olive purity pomace oil, Omace oil olive pomace oil, cooking olive pomace oil, olive pomace oil cooking&#39;,
- &#39;pr_keyword_th&#39;: &#39;&#39;,
- &#39;pr_market&#39;: &#39;FRAGATA น้ำมันมะกอกธรรมชาติผสม&#39;,
- &#39;pr_name&#39;: &#39;FRAGATA น้ำมันมะกอกธรรมชาติ-กรรมวิธี 2 ลิตร&#39;,
- &#39;pr_name_en&#39;: &#39;FRAGATA OLIVE POMACE OIL 2 LITE&#39;,
- &#39;pr_name_th&#39;: &#39;FRAGATA น้ำมันมะกอกธรรมชาติ-กรรมวิธี 2 ลิตร&#39;,
- &#39;pr_online_name_en&#39;: &#39;Fragata Olive Pomace Oil 2L&#39;,
- &#39;pr_online_name_th&#39;: &#39;Fragata Olive Pomace Oil 2L&#39;,
- &#39;pr_puqty&#39;: &#39;8.00&#39;,
+ &#39;pr_barcode&#39;: &#39;none&#39;,
+ &#39;pr_barcode2&#39;: &#39;none&#39;,
+ &#39;pr_brand_en&#39;: &#39;nan&#39;,
+ &#39;pr_brand_th&#39;: &#39;nan&#39;,
+ &#39;pr_cgcode&#39;: &#39;87&#39;,
+ &#39;pr_code&#39;: &#39;0225407&#39;,
+ &#39;pr_country_en&#39;: &#39;Thailand&#39;,
+ &#39;pr_country_th&#39;: &#39;nan&#39;,
+ &#39;pr_dpcode&#39;: &#39;21&#39;,
+ &#39;pr_engname&#39;: &#39;KONJAC LINGUINI&#39;,
+ &#39;pr_filter_en&#39;: &#39;nan&#39;,
+ &#39;pr_filter_th&#39;: &#39;nan&#39;,
+ &#39;pr_ggcode&#39;: &#39;010&#39;,
+ &#39;pr_keyword_en&#39;: &#39;nan&#39;,
+ &#39;pr_keyword_th&#39;: &#39;nan&#39;,
+ &#39;pr_market&#39;: &#39;MOKU&#39;,
+ &#39;pr_name&#39;: &#39;บุกเส้นแบน ตราโมกุ&#39;,
+ &#39;pr_name_en&#39;: &#39;KONJAC LINGUINI&#39;,
+ &#39;pr_name_th&#39;: &#39;บุกเส้นแบน ตราโมกุ&#39;,
+ &#39;pr_online_name_en&#39;: &#39;KONJAC LINGUINI&#39;,
+ &#39;pr_online_name_th&#39;: &#39;บุกเส้นแบน ตราโมกุ&#39;,
+ &#39;pr_puqty&#39;: &#39;1.00&#39;,
  &#39;pr_sa_method&#39;: &#39;1&#39;,
- &#39;pr_sucode1&#39;: &#39;1036&#39;,
+ &#39;pr_sucode1&#39;: &#39;F1148&#39;,
  &#39;pr_suref3&#39;: &#39;A&#39;,
  &#39;prtype&#39;: &#39;I&#39;,
  &#39;psqty&#39;: &#39;1&#39;,
  &#39;pstype&#39;: &#39;1&#39;,
+ &#39;sort_villa_sku&#39;: &#39;none&#39;,
  &#39;sort_weight&#39;: &#39;0&#39;,
- &#39;villa_category_l1_en&#39;: &#39;Dry Grocery&#39;,
- &#39;villa_category_l2_en&#39;: &#39;Grocery&#39;,
- &#39;villa_category_l3_en&#39;: &#39;Oil &amp; Seasoning &amp; Sauce&#39;,
- &#39;villa_category_l4_en&#39;: &#39;Cooking Oil&#39;,
- &#39;0171670&#39;: nan}</pre>
+ &#39;villa_category_l1_en&#39;: &#39;Fresh&#39;,
+ &#39;villa_category_l2_en&#39;: &#39;Delicatessen&#39;,
+ &#39;villa_category_l3_en&#39;: &#39;Local&#39;,
+ &#39;villa_category_l4_en&#39;: &#39;Local Foods&#39;}</pre>
 </div>
 
 </div>
@@ -747,7 +1136,7 @@ Wall time: 1.28 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="fromDf" class="doc_header"><code>fromDf</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L58" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fromDf</code>(<strong><code>data</code></strong>:<code>DataFrame</code>)</p>
+<h4 id="fromDf" class="doc_header"><code>fromDf</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L59" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fromDf</code>(<strong><code>data</code></strong>:<code>DataFrame</code>)</p>
 </blockquote>
 
 </div>
@@ -781,6 +1170,78 @@ Wall time: 1.28 s
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>ProductDatabase Object
+SaleMode_unit none
+ba_nprice none
+content_en 0225407 KONJAC LINGUINI
+content_th บุกเส้นแบน ตราโมกุ
+cprcode 225407.0
+hema_brand_en nan
+hema_brand_th nan
+hema_name_en KONJAC LINGUINI
+hema_name_th บุกเส้นแบน ตราโมกุ
+hema_sizedesc nan
+iprcode 225407.0
+master_online none
+online_category_l1_en Delicatessen &amp; Eggs
+online_category_l1_th อาหารสำเร็จรูปและไข่
+online_category_l2_en Ready Meals
+online_category_l2_th อาหารพร้อมทาน
+online_category_l3_en nan
+online_category_l3_th nan
+oprcode 225407.0
+ordertype Y
+pr_abb MOKU
+pr_active Y
+pr_barcode none
+pr_barcode2 none
+pr_brand_en nan
+pr_brand_th nan
+pr_cgcode 87
+pr_code 0225407
+pr_country_en Thailand
+pr_country_th nan
+pr_dpcode 21
+pr_engname KONJAC LINGUINI
+pr_filter_en nan
+pr_filter_th nan
+pr_ggcode 010
+pr_keyword_en nan
+pr_keyword_th nan
+pr_market MOKU
+pr_name บุกเส้นแบน ตราโมกุ
+pr_name_en KONJAC LINGUINI
+pr_name_th บุกเส้นแบน ตราโมกุ
+pr_online_name_en KONJAC LINGUINI
+pr_online_name_th บุกเส้นแบน ตราโมกุ
+pr_puqty 1.00
+pr_sa_method 1
+pr_sucode1 F1148
+pr_suref3 A
+prtype I
+psqty 1
+pstype 1
+sort_villa_sku none
+sort_weight 0
+villa_category_l1_en Fresh
+villa_category_l2_en Delicatessen
+villa_category_l3_en Local
+villa_category_l4_en Local Foods</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     {% endraw %}
 
@@ -801,7 +1262,7 @@ Wall time: 1.28 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="fromDict" class="doc_header"><code>fromDict</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L64" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fromDict</code>(<strong><code>dictInput</code></strong>)</p>
+<h4 id="fromDict" class="doc_header"><code>fromDict</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L65" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>fromDict</code>(<strong><code>dictInput</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -856,6 +1317,42 @@ Wall time: 1.28 s
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>ProductDatabase Object
+cprcode 0171670
+iprcode 0171670
+oprcode 0171670
+ordertype Y
+pr_abb JIRAPAT YOUNG KALE 2
+pr_active Y
+pr_cgcode 05
+pr_code 0171670
+pr_dpcode 19
+pr_engname JIRAAT YOUNG KALE 200 G.
+pr_ggcode 057
+pr_market JIRAPAT ยอดคะน้า 200 G.
+pr_name JIRAPAT ยอดคะน้า 200 G.
+pr_puqty 1
+pr_sa_method 1
+pr_sucode1 CM845
+pr_suref3 A
+prtype I
+psqty 1
+pstype 1</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     {% endraw %}
 
@@ -876,7 +1373,7 @@ Wall time: 1.28 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="toListDict" class="doc_header"><code>toListDict</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L76" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>toListDict</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/Helpers.html#Helpers"><code>Helpers</code></a>])</p>
+<h4 id="toListDict" class="doc_header"><code>toListDict</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L77" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>toListDict</code>(<strong><code>items</code></strong>:<code>List</code>[<a href="/villaProductDatabase/Helpers.html#Helpers"><code>Helpers</code></a>])</p>
 </blockquote>
 
 </div>
@@ -911,6 +1408,22 @@ Wall time: 1.28 s
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>100</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     {% endraw %}
 
@@ -937,7 +1450,7 @@ Wall time: 1.28 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="toSeries" class="doc_header"><code>toSeries</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L81" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>toSeries</code>()</p>
+<h4 id="toSeries" class="doc_header"><code>toSeries</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L82" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>toSeries</code>()</p>
 </blockquote>
 
 </div>
@@ -973,6 +1486,82 @@ Wall time: 1.28 s
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">VerboseClientError</span>                        Traceback (most recent call last)
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/connection/base.py</span> in <span class="ansi-cyan-fg">query</span><span class="ansi-blue-fg">(self, table_name, hash_key, range_key_condition, filter_condition, attributes_to_get, consistent_read, exclusive_start_key, index_name, limit, return_consumed_capacity, scan_index_forward, select)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1348</span>         <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 1349</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>dispatch<span class="ansi-blue-fg">(</span>QUERY<span class="ansi-blue-fg">,</span> operation_kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1350</span>         <span class="ansi-green-fg">except</span> BOTOCORE_EXCEPTIONS <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/connection/base.py</span> in <span class="ansi-cyan-fg">dispatch</span><span class="ansi-blue-fg">(self, operation_name, operation_kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    348</span>         self<span class="ansi-blue-fg">.</span>send_pre_boto_callback<span class="ansi-blue-fg">(</span>operation_name<span class="ansi-blue-fg">,</span> req_uuid<span class="ansi-blue-fg">,</span> table_name<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 349</span><span class="ansi-red-fg">         </span>data <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_make_api_call<span class="ansi-blue-fg">(</span>operation_name<span class="ansi-blue-fg">,</span> operation_kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    350</span>         self<span class="ansi-blue-fg">.</span>send_post_boto_callback<span class="ansi-blue-fg">(</span>operation_name<span class="ansi-blue-fg">,</span> req_uuid<span class="ansi-blue-fg">,</span> table_name<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/connection/base.py</span> in <span class="ansi-cyan-fg">_make_api_call</span><span class="ansi-blue-fg">(self, operation_name, operation_kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    458</span>                 <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 459</span><span class="ansi-red-fg">                     </span><span class="ansi-green-fg">raise</span> VerboseClientError<span class="ansi-blue-fg">(</span>botocore_expected_format<span class="ansi-blue-fg">,</span> operation_name<span class="ansi-blue-fg">,</span> verbose_properties<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    460</span>                 <span class="ansi-green-fg">except</span> VerboseClientError <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">VerboseClientError</span>: An error occurred (ValidationException) on request (JG34R1Q89K2ITK7822VD99EDGNVV4KQNSO5AEMVJF66Q9ASUAAJG) on table (product-table-dev-manual) when calling the Query operation: ExpressionAttributeValues contains invalid value: The parameter cannot be converted to a numeric value: &#34;0000009&#34; for key :0
+
+During handling of the above exception, another exception occurred:
+
+<span class="ansi-red-fg">QueryError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-25-336790b9c69b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>item <span class="ansi-blue-fg">=</span> next<span class="ansi-blue-fg">(</span>Tester<span class="ansi-blue-fg">.</span>query<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;0000009&#39;</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> data <span class="ansi-blue-fg">=</span> item<span class="ansi-blue-fg">.</span>data
+<span class="ansi-green-intense-fg ansi-bold">      3</span> item<span class="ansi-blue-fg">.</span>toSeries<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/pagination.py</span> in <span class="ansi-cyan-fg">__next__</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">    189</span>         <span class="ansi-green-fg">if</span> self<span class="ansi-blue-fg">.</span>_first_iteration<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">    190</span>             self<span class="ansi-blue-fg">.</span>_first_iteration <span class="ansi-blue-fg">=</span> <span class="ansi-green-fg">False</span>
+<span class="ansi-green-fg">--&gt; 191</span><span class="ansi-red-fg">             </span>self<span class="ansi-blue-fg">.</span>_get_next_page<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    192</span> 
+<span class="ansi-green-intense-fg ansi-bold">    193</span>         <span class="ansi-green-fg">while</span> self<span class="ansi-blue-fg">.</span>_index <span class="ansi-blue-fg">==</span> self<span class="ansi-blue-fg">.</span>_count<span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/pagination.py</span> in <span class="ansi-cyan-fg">_get_next_page</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">    174</span> 
+<span class="ansi-green-intense-fg ansi-bold">    175</span>     <span class="ansi-green-fg">def</span> _get_next_page<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span> <span class="ansi-blue-fg">-&gt;</span> <span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 176</span><span class="ansi-red-fg">         </span>page <span class="ansi-blue-fg">=</span> next<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">.</span>page_iter<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    177</span>         self<span class="ansi-blue-fg">.</span>_count <span class="ansi-blue-fg">=</span> page<span class="ansi-blue-fg">[</span>CAMEL_COUNT<span class="ansi-blue-fg">]</span>
+<span class="ansi-green-intense-fg ansi-bold">    178</span>         self<span class="ansi-blue-fg">.</span>_items <span class="ansi-blue-fg">=</span> page<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span>ITEMS<span class="ansi-blue-fg">)</span>  <span class="ansi-red-fg"># not returned if &#39;Select&#39; is set to &#39;COUNT&#39;</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/pagination.py</span> in <span class="ansi-cyan-fg">__next__</span><span class="ansi-blue-fg">(self)</span>
+<span class="ansi-green-intense-fg ansi-bold">    111</span>             self<span class="ansi-blue-fg">.</span>_rate_limiter<span class="ansi-blue-fg">.</span>acquire<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    112</span>             self<span class="ansi-blue-fg">.</span>_kwargs<span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">&#39;return_consumed_capacity&#39;</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> TOTAL
+<span class="ansi-green-fg">--&gt; 113</span><span class="ansi-red-fg">         </span>page <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>_operation<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>self<span class="ansi-blue-fg">.</span>_args<span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">**</span>self<span class="ansi-blue-fg">.</span>_kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    114</span>         self<span class="ansi-blue-fg">.</span>_last_evaluated_key <span class="ansi-blue-fg">=</span> page<span class="ansi-blue-fg">.</span>get<span class="ansi-blue-fg">(</span>LAST_EVALUATED_KEY<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    115</span>         self<span class="ansi-blue-fg">.</span>_total_scanned_count <span class="ansi-blue-fg">+=</span> page<span class="ansi-blue-fg">[</span>SCANNED_COUNT<span class="ansi-blue-fg">]</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/connection/table.py</span> in <span class="ansi-cyan-fg">query</span><span class="ansi-blue-fg">(self, hash_key, range_key_condition, filter_condition, attributes_to_get, consistent_read, exclusive_start_key, index_name, limit, return_consumed_capacity, scan_index_forward, select)</span>
+<span class="ansi-green-intense-fg ansi-bold">    256</span>         Performs the Query operation <span class="ansi-green-fg">and</span> returns the result
+<span class="ansi-green-intense-fg ansi-bold">    257</span>         &#34;&#34;&#34;
+<span class="ansi-green-fg">--&gt; 258</span><span class="ansi-red-fg">         return self.connection.query(
+</span><span class="ansi-green-intense-fg ansi-bold">    259</span>             self<span class="ansi-blue-fg">.</span>table_name<span class="ansi-blue-fg">,</span>
+<span class="ansi-green-intense-fg ansi-bold">    260</span>             hash_key<span class="ansi-blue-fg">,</span>
+
+<span class="ansi-green-fg">~/SageMaker/.persisted_conda/python38/lib/python3.8/site-packages/pynamodb/connection/base.py</span> in <span class="ansi-cyan-fg">query</span><span class="ansi-blue-fg">(self, table_name, hash_key, range_key_condition, filter_condition, attributes_to_get, consistent_read, exclusive_start_key, index_name, limit, return_consumed_capacity, scan_index_forward, select)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1349</span>             <span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>dispatch<span class="ansi-blue-fg">(</span>QUERY<span class="ansi-blue-fg">,</span> operation_kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1350</span>         <span class="ansi-green-fg">except</span> BOTOCORE_EXCEPTIONS <span class="ansi-green-fg">as</span> e<span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 1351</span><span class="ansi-red-fg">             </span><span class="ansi-green-fg">raise</span> QueryError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;Failed to query items: {}&#34;</span><span class="ansi-blue-fg">.</span>format<span class="ansi-blue-fg">(</span>e<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span> e<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   1352</span> 
+<span class="ansi-green-intense-fg ansi-bold">   1353</span>     <span class="ansi-green-fg">def</span> _check_condition<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> name<span class="ansi-blue-fg">,</span> condition<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">QueryError</span>: Failed to query items: An error occurred (ValidationException) on request (JG34R1Q89K2ITK7822VD99EDGNVV4KQNSO5AEMVJF66Q9ASUAAJG) on table (product-table-dev-manual) when calling the Query operation: ExpressionAttributeValues contains invalid value: The parameter cannot be converted to a numeric value: &#34;0000009&#34; for key :0</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
     {% endraw %}
 
@@ -993,7 +1582,7 @@ Wall time: 1.28 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="setNoUpdate" class="doc_header"><code>setNoUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L86" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setNoUpdate</code>(<strong><code>batch</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="setNoUpdate" class="doc_header"><code>setNoUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L87" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setNoUpdate</code>(<strong><code>batch</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 
 </div>
@@ -1017,7 +1606,7 @@ Wall time: 1.28 s
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="setUpdate" class="doc_header"><code>setUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L94" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setUpdate</code>(<strong><code>batch</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="setUpdate" class="doc_header"><code>setUpdate</code><a href="https://github.com/thanakijwanavit/villaProductDatabase/tree/master/villaProductDatabase/helpers.py#L95" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>setUpdate</code>(<strong><code>batch</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 
 </div>
@@ -1056,6 +1645,61 @@ Wall time: 1.28 s
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">:</span>
+  <span class="k">def</span> <span class="nf">a</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">B</span><span class="p">:</span>
+  <span class="k">def</span> <span class="nf">a</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+  <span class="k">pass</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">C</span><span class="p">()</span><span class="o">.</span><span class="n">a</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>a
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 

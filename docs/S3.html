@@ -250,8 +250,6 @@ longtermcluster.vuu7lr.clustercfg.dax.apse1.cache.amazonaws.com:8111
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>INFO:root:using accelerate endpoint
-INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
-INFO:root:using accelerate endpoint
 </pre>
 </div>
 </div>
@@ -267,7 +265,8 @@ INFO:root:using accelerate endpoint
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>INFO:root:using accelerate endpoint
+<pre>INFO:botocore.credentials:Found credentials in shared credentials file: ~/.aws/credentials
+INFO:root:using accelerate endpoint
 </pre>
 </div>
 </div>
@@ -275,10 +274,10 @@ INFO:root:using accelerate endpoint
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>loaded hash is 8fcf833a7f88a978ee92f8f99cc10abe7455b792
-remote hash is not the same, load remote cache
-CPU times: user 2.63 s, sys: 612 ms, total: 3.24 s
-Wall time: 4.17 s
+<pre>loaded hash is d95b3c1039572a4bfdfda23994e6a07dadca1356
+data is still in sync, using local cache
+CPU times: user 264 ms, sys: 113 ms, total: 377 ms
+Wall time: 508 ms
 </pre>
 </div>
 </div>
@@ -441,8 +440,6 @@ Wall time: 4.17 s
 
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>INFO:root:using accelerate endpoint
-INFO:root:data was saved to s3
-INFO:root:using accelerate endpoint
 </pre>
 </div>
 </div>
@@ -452,7 +449,23 @@ INFO:root:using accelerate endpoint
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>hashKey is allData-hash
 saving hash to s3
-saved hash d0c0857f93ea21a99bc59a7c459dea6b8341d7cf
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>INFO:root:data was saved to s3
+INFO:root:using accelerate endpoint
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>saved hash d0c0857f93ea21a99bc59a7c459dea6b8341d7cf
 </pre>
 </div>
 </div>
@@ -473,8 +486,8 @@ INFO:root:using accelerate endpoint
 <pre>loading hashkey allData-hash
 loaded hash is d0c0857f93ea21a99bc59a7c459dea6b8341d7cf
 data is still in sync, using local cache
-CPU times: user 124 ms, sys: 0 ns, total: 124 ms
-Wall time: 621 ms
+CPU times: user 150 ms, sys: 17.1 ms, total: 167 ms
+Wall time: 695 ms
 </pre>
 </div>
 </div>
@@ -665,7 +678,7 @@ data is still in sync, using local cache
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
-<span class="n">Tester</span><span class="o">.</span><span class="n">resetS3Cache</span><span class="p">()</span>
+<span class="n">Tester</span><span class="o">.</span><span class="n">resetS3Cache</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -686,18 +699,8 @@ data is still in sync, using local cache
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>(1, 20) changes to update
-   cprcode  iprcode  oprcode ordertype               pr_abb pr_active  \
-0  0171670  0171670  0171670         Y  JIRAPAT YOUG KALE 2         Y   
-
-  pr_cgcode  pr_code pr_dpcode                 pr_engname pr_ggcode  \
-0        05  0171670        19  JIRAPAT YOUNG KALE 200 G.       057   
-
-                 pr_market                  pr_name pr_puqty pr_sa_method  \
-0  JIRAPAT ยอดคะน้า 200 G.  JIRAPAT ยอดคะน้า 200 G.        1            1   
-
-  pr_sucode1 pr_suref3 prtype psqty pstype  
-0      CM845         A      I     1      1  
+<pre>db is scanned
+(39738, 75) changes to update
 </pre>
 </div>
 </div>
@@ -717,7 +720,7 @@ INFO:root:using accelerate endpoint
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>hashKey is allData-hash
 saving hash to s3
-saved hash e63c6c6ab5030e00da6c2c0352ea4a9c9cd573f8
+saved hash d95b3c1039572a4bfdfda23994e6a07dadca1356
 </pre>
 </div>
 </div>
@@ -733,8 +736,8 @@ saved hash e63c6c6ab5030e00da6c2c0352ea4a9c9cd573f8
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 125 ms, sys: 18 ms, total: 143 ms
-Wall time: 489 ms
+<pre>CPU times: user 13.2 s, sys: 950 ms, total: 14.1 s
+Wall time: 19.4 s
 </pre>
 </div>
 </div>
@@ -796,14 +799,14 @@ Wall time: 489 ms
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 115 µs, sys: 18 µs, total: 133 µs
-Wall time: 139 µs
-CPU times: user 288 µs, sys: 45 µs, total: 333 µs
-Wall time: 235 µs
-CPU times: user 27 µs, sys: 4 µs, total: 31 µs
-Wall time: 35 µs
-CPU times: user 33 µs, sys: 6 µs, total: 39 µs
-Wall time: 42.7 µs
+<pre>CPU times: user 140 µs, sys: 12 µs, total: 152 µs
+Wall time: 158 µs
+CPU times: user 92 µs, sys: 8 µs, total: 100 µs
+Wall time: 79.6 µs
+CPU times: user 20 µs, sys: 2 µs, total: 22 µs
+Wall time: 26.2 µs
+CPU times: user 38 µs, sys: 3 µs, total: 41 µs
+Wall time: 45.5 µs
 </pre>
 </div>
 </div>

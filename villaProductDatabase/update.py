@@ -2,7 +2,7 @@
 
 __all__ = ['DBHASHLOCATION', 'DBCACHELOCATION', 'DATABASE_TABLE_NAME', 'INVENTORY_BUCKET_NAME', 'INPUT_BUCKET_NAME',
            'REGION', 'ACCESS_KEY_ID', 'SECRET_ACCESS_KEY', 'LINEKEY', 'BRANCH', 'VALUEUPDATESCHEMAURL', 'Updater',
-           'updateWithDict', 'ValueUpdate2', 'saveBatchToDynamodb', 'valueUpdate2']
+           'updateWithDict', 'ValueUpdate2', 'saveBatchToDynamodb', 'saveBatchToDynamodb2', 'valueUpdate2']
 
 # Cell
 from s3bz.s3bz import S3
@@ -59,7 +59,7 @@ class ValueUpdate2:
   def chunks(l, n): return [l[x: x+n] for x in range(0, len(l), n)]
   ##### plot time elapsed for debugging
   @staticmethod
-  def getTimeElasped(t0): return (t0-datetime.now()).total_seconds()
+  def getTimeElasped(t0): return (datetime.now()-t0).total_seconds() * 1000
 
   t0 = datetime.now()
 
@@ -121,6 +121,43 @@ def saveBatchToDynamodb(productBatch:list, dbClass:Updater, db:pd.DataFrame, ite
 #     itemsUpdated['timetaken(ms)'] = (datetime.now()- t0).total_seconds()*1000
 
 # Cell
+@add_static_method(ValueUpdate2)
+def saveBatchToDynamodb2(productBatch:list, dbClass:Updater, db:pd.DataFrame, itemsUpdated:dict):
+  def checkIfInDb(db:pd.DataFrame, iprcode:int, cprcode:int)->dbClass:
+    '''check if product is in the database, if not, create an empty class with the product code'''
+    incumbentItem =  next(dbClass.query(hash_key = iprcode, range_key_condition=dbClass.cprcode == cprcode), dbClass(iprcode=iprcode, cprcode=cprcode, data = {}))
+    return incumbentItem
+
+  ###### main ######
+  with dbClass.batch_write() as batch:
+    # loop through each product
+    for product in productBatch:
+      iprcode = product['iprcode']
+      cprcode = product['cprcode']
+      incumbentItem = checkIfInDb(db, iprcode, cprcode) ### check if product in db or return empty obj
+
+      ##### make a copy of original data
+      originalData = incumbentItem.data.copy()
+      ###### update data
+      updatedData = dbClass.updateWithDict(incumbentItem, product)
+
+      # check for difference
+      try:
+        if updatedData.data != originalData:
+          logging.info(f'product {iprcode} has changed from \n{originalData} \n{updatedData.data}')
+          batch.save(updatedData)
+          itemsUpdated['success'] += 1
+        else:
+          logging.info(f'no change for {iprcode}')
+          itemsUpdated['skipped'] += 1
+
+      except Exception as e:
+        itemsUpdated['failure'] += 1
+        itemsUpdated['failureMessage'].append(e)
+
+
+
+# Cell
 @add_class_method(Updater)
 def valueUpdate2(cls, inputs:List[dict]):
     '''
@@ -134,7 +171,7 @@ def valueUpdate2(cls, inputs:List[dict]):
 
     ######validate input ###########
     products = ValueUpdate2.validateInput(inputs).items
-    print(f'products are {products}')
+    print(f'products are {products[0]}')
     print(f'time taken for validation  {ValueUpdate2.getTimeElasped(t0)} ms')
 
     ######dividing input into batch of 500###########
@@ -147,6 +184,6 @@ def valueUpdate2(cls, inputs:List[dict]):
 
     ###### save to dynamodb ########
     for productBatch in productBatches:
-      ValueUpdate2.saveBatchToDynamodb(productBatch, cls, db, itemsUpdated)
+      ValueUpdate2.saveBatchToDynamodb2(productBatch, cls, db, itemsUpdated)
     itemsUpdated['timetaken(ms)'] = (datetime.now()- t0).total_seconds()*1000
     return itemsUpdated

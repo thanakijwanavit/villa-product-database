@@ -36,16 +36,17 @@ def keys(cls):
 # Cell
 @add_class_method(Helpers)
 def scanDb(cls, limit=100):
-  return list(cls.scan(limit=limit))
+  return list(cls.scan())
 
 # Cell
 @add_class_method(Helpers)
 def toDf(cls, products:List[Helpers])->pd.DataFrame:
-  df = pd.DataFrame()
-  for product in products:
-    productSeries = product.toSeries()
-    productSeries = productSeries.rename(product.cprcode)
-    df = df.append(productSeries)
+  df = pd.DataFrame([item.data for item in products])
+#   df = pd.DataFrame()
+#   for product in products:
+#     productSeries = product.toSeries()
+#     productSeries = productSeries.rename(product.cprcode)
+#     df = df.append(productSeries)
   return df
 
 # Cell

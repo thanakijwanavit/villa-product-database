@@ -179,6 +179,12 @@ You can create the table by with the <code>create_table</code> method.</p>
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Test">Test<a class="anchor-link" href="#Test"> </a></h1>
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -212,7 +218,208 @@ You can create the table by with the <code>create_table</code> method.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">Tester</span><span class="o">.</span><span class="n">scan</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">s3bz.s3bz</span> <span class="kn">import</span> <span class="n">S3</span>
+<span class="kn">import</span> <span class="nn">boto3</span><span class="o">,</span> <span class="nn">json</span><span class="o">,</span> <span class="nn">yaml</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">gzip</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="n">data</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Tester</span><span class="o">.</span><span class="n">scan</span><span class="p">()])</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cprcode</th>
+      <th>iprcode</th>
+      <th>oprcode</th>
+      <th>ordertype</th>
+      <th>pr_abb</th>
+      <th>pr_active</th>
+      <th>pr_cgcode</th>
+      <th>pr_dpcode</th>
+      <th>pr_engname</th>
+      <th>pr_ggcode</th>
+      <th>...</th>
+      <th>preorder_fix_date</th>
+      <th>preorder_relative_day</th>
+      <th>meta_title</th>
+      <th>meta_keywords</th>
+      <th>meta_description</th>
+      <th>depth</th>
+      <th>priority_score</th>
+      <th>product_attribute_id</th>
+      <th>product_attribute</th>
+      <th>related_products</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>225407</td>
+      <td>225407</td>
+      <td>225407</td>
+      <td>Y</td>
+      <td>MOKU</td>
+      <td>True</td>
+      <td>87</td>
+      <td>21</td>
+      <td>KONJAC LINGUINI</td>
+      <td>010</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>241101</td>
+      <td>241101</td>
+      <td>241101</td>
+      <td>Y</td>
+      <td>BUMILGOCHUJANG</td>
+      <td>True</td>
+      <td>06</td>
+      <td>08</td>
+      <td>BUMILGOCHUJANG</td>
+      <td>006</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>190100</td>
+      <td>190100</td>
+      <td>190100</td>
+      <td>Y</td>
+      <td>WHITE SHIMEJI</td>
+      <td>True</td>
+      <td>05</td>
+      <td>19</td>
+      <td>WHITE SHIMEJI</td>
+      <td>143</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>62644</td>
+      <td>62644</td>
+      <td>62644</td>
+      <td>Y</td>
+      <td>STUTE APRICOT JAM430</td>
+      <td>True</td>
+      <td>07</td>
+      <td>08</td>
+      <td>STUTE APRICOT JAM 430 G.</td>
+      <td>002</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>192167</td>
+      <td>192167</td>
+      <td>192167</td>
+      <td>Y</td>
+      <td>**COLGATE TOTAL CHAR</td>
+      <td>True</td>
+      <td>10</td>
+      <td>09</td>
+      <td>**COLGATE TOTAL CHARCOAL DEEP CLEAN 150G</td>
+      <td>005</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 75 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 
     </div>
@@ -227,75 +434,361 @@ You can create the table by with the <code>create_table</code> method.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[{&#39;cprcode&#39;: 225407,
-  &#39;data&#39;: {&#39;SaleMode_unit&#39;: &#39;ITEM&#39;,
-           &#39;ba_nprice&#39;: &#39;25.00&#39;,
-           &#39;content_en&#39;: &#39;0225407 0225407 KONJAC LINGUINI  &#39;
-                         &#39;0225407-8858661102531&#39;,
-           &#39;content_th&#39;: &#39;บุกเส้นแบน ตราโมกุ   MOKU MOKU&#39;,
-           &#39;cprcode&#39;: 225407,
-           &#39;hema_brand_en&#39;: &#39;&#39;,
-           &#39;hema_brand_th&#39;: &#39;&#39;,
-           &#39;hema_name_en&#39;: &#39;KONJAC LINGUINI&#39;,
-           &#39;hema_name_th&#39;: &#39;บุกเส้นแบน ตราโมกุ&#39;,
-           &#39;hema_sizedesc&#39;: &#39;&#39;,
-           &#39;iprcode&#39;: 225407,
-           &#39;master_online&#39;: &#39;Y&#39;,
-           &#39;online_category_l1_en&#39;: &#39;Delicatessen &amp; Eggs&#39;,
-           &#39;online_category_l1_th&#39;: &#39;อาหารสำเร็จรูปและไข่&#39;,
-           &#39;online_category_l2_en&#39;: &#39;Ready Meals&#39;,
-           &#39;online_category_l2_th&#39;: &#39;อาหารพร้อมทาน&#39;,
-           &#39;online_category_l3_en&#39;: &#39;&#39;,
-           &#39;online_category_l3_th&#39;: &#39;&#39;,
-           &#39;oprcode&#39;: 225407,
-           &#39;ordertype&#39;: &#39;Y&#39;,
-           &#39;pr_abb&#39;: &#39;MOKU&#39;,
-           &#39;pr_active&#39;: &#39;Y&#39;,
-           &#39;pr_barcode&#39;: 0,
-           &#39;pr_barcode2&#39;: 0,
-           &#39;pr_brand_en&#39;: &#39;&#39;,
-           &#39;pr_brand_th&#39;: &#39;&#39;,
-           &#39;pr_cgcode&#39;: &#39;87&#39;,
-           &#39;pr_code&#39;: &#39;0225407&#39;,
-           &#39;pr_country_en&#39;: &#39;Thailand&#39;,
-           &#39;pr_country_th&#39;: &#39;&#39;,
-           &#39;pr_dpcode&#39;: &#39;21&#39;,
-           &#39;pr_engname&#39;: &#39;KONJAC LINGUINI&#39;,
-           &#39;pr_filter_en&#39;: &#39;&#39;,
-           &#39;pr_filter_th&#39;: &#39;&#39;,
-           &#39;pr_ggcode&#39;: &#39;010&#39;,
-           &#39;pr_keyword_en&#39;: &#39;&#39;,
-           &#39;pr_keyword_th&#39;: &#39;&#39;,
-           &#39;pr_market&#39;: &#39;MOKU&#39;,
-           &#39;pr_name&#39;: &#39;บุกเส้นแบน ตราโมกุ&#39;,
-           &#39;pr_name_en&#39;: &#39;KONJAC LINGUINI&#39;,
-           &#39;pr_name_th&#39;: &#39;บุกเส้นแบน ตราโมกุ&#39;,
-           &#39;pr_online_name_en&#39;: &#39;KONJAC LINGUINI&#39;,
-           &#39;pr_online_name_th&#39;: &#39;บุกเส้นแบน ตราโมกุ&#39;,
-           &#39;pr_puqty&#39;: &#39;1.00&#39;,
-           &#39;pr_sa_method&#39;: &#39;1&#39;,
-           &#39;pr_sucode1&#39;: &#39;F1148&#39;,
-           &#39;pr_suref3&#39;: &#39;A&#39;,
-           &#39;prtype&#39;: &#39;I&#39;,
-           &#39;psqty&#39;: &#39;1&#39;,
-           &#39;pstype&#39;: &#39;1&#39;,
-           &#39;sort_villa_sku&#39;: 0,
-           &#39;sort_weight&#39;: &#39;0&#39;,
-           &#39;villa_category_l1_en&#39;: &#39;Fresh&#39;,
-           &#39;villa_category_l2_en&#39;: &#39;Delicatessen&#39;,
-           &#39;villa_category_l3_en&#39;: &#39;Local&#39;,
-           &#39;villa_category_l4_en&#39;: &#39;Local Foods&#39;},
-  &#39;iprcode&#39;: 225407,
-  &#39;lastUpdate&#39;: 0,
-  &#39;needsUpdate&#39;: &#39;Y&#39;,
-  &#39;oprcode&#39;: 225407,
-  &#39;pr_barcode&#39;: None,
-  &#39;pr_barcode2&#39;: None,
-  &#39;pr_dpcode&#39;: &#39;21&#39;,
-  &#39;pr_sa_method&#39;: &#39;1&#39;,
-  &#39;pr_sucode1&#39;: &#39;F1148&#39;,
-  &#39;pr_suref3&#39;: &#39;A&#39;,
-  &#39;sellingPrice&#39;: 0}]</pre>
+<pre>(45075, 75)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="n">ECOMMERCE_COL_LIST</span> <span class="o">=</span> <span class="s1">&#39;https://raw.githubusercontent.com/thanakijwanavit/villaMasterSchema/dev/product/ecommerceColList.yaml&#39;</span>
+<span class="n">onlineList</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ECOMMERCE_COL_LIST</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>&lt;ipython-input-11-bcf26bf89ba1&gt;:3: YAMLLoadWarning: calling yaml.load() without Loader=... is deprecated, as the default Loader is unsafe. Please read https://msg.pyyaml.org/load for full details.
+  onlineList = yaml.load(requests.get(ECOMMERCE_COL_LIST).content)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">condition</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;master_online&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="kc">True</span>
+<span class="n">condition2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;hema_name_en&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span>
+<span class="n">onlineDf</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">condition</span> <span class="o">&amp;</span> <span class="n">condition2</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span><span class="n">onlineList</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;shape is:&#39;</span><span class="p">,</span><span class="n">onlineDf</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1"># get size</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;size is:&#39;</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">getsizeof</span><span class="p">(</span><span class="n">onlineDf</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;split&#39;</span><span class="p">))</span><span class="o">/</span><span class="mf">1e6</span><span class="p">,</span> <span class="s1">&#39;Mb&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>shape is: (19108, 11)
+size is: 3.272721 Mb
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">key</span> <span class="o">=</span> <span class="s1">&#39;onlineData&#39;</span>
+<span class="n">bucket</span> <span class="o">=</span> <span class="n">INVENTORY_BUCKET_NAME</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;/tmp/tmp.json&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">s3bz.s3bz</span> <span class="kn">import</span> <span class="n">S3</span><span class="p">,</span> <span class="n">ExtraArgs</span>
+
+
+<span class="n">onlineDf</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">path</span> <span class="p">,</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;split&#39;</span><span class="p">,</span><span class="n">compression</span><span class="o">=</span><span class="s1">&#39;gzip&#39;</span><span class="p">)</span>
+
+<span class="n">S3</span><span class="o">.</span><span class="n">saveFile</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">key</span><span class="p">,</span><span class="n">path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span><span class="n">bucket</span><span class="o">=</span><span class="n">bucket</span><span class="p">,</span>
+            <span class="n">ExtraArgs</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">ExtraArgs</span><span class="o">.</span><span class="n">gzip</span><span class="p">,</span> <span class="o">**</span><span class="n">ExtraArgs</span><span class="o">.</span><span class="n">publicRead</span> <span class="p">})</span>
+
+<span class="c1"># s3 = boto3.resource(&#39;s3&#39;)</span>
+<span class="c1"># onlineDict = onlineDf.to_dict(orient=&#39;split&#39;)</span>
+<span class="c1"># onlineJson = json.dumps(onlineDict)</span>
+<span class="c1"># onlineGzip = gzip.compress(onlineJson.encode())</span>
+
+<span class="c1"># with open(path, &#39;wb&#39;) as f:</span>
+<span class="c1">#   f.write(onlineGzip)</span>
+  
+<span class="c1"># s3.meta.client.upload_file(</span>
+<span class="c1">#   Filename=path,</span>
+<span class="c1">#   Bucket=bucket,</span>
+<span class="c1">#   Key=key,</span>
+<span class="c1">#   ExtraArgs={&#39;ContentType&#39;: &#39;application/json&#39;, &#39;ContentEncoding&#39;:&#39;gzip&#39;,&#39;ACL&#39;:&#39;public-read&#39;})</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">onlineDf</span><span class="p">[</span><span class="n">onlineDf</span><span class="p">[</span><span class="s1">&#39;hema_name_en&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cprcode</th>
+      <th>iprcode</th>
+      <th>psqty</th>
+      <th>pr_country_en</th>
+      <th>online_category_l1_en</th>
+      <th>online_category_l2_en</th>
+      <th>online_category_l3_en</th>
+      <th>hema_brand_en</th>
+      <th>hema_sizedesc</th>
+      <th>hema_name_en</th>
+      <th>hema_name_th</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">onlineDf</span><span class="p">[</span><span class="n">onlineDf</span><span class="p">[</span><span class="s1">&#39;cprcode&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">204731</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cprcode</th>
+      <th>iprcode</th>
+      <th>psqty</th>
+      <th>pr_country_en</th>
+      <th>online_category_l1_en</th>
+      <th>online_category_l2_en</th>
+      <th>online_category_l3_en</th>
+      <th>hema_brand_en</th>
+      <th>hema_sizedesc</th>
+      <th>hema_name_en</th>
+      <th>hema_name_th</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>22068</th>
+      <td>204731</td>
+      <td>204731</td>
+      <td>1</td>
+      <td>France</td>
+      <td>Delicatessen &amp; Eggs</td>
+      <td>Salmon &amp; Seafood</td>
+      <td>Smoked Seafood</td>
+      <td>Labeyrie</td>
+      <td>80g</td>
+      <td>Salmon Roe Jar</td>
+      <td>Salmon Roe Jar</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">dfReal</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="s1">&#39;https://product-bucket-dev-manual.s3-ap-southeast-1.amazonaws.com/onlineData&#39;</span><span class="p">,</span><span class="n">orient</span><span class="o">=</span><span class="s1">&#39;split&#39;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;gzip&#39;</span><span class="p">)</span>
+<span class="n">dfReal</span><span class="p">[</span><span class="n">dfReal</span><span class="p">[</span><span class="s1">&#39;cprcode&#39;</span><span class="p">]</span><span class="o">==</span><span class="mi">242687</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>cprcode</th>
+      <th>iprcode</th>
+      <th>psqty</th>
+      <th>pr_country_en</th>
+      <th>online_category_l1_en</th>
+      <th>online_category_l2_en</th>
+      <th>online_category_l3_en</th>
+      <th>hema_brand_en</th>
+      <th>hema_sizedesc</th>
+      <th>hema_name_en</th>
+      <th>hema_name_th</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3335</th>
+      <td>242687</td>
+      <td>242687</td>
+      <td>1</td>
+      <td></td>
+      <td>Health &amp; Beauty</td>
+      <td>Body &amp; Facial Skincare</td>
+      <td>Shower &amp; Body Wash</td>
+      <td>Glow Lab</td>
+      <td>400ml</td>
+      <td>Coconut &amp; Sandalwood Body Wash</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 
 </div>

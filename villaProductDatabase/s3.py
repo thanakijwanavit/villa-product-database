@@ -102,6 +102,7 @@ def resetS3Cache(cls, bucketName= INVENTORY_BUCKET_NAME, key = 'allData', limit=
   ''' upload changes to s3'''
   ###### get all data
   items:List[cls] = cls.scanDb(limit=limit)
+  print('db is scanned')
   db:pd.DataFrame = cls.toDf(items)
   print(f'{db.shape} changes to update')
   cls.saveRemoteCache(db)
