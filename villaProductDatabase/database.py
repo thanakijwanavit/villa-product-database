@@ -140,6 +140,7 @@ def lambdaDumpToS3(event, _):
 
 # Cell
 def lambdaDumpOnlineS3(event, *args):
+  print(f'ecommece col list is {ECOMMERCE_COL_LIST}')
   # get all products from db
   df:pd.DataFrame = pd.DataFrame([i.data for i in ProductDatabase.scan()])
   # get online list from ECOMMERCE_COL_LIST
@@ -164,6 +165,7 @@ def lambdaDumpOnlineS3(event, *args):
   ## upload file to s3
   S3.saveFile(key=key,path=path,bucket=bucket,
             ExtraArgs = {**ExtraArgs.gzip, **ExtraArgs.publicRead })
+  return Response.returnSuccess()
 
 
 
